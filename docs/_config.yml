@@ -2,3 +2,6 @@ theme: jekyll-theme-cayman
 include:
   - index.html
   - about.md
+  - organizations.md
+  - mkdocs
+

@@ -46,6 +46,7 @@ jobs:
           command: |
             . toolkit/venv/bin/activate
             tool --dir ~/repo db-to-yaml
+            cd toolkit
             mkdocs build
 
       - deploy:

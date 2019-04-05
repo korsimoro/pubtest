@@ -21,11 +21,11 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "toolkit/requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      #- restore_cache:
+      #    keys:
+      #      - v1-dependencies-{{ checksum "toolkit/requirements.txt" }}
+      #      # fallback to using the latest cache if no exact match is found
+      #      - v1-dependencies-
 
       - run:
           name: install dependencies
@@ -34,17 +34,17 @@ jobs:
             . toolkit/venv/bin/activate
             pip install -r toolkit/requirements.txt
 
-      - save_cache:
-          paths:
-            - ./toolkit/venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      #- save_cache:
+      #    paths:
+      #      - ./toolkit/venv
+      #    key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
           name: build docs
           command: |
             . toolkit/venv/bin/activate
-            toolkit db-to-yaml
-            toolkit build
+            tool db-to-yaml
+            mkdocs build
 
       - deploy:
           command: |

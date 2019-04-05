@@ -55,11 +55,15 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
               git config user.email "eric@korsimoro.com"
               git config user.name "CircleCI Build"
-              git add .
-              git commit -m "Publishing Update From CircleCI"
               git status
+              git add .
+              git commit -a -m "Publishing Update From CircleCI"
+              git status
+              git checkout master
+              git merge documentation
               git push origin master
               git status
+              git checkout documentation
             fi
 
       #- store_artifacts:

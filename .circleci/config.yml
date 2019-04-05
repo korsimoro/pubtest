@@ -57,7 +57,9 @@ jobs:
               git config user.name "CircleCI Build"
               git add .
               git commit -m "Publishing Update From CircleCI"
+              git status
               git push origin master
+              git status
             fi
 
       #- store_artifacts:

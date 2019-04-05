@@ -1,9 +1,14 @@
 import click
 
 @click.group(name="tool")
-def cli():
+@click.option('--dir','basedir',
+    help="Base Directory (Checkout)",
+    default=os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..")
+)
+@click.pass_context
+def cli(ctx,basedir):
     """Simple utilities to massage data in the repo."""
-    pass
+    ctx.obj = basedir
 
 if __name__ == '__main__':
     cli()
@@ -18,11 +23,11 @@ import sqlite3 as db
 import yaml
 import os
 @cli.command(name="db-to-yaml")
-def db_to_yaml():
+@click.pass_obj
+def db_to_yaml(basedir):
     """Extract data from sqlite and place as _data."""
-    file_base = os.path.dirname(os.path.abspath(__file__))
-    basePath = os.path.join(file_base,"..","..","sqlite")
-    dataPath = os.path.join(file_base,"..","..","docs","_data")
+    basePath = os.path.join(basedir,"sqlite")
+    dataPath = os.path.join(basedir,"docs","_data")
     for elt in os.listdir(basePath):
         queryBase = os.path.join(basePath,elt)
         if os.path.isdir(queryBase):
@@ -51,10 +56,10 @@ import sqliteschema
     type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),
     default="markdown"
 )
-def db_schema_table(format):
+@click.pass_obj
+def db_schema_table(basedir,format):
     """Dump schema"""
-    file_base = os.path.dirname(os.path.abspath(__file__))
-    basePath = os.path.join(file_base,"..","..","sqlite")
+    basePath = os.path.join(basedir,"sqlite")
     verbosity_level=6
     for elt in os.listdir(basePath):
         dirname = os.path.join(basePath,elt)
@@ -64,11 +69,11 @@ def db_schema_table(format):
             print(extractor.dumps(format,verbosity_level))
 
 @cli.command(name="db-schema-to-yaml")
-def db_schema_to_yaml():
+@click.pass_obj
+def db_schema_to_yaml(basedir):
     """Extract schema from sqlite and place as _data."""
-    file_base = os.path.dirname(os.path.abspath(__file__))
-    basePath = os.path.join(file_base,"..","..","sqlite")
-    dataPath = os.path.join(file_base,"..","..","docs","_data")
+    basePath = os.path.join(basedir,"sqlite")
+    dataPath = os.path.join(basedir,"docs","_data")
     verbosity_level=6
     for elt in os.listdir(basePath):
         queryBase = os.path.join(basePath,elt)

@@ -52,6 +52,7 @@ jobs:
               git add .
               git commit -m "${TAG}"
               git push origin master
+            fi
 
       #- store_artifacts:
       #    path: test-reports

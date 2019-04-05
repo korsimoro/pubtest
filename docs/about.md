@@ -7,7 +7,7 @@ title: About
 - [{{item.name}}]({{ item.link }})
 {% endfor %}
 
-# Prople
+# People
 {% for item in site.data.rwot_people %}
 - [{{item.Label}}]({{ item.Url }})
 {% endfor %}

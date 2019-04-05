@@ -3,8 +3,8 @@ title: Organizations
 ---
 
 # {{ page.title }}
-{% for item in site.data.extract1 %}
-- {{ item.Label }} : {{ item.Description }}
-{% endfor %}
+{% for item in site.data.orgsummary %}
+## [{{item.Label}}]({{ item.Url }})
+{{ item.Description }}
 
-## section 2
+{% endfor %}

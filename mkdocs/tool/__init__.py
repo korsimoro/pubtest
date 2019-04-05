@@ -20,8 +20,9 @@ import os
 @cli.command(name="db-to-yaml")
 def db_to_yaml():
     """Extract data from sqlite and place as _data."""
-    basePath="../sqlite"
-    dataPath="../docs/_data"
+    file_base = os.path.dirname(os.path.abspath(__file__))
+    basePath = os.path.join(file_base,"..","..","sqlite")
+    dataPath = os.path.join(file_base,"..","..","docs","_data")
     for elt in os.listdir(basePath):
         queryBase = os.path.join(basePath,elt)
         if os.path.isdir(queryBase):
@@ -52,7 +53,8 @@ import sqliteschema
 )
 def db_schema_table(format):
     """Dump schema"""
-    basePath="../sqlite"
+    file_base = os.path.dirname(os.path.abspath(__file__))
+    basePath = os.path.join(file_base,"..","..","sqlite")
     verbosity_level=6
     for elt in os.listdir(basePath):
         dirname = os.path.join(basePath,elt)
@@ -64,8 +66,9 @@ def db_schema_table(format):
 @cli.command(name="db-schema-to-yaml")
 def db_schema_to_yaml():
     """Extract schema from sqlite and place as _data."""
-    basePath="../sqlite"
-    dataPath="../docs/_data"
+    file_base = os.path.dirname(os.path.abspath(__file__))
+    basePath = os.path.join(file_base,"..","..","sqlite")
+    dataPath = os.path.join(file_base,"..","..","docs","_data")
     verbosity_level=6
     for elt in os.listdir(basePath):
         queryBase = os.path.join(basePath,elt)

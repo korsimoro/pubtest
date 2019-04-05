@@ -10,13 +10,14 @@ title: Home
   <body>
     <h1>Hello World!</h1>
 	 <hr />
-<nav>
+	<h3>Example of using data in raw html - click on "About" for example in markdown</h3>
+<ul>
   {% for item in site.data.navigation %}
-    <a href="{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
+    <li><a href="{{ item.link }}" {% if page.url == item.link %}style="color: red;"{% endif %}>
       {{ item.name }}
-    </a>
+    </a></li>
   {% endfor %}
-</nav>
+</ul>
 
   </body>
 </html>

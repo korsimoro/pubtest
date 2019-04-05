@@ -4,3 +4,4 @@ sqlitebiter
 PyYAML
 sqlitestructure
 pytablewriter
+mkdocs

@@ -1,4 +1,8 @@
 import click
+import sqlite3 as db
+import yaml
+import os
+import sqliteschema
 
 @click.group(name="tool")
 @click.option('--dir','basedir',
@@ -19,9 +23,6 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-import sqlite3 as db
-import yaml
-import os
 @cli.command(name="db-to-yaml")
 @click.pass_obj
 def db_to_yaml(basedir):
@@ -50,7 +51,6 @@ def db_to_yaml(basedir):
                                 print("Updated",result_path)
 
 
-import sqliteschema
 @cli.command(name="db-schema-table")
 @click.option("--format","format",
     type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),

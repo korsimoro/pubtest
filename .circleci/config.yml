@@ -49,7 +49,6 @@ jobs:
             cd toolkit
             mkdocs build
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
-              [change file representing version]
               git add .
               git commit -m "${TAG}"
               git push origin master

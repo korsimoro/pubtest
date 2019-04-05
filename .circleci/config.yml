@@ -48,10 +48,6 @@ jobs:
             tool --dir ~/repo db-to-yaml
             cd toolkit
             mkdocs build
-
-      - deploy:
-          command: |
-            [trimmed]
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
               [change file representing version]
               git add .

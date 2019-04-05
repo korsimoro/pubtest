@@ -33,6 +33,7 @@ jobs:
             python3 -m venv toolkit/venv
             . toolkit/venv/bin/activate
             pip install -r toolkit/requirements.txt
+            pip install .
 
       #- save_cache:
       #    paths:
@@ -67,4 +68,3 @@ workflows:
           filters:
             branches:
               only: documentation
-

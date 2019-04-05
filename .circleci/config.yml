@@ -48,7 +48,13 @@ jobs:
             tool --dir ~/repo db-to-yaml
             cd toolkit
             mkdocs build
+
+      - run:
+          name: push data to master and trigger jekyll build phase
+          command: |
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
+              git config user.email "eric@korsimoro.com"
+              git config user.name "CircleCI Build"
               git add .
               git commit -m "${TAG}"
               git push origin master

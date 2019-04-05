@@ -23,28 +23,28 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "mkdocs/requirements.txt" }}
+            - v1-dependencies-{{ checksum "toolkit/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: install dependencies
           command: |
-            python3 -m venv mkdocs/venv
-            . mkdocs/venv/bin/activate
-            pip install -r mkdocs/requirements.txt
+            python3 -m venv toolkit/venv
+            . toolkit/venv/bin/activate
+            pip install -r toolkit/requirements.txt
 
       - save_cache:
           paths:
-            - ./mkdocs/venv
+            - ./toolkit/venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
           name: build docs
           command: |
-            . mkdocs/venv/bin/activate
-            tool db-to-yaml
-            mkdocs build
+            . toolkit/venv/bin/activate
+            toolkit db-to-yaml
+            toolkit build
 
       - deploy:
           command: |

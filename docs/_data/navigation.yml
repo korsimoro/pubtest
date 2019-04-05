@@ -2,3 +2,7 @@
   link: /pubtest/
 - name: About
   link: /pubtest/about.html
+- name: MkDocs
+  link: /pubtest/mkdocs/index.html
+- name: Organizations
+  link: /pubtest/organizations.html

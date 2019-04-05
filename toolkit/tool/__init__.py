@@ -38,7 +38,7 @@ def db_to_yaml():
                             cur.execute(query)
                             data = cur.fetchall()
 
-                            yaml_name = possibleQueryFile[:-4] + ".yml"
+                            yaml_name = elt+"_"+possibleQueryFile[:-4] + ".yml"
                             result_path = os.path.join(dataPath,yaml_name)
                             with open(result_path, 'w') as outfile:
                                 yaml.dump(data, outfile, default_flow_style=False)

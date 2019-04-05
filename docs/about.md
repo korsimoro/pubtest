@@ -7,4 +7,12 @@ title: About
 - [{{item.name}}]({{ item.link }})
 {% endfor %}
 
-## section 2
+# Prople
+{% for item in site.data.rwot_people %}
+- [{{item.Label}}]({{ item.Url }})
+{% endfor %}
+
+# Orgs
+{% for item in site.data.rwot_orgsummary %}
+- [{{item.Label}}]({{ item.Url }})
+{% endfor %}

@@ -55,9 +55,10 @@ jobs:
               git commit -m "${TAG}"
               git push origin master
 
-      - store_artifacts:
-          #path: test-reports
-          #destination: test-reports
+      #- store_artifacts:
+      #    path: test-reports
+      #    destination: test-reports
+
 workflows:
   version: 2
   build-and-deploy:

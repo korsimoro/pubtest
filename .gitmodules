@@ -10,3 +10,6 @@
 [submodule "toolkit/submodules/WebOfTrustInfo/rwot6-santabarbara"]
 	path = toolkit/submodules/WebOfTrustInfo/rwot6-santabarbara
 	url = https://github.com/WebOfTrustInfo/rwot6-santabarbara
+[submodule "toolkit/submodules/infominer33/DIDecentralized"]
+	path = toolkit/submodules/infominer33/DIDecentralized
+	url = https://github.com/infominer33/DIDecentralized

@@ -1,4 +1,6 @@
 site_name: Pub Test
+site_dir: ../docs/mkdocs
+docs_dir: ../docs/assets/mkdocs
 nav:
   - Home: index.md
   - About: about.md

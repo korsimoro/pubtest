@@ -1,3 +1,12 @@
 [submodule "docs/assets/repos/WebOfTrustInfo/rwot8-barcelona"]
 	path = docs/assets/repos/WebOfTrustInfo/rwot8-barcelona
 	url = https://github.com/WebOfTrustInfo/rwot8-barcelona
+[submodule "docs/assets/repos/WebOfTrustInfo/rwot6-santabarbara"]
+	path = docs/assets/repos/WebOfTrustInfo/rwot6-santabarbara
+	url = https://github.com/WebOfTrustInfo/rwot6-santabarbara
+[submodule "docs/assets/repos/WebOfTrustInfo/rwot5-boston"]
+	path = docs/assets/repos/WebOfTrustInfo/rwot5-boston
+	url = https://github.com/WebOfTrustInfo/rwot5-boston
+[submodule "docs/assets/repos/WebOfTrustInfo/rwot7-toronto"]
+	path = docs/assets/repos/WebOfTrustInfo/rwot7-toronto
+	url = https://github.com/WebOfTrustInfo/rwot7-toronto

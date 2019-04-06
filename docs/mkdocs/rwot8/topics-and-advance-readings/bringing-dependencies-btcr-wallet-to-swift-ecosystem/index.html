@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Bringing the Dependencies of a BTCR Wallet to the Swift Ecosystem - MkDocs PoC</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">MkDocs PoC</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../details/">Details</a>
+                            </li>
+                            <li >
+                                <a href="../../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">RWoT8 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">Topic Papers</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../A-DID-for-every-thing---Agile-Driving-Data-Chain">a-did-for-every-thing-agile-driving-data-chain</a>
+</li>
+            
+<li >
+    <a href="../Aligning-SSI-with-European-Union-Identity-legislation-eIDAS">aligning-ssi-with-european-union-identity-legislation-eidas</a>
+</li>
+            
+<li >
+    <a href="../Anonymous_DIDs">anonymous-dids</a>
+</li>
+            
+<li >
+    <a href="../Applying_POLA_to_User_Interaction">applying-pola-to-user-interaction</a>
+</li>
+            
+<li >
+    <a href="../DID-Content-References">did-content-references</a>
+</li>
+            
+<li >
+    <a href="../Digital-Identity-for-the-Homeless">digital-identity-for-the-homeless</a>
+</li>
+            
+<li >
+    <a href="../DigitalTrustProtocol">digitaltrustprotocol</a>
+</li>
+            
+<li >
+    <a href="../P2P-DID">p2p-did</a>
+</li>
+            
+<li >
+    <a href="../Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities">proof-of-key-ownership-with-openid-connect-self-issued-identities</a>
+</li>
+            
+<li >
+    <a href="../Providing_Decentralized_Identity_to_the_most_vulnerable_populations">providing-decentralized-identity-to-the-most-vulnerable-populations</a>
+</li>
+            
+<li >
+    <a href="../RWOT-local-chapters">rwot-local-chapters</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../The-Untimely-Death-Of-SSI">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../Universal-DID-Operations">universal-did-operations</a>
+</li>
+            
+<li >
+    <a href="../Using-Immutable-Data-Objects">using-immutable-data-objects</a>
+</li>
+            
+<li >
+    <a href="../Zero-knowledge-Proofs">zero-knowledge-proofs</a>
+</li>
+            
+<li >
+    <a href="../bootstrap_web-of-trust_reliance-lifecycle">bootstrap-web-of-trust-reliance-lifecycle</a>
+</li>
+            
+<li >
+    <a href=".">bringing-dependencies-btcr-wallet-to-swift-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../contextual_nondiscrete_identity">contextual-nondiscrete-identity</a>
+</li>
+            
+<li >
+    <a href="../credentials-and-correlation">credentials-and-correlation</a>
+</li>
+            
+<li >
+    <a href="../data-vala-realization">data-vala-realization</a>
+</li>
+            
+<li >
+    <a href="../decentralized-digital-identity-book">decentralized-digital-identity-book</a>
+</li>
+            
+<li >
+    <a href="../did-fee-market-using-micropayments">did-fee-market-using-micropayments</a>
+</li>
+            
+<li >
+    <a href="../did-namespace-records">did-namespace-records</a>
+</li>
+            
+<li >
+    <a href="../did-primer-extended">did-primer-extended</a>
+</li>
+            
+<li >
+    <a href="../did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../did-spec-current-status">did-spec-current-status</a>
+</li>
+            
+<li >
+    <a href="../did-ux">did-ux</a>
+</li>
+            
+<li >
+    <a href="../digital-contraception">digital-contraception</a>
+</li>
+            
+<li >
+    <a href="../diverse-teams">diverse-teams</a>
+</li>
+            
+<li >
+    <a href="../educational-credentialing-ecosystem">educational-credentialing-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../exploring_adoption_of_sharing_vcs">exploring-adoption-of-sharing-vcs</a>
+</li>
+            
+<li >
+    <a href="../financing-self-sovereign-stack">financing-self-sovereign-stack</a>
+</li>
+            
+<li >
+    <a href="../functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../glossary-primer">glossary-primer</a>
+</li>
+            
+<li >
+    <a href="../graphs-everywhere">graphs-everywhere</a>
+</li>
+            
+<li >
+    <a href="../handshake">handshake</a>
+</li>
+            
+<li >
+    <a href="../humanity-API">humanity-api</a>
+</li>
+            
+<li >
+    <a href="../identity-containers">identity-containers</a>
+</li>
+            
+<li >
+    <a href="../identity-for-people-places">identity-for-people-places</a>
+</li>
+            
+<li >
+    <a href="../idm-concept">idm-concept</a>
+</li>
+            
+<li >
+    <a href="../idm-spec">idm-spec</a>
+</li>
+            
+<li >
+    <a href="../implementing-threshold-schemes">implementing-threshold-schemes</a>
+</li>
+            
+<li >
+    <a href="../introductory-capability-dht-concept">introductory-capability-dht-concept</a>
+</li>
+            
+<li >
+    <a href="../journalistic-use-cases">journalistic-use-cases</a>
+</li>
+            
+<li >
+    <a href="../libp2p_did_auth.">libp2p-did-auth</a>
+</li>
+            
+<li >
+    <a href="../multiformat-superfriends">multiformat-superfriends</a>
+</li>
+            
+<li >
+    <a href="../name-services-and-ssi">name-services-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../notebook-workbench">notebook-workbench</a>
+</li>
+            
+<li >
+    <a href="../oidc-profile-for-ssi">oidc-profile-for-ssi</a>
+</li>
+            
+<li >
+    <a href="../on-interpersonal-data">on-interpersonal-data</a>
+</li>
+            
+<li >
+    <a href="../psdad">psdad</a>
+</li>
+            
+<li >
+    <a href="../rightsframeworks">rightsframeworks</a>
+</li>
+            
+<li >
+    <a href="../security_shamirs">security-shamirs</a>
+</li>
+            
+<li >
+    <a href="../social-key-recovery">social-key-recovery</a>
+</li>
+            
+<li >
+    <a href="../ssi20XX-model-use-case-def">ssi20xx-model-use-case-def</a>
+</li>
+            
+<li >
+    <a href="../supporting-btcr">supporting-btcr</a>
+</li>
+            
+<li >
+    <a href="../the-untimely-death-of-ssi">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../trusting-attributes">trusting-attributes</a>
+</li>
+            
+<li >
+    <a href="../united-humans-critiqal-questions">united-humans-critiqal-questions</a>
+</li>
+            
+<li >
+    <a href="../universal-id-framework">universal-id-framework</a>
+</li>
+            
+<li >
+    <a href="../universal-ledger-agent">universal-ledger-agent</a>
+</li>
+            
+<li >
+    <a href="../universe-is-blockchain">universe-is-blockchain</a>
+</li>
+            
+<li >
+    <a href="../vcs-agent-centric">vcs-agent-centric</a>
+</li>
+            
+<li >
+    <a href="../verifiable-credentials-primer">verifiable-credentials-primer</a>
+</li>
+            
+<li >
+    <a href="../verifiable-displays-in-HTML">verifiable-displays-in-html</a>
+</li>
+            
+<li >
+    <a href="../verifiable-postal-address-claims">verifiable-postal-address-claims</a>
+</li>
+            
+<li >
+    <a href="../w3c-identity-workshop-report">w3c-identity-workshop-report</a>
+</li>
+            
+<li >
+    <a href="../why-WOTs-work">why-wots-work</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#bringing-the-dependencies-of-a-btcr-wallet-to-the-swift-ecosystem">Bringing the Dependencies of a BTCR Wallet to the Swift Ecosystem</a></li>
+            <li><a href="#wolf-mcnally-for-blockchain-commons">Wolf McNally for Blockchain Commons</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="bringing-the-dependencies-of-a-btcr-wallet-to-the-swift-ecosystem">Bringing the Dependencies of a BTCR Wallet to the Swift Ecosystem</h1>
+<h2 id="wolf-mcnally-for-blockchain-commons"><a href="https://wolfmcnally.com/">Wolf McNally</a> for <a href="https://github.com/blockchaincommons/">Blockchain Commons</a></h2>
+<h3 id="the-swift-ecosystem">The Swift Ecosystem</h3>
+<p><a href="https://en.wikipedia.org/wiki/Swift_%28programming_language%29">Swift</a> is a programming language introduced by Apple in 2014 as the new official programming language for writing iOS and macOS apps. In 2015 Apple released Swift under the <a href="https://en.wikipedia.org/wiki/Apache_License">Apache open source license</a> and also seeded a build of Swift for Linux. A growing community of developers headquartered at <a href="https://swift.org/">Swift.org</a> are extending the language in various ways, including Google's high-performance numerical computation library <a href="https://www.tensorflow.org/swift">Swift for TensorFlow</a> and server-side application frameworks such as <a href="https://vapor.codes/">Vapor</a>. IBM has launched an <a href="https://developer.ibm.com/blogs/2019/01/24/open-source-ibm-kitura-swift/">initiative</a> to promote server-side Swift, including <a href="https://www.kitura.io/">Kitura</a>, its own Swift server framework. Swift has a number of traits that make it attractive for use on the desktop, on mobile devices and cloud services. Swift is a modern, multi-paradigm language designed to be <a href="https://swift.org/about/">safe, fast, and expressive</a>. In this document, the phrase "Apple platforms" refers collectively to iOS, macOS, and tvOS. The use of Swift across Apple platforms and Linux is what this document refers to as the <em>Swift ecosystem</em>.</p>
+<h3 id="bridging-btcr-dependencies-to-swift">Bridging BTCR Dependencies to Swift</h3>
+<p>While all the code to implement something as complex as a <a href="https://w3c-ccg.github.io/did-resolution/">DID resolver</a> or <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/Universal-DID-Operations.md">registrar</a> could be written entirely in Swift, it makes sense to leverage code already written in other languages, and use Swift as a top-level language used to tie heterogenous modules into a unified application, whether it be a mobile application or server. This document surveys programing languages and technologies of interest, discusses issues of interoperating with Swift, and lists software packages of note. </p>
+<p>The author invites additions and clarifications from the reader.</p>
+<hr />
+<h3 id="programming-languages">Programming Languages</h3>
+<h4 id="c">C</h4>
+<p><a href="https://en.wikipedia.org/wiki/C_%28programming_language%29">C</a> is the grandfather of most modern programming languages, and is still valued for its simplicity, speed, and interoperability with other languages.</p>
+<p>The whole Swift ecosystem can call C functions directly..</p>
+<p>Packages of interest written in C include:</p>
+<ul>
+<li><a href="https://github.com/bitcoin-core/secp256k1">Libsecp256k1</a>— Optimized C library for EC operations on curve secp256k1.<ul>
+<li>Used by: Bitcoin Core and Libbitcoin</li>
+</ul>
+</li>
+<li><a href="https://git.lysator.liu.se/nettle/nettle">Nettle</a>— A low-level cryptographic library that is designed to fit easily in more or less any context.<ul>
+<li>Used by: Bread Wallet</li>
+</ul>
+</li>
+<li><a href="https://github.com/breadwallet/breadwallet-core">Breadwallet Core</a>— An implementation of SPV.<ul>
+<li>Used by: Bread Wallet</li>
+</ul>
+</li>
+</ul>
+<h4 id="c_1">C++</h4>
+<p><a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> is an object-oriented dialect of C, and is one of the main workhorse languages in use today.</p>
+<p>Swift cannot call C++ directly, but we can get around this by writing a C-based shim— Swift calls the C API and the C API calls C++. This technique works under the entire Swift ecosystem.</p>
+<p>Packages of interest written in C++ include:</p>
+<ul>
+<li><a href="https://github.com/libbitcoin/libbitcoin-system">Libbitcoin</a>— Libbitcoin is a multipurpose bitcoin library targeted towards high end use. An ideal backend to build fast implementations on top: mobile apps, desktop clients and server API's. The library places a heavy focus around asychronicity, speed and availability.<ul>
+<li>Blockchain Commons have already released a <a href="https://github.com/BlockchainCommons/iOS-Bitcoin">framework for bridging from Libbitcoin to Swift</a> written by the author.</li>
+</ul>
+</li>
+<li><a href="https://bitcoincore.org/">Bitcoin Core</a>— A free and open-source application that serves as a bitcoin node and provides a bitcoin wallet which fully verifies payments. It is considered to be bitcoin's reference implementation.</li>
+<li><a href="https://www.boost.org/">Boost</a>— A set of libraries that provide support for tasks and structures such as linear algebra, pseudorandom number generation, multithreading, image processing, regular expressions, and unit testing. It contains over eighty individual libraries.<ul>
+<li>Used by Libbitcoin.</li>
+</ul>
+</li>
+<li><a href="https://v8.dev/">V8</a>— Google’s open source high-performance JavaScript and WebAssembly engine. It is used in Chrome and in Node.js, among others. There are already <a href="https://github.com/tris-foundation/javascript/tree/v8">available bridges</a> from Swift to V8.</li>
+</ul>
+<h4 id="javascript">Javascript</h4>
+<p><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> is a high-level, interpreted programming language. It is a language that is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm. Alongside HTML and CSS, JavaScript is one of the three core technologies of the World Wide Web.</p>
+<p>Apple platforms include <a href="https://developer.apple.com/documentation/javascriptcore">JavaScriptCore</a>, a built-in framework used by the WebKit engine in the Safari Browser, but also made available directly to Apple platforms developers for evaluating JavaScript programs. On Linux, Swift applications can integrate Javascript by using an execution engine like <code>V8</code>.</p>
+<p>Packages of interest written in JavaScript include:</p>
+<ul>
+<li><a href="https://github.com/tris-foundation/javascript/tree/v8">jsonld.js</a>— An implementation of the JSON-LD specification in JavaScript.</li>
+<li><a href="https://github.com/digitalbazaar/jsonld-signatures">jsonld-signatures</a>— An implementation of the Linked Data Signatures specification for JSON-LD.</li>
+<li><a href="https://github.com/mappum/webcoin">Webcoin</a>— A Bitcoin SPV client that works in Node.js and the browser.</li>
+</ul>
+<h4 id="go">Go</h4>
+<p><a href="https://golang.org/">Go</a> (AKA Golang) is a statically typed, compiled programming language designed at Google.</p>
+<p>Swift running under iOS can bridge to Go using <a href="https://github.com/golang/go/wiki/Mobile">Go Mobile</a>. Under Linux, Go modules can be <a href="https://medium.com/learning-the-go-programming-language/calling-go-functions-from-other-languages-4c7d8bcc69bf">compiled to export C functions</a> that can be called by Swift.</p>
+<p>Packages of interest written in Go include:</p>
+<p><a href="https://github.com/btcsuite/btcd/blob/master/docs/README.md">btcd</a>— A full node bitcoin implementation. One key difference between btcd and Bitcoin Core is that btcd does <em>NOT</em> include wallet functionality and this was a very intentional design decision. That functionality is provided by the btcwallet project.
+<a href="https://github.com/btcsuite/btcwallet/blob/master/README.md">btcwallet</a>— A daemon handling bitcoin wallet functionality for a single user.
+<a href="https://github.com/OpenBazaar/spvwallet">spvwallet</a>— Lightweight p2p SPV wallet and library in Go. It connects directly to the bitcoin p2p network to fetch headers, merkle blocks, and transactions.</p>
+<hr />
+<h3 id="other-technologies">Other Technologies</h3>
+<h4 id="json">JSON</h4>
+<p>JSON, as specified in  <a href="http://tools.ietf.org/html/rfc7159">RFC7159</a>, is a simple data description language for representing objects on the Web.</p>
+<p>The Swift <a href="https://developer.apple.com/documentation/foundation">Foundation framework</a>, available on Apple platforms and Linux, includes APIs for working with JSON:</p>
+<ul>
+<li>The <a href="https://developer.apple.com/documentation/swift/codable"><code>Codable</code></a> protocol, which works in concert with the <code>JSONEncoder</code> and <code>JSONDecoder</code> classes to serialize statically-typed data structures.</li>
+<li>The <a href="https://developer.apple.com/documentation/foundation/jsonserialization"><code>JSONSerialization</code></a> class, which can be used to structure and navigate dynamic JSON objects.</li>
+</ul>
+<h4 id="json-ld">JSON-LD</h4>
+<p><a href="https://json-ld.org/">JSON-LD</a> is an extension of JSON designed as a light-weight syntax that can be used to express Linked Data, and is specifically used in the <a href="https://w3c-ccg.github.io/did-spec/#base-specifications">Decentralized Identifiers (DID) specification</a> for constructing <a href="https://w3c-ccg.github.io/did-spec/#terminology">DID Documents</a>. A JSON-LD implementation will usually provide the functionality described in <a href="https://json-ld.org/spec/ED/json-ld-api/20180215/">JSON-LD 1.1 Processing Algorithms and API</a>.</p>
+<p>Swift can integrate JSON-LD by bridging to the <code>jsonld.js</code> package listed above.</p>
+<h4 id="did-document-hosting">DID Document Hosting</h4>
+<p>The process of resolving, creating, updating, or revoking a DID implies that the target DID Document itself is stored somewhere under the control of its owner. A DID wallet will need to be able to store, retrieve, and update DID documents via a hosting service or protocol.</p>
+<p>Services and protocols of note include:</p>
+<ul>
+<li><a href="https://github.com/">GitHub</a>— A web-based hosting service for version control using <a href="https://git-scm.com/">Git</a>. It is mostly used for computer code, but can host data of any type. It offers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its own features. </li>
+<li><a href="https://en.wikipedia.org/wiki/Dropbox_%28service%29">DropBox</a>— A file hosting service that offers cloud storage, file synchronization, personal cloud, and client software.</li>
+<li><a href="https://aws.amazon.com/s3/">Amazon S3</a>— A "simple storage service" offered by Amazon Web Services (AWS) that provides object storage through a web service interface.</li>
+<li><a href="https://ipfs.io/">IPFS</a>— A protocol and network designed to create a <a href="https://en.wikipedia.org/wiki/Content-addressable_storage">content-addressable</a>, peer-to-peer method of storing and sharing hypermedia in a distributed file system. Users typically run an IPFS node that stores their own files, which are replicated upon demand to other IPFS nodes. Data placed into IPFS is public by default, and must be encrypted by the user if it is to remain controlled. Notably, once data is placed into IPFS, it needs to be considered <a href="https://github.com/ipfs/faq/issues/9">indelible</a>.</li>
+<li><a href="https://storj.io/">Storj</a>— A decentralized, distributed, encrypted file system. Storj data is end-to-end encrypted and can only be accessed by its owners by default, but Storj can also be used to <a href="https://docs.storj.io/discuss/591a0836a3c9ec0f00ff074d">host public buckets</a> as a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>.</li>
+</ul>
+<h4 id="linked-data-signatures">Linked Data Signatures</h4>
+<p><a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data Signatures</a> describes a mechanism for ensuring the authenticity and integrity of Linked Data documents using digital signatures. It can be applied to Linked Data formats such as JSON-LD or RDF. This is how DID documents are signed.</p>
+<p>Swift can integrate Linked Data Signatures by bridging to the <code>jsonld-signatures</code> package listed above.</p>
+<h4 id="rest">REST</h4>
+<p><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> is acronym for <em>REpresentational State Transfer</em>. RESTful web services (RWS), provide interoperability between computer systems on the Internet.</p>
+<p>The Swift ecosystem uses the Foundation <a href="https://developer.apple.com/documentation/foundation/urlsession"><code>URLSession</code></a> API to perform HTTP REST requests. Packages like <a href="https://github.com/Alamofire/Alamofire">Alamofire</a> build more elegant conveniences on top of this.</p>
+<p>REST APIs of note include:</p>
+<ul>
+<li><a href="https://developer.github.com/v3/">GitHub API</a>— Used to manage GitHub repositories and commit data such as DID Documents.</li>
+<li><a href="https://www.dropbox.com/developers/documentation/http/overview">Dropbox API</a>— The Dropbox API allows developers to work with files in Dropbox, including advanced functionality like sharing.</li>
+<li><a href="https://docs.aws.amazon.com/s3/index.html#lang/en_us">Amazon S3 API</a>— You can use Amazon S3 to store and retrieve any amount of data at any time, from anywhere on the web.</li>
+<li><a href="https://docs.ipfs.io/reference/api/http/">IPFS API</a>— When an IPFS node is running as a daemon, it exposes an HTTP API that allows you to control the node and run the same commands you can from the command line.</li>
+<li><a href="https://storj.io/api.html">Storj API</a>— Access the Storj network using a simple REST API.</li>
+</ul>
+<h4 id="spv">SPV</h4>
+<p>Simple Payment Verification (SPV) is a technique described in <a href="https://bitcoin.org/bitcoin.pdf">Satoshi Nakamoto’s paper</a>. SPV allows a lightweight client (like a mobile app) to verify that a transaction is included in the Bitcoin blockchain, without downloading the entire blockchain. The SPV client only needs download the block headers directly from the Bitcoin network, which are much smaller than the full blocks. To verify that a transaction is in a block, a SPV client requests a proof of inclusion, in the form of a <a href="https://bitcoin.org/en/glossary/merkle-tree">Merkle branch</a>. SPV clients offer more security than web wallets, because they do not need to trust the servers with the information they send.</p>
+<p>Packages that provide SPV services that can be called from Swift include:</p>
+<ul>
+<li>Webcoin (see above)</li>
+<li>BreadWallet Core (see above)</li>
+<li>spvwallet (see above)</li>
+</ul>
+<h4 id="breadwallet">BreadWallet</h4>
+<p><a href="https://brd.com/">Bread Wallet</a> (AKA BreadWallet or BRD) is an open source SPV wallet for iOS and Android that supports a variety of cryptocurrencies, including Bitcoin-based altcoins and Ethereum tokens. Bread Wallet is under active development, <a href="https://github.com/breadwallet/breadwallet-ios">hosted on GitHub</a> and released under the MIT open source license. The iOS version has been <a href="https://github.com/breadwallet/breadwallet-ios/network/members">forked 228 times</a> as of this writing. The iOS and Android versions of Bread Wallet share the same C-based BreadWallet Core (see above) to provide SPV functionality. The current iOS version is written in Swift.</p>
+<p>One potential path for bringing a BTCR wallet to iOS would be to fork Bread Wallet and then extend it to include BTCR DID capabilities. Benefits of this approach include leveraging a mature and well-tested SPV codebase and shipping app. Possible drawbacks include dealing with possible (TBD) mismatches between the assumptions and requirements of Bread Wallet and those of a BTCR wallet. In any case, incorporating any of the necessary technologies listed above (e.g., JSON-LD) should be possible via the bridging techniques described.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

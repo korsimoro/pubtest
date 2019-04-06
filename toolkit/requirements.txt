@@ -1,3 +1,5 @@
+jupyter
+jupyterlab
 click
 python-slugify
 sqlitebiter
@@ -5,3 +7,4 @@ PyYAML
 sqlitestructure
 pytablewriter
 mkdocs
+gitpython

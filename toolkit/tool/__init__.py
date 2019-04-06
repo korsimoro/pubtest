@@ -50,7 +50,21 @@ def db_to_yaml(basedir):
                             with open(result_path, 'w') as outfile:
                                 yaml.dump(data, outfile, default_flow_style=False)
                                 print("Updated",result_path)
-
+from git import Repo
+@cli.command(name="gitlog")
+@click.pass_obj
+def gitlog(basedir):
+    gitPath = os.path.join(basedir,".git/modules/docs/assets/repos/WebOfTrustInfo/rwot8-barcelona")
+    repo = Repo(gitPath)
+    log = [dict(
+        authored_date=x.authored_date,
+        author_tz_offset=x.author_tz_offset,
+        committer=x.committer,
+        committed_date=x.committed_date,
+        committer_tz_offset=x.committer_tz_offset,
+        message=x.message
+        ) for x in repo.iter_commits('HEAD')]
+    print(log)
 
 @cli.command(name="db-schema-table")
 @click.option("--format","format",

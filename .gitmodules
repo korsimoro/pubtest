@@ -1,0 +1,3 @@
+[submodule "docs/assets/repos/WebOfTrustInfo/rwot8-barcelona"]
+	path = docs/assets/repos/WebOfTrustInfo/rwot8-barcelona
+	url = https://github.com/WebOfTrustInfo/rwot8-barcelona

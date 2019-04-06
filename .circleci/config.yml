@@ -20,12 +20,21 @@ jobs:
     steps:
       - checkout
 
+      # We can attach specific commits of other repositories and include them
+      # in our documentation.  This can be used as much, or as little, as
+      # desired - it's just another PoC
+      # debug the infrastructure required to do it.
+      - run:
+          name: bring submodules down
+          command: |
+            git submodule update --init
+
       # Download and cache dependencies
-      #- restore_cache:
-      #    keys:
-      #      - v1-dependencies-{{ checksum "toolkit/requirements.txt" }}
-      #      # fallback to using the latest cache if no exact match is found
-      #      - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./toolkit/requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
           name: install dependencies
@@ -34,18 +43,24 @@ jobs:
             . toolkit/venv/bin/activate
             cd toolkit
             pip install -r requirements.txt
-            pip install .
 
-      #- save_cache:
-      #    paths:
-      #      - ./toolkit/venv
-      #    key: v1-dependencies-{{ checksum "requirements.txt" }}
+      - save_cache:
+          paths:
+            - ./toolkit/venv
+          key: v1-dependencies-{{ checksum "./toolkit/requirements.txt" }}
 
       - run:
-          name: build docs
+          name: install latest tool
           command: |
             . toolkit/venv/bin/activate
+            cd toolkit
+            pip install -e .
             tool --dir ~/repo db-to-yaml
+
+      - run:
+          name: run mkdocs
+          command: |
+            . toolkit/venv/bin/activate
             cd toolkit
             mkdocs build
 
@@ -55,14 +70,21 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
               git config user.email "eric@korsimoro.com"
               git config user.name "CircleCI Build"
+              echo "First Status"
               git status
+              echo "Adding all"
               git add .
+              echo "Committing"
               git commit -a -m "Publishing Update From CircleCI"
+              echo "Second Status"
               git status
+              echo "Go back to master"
               git checkout master
-              git merge documentation -m "Merging Documentation"
+              echo "Pull built documentation forward"
+              git merge -X theirs documentation -m "Merging Documentation"
+              echo "Trigger deployment"
               git push origin master
-              git status
+              echo "Cleanup"
               git checkout documentation
             fi
 

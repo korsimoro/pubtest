@@ -37,6 +37,11 @@ jobs:
             - v1-dependencies-
 
       - run:
+          name: copy repository README to mkdocs PoC
+          command: |
+            cp ~/repo/README.md ~/repo/docs/mkdocs-src/docs/details.md
+
+      - run:
           name: install dependencies
           command: |
             python3 -m venv toolkit/venv
@@ -60,8 +65,8 @@ jobs:
       - run:
           name: run mkdocs
           command: |
-            . toolkit/venv/bin/activate
-            cd toolkit
+            . ~/repo/toolkit/venv/bin/activate
+            cd ~/repo/docs/mkdocs-src
             mkdocs build
 
       - run:

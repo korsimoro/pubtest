@@ -171,6 +171,7 @@ exclude:
   - assets/js/plugins
   - assets/js/_main.js
   - assets/js/vendor
+  - mkdocs-src
   - Capfile
   - CHANGELOG
   - config

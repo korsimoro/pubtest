@@ -1,7 +1,0 @@
-site_name: MkDocs PoC
-site_dir: ../docs/mkdocs
-docs_dir: ../docs/assets/mkdocs
-nav:
-  - Details: repository.md
-  - About: about.md
-  - Home: index.md

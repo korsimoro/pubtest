@@ -59,12 +59,22 @@ def gitlog(basedir):
     log = [dict(
         authored_date=x.authored_date,
         author_tz_offset=x.author_tz_offset,
-        committer=x.committer,
+        committer=dict(
+            conf_email = x.committer.conf_email,
+            conf_name = x.committer.conf_name,
+            email = x.committer.email,
+            env_author_email  = x.committer.env_author_email,
+            env_author_name = x.committer.env_author_name,
+            env_committer_email = x.committer.env_committer_email,
+            env_committer_name = x.committer.env_committer_name,
+            name = x.committer.name
+        ),
         committed_date=x.committed_date,
         committer_tz_offset=x.committer_tz_offset,
         message=x.message
         ) for x in repo.iter_commits('HEAD')]
     print(log)
+    print(gitPath)
 
 @cli.command(name="db-schema-table")
 @click.option("--format","format",

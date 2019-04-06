@@ -158,6 +158,8 @@ footer:
 include:
   - .htaccess
   - _pages
+  - mkdocs
+  - testdir
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"

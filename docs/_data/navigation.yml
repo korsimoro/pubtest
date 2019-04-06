@@ -2,12 +2,14 @@
 main:
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "Repo Details"
+    url: /mkdocs/details
   - title: "People"
     url: /people/
+  - title: "Commit History"
+    url: /commithistory/
   - title: "Organizations"
     url: /organizations/
-  - title: "CommitHistory"
-    url: /commithistory/
   - title: "MkDocs"
     url: /mkdocs/
   - title: "Sample Posts"

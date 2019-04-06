@@ -8,3 +8,8 @@ cd pubtest
 . ./toolkit/venv/bin/activate
 tool
 ```
+
+# Key Directories
+docs -> contains documentation for this repository
+toolkit -> contains tools for this repository
+

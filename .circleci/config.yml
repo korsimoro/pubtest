@@ -20,6 +20,10 @@ jobs:
     steps:
       - checkout
 
+      # We can attach specific commits of other repositories and include them
+      # in our documentation.  This can be used as much, or as little, as
+      # desired - it's just another PoC
+      # debug the infrastructure required to do it.
       - run:
           name: bring submodules down
           command: |

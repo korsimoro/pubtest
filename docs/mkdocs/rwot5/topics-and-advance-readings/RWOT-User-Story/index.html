@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>RebootingWebOfTrust User Story & Tech Concept - MkDocs PoC</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">MkDocs PoC</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../details/">Details</a>
+                            </li>
+                            <li >
+                                <a href="../../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topic Papers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 5</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../Architectural-Layering-for-Decentralized-Identification">architectural-layering-for-decentralized-identification</a>
+</li>
+            
+<li >
+    <a href="../Biometric-credentials-as-high-privacy-verifiable-claims">biometric-credentials-as-high-privacy-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../Biometric-transaction-signing-on-blockchain">biometric-transaction-signing-on-blockchain</a>
+</li>
+            
+<li >
+    <a href="../Blockchain-Based-Digital-Signatures--Admissibility-and-Enforceability">blockchain-based-digital-signatures-admissibility-and-enforceability</a>
+</li>
+            
+<li >
+    <a href="../DIF-Hub-Permissions-RWOT-Intent">dif-hub-permissions-rwot-intent</a>
+</li>
+            
+<li >
+    <a href="../Data-minimization-and-selective-disclosure">data-minimization-and-selective-disclosure</a>
+</li>
+            
+<li >
+    <a href="../Framework-for-Comparison-of-Identity-Systems">framework-for-comparison-of-identity-systems</a>
+</li>
+            
+<li >
+    <a href="../Identifying-challenges-in-the-digital-economy">identifying-challenges-in-the-digital-economy</a>
+</li>
+            
+<li >
+    <a href="../README">readme</a>
+</li>
+            
+<li >
+    <a href=".">rwot-user-story</a>
+</li>
+            
+<li >
+    <a href="../Visa-Really">visa-really</a>
+</li>
+            
+<li >
+    <a href="../activitypub-decentralized-distributed">activitypub-decentralized-distributed</a>
+</li>
+            
+<li >
+    <a href="../btcr-dids-ddos">btcr-dids-ddos</a>
+</li>
+            
+<li >
+    <a href="../byzantine-fault-tolerant-web-of-trust-based-key-value-storage">byzantine-fault-tolerant-web-of-trust-based-key-value-storage</a>
+</li>
+            
+<li >
+    <a href="../credential-handler-api">credential-handler-api</a>
+</li>
+            
+<li >
+    <a href="../did-3d-web">did-3d-web</a>
+</li>
+            
+<li >
+    <a href="../did-gentle-intro">did-gentle-intro</a>
+</li>
+            
+<li >
+    <a href="../did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../did-tooling">did-tooling</a>
+</li>
+            
+<li >
+    <a href="../dkms-recommendations">dkms-recommendations</a>
+</li>
+            
+<li >
+    <a href="../first-xdi-link-contract-between-btcr-did-and-sov-did">first-xdi-link-contract-between-btcr-did-and-sov-did</a>
+</li>
+            
+<li >
+    <a href="../functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../hypercerts-blockcerts_revocation">hypercerts-blockcerts-revocation</a>
+</li>
+            
+<li >
+    <a href="../open-badges-as-verifiable-claims">open-badges-as-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../owned-vs-unowned-claims-and-ssi">owned-vs-unowned-claims-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../paper">paper</a>
+</li>
+            
+<li >
+    <a href="../self-sovereign-identity-primer">self-sovereign-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../trust-objects-proposal">trust-objects-proposal</a>
+</li>
+            
+<li >
+    <a href="../veres-one-did-method">veres-one-did-method</a>
+</li>
+            
+<li >
+    <a href="../verifiable-claims-of-impact">verifiable-claims-of-impact</a>
+</li>
+            
+<li >
+    <a href="../verifiable-claims-primer">verifiable-claims-primer</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 8</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/A-DID-for-every-thing---Agile-Driving-Data-Chain">a-did-for-every-thing-agile-driving-data-chain</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Aligning-SSI-with-European-Union-Identity-legislation-eIDAS">aligning-ssi-with-european-union-identity-legislation-eidas</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Anonymous_DIDs">anonymous-dids</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Applying_POLA_to_User_Interaction">applying-pola-to-user-interaction</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/DID-Content-References">did-content-references</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Digital-Identity-for-the-Homeless">digital-identity-for-the-homeless</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/DigitalTrustProtocol">digitaltrustprotocol</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/P2P-DID">p2p-did</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities">proof-of-key-ownership-with-openid-connect-self-issued-identities</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Providing_Decentralized_Identity_to_the_most_vulnerable_populations">providing-decentralized-identity-to-the-most-vulnerable-populations</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/RWOT-local-chapters">rwot-local-chapters</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/The-Untimely-Death-Of-SSI">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Universal-DID-Operations">universal-did-operations</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Using-Immutable-Data-Objects">using-immutable-data-objects</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/Zero-knowledge-Proofs">zero-knowledge-proofs</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/bootstrap_web-of-trust_reliance-lifecycle">bootstrap-web-of-trust-reliance-lifecycle</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/bringing-dependencies-btcr-wallet-to-swift-ecosystem">bringing-dependencies-btcr-wallet-to-swift-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/contextual_nondiscrete_identity">contextual-nondiscrete-identity</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/credentials-and-correlation">credentials-and-correlation</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/data-vala-realization">data-vala-realization</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/decentralized-digital-identity-book">decentralized-digital-identity-book</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-fee-market-using-micropayments">did-fee-market-using-micropayments</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-namespace-records">did-namespace-records</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-primer-extended">did-primer-extended</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-spec-current-status">did-spec-current-status</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/did-ux">did-ux</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/digital-contraception">digital-contraception</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/diverse-teams">diverse-teams</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/educational-credentialing-ecosystem">educational-credentialing-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/exploring_adoption_of_sharing_vcs">exploring-adoption-of-sharing-vcs</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/financing-self-sovereign-stack">financing-self-sovereign-stack</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/glossary-primer">glossary-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/graphs-everywhere">graphs-everywhere</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/handshake">handshake</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/humanity-API">humanity-api</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/identity-containers">identity-containers</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/identity-for-people-places">identity-for-people-places</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/idm-concept">idm-concept</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/idm-spec">idm-spec</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/implementing-threshold-schemes">implementing-threshold-schemes</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/introductory-capability-dht-concept">introductory-capability-dht-concept</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/journalistic-use-cases">journalistic-use-cases</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/libp2p_did_auth.">libp2p-did-auth</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/multiformat-superfriends">multiformat-superfriends</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/name-services-and-ssi">name-services-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/notebook-workbench">notebook-workbench</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/oidc-profile-for-ssi">oidc-profile-for-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/on-interpersonal-data">on-interpersonal-data</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/psdad">psdad</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/rightsframeworks">rightsframeworks</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/security_shamirs">security-shamirs</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/social-key-recovery">social-key-recovery</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/ssi20XX-model-use-case-def">ssi20xx-model-use-case-def</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/supporting-btcr">supporting-btcr</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/the-untimely-death-of-ssi">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/trusting-attributes">trusting-attributes</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/united-humans-critiqal-questions">united-humans-critiqal-questions</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/universal-id-framework">universal-id-framework</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/universal-ledger-agent">universal-ledger-agent</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/universe-is-blockchain">universe-is-blockchain</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/vcs-agent-centric">vcs-agent-centric</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/verifiable-credentials-primer">verifiable-credentials-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/verifiable-displays-in-HTML">verifiable-displays-in-html</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/verifiable-postal-address-claims">verifiable-postal-address-claims</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/w3c-identity-workshop-report">w3c-identity-workshop-report</a>
+</li>
+            
+<li >
+    <a href="../../../rwot8/topics-and-advance-readings/why-WOTs-work">why-wots-work</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#rebootingweboftrust-user-story-tech-concept">#RebootingWebOfTrust User Story &amp; Tech Concept</a></li>
+            <li><a href="#by-christopher-allen-copyright-2017-licensed-cc-by">By Christopher Allen — Copyright 2017 Licensed CC-BY</a></li>
+            <li><a href="#who-is-alice">Who is Alice?</a></li>
+            <li><a href="#bob-may-have-an-opportunity-for-alice">Bob may have an opportunity for Alice</a></li>
+            <li><a href="#alice-establishes-a-pseudo-anonymous-identity">Alice establishes a pseudo-anonymous identity</a></li>
+            <li><a href="#how-can-bob-learn-to-trust-alice">How can Bob learn to trust Alice?</a></li>
+            <li><a href="#alice-and-the-syrian-hacker-army">Alice and the Syrian Hacker Army</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="rebootingweboftrust-user-story-tech-concept">#RebootingWebOfTrust User Story &amp; Tech Concept</h1>
+<h5 id="by-christopher-allen-copyright-2017-licensed-cc-by">By Christopher Allen — Copyright 2017 Licensed CC-BY</h5>
+<p><strong>Contributors:</strong> Shannon Appelcline</p>
+<h3 id="who-is-alice">Who is Alice?</h3>
+<p><strong>Alice</strong> is a first-generation citizen of a western country (United States, Britain, Germany), born of two immigrants from a country of significant repression (Iran, Cuba, North Korea) who are now permanent residents. Her parents were settled in a small city near the agricultural heart of the county (Midwestern United States, Midlands of Britain, Saxony of Germany) where they have become successful small business owners.</p>
+<p>As a child <strong>Alice</strong> was told stories of the abuses her parents suffered in their country of origin, a place they cannot return to. She knows some cousins and other family members in other countries who have told similar stories, but mostly through the internet or through traveling to the various countries that her extended family has settled in.</p>
+<p>Both <strong>Alice</strong> and her parents have experienced some unkind words and minor discrimination in their newly adopted country, but largely the benefits of being in a modern western country overwhelm any disadvantages. The parents have found others to practice their religion with; <strong>Alice</strong> respects this, but in general is more secular.</p>
+<p><strong>Alice</strong> has recently graduated with a computer science degree, and has pleased her parents by settling nearby, working for a small regional bank. The bank is quite conservative and has a “no social media” policy at work. This rule is regularly broken, but there have been some object lessons, especially for those who stand out as non-conformists.</p>
+<p>However, the winds of populism are blowing. <strong>Alice</strong> has personally heard more slurs lately and has seen more covered the media. Many local political parties of rising significance have publicly targeted her ethnicity and her parents' religion. Added to the stories of repression in her parent’s birth country and even greater stories of conflict reported by distant family members, <strong>Alice</strong> has some legitimate fear.</p>
+<p><strong>Alice</strong>, like most millennials, doesn’t wish to leave her head in the sand; she wishes to take a more active role in making a better world. However, she knows if she stands out from the crowd, then her activism may affect not only her, but also her parents and even her extended family abroad. Increasingly <strong>Alice</strong> has been more careful: self-censoring social media, using end-to-end encryption software to talk to her family abroad, etc.</p>
+<h3 id="bob-may-have-an-opportunity-for-alice">Bob may have an opportunity for Alice</h3>
+<p><strong>Bob</strong>, a mainstream citizen of his western country, is also worried about the rising tide of populism in his own country and of extremism in other countries. Raised by a middle-class family he has travelled widely as a young adult and was supported by his parents when he joined a non-profit organization as an employee. <strong>Bob</strong> is not a programmer, but he is an active user of social media and other internet technology and he has some ideas about how his non-profit could use mobile applications to serve their advocacy. He shares his ideas out in the world in a public forum.</p>
+<p><strong>Alice</strong> reads this request, and has the skills to help <strong>Bob</strong> to make a a mobile applications. However, she has a dilemma: she wishes to introduce herself and present credentials that she is qualified for the work, but wants to remain pseudo-anonymous. She has heard of other professional women who have been public about work and have been heavily criticized or even doxxed (such as in gamergate), and she doesn’t want to risk her job or her extended family if she is revealed to be helping <strong>Bob</strong>. She also doesn’t have a reputation in the developer community as a mobile programmer. Finally, she has limited time to be able to help and so has to be focused and careful about what she can offer.</p>
+<h3 id="alice-establishes-a-pseudo-anonymous-identity">Alice establishes a pseudo-anonymous identity</h3>
+<p>So first <strong>Alice</strong> establishes a DID (Decentralized Identifier) and a self-signed DDO (DID Data Object). Now she needs proof of her mobile compentency.</p>
+<p><strong>Alice</strong> has a professional colleague and friend <strong>Donna</strong> with a public persona that is not anonymous, who indirectly knows <strong>Bob</strong> through yet another colleague. That is, <strong>Bob</strong> and <strong>Donna</strong> share a trust network but are connected by multiple degrees of separation.</p>
+<p><strong>Donna</strong> issues a Verifiable Claim that she "knows" <strong>Alice</strong> and she is willing to attest to her competence in mobile development. She then gives a signed copy of the claim back to <strong>Alice</strong>. Alice countersigns this claim and adds it to her DDO. (This is something unique to the very self-sovereign BTCR method, which may not apply to other methods.)</p>
+<p><strong>Alice</strong> then sends a response to <strong>Bob's</strong> request for programming assistance, along with the claim issued by <strong>Donna</strong>.</p>
+<h3 id="how-can-bob-learn-to-trust-alice">How can Bob learn to trust Alice?</h3>
+<p>Now we dive into some mechanics of how the the did:btcr method of creating pseudo-anonymous identies operates. (Different DID methods will function differently.)</p>
+<p><strong>Bob</strong> receives an offer based his request from <strong>Alice</strong> (possibly itself a self-signed claim), along with the claim issued by <strong>Donna</strong>. The first thing his software does is do an INTEGRITY CHECK of <strong>Donna's</strong> claim itself. Is it properly formed? Has it expired? Is it properly signed by the issuer? Is it properly countersigned by the subject? If it fails any of these INTEGRITY CHECKS, <strong>Bob</strong> will not even know about it, and the whole message and its claims will be rejected.</p>
+<p>The next thing that <strong>Bob's</strong> software might do is INSPECT INTO the DID numbers found in <strong>Donna</strong> claim. This will typically be automatic, but if <strong>Bob</strong> is hyper-concerned about internet traffic correlation (e.g., if he were a vulnerable citizen advocating against their nation-state) it may require a human to decide if they wish to proceed further. But <strong>Bob</strong> is an EU citizen and feels sufficiently protected, so his software is set to INSPECT INTO claims he receives automatically.</p>
+<p>The first DID is <strong>Donna's</strong>. His software INSPECTS INTO the Bitcoin Blockchain for the appropriate transaction, and then looks at the first TXOUT of that transaction to see if it has been spent. In this case, it has, so this transaction cannot be VALIDATED. However, the claim has not totally failed quite yet, so the software now goes forward to that new transaction (the "tip" of the DID chain).</p>
+<p>The software INSPECTS INTO this transaction's first TXOUT and it is not spent <em>and</em> there is a properly formatted op_return pointing to a DDO, which reside's on <strong>Donna's</strong> github account. The software now INSPECTS INTO and finds the DDO.</p>
+<p>Now the the software does an INTEGRITY CHECK on the DDO, and if it is successful, then it VALIDATES the DDO by comparing it to the Control Key that was found in the signature that was used to send the transaction to the Bitcoin Blockchain, which was in turn revealed by the INSPECTION CHECK. If they match, both the DID and the DDO are now VALIDATED.</p>
+<p>However, the claim itself was not signed by the Control Key so it is not VALIDATED yet. So the software INSPECTS INTO the DDO, and finds another key (either by looking through all the appropriately listed keys, or possibly because of a hint added in the claim). If the signature on the claim matches, now the claim issuer is VALIDATED.</p>
+<p>However, the claim makes a statement to yet other DID, so it not yet VERIFIED, only VALID. The software must now do the same set of operations on <strong>Alice's</strong> DID to INSPECT INTO her DID and determine if it too can be VALIDATED.</p>
+<p>Finally, if both the issuer's DID and subject's DID are VALID, (which includes the previous INTEGRITY CHECK of <strong>Donna's</strong> claim and <strong>Alice's</strong> countersignature of <strong>Donna's</strong> signature on the claim), then the claim is VERIFIED. (Thus it is called a "Verifiable Claim".)</p>
+<p>However, this verified claim is not yet CONFIRMED. In order to be CONFIRMED,  <strong>Bob's</strong> Web-of-Trust CONFIRMATION criteria needs to be met. In this case, <strong>Donna</strong> is a third-degree connection, making <strong>Alice</strong> a fourth-degree connection. Over half of the world is a fourth-degree connection!</p>
+<p>In this case, the software kicks out the verified claim for <strong>Bob</strong> to make a decision on: the claim and DIDs are INSPECTED, VALIDATED and VERIFIED, but not CONFIRMED. He decides to look further into what Donna is willing to share in her DID. In this case, <strong>Donna</strong> is vaguely known to him ("a familiar stranger") and her github repository is active and has a long history of mobile development. He looks now at what <strong>Alice</strong> shares in her DID; it is almost nothing, and contains no personal info. However, her response to his request for a proposal is interesting, and he hasn't found anyone yet, so he decides to CONFIRM and accept this claim to give her a trial.</p>
+<p>If <strong>Alice</strong> fails her trial task, <strong>Bob</strong> will change his criteria to never waste any time on her again, or even possibly to never even bother to consider CONFIRMING any more of <strong>Donna's</strong> claims. This would be a locally-negative trust that is non-transitive to others in the self-sovereign scenarios required by the BTC method.</p>
+<p>However, <strong>Alice</strong> doesn't fail her trial, and later <strong>Bob</strong> issues her a new verifiable claim saying that he also liked <strong>Alice's</strong> work, and maybe even issues a claim that countersigns <strong>Donna's</strong> original claim, showing appreciation for <strong>Donna's</strong> good recommendation.</p>
+<hr />
+<h3 id="alice-and-the-syrian-hacker-army">Alice and the Syrian Hacker Army</h3>
+<p>As our user story continues, <strong>Alice</strong> believes she may become targeted the Syrian Hacker Army as the author of an Android app that helps Syrian refugees communicate with the families back home and send them care packages through a random peer-to-peer network of people sharing their car trunk capacity: an Uber of small gifts, an AirBNB of trunk space.</p>
+<p><strong>Alice</strong> has been careful with her cryptographic keys, but she has prepared herself. The special set of public keys that are associated with this app are listed in her master DDO, and the app itself has a DID and DDO associated with it that she owns and controls. <strong>Alice</strong> has a password protected QR-code of the Owner Key for the current DID and DDO, but the Control Keys to update the DDO to a new transaction is with a friend in England locked on a hard drive.</p>
+<p>Unfortunately, while traveling through Turkey, <strong>Alice's</strong> laptop is stolen. She is suspicious that someone might be targeting her.</p>
+<p>The first thing she could do is just revoke and abandon the DID by simply spending the tip address. However, she doesn't have the Control Keys to enable that DID Control Key rotation transaction—they are in England. She does however hold the current Owner Key, so she can use that to update the DDO object that might be a possibly compromised key. She puts a "hold" notice in the DDO, and adds a timestamp to warn people to no longer rely on values in the current DID transaction until resolved, and wait for the new transaction on the tip.</p>
+<p>If the hold expires without an update, or if the tip address is simply spent, all customers of her mobile app will be notified the next time they run the app that they may have a version that has be compromised, and they will be asked delete it before downloading it again from a trusted source.</p>
+<p>Instead however, when she returns home to England she spends the tip, revoking the old Owner Key, and enrolling the old Control Key as the new Owner Key. A new address is posted which will be the next Control Key and the new "tip".</p>
+<p>She now updates the DDO itself, signing it with the Owner Key just enrolled.  She has no evidence of any key compromise yet, but she has in her DDO claims issued using her revoked old Owner Key; these claims continue to be valid if they were dated before the time the key was stolen (though any claimants should be notified to request for updated claims if possible). As all of her claims are timestamps, there is no way for someone to fake a claim even if they break her old key, as the signature may be valid, but the timestamp is not.</p>
+<p>In this case the customers of her app will continue to be able to use the old app (as the claims before the date of change can still be confirmed), but when the customers request an update they will be given the updated keys in the new app.</p>
+<p>It is also possible that <strong>Alice</strong> could have set up her Control Key to be 2 of 4 multisig, with keys held by her trusted colleagues <strong>Bob</strong>, <strong>Carol</strong> and <strong>Donna</strong>. In this case, if two of them observed bad behavior in claims being issued by the old DID/DDO while she was traveling, or if she was able to call at least two of them, they could immediately rotate the Control Keys, and give her the new Control Key when she gets home. She maybe even already possesses the new Control Key, at it could have been generated by an xpub key her friends share. (However, this technique does require two transactions rather than one for every Control Key rotation.)</p>
+<p>Finally, at some point in the future <strong>Alice</strong> passes this mobile project on to another team to develop, and she gracefully "retires" the DID/DDO pair with a gentle revocation and no new possible Control Key. However, all of her non-expiring claims are still valid: she didn't issue many, but a few are important and they need to remain.</p>
+<hr />
+<p>Our use case will continue showing how Alice is able to demonstrate and share a positive reputation for her quality work. How <strong>Carol</strong> is able to use <strong>Alice’s</strong> software to protect herself from harm in a third-world country. How <strong>Ted</strong> is able to review <strong>Bob’s</strong> ideas and <strong>Alice’s</strong> work, and offer some funding to help both. How <strong>Alice</strong> is able to increase her reputation in her anonymously developed software to the point where she is offered a job at <strong>Ted’s</strong> company that pays more than her job at a conservative bank. How <strong>Alice</strong> is able to selectively revoke parts of her anonymity to establish her personal reputation her peers and selective colleagues, without at any time putting <strong>Carol</strong> and her other advocacy clients at risk.</p>
+<p><strong>(HISTORY:</strong> <em>The initial user story was originally written up as an <a href="https://github.com/w3c/vc-use-cases/issues/31">issue</a> in the W3Cs Verifiable Claims Use Cases repo, with a goal of using it to create a formal use case for new pseudo-anonymous web of trust. Alice's story continues, along with some web of trust concepts and some proposed technical details , in <a href="https://github.com/WebOfTrustInfo/btcr-hackathon/issues/33">issue</a> developed as part of the <a href="https://github.com/WebOfTrustInfo/btcr-hackathon">DID:BTCR Hackathon</a>. This version is currently being further drafted as a <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/tree/master/topics-and-advance-readings">Topic and Advance Reading</a> for the Fifth <a href="http://www.weboftrust.info/">#RebootingWebOfTrust</a> in Boston on October 3-5, 2017 (<a href="https://www.eventbrite.com/e/rebootingweboftrust-design-workshop-v-fall-2017-in-boston-area-usa-tickets-34984665075">register here</a>). Any comments on this version please use post in these <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/issues">issues</a>.</em> <strong>)</strong></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

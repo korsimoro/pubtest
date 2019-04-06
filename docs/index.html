@@ -2,10 +2,25 @@
 layout: home
 author_profile: true
 ---
-<h5>Commit check: index.html - AAH</h5>
+<h5>Commit check: index.html - AAJ</h5>
 
 <p>
 	Site Data
 	<pre>{{ site.data }}</pre>
 	<pre>{{ site.data.toml['id-toml']['blockchain-id'] }}</pre>
 </p>
+
+<h2>Items</h2>
+<ul>
+{% for x in site.data.toml['id-toml']['blockchain-id'] %}
+	<li>
+		<p>{{ x[0] }}
+		</p>
+		<ul>
+			<li>{{ x[1].Description }}</li>
+ 			<li>{{ x[1].Link}}</li>
+			<li>{{ x[1].Tags}}</li>
+		</ul>
+	</li>
+{% endfor %}
+</ul>

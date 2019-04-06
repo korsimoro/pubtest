@@ -86,6 +86,23 @@ def gitlog(basedir,org_,repo_):
 
     print(log)
 
+import toml
+@cli.command(name="toml")
+@click.option("--format","format",
+    type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),
+    default="markdown"
+)
+@click.option("--in","in_",
+    type=click.File("r"),
+    help="file to load",
+    required=True
+)
+@click.pass_obj
+def db_schema_table(basedir,format,in_):
+    data = toml.loads(in_.read())
+    print(data)
+
+
 @cli.command(name="db-schema-table")
 @click.option("--format","format",
     type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),

@@ -7,3 +7,4 @@ PyYAML
 sqlitestructure
 pytablewriter
 mkdocs
+gitpython

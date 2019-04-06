@@ -64,7 +64,7 @@ from git import Repo
 @click.pass_obj
 def gitlog(basedir,org_,repo_):
     """extract commit log from repository"""
-    gitPath = os.path.join(basedir,".git/modules/docs/assets/repos",org_,repo_)
+    gitPath = os.path.join(basedir,".git/modules/toolkit/submodules",org_,repo_)
     repo = Repo(gitPath)
     log = [dict(
         authored_date=x.authored_date,

@@ -66,10 +66,9 @@ jobs:
           name: generate commit logs
           command: |
             . toolkit/venv/bin/activate
-            tool gitlog --org WebOfTrustInfo --repo rwot8-barcelona
-            tool gitlog --org WebOfTrustInfo --repo rwot7-toronto
-            tool gitlog --org WebOfTrustInfo --repo rwot6-santabarbara
-            tool gitlog --org WebOfTrustInfo --repo rwot5-boston
+            for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
+            	tool gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
+            done
 
       - run:
           name: run mkdocs

@@ -63,6 +63,15 @@ jobs:
             tool --dir ~/repo db-to-yaml
 
       - run:
+          name: generate commit logs
+          command: |
+            . toolkit/venv/bin/activate
+            tool gitlog --org WebOfTrustInfo --repo rwot8-barcelona
+            tool gitlog --org WebOfTrustInfo --repo rwot7-toronto
+            tool gitlog --org WebOfTrustInfo --repo rwot6-santabarbara
+            tool gitlog --org WebOfTrustInfo --repo rwot5-boston
+
+      - run:
           name: run mkdocs
           command: |
             . ~/repo/toolkit/venv/bin/activate

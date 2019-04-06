@@ -20,6 +20,11 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: bring submodules down
+          command: |
+            git submodule update --init
+
       # Download and cache dependencies
       - restore_cache:
           keys:

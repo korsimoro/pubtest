@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Humanity's API - solving Fermi paradox. - MkDocs PoC</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">MkDocs PoC</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../details/">Details</a>
+                            </li>
+                            <li >
+                                <a href="../../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topic Papers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 5</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="architectural-layering-for-decentralized-identification:'rwot5/topics-and-advance-readings/Architectural-Layering-for-Decentralized-Identification'">None</a>
+</li>
+            
+<li >
+    <a href="biometric-credentials-as-high-privacy-verifiable-claims:'rwot5/topics-and-advance-readings/Biometric-credentials-as-high-privacy-verifiable-claims'">None</a>
+</li>
+            
+<li >
+    <a href="biometric-transaction-signing-on-blockchain:'rwot5/topics-and-advance-readings/Biometric-transaction-signing-on-blockchain'">None</a>
+</li>
+            
+<li >
+    <a href="blockchain-based-digital-signatures-admissibility-and-enforceability:'rwot5/topics-and-advance-readings/Blockchain-Based-Digital-Signatures--Admissibility-and-Enforceability'">None</a>
+</li>
+            
+<li >
+    <a href="dif-hub-permissions-rwot-intent:'rwot5/topics-and-advance-readings/DIF-Hub-Permissions-RWOT-Intent'">None</a>
+</li>
+            
+<li >
+    <a href="data-minimization-and-selective-disclosure:'rwot5/topics-and-advance-readings/Data-minimization-and-selective-disclosure'">None</a>
+</li>
+            
+<li >
+    <a href="framework-for-comparison-of-identity-systems:'rwot5/topics-and-advance-readings/Framework-for-Comparison-of-Identity-Systems'">None</a>
+</li>
+            
+<li >
+    <a href="identifying-challenges-in-the-digital-economy:'rwot5/topics-and-advance-readings/Identifying-challenges-in-the-digital-economy'">None</a>
+</li>
+            
+<li >
+    <a href="readme:'rwot5/topics-and-advance-readings/README'">None</a>
+</li>
+            
+<li >
+    <a href="rwot-user-story:'rwot5/topics-and-advance-readings/RWOT-User-Story'">None</a>
+</li>
+            
+<li >
+    <a href="visa-really:'rwot5/topics-and-advance-readings/Visa-Really'">None</a>
+</li>
+            
+<li >
+    <a href="activitypub-decentralized-distributed:'rwot5/topics-and-advance-readings/activitypub-decentralized-distributed'">None</a>
+</li>
+            
+<li >
+    <a href="btcr-dids-ddos:'rwot5/topics-and-advance-readings/btcr-dids-ddos'">None</a>
+</li>
+            
+<li >
+    <a href="byzantine-fault-tolerant-web-of-trust-based-key-value-storage:'rwot5/topics-and-advance-readings/byzantine-fault-tolerant-web-of-trust-based-key-value-storage'">None</a>
+</li>
+            
+<li >
+    <a href="credential-handler-api:'rwot5/topics-and-advance-readings/credential-handler-api'">None</a>
+</li>
+            
+<li >
+    <a href="did-3d-web:'rwot5/topics-and-advance-readings/did-3d-web'">None</a>
+</li>
+            
+<li >
+    <a href="did-gentle-intro:'rwot5/topics-and-advance-readings/did-gentle-intro'">None</a>
+</li>
+            
+<li >
+    <a href="did-primer:'rwot5/topics-and-advance-readings/did-primer'">None</a>
+</li>
+            
+<li >
+    <a href="did-tooling:'rwot5/topics-and-advance-readings/did-tooling'">None</a>
+</li>
+            
+<li >
+    <a href="dkms-recommendations:'rwot5/topics-and-advance-readings/dkms-recommendations'">None</a>
+</li>
+            
+<li >
+    <a href="first-xdi-link-contract-between-btcr-did-and-sov-did:'rwot5/topics-and-advance-readings/first-xdi-link-contract-between-btcr-did-and-sov-did'">None</a>
+</li>
+            
+<li >
+    <a href="functional-identity-primer:'rwot5/topics-and-advance-readings/functional-identity-primer'">None</a>
+</li>
+            
+<li >
+    <a href="hypercerts-blockcerts-revocation:'rwot5/topics-and-advance-readings/hypercerts-blockcerts_revocation'">None</a>
+</li>
+            
+<li >
+    <a href="open-badges-as-verifiable-claims:'rwot5/topics-and-advance-readings/open-badges-as-verifiable-claims'">None</a>
+</li>
+            
+<li >
+    <a href="owned-vs-unowned-claims-and-ssi:'rwot5/topics-and-advance-readings/owned-vs-unowned-claims-and-ssi'">None</a>
+</li>
+            
+<li >
+    <a href="paper:'rwot5/topics-and-advance-readings/paper'">None</a>
+</li>
+            
+<li >
+    <a href="self-sovereign-identity-primer:'rwot5/topics-and-advance-readings/self-sovereign-identity-primer'">None</a>
+</li>
+            
+<li >
+    <a href="trust-objects-proposal:'rwot5/topics-and-advance-readings/trust-objects-proposal'">None</a>
+</li>
+            
+<li >
+    <a href="veres-one-did-method:'rwot5/topics-and-advance-readings/veres-one-did-method'">None</a>
+</li>
+            
+<li >
+    <a href="verifiable-claims-of-impact:'rwot5/topics-and-advance-readings/verifiable-claims-of-impact'">None</a>
+</li>
+            
+<li >
+    <a href="verifiable-claims-primer:'rwot5/topics-and-advance-readings/verifiable-claims-primer'">None</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 8</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../A-DID-for-every-thing---Agile-Driving-Data-Chain">a-did-for-every-thing-agile-driving-data-chain</a>
+</li>
+            
+<li >
+    <a href="../Aligning-SSI-with-European-Union-Identity-legislation-eIDAS">aligning-ssi-with-european-union-identity-legislation-eidas</a>
+</li>
+            
+<li >
+    <a href="../Anonymous_DIDs">anonymous-dids</a>
+</li>
+            
+<li >
+    <a href="../Applying_POLA_to_User_Interaction">applying-pola-to-user-interaction</a>
+</li>
+            
+<li >
+    <a href="../DID-Content-References">did-content-references</a>
+</li>
+            
+<li >
+    <a href="../Digital-Identity-for-the-Homeless">digital-identity-for-the-homeless</a>
+</li>
+            
+<li >
+    <a href="../DigitalTrustProtocol">digitaltrustprotocol</a>
+</li>
+            
+<li >
+    <a href="../P2P-DID">p2p-did</a>
+</li>
+            
+<li >
+    <a href="../Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities">proof-of-key-ownership-with-openid-connect-self-issued-identities</a>
+</li>
+            
+<li >
+    <a href="../Providing_Decentralized_Identity_to_the_most_vulnerable_populations">providing-decentralized-identity-to-the-most-vulnerable-populations</a>
+</li>
+            
+<li >
+    <a href="../RWOT-local-chapters">rwot-local-chapters</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../The-Untimely-Death-Of-SSI">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../Universal-DID-Operations">universal-did-operations</a>
+</li>
+            
+<li >
+    <a href="../Using-Immutable-Data-Objects">using-immutable-data-objects</a>
+</li>
+            
+<li >
+    <a href="../Zero-knowledge-Proofs">zero-knowledge-proofs</a>
+</li>
+            
+<li >
+    <a href="../bootstrap_web-of-trust_reliance-lifecycle">bootstrap-web-of-trust-reliance-lifecycle</a>
+</li>
+            
+<li >
+    <a href="../bringing-dependencies-btcr-wallet-to-swift-ecosystem">bringing-dependencies-btcr-wallet-to-swift-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../contextual_nondiscrete_identity">contextual-nondiscrete-identity</a>
+</li>
+            
+<li >
+    <a href="../credentials-and-correlation">credentials-and-correlation</a>
+</li>
+            
+<li >
+    <a href="../data-vala-realization">data-vala-realization</a>
+</li>
+            
+<li >
+    <a href="../decentralized-digital-identity-book">decentralized-digital-identity-book</a>
+</li>
+            
+<li >
+    <a href="../did-fee-market-using-micropayments">did-fee-market-using-micropayments</a>
+</li>
+            
+<li >
+    <a href="../did-namespace-records">did-namespace-records</a>
+</li>
+            
+<li >
+    <a href="../did-primer-extended">did-primer-extended</a>
+</li>
+            
+<li >
+    <a href="../did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../did-spec-current-status">did-spec-current-status</a>
+</li>
+            
+<li >
+    <a href="../did-ux">did-ux</a>
+</li>
+            
+<li >
+    <a href="../digital-contraception">digital-contraception</a>
+</li>
+            
+<li >
+    <a href="../diverse-teams">diverse-teams</a>
+</li>
+            
+<li >
+    <a href="../educational-credentialing-ecosystem">educational-credentialing-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../exploring_adoption_of_sharing_vcs">exploring-adoption-of-sharing-vcs</a>
+</li>
+            
+<li >
+    <a href="../financing-self-sovereign-stack">financing-self-sovereign-stack</a>
+</li>
+            
+<li >
+    <a href="../functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../glossary-primer">glossary-primer</a>
+</li>
+            
+<li >
+    <a href="../graphs-everywhere">graphs-everywhere</a>
+</li>
+            
+<li >
+    <a href="../handshake">handshake</a>
+</li>
+            
+<li >
+    <a href=".">humanity-api</a>
+</li>
+            
+<li >
+    <a href="../identity-containers">identity-containers</a>
+</li>
+            
+<li >
+    <a href="../identity-for-people-places">identity-for-people-places</a>
+</li>
+            
+<li >
+    <a href="../idm-concept">idm-concept</a>
+</li>
+            
+<li >
+    <a href="../idm-spec">idm-spec</a>
+</li>
+            
+<li >
+    <a href="../implementing-threshold-schemes">implementing-threshold-schemes</a>
+</li>
+            
+<li >
+    <a href="../introductory-capability-dht-concept">introductory-capability-dht-concept</a>
+</li>
+            
+<li >
+    <a href="../journalistic-use-cases">journalistic-use-cases</a>
+</li>
+            
+<li >
+    <a href="../libp2p_did_auth.">libp2p-did-auth</a>
+</li>
+            
+<li >
+    <a href="../multiformat-superfriends">multiformat-superfriends</a>
+</li>
+            
+<li >
+    <a href="../name-services-and-ssi">name-services-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../notebook-workbench">notebook-workbench</a>
+</li>
+            
+<li >
+    <a href="../oidc-profile-for-ssi">oidc-profile-for-ssi</a>
+</li>
+            
+<li >
+    <a href="../on-interpersonal-data">on-interpersonal-data</a>
+</li>
+            
+<li >
+    <a href="../psdad">psdad</a>
+</li>
+            
+<li >
+    <a href="../rightsframeworks">rightsframeworks</a>
+</li>
+            
+<li >
+    <a href="../security_shamirs">security-shamirs</a>
+</li>
+            
+<li >
+    <a href="../social-key-recovery">social-key-recovery</a>
+</li>
+            
+<li >
+    <a href="../ssi20XX-model-use-case-def">ssi20xx-model-use-case-def</a>
+</li>
+            
+<li >
+    <a href="../supporting-btcr">supporting-btcr</a>
+</li>
+            
+<li >
+    <a href="../the-untimely-death-of-ssi">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../trusting-attributes">trusting-attributes</a>
+</li>
+            
+<li >
+    <a href="../united-humans-critiqal-questions">united-humans-critiqal-questions</a>
+</li>
+            
+<li >
+    <a href="../universal-id-framework">universal-id-framework</a>
+</li>
+            
+<li >
+    <a href="../universal-ledger-agent">universal-ledger-agent</a>
+</li>
+            
+<li >
+    <a href="../universe-is-blockchain">universe-is-blockchain</a>
+</li>
+            
+<li >
+    <a href="../vcs-agent-centric">vcs-agent-centric</a>
+</li>
+            
+<li >
+    <a href="../verifiable-credentials-primer">verifiable-credentials-primer</a>
+</li>
+            
+<li >
+    <a href="../verifiable-displays-in-HTML">verifiable-displays-in-html</a>
+</li>
+            
+<li >
+    <a href="../verifiable-postal-address-claims">verifiable-postal-address-claims</a>
+</li>
+            
+<li >
+    <a href="../w3c-identity-workshop-report">w3c-identity-workshop-report</a>
+</li>
+            
+<li >
+    <a href="../why-WOTs-work">why-wots-work</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#humanitys-api-solving-fermi-paradox">Humanity's API - solving Fermi paradox.</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#notes">Notes</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="humanitys-api-solving-fermi-paradox">Humanity's API - solving Fermi paradox.</h1>
+<p>Authors: Bohdan Andriyiv (bohdan.andriyiv@validbook.org)</p>
+<p>Keywords: Fermi paradox, hypothesis, graph analysis, humanity</p>
+<p>There is a well known Fermi paradox [1]. It goes like this. There are millions or even billions Earth-like planets in the Galaxy, many of them are much older than the Earth, by millions, billions of years. If the life on Earth is typical, then some of these planets may have developed intelligent life who have developed interstellar travel. Even at the slow pace of currently envisioned interstellar travel, the Milky Way galaxy could be completely traversed in a few million years. According to this line of reasoning, the Earth should have already been visited by extraterrestrial aliens. </p>
+<p>So, where are the aliens? Or, at least, why do they not contact us?</p>
+<p>There are a lot of hypothesis that try to explain this paradox. Some of them blame the "no-contact situation" on the absence of "hard" technologies that enable interstellar travel or communication. They say that interstellar travel/communication is too difficult, it requires too much energy or precision. We have not figured out how to do it yet. Because of this we cannot find others and they cannot find us or they do not want to contact us until we have such technology.</p>
+<p>As we now begin to understand, the exoplanet detection and the interstellar travel is not that hard even for current human technologies [2,3]. Then assuming we are not that unique and the intelligent life is common, why we have not been contacted already. Surely much older and advanced civilizations, noticed our planet brimming with life millions of years ago. </p>
+<p>Would it be possible, that the reason we have not been contacted yet, does not lie in the area of "hard" technologies of interstellar communication, but in the area of "soft" technologies - in our inability to understand ourselves, to understand how humans work on individual, group and especially on global level. </p>
+<ul>
+<li>On the individual level, we do not really know how  brain biology and human psychology works.</li>
+<li>On the group level, we do not really know how groups work - we do not know how to effectively solve tragedy of commons, how to regulate local and national economies.</li>
+<li>On the global level - we have the same unknowns as on the individual and the group levels just taken to another level of complexity because of the scale and additional inter-group problems (international relations). </li>
+</ul>
+<p>I propose the hypothethis, that the correct (scientifically proven) understanding of how humans work (as individuals and as small, large and global groups) and consequently effective local and global human cooperation is the prerequisite for us to be abele to communicate with the interstellar civilizations, and probably to be contacted by them.</p>
+<p>This is especially related to our understanding of the humanity. We cannot expect to be contacted by the advanced interstellar civilizations, if we do not have clear view and understanding on how humanity works and what humanity means/does/how it regulates as a whole social organism. Before anyone (including ourselves) can talk with humanity we need to have good answers to the questions - "What it means to be a humanity? What it means to talk to humanity?". </p>
+<p>From the software engineer perspective, in order to be able to talk to humanity, we need to understand humanity's architecture and build "API" endpoints to it.
+First of all, we would need this "Humanity's API" not just to communicate with aliens, but for our own sake to be able to effectively cooperate on the global scale. </p>
+<p>Humanity's API should be:
+* inclusive - provide access to all people who wants to connect
+* representative - have most of the people or at least representative part of all people connected
+* real-time - any human who is connected and willing to communicate should be able to do it in real time
+* robust/antifragile - be decentralized, not have "one point of failure"
+* transparent/visible - everyone should be able to see who, how, why is connected / have access to it
+* easy/convenient/understandable - any literate person should be able to use it and learn how it works
+* censorless - it should not be possible to shut down Humanity's API  or censor access to it
+* two-way - API should allow post and receive information from humanity. In other words you should be able to talk to humanity, and humanity should be able to talk to you.</p>
+<p>In the real-life, from human perspective, Humanity API will probably look very similar to the current Internet forums (Twitter, Reddit, StackExchange) and search services. You will be able to post/receive question and answer, and participate in the debates with it. 
+There will be 2 big differences in how Humanity API differ from the current Internet forums:
+* assurance of humannes - you will be sure that you talk with humans and you will know how they are connected to other humans, who they represent 
+* autorouting/aggregation/representativeness - there will be a trusted reliable algorithm that will be able to route requests to correct humans or groups of humans and when necessary correctly aggregate responses from many humans in the correct/representative and meaningful for the recipient way.</p>
+<p>For Humanity's API to be able to do this, it will have to be based on a backend able to do high performance near real time analysis of large graphs.* In some cases such graph analysis is already possible with current technologies (e.g. Google search), but the near real time advanced analysis of large graphs will probably require quantum computers. The recent practical developments of quantum computing give realistic hope that this will be possible in the near future[4].</p>
+<p>When we build "Humanity's API" and get accustomed to using it for our own purposes, then one day we can expect to receive a message from aliens to one of API endpoints (from human user perspective it will probably appear in the Humanity's main discussion room). The message will say something like this - "Hello humanity! Glad you figured out this contactability stuff. Welcome to the intergalactic community of contactable intelligent life. Join the conversation, it's happening out here! Your closest galactic neighbor."** </p>
+<h2 id="references">References</h2>
+<p>[1] Fermi paradox - https://en.wikipedia.org/wiki/Fermi_paradox
+[2] Kepler project- https://en.wikipedia.org/wiki/Kepler_(spacecraft)
+[3] Breakthrough Starshot - https://en.wikipedia.org/wiki/Breakthrough_Starshot
+[4] Quantum computing news - https://www.google.com/search?q=quantum+computing+news+optimization+problems</p>
+<h2 id="notes">Notes</h2>
+<p>*<em>Advanced graph analysis is probably also required to understand how brain works.</em>
+<strong> <em>Of course the limit on speed of light will still be there - but hopefully aliens sent us the rich snapshot of the intergalactic internet, waiting around to connect to our "API"</em>. 
+</strong> <em>I'd be really surprised if there is no intergalactic community of contactable intelligent life out there. We cannot expect to be the first or the smartest, can we? Even if we are, we will have to create such community or if there is no one out there become one.</em></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

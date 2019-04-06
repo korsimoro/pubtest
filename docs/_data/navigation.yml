@@ -8,6 +8,8 @@ main:
     url: /organizations/
   - title: "CommitHistory"
     url: /commithistory/
+  - title: "MkDocs"
+    url: /mkdocs/
   - title: "Sample Posts"
     url: /year-archive/
   - title: "Sample Collections"

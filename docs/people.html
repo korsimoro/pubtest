@@ -1,9 +1,13 @@
 ---
-layout: people
-content: "A Test"
+layout: home
 ---
 
-<div>
-Is this is content?
-</div>
+<h3> Push check : AAD </h3>
+
+<h5>People</h5>
+<ul>
+  {% for item in site.data.rwot_people %}
+    <li>{{ item.Label }}</li>
+  {% endfor %}
+</ul>
 

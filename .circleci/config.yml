@@ -65,8 +65,8 @@ jobs:
       - run:
           name: run mkdocs
           command: |
-            . ./toolkit/venv/bin/activate
-            cd ~/docs/mkdocs-src
+            . ~/repo/toolkit/venv/bin/activate
+            cd ~/repo/docs/mkdocs-src
             mkdocs build
 
       - run:

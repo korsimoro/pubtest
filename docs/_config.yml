@@ -159,7 +159,7 @@ include:
   - .htaccess
   - _pages
   - mkdocs
-  - testdir
+  - static
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -189,6 +189,7 @@ exclude:
 keep_files:
   - .git
   - .svn
+  - .circleci
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 

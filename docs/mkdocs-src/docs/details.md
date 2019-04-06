@@ -1,3 +1,6 @@
+- [Quickstart](#quickstart)
+- [Purpose](#purpose)
+- [Git Configuration](#git-configuration)
 
 # Quickstart
 
@@ -8,29 +11,34 @@ cd pubtest
 . ./toolkit/venv/bin/activate
 tool
 ```
+
 # Purpose
 
 The purpose of this repository is to develop a
 publication technology with the following properties:
-- community engagement
+
+## community engagement
   - integrate with external data inputs (like Forms, or chats)
-- machine processable rich data
+
+## machine processable rich data
   - normalize tabular data as sqlite files
   - use sql queries to generate reports
   - use graphql queries to generate reports
   - use git commit history exploration to generate reports
   - expose report data as yml, csv, and json for
     - our own consumption via \_data
-    - reference data promoting distribution of machine readable data to other sites
-about data and make the results of this analysis
-readily digestable for the publication purposes
-- Proof of Concept - recording the exploration of mission support technologies
+    - reference data promoting distribution of machine readable data to other
+      sites about data and make the results of this analysis readily digestable
+      for publication purposes
+
+## Proof of Concept - recording the exploration of mission support technologies
   - submodules - to access files from other repositories, linked to a specific point in their tracking history, which is available to us for inclusion in documentation
   - mkdocs - expected useful for some structured data and ad-hoc data sources
   - wordpress - it should be possible to do something with wordpress, but not sure what
   - sqlitebiter - helps normalize tabular data around a sqlite format
   - tool - our own shim, with whatever data transformation logic we want
-- explore the use of git & github
+
+## explore the use of git & github
   - issues tracking to coordinate our work and advance our ideas to completion
   - github pages for publication
   - circleci integration for CI/CD pipeline
@@ -38,38 +46,43 @@ readily digestable for the publication purposes
   - use of git commit history in publication
 
 
-## Git Configuration
+# Git Configuration
+- [CircleCI](#CircleCI Integration)
+- [GitHub Pages](#CircleCI Integration)
+- [branch: documentation](#CircleCI Integration)
+- [branch: master](#CircleCI Integration)
 
-### CircleCI Integration
+## CircleCI Integration
 - https://circleci.com/gh/korsimoro/pubtest/tree/documentation
 - commits to 'documentation' branch will trigger the workflow in ".circleci/config.yml"
 
 The ```.circleci/config.yml``` file associates a command with a branch name, so we can run different
 commands depending upon updates to any branch.
 
-### GitHub Pages Integration
+## GitHub Pages Integration
 
-publication to 'master' branch will trigger a
-jekyll run and publish the result.  This is due to
-serving the repository via github pages.  As a
-result we get a "free, well maintained, powerful"
-step that will process our 'master' branch, and
-in particular, the 'docs' directory and publish
-the result for global visibility.
+publication to 'master' branch will trigger jekyll run and publish the result.
+This is due to serving the repository via github pages.  As a result we get a
+"free, well maintained, powerful" step that will process our 'master' branch,
+and in particular, the 'docs' directory and publish the result for global\
+visibility.
 
 ### branch: documentation
 the default branch is 'documentation'.
 
-when documentation is to be released, you should
-commit to this branch.  That will trigger the
-circle-ci preparation step followed by the github pages publication step.
+when documentation is to be released, you should commit to this branch.  That
+will trigger the circle-ci preparation step followed by the github pages
+publication step.
 
 ### branch: master
-ideally the 'master' branch will be controlled, and the state of master should always match the deployed website.
+ideally the 'master' branch will be controlled, and the state of master should
+always match the deployed website.
 
-This means we want to manage our updates to master as much as possible, and refrain, as much as possible, from committing directly to master.
+This means we want to manage our updates to master as much as possible, and
+refrain, as much as possible, from committing directly to master.
 
-This effectively makes "releasing the repo" equivalent to "publishing the documentation", which is a nice parity to have for any project!
+This effectively makes "releasing the repo" equivalent to "publishing the
+documentation", which is a nice parity to have for any project!
 
 
 # PoC

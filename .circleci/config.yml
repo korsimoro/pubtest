@@ -39,7 +39,7 @@ jobs:
       - run:
           name: copy repository README to mkdocs PoC
           command: |
-            cp README.md docs/assets/mkdocs/details.md
+            cp README.md docs/mkdocs-src/details.md
 
       - run:
           name: install dependencies

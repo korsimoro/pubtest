@@ -1,15 +1,24 @@
 ---
-layout: home
+layout: default
 ---
+<h5> Commit check : commithistory.html - AAL</h5>
+<p>
+Commit history for wrong repo.... but it's a start.
+The commit history is from the parent repo, even though
+the repo was initialized with a viable .git dir.... hmmm.
+</p>
 
-This is the content
-
-<h3> Push check : AAD </h3>
-
-Commit history for wrote repo.... but it's a start
-<h5>Commit History</h5>
+<h3>SubModule List</h3>
 <ul>
-  {% for item in site.data.submodules['WebOfTrustInfo']['rwot8-barcelona'].commitlog %}
-    <li>{{ item }}</li>
+  {% for item in site.data.submodules['WebOfTrustInfo'] %}
+    <li>{{ item.keys }}</li>
   {% endfor %}
 </ul>
+
+<h3>Commit History</h3>
+<ul>
+  {% for item in site.data.submodules['WebOfTrustInfo']['rwot8-barcelona'].commitlog %}
+	{% include commit-single.html %}
+  {% endfor %}
+</ul>
+

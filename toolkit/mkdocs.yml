@@ -1,0 +1,4 @@
+site_name: Pub Test
+nav:
+  - Home: index.md
+  - About: about.md

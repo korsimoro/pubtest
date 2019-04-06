@@ -80,11 +80,11 @@ jobs:
               git status
               echo "Go back to master"
               git checkout master
-              # this makes the merge painful, so just replace it each run
-              rm -rf docs/mkdocs
-              git merge documentation -m "Merging Documentation"
+              echo "Pull built documentation forward"
+              git merge -X theirs documentation -m "Merging Documentation"
+              echo "Trigger deployment"
               git push origin master
-              git status
+              echo "Cleanup"
               git checkout documentation
             fi
 

@@ -37,6 +37,11 @@ jobs:
             - v1-dependencies-
 
       - run:
+          name: copy repository README to mkdocs PoC
+          command: |
+            cp README.md docs/assets/mkdocs/details.md
+
+      - run:
           name: install dependencies
           command: |
             python3 -m venv toolkit/venv
@@ -56,6 +61,7 @@ jobs:
             cd toolkit
             pip install -e .
             tool --dir ~/repo db-to-yaml
+            tool --dir ~/repo gitlog > ~/repo/docs/_data/assets/submodules/WebOfTrustInfo/rwot8-barcelona/commitlog.json
 
       - run:
           name: run mkdocs

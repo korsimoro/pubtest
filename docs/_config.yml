@@ -18,8 +18,8 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 locale                   : "en-US"
 title                    : "Pubtest"
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "Your Name from docs/_config.yml"
+description              : "An amazing website. from docs/_config.yml"
 url                      : https://www.korsimoro.com
 baseurl                  : /pubtest
 repository               : korsimoro/pubtest

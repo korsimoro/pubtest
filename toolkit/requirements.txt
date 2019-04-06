@@ -8,3 +8,4 @@ sqlitestructure
 pytablewriter
 mkdocs
 gitpython
+toml

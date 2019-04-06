@@ -1,3 +1,5 @@
+jupyter
+jupyterlab
 click
 python-slugify
 sqlitebiter

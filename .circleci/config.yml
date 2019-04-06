@@ -60,7 +60,6 @@ jobs:
               git commit -a -m "Publishing Update From CircleCI"
               git status
               git checkout master
-              git rm -rf docs/mkdocs/*
               git merge documentation -m "Merging Documentation"
               git push origin master
               git status

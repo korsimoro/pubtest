@@ -61,13 +61,12 @@ jobs:
             cd toolkit
             pip install -e .
             tool --dir ~/repo db-to-yaml
-            tool --dir ~/repo gitlog > ~/repo/docs/_data/assets/submodules/WebOfTrustInfo/rwot8-barcelona/commitlog.json
 
       - run:
           name: run mkdocs
           command: |
-            . toolkit/venv/bin/activate
-            cd toolkit
+            . ./toolkit/venv/bin/activate
+            cd ~/docs/mkdocs-src
             mkdocs build
 
       - run:

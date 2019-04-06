@@ -501,7 +501,13 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#quickstart">Quickstart</a></li>
         <li class="main "><a href="#purpose">Purpose</a></li>
-            <li><a href="#git-configuration">Git Configuration</a></li>
+            <li><a href="#community-engagement">community engagement</a></li>
+            <li><a href="#machine-processable-rich-data">machine processable rich data</a></li>
+            <li><a href="#proof-of-concept-recording-the-exploration-of-mission-support-technologies">Proof of Concept - recording the exploration of mission support technologies</a></li>
+            <li><a href="#explore-the-use-of-git-github">explore the use of git &amp; github</a></li>
+        <li class="main "><a href="#git-configuration">Git Configuration</a></li>
+            <li><a href="#circleci-integration">CircleCI Integration</a></li>
+            <li><a href="#github-pages-integration">GitHub Pages Integration</a></li>
         <li class="main "><a href="#poc">PoC</a></li>
             <li><a href="#mkdocs">mkdocs</a></li>
             <li><a href="#tools-query-system">tool's query system</a></li>
@@ -520,6 +526,11 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
+<ul>
+<li><a href="#quickstart">Quickstart</a></li>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#git-configuration">Git Configuration</a></li>
+</ul>
 <h1 id="quickstart">Quickstart</h1>
 <pre><code>git clone git@github.com:korsimoro/pubtest
 cd pubtest
@@ -530,56 +541,73 @@ tool
 
 <h1 id="purpose">Purpose</h1>
 <p>The purpose of this repository is to develop a
-publication technology with the following properties:
-- community engagement
-  - integrate with external data inputs (like Forms, or chats)
-- machine processable rich data
-  - normalize tabular data as sqlite files
-  - use sql queries to generate reports
-  - use graphql queries to generate reports
-  - use git commit history exploration to generate reports
-  - expose report data as yml, csv, and json for
-    - our own consumption via _data
-    - reference data promoting distribution of machine readable data to other sites
-about data and make the results of this analysis
-readily digestable for the publication purposes
-- Proof of Concept - recording the exploration of mission support technologies
-  - submodules - to access files from other repositories, linked to a specific point in their tracking history, which is available to us for inclusion in documentation
-  - mkdocs - expected useful for some structured data and ad-hoc data sources
-  - wordpress - it should be possible to do something with wordpress, but not sure what
-  - sqlitebiter - helps normalize tabular data around a sqlite format
-  - tool - our own shim, with whatever data transformation logic we want
-- explore the use of git &amp; github
-  - issues tracking to coordinate our work and advance our ideas to completion
-  - github pages for publication
-  - circleci integration for CI/CD pipeline
-  - use of submodules
-  - use of git commit history in publication</p>
-<h2 id="git-configuration">Git Configuration</h2>
-<h3 id="circleci-integration">CircleCI Integration</h3>
+publication technology with the following properties:</p>
+<h2 id="community-engagement">community engagement</h2>
+<ul>
+<li>integrate with external data inputs (like Forms, or chats)</li>
+</ul>
+<h2 id="machine-processable-rich-data">machine processable rich data</h2>
+<ul>
+<li>normalize tabular data as sqlite files</li>
+<li>use sql queries to generate reports</li>
+<li>use graphql queries to generate reports</li>
+<li>use git commit history exploration to generate reports</li>
+<li>expose report data as yml, csv, and json for<ul>
+<li>our own consumption via _data</li>
+<li>reference data promoting distribution of machine readable data to other
+  sites about data and make the results of this analysis readily digestable
+  for publication purposes</li>
+</ul>
+</li>
+</ul>
+<h2 id="proof-of-concept-recording-the-exploration-of-mission-support-technologies">Proof of Concept - recording the exploration of mission support technologies</h2>
+<ul>
+<li>submodules - to access files from other repositories, linked to a specific point in their tracking history, which is available to us for inclusion in documentation</li>
+<li>mkdocs - expected useful for some structured data and ad-hoc data sources</li>
+<li>wordpress - it should be possible to do something with wordpress, but not sure what</li>
+<li>sqlitebiter - helps normalize tabular data around a sqlite format</li>
+<li>tool - our own shim, with whatever data transformation logic we want</li>
+</ul>
+<h2 id="explore-the-use-of-git-github">explore the use of git &amp; github</h2>
+<ul>
+<li>issues tracking to coordinate our work and advance our ideas to completion</li>
+<li>github pages for publication</li>
+<li>circleci integration for CI/CD pipeline</li>
+<li>use of submodules</li>
+<li>use of git commit history in publication</li>
+</ul>
+<h1 id="git-configuration">Git Configuration</h1>
+<ul>
+<li><a href="#CircleCI Integration">CircleCI</a></li>
+<li><a href="#CircleCI Integration">GitHub Pages</a></li>
+<li><a href="#CircleCI Integration">branch: documentation</a></li>
+<li><a href="#CircleCI Integration">branch: master</a></li>
+</ul>
+<h2 id="circleci-integration">CircleCI Integration</h2>
 <ul>
 <li>https://circleci.com/gh/korsimoro/pubtest/tree/documentation</li>
 <li>commits to 'documentation' branch will trigger the workflow in ".circleci/config.yml"</li>
 </ul>
 <p>The <code>.circleci/config.yml</code> file associates a command with a branch name, so we can run different
 commands depending upon updates to any branch.</p>
-<h3 id="github-pages-integration">GitHub Pages Integration</h3>
-<p>publication to 'master' branch will trigger a
-jekyll run and publish the result.  This is due to
-serving the repository via github pages.  As a
-result we get a "free, well maintained, powerful"
-step that will process our 'master' branch, and
-in particular, the 'docs' directory and publish
-the result for global visibility.</p>
+<h2 id="github-pages-integration">GitHub Pages Integration</h2>
+<p>publication to 'master' branch will trigger jekyll run and publish the result.
+This is due to serving the repository via github pages.  As a result we get a
+"free, well maintained, powerful" step that will process our 'master' branch,
+and in particular, the 'docs' directory and publish the result for global\
+visibility.</p>
 <h3 id="branch-documentation">branch: documentation</h3>
 <p>the default branch is 'documentation'.</p>
-<p>when documentation is to be released, you should
-commit to this branch.  That will trigger the
-circle-ci preparation step followed by the github pages publication step.</p>
+<p>when documentation is to be released, you should commit to this branch.  That
+will trigger the circle-ci preparation step followed by the github pages
+publication step.</p>
 <h3 id="branch-master">branch: master</h3>
-<p>ideally the 'master' branch will be controlled, and the state of master should always match the deployed website.</p>
-<p>This means we want to manage our updates to master as much as possible, and refrain, as much as possible, from committing directly to master.</p>
-<p>This effectively makes "releasing the repo" equivalent to "publishing the documentation", which is a nice parity to have for any project!</p>
+<p>ideally the 'master' branch will be controlled, and the state of master should
+always match the deployed website.</p>
+<p>This means we want to manage our updates to master as much as possible, and
+refrain, as much as possible, from committing directly to master.</p>
+<p>This effectively makes "releasing the repo" equivalent to "publishing the
+documentation", which is a nice parity to have for any project!</p>
 <h1 id="poc">PoC</h1>
 <p>All of the PoC components can be ignored, but they
 demonstrate the sorts of tools we should consider

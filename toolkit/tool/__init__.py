@@ -85,7 +85,6 @@ def gitlog(basedir,org_,repo_):
         ) for x in repo.iter_commits('HEAD')]
 
     print(log)
-    print(gitPath)
 
 @cli.command(name="db-schema-table")
 @click.option("--format","format",

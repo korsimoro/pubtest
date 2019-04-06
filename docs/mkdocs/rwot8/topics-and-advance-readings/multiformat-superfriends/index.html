@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>The Multibase, Multihash, and Hashlink Specifications - MkDocs PoC</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">MkDocs PoC</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../details/">Details</a>
+                            </li>
+                            <li >
+                                <a href="../../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topic Papers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 5</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Architectural-Layering-for-Decentralized-Identification">architectural-layering-for-decentralized-identification</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Biometric-credentials-as-high-privacy-verifiable-claims">biometric-credentials-as-high-privacy-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Biometric-transaction-signing-on-blockchain">biometric-transaction-signing-on-blockchain</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Blockchain-Based-Digital-Signatures--Admissibility-and-Enforceability">blockchain-based-digital-signatures-admissibility-and-enforceability</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/DIF-Hub-Permissions-RWOT-Intent">dif-hub-permissions-rwot-intent</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Data-minimization-and-selective-disclosure">data-minimization-and-selective-disclosure</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Framework-for-Comparison-of-Identity-Systems">framework-for-comparison-of-identity-systems</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Identifying-challenges-in-the-digital-economy">identifying-challenges-in-the-digital-economy</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/README">readme</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/RWOT-User-Story">rwot-user-story</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Visa-Really">visa-really</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/activitypub-decentralized-distributed">activitypub-decentralized-distributed</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/btcr-dids-ddos">btcr-dids-ddos</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/byzantine-fault-tolerant-web-of-trust-based-key-value-storage">byzantine-fault-tolerant-web-of-trust-based-key-value-storage</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/credential-handler-api">credential-handler-api</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-3d-web">did-3d-web</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-gentle-intro">did-gentle-intro</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-tooling">did-tooling</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/dkms-recommendations">dkms-recommendations</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/first-xdi-link-contract-between-btcr-did-and-sov-did">first-xdi-link-contract-between-btcr-did-and-sov-did</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/hypercerts-blockcerts_revocation">hypercerts-blockcerts-revocation</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/open-badges-as-verifiable-claims">open-badges-as-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/owned-vs-unowned-claims-and-ssi">owned-vs-unowned-claims-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/paper">paper</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/self-sovereign-identity-primer">self-sovereign-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/trust-objects-proposal">trust-objects-proposal</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/veres-one-did-method">veres-one-did-method</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/verifiable-claims-of-impact">verifiable-claims-of-impact</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/verifiable-claims-primer">verifiable-claims-primer</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 8</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../A-DID-for-every-thing---Agile-Driving-Data-Chain">a-did-for-every-thing-agile-driving-data-chain</a>
+</li>
+            
+<li >
+    <a href="../Aligning-SSI-with-European-Union-Identity-legislation-eIDAS">aligning-ssi-with-european-union-identity-legislation-eidas</a>
+</li>
+            
+<li >
+    <a href="../Anonymous_DIDs">anonymous-dids</a>
+</li>
+            
+<li >
+    <a href="../Applying_POLA_to_User_Interaction">applying-pola-to-user-interaction</a>
+</li>
+            
+<li >
+    <a href="../DID-Content-References">did-content-references</a>
+</li>
+            
+<li >
+    <a href="../Digital-Identity-for-the-Homeless">digital-identity-for-the-homeless</a>
+</li>
+            
+<li >
+    <a href="../DigitalTrustProtocol">digitaltrustprotocol</a>
+</li>
+            
+<li >
+    <a href="../P2P-DID">p2p-did</a>
+</li>
+            
+<li >
+    <a href="../Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities">proof-of-key-ownership-with-openid-connect-self-issued-identities</a>
+</li>
+            
+<li >
+    <a href="../Providing_Decentralized_Identity_to_the_most_vulnerable_populations">providing-decentralized-identity-to-the-most-vulnerable-populations</a>
+</li>
+            
+<li >
+    <a href="../RWOT-local-chapters">rwot-local-chapters</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../The-Untimely-Death-Of-SSI">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../Universal-DID-Operations">universal-did-operations</a>
+</li>
+            
+<li >
+    <a href="../Using-Immutable-Data-Objects">using-immutable-data-objects</a>
+</li>
+            
+<li >
+    <a href="../Zero-knowledge-Proofs">zero-knowledge-proofs</a>
+</li>
+            
+<li >
+    <a href="../bootstrap_web-of-trust_reliance-lifecycle">bootstrap-web-of-trust-reliance-lifecycle</a>
+</li>
+            
+<li >
+    <a href="../bringing-dependencies-btcr-wallet-to-swift-ecosystem">bringing-dependencies-btcr-wallet-to-swift-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../contextual_nondiscrete_identity">contextual-nondiscrete-identity</a>
+</li>
+            
+<li >
+    <a href="../credentials-and-correlation">credentials-and-correlation</a>
+</li>
+            
+<li >
+    <a href="../data-vala-realization">data-vala-realization</a>
+</li>
+            
+<li >
+    <a href="../decentralized-digital-identity-book">decentralized-digital-identity-book</a>
+</li>
+            
+<li >
+    <a href="../did-fee-market-using-micropayments">did-fee-market-using-micropayments</a>
+</li>
+            
+<li >
+    <a href="../did-namespace-records">did-namespace-records</a>
+</li>
+            
+<li >
+    <a href="../did-primer-extended">did-primer-extended</a>
+</li>
+            
+<li >
+    <a href="../did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../did-spec-current-status">did-spec-current-status</a>
+</li>
+            
+<li >
+    <a href="../did-ux">did-ux</a>
+</li>
+            
+<li >
+    <a href="../digital-contraception">digital-contraception</a>
+</li>
+            
+<li >
+    <a href="../diverse-teams">diverse-teams</a>
+</li>
+            
+<li >
+    <a href="../educational-credentialing-ecosystem">educational-credentialing-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../exploring_adoption_of_sharing_vcs">exploring-adoption-of-sharing-vcs</a>
+</li>
+            
+<li >
+    <a href="../financing-self-sovereign-stack">financing-self-sovereign-stack</a>
+</li>
+            
+<li >
+    <a href="../functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../glossary-primer">glossary-primer</a>
+</li>
+            
+<li >
+    <a href="../graphs-everywhere">graphs-everywhere</a>
+</li>
+            
+<li >
+    <a href="../handshake">handshake</a>
+</li>
+            
+<li >
+    <a href="../humanity-API">humanity-api</a>
+</li>
+            
+<li >
+    <a href="../identity-containers">identity-containers</a>
+</li>
+            
+<li >
+    <a href="../identity-for-people-places">identity-for-people-places</a>
+</li>
+            
+<li >
+    <a href="../idm-concept">idm-concept</a>
+</li>
+            
+<li >
+    <a href="../idm-spec">idm-spec</a>
+</li>
+            
+<li >
+    <a href="../implementing-threshold-schemes">implementing-threshold-schemes</a>
+</li>
+            
+<li >
+    <a href="../introductory-capability-dht-concept">introductory-capability-dht-concept</a>
+</li>
+            
+<li >
+    <a href="../journalistic-use-cases">journalistic-use-cases</a>
+</li>
+            
+<li >
+    <a href="../libp2p_did_auth.">libp2p-did-auth</a>
+</li>
+            
+<li >
+    <a href=".">multiformat-superfriends</a>
+</li>
+            
+<li >
+    <a href="../name-services-and-ssi">name-services-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../notebook-workbench">notebook-workbench</a>
+</li>
+            
+<li >
+    <a href="../oidc-profile-for-ssi">oidc-profile-for-ssi</a>
+</li>
+            
+<li >
+    <a href="../on-interpersonal-data">on-interpersonal-data</a>
+</li>
+            
+<li >
+    <a href="../psdad">psdad</a>
+</li>
+            
+<li >
+    <a href="../rightsframeworks">rightsframeworks</a>
+</li>
+            
+<li >
+    <a href="../security_shamirs">security-shamirs</a>
+</li>
+            
+<li >
+    <a href="../social-key-recovery">social-key-recovery</a>
+</li>
+            
+<li >
+    <a href="../ssi20XX-model-use-case-def">ssi20xx-model-use-case-def</a>
+</li>
+            
+<li >
+    <a href="../supporting-btcr">supporting-btcr</a>
+</li>
+            
+<li >
+    <a href="../the-untimely-death-of-ssi">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../trusting-attributes">trusting-attributes</a>
+</li>
+            
+<li >
+    <a href="../united-humans-critiqal-questions">united-humans-critiqal-questions</a>
+</li>
+            
+<li >
+    <a href="../universal-id-framework">universal-id-framework</a>
+</li>
+            
+<li >
+    <a href="../universal-ledger-agent">universal-ledger-agent</a>
+</li>
+            
+<li >
+    <a href="../universe-is-blockchain">universe-is-blockchain</a>
+</li>
+            
+<li >
+    <a href="../vcs-agent-centric">vcs-agent-centric</a>
+</li>
+            
+<li >
+    <a href="../verifiable-credentials-primer">verifiable-credentials-primer</a>
+</li>
+            
+<li >
+    <a href="../verifiable-displays-in-HTML">verifiable-displays-in-html</a>
+</li>
+            
+<li >
+    <a href="../verifiable-postal-address-claims">verifiable-postal-address-claims</a>
+</li>
+            
+<li >
+    <a href="../w3c-identity-workshop-report">w3c-identity-workshop-report</a>
+</li>
+            
+<li >
+    <a href="../why-WOTs-work">why-wots-work</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#the-multibase-multihash-and-hashlink-specifications">The Multibase, Multihash, and Hashlink Specifications</a></li>
+        <li class="main "><a href="#multibase">Multibase</a></li>
+        <li class="main "><a href="#multihash">Multihash</a></li>
+        <li class="main "><a href="#hashlink">Hashlink</a></li>
+        <li class="main "><a href="#collaboration">Collaboration</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="the-multibase-multihash-and-hashlink-specifications">The Multibase, Multihash, and Hashlink Specifications</h1>
+<p>By Manu Sporny and Ganesh Annan; Digital Bazaar</p>
+<p>This document outlines three specifications that have recently become
+work items of the W3C Credentials Community Group. The authors of these
+specifications desire feedback from the Rebooting the Web of Trust community
+to, if necessary, further expand the capabilities to address other use cases 
+that are of importance to the individuals and organizations that attend RWoT8.</p>
+<h1 id="multibase">Multibase</h1>
+<p>The Multibase specification was published a few weeks ago as an IETF
+Internet-Draft. The specification is intended to be a joint work product
+of Protocol Labs (IPFS and Filecoin), the W3C Digital Verification
+Community Group, and the W3C Credentials Community Group.</p>
+<p>So, what problem does Multibase solve and why do we care?</p>
+<p>Our community encodes binary data in things like DID Documents and URLs.
+For example, both the Veres One and Sovrin DIDs encode the public key in
+the DID itself (these are legacy DIDs from past development versions,
+and are provided for illustration purposes only):</p>
+<p>did:v1:test:nym:z279ikfef3QbKRgnvTFmq5wEzZpe7s4fBiMb97hSEezXv3SL
+did:sov:WRfXPg8dantKVubE3HX8pw</p>
+<p>That bit at the end there is binary data (the public key) that is
+"base-encoded" so that it's easy (for developers) to copy/paste that
+stuff around and put it in emails when talking about technical things.
+The problem is that we don't know what base-encoding format was used above 
+(base64 with padding, base64url, base58btc)?</p>
+<p>To solve this problem, we add a single byte to the beginning of the
+encoded value, so this:</p>
+<p>did:v1:test:nym:279ikfef3QbKRgnvTFmq5wEzZpe7s4fBiMb97hSEezXv3SL</p>
+<p>turns into this (note the addition of 'z', which means "the data you are
+about to read is encoded in Bitcoin's base-58 encoding"):</p>
+<p>did:v1:test:nym:z279ikfef3QbKRgnvTFmq5wEzZpe7s4fBiMb97hSEezXv3SL</p>
+<p>This is useful because this mechanism allows us to encode the same
+information in a variety of different ways. For example, Ethereum folks
+tend to use base16lower encoded values for their addresses while Bitcoin
+folks use a Bitcoin flavor of base58. At some level, these are sort of
+arbitrary decisions that developers fight over, but with Multibase, the
+decision is translated into a simple matter of value conversion. You
+don't have to fight over the base encoding format because Multibase
+encodes it in the resulting value, making conversion simple and
+deterministic and enabling future upgradability for your system (and
+compatibility with other systems).</p>
+<p>Multibase also allows developers to change the encoding format at a
+later date because the software was written with upgradability in mind
+from the beginning. The spec is a fairly short one, weighing in at 7
+pages and can be found here:</p>
+<p>https://tools.ietf.org/html/draft-multiformats-multibase-01</p>
+<h1 id="multihash">Multihash</h1>
+<p>The Multihash specification was drafted before/during the last RWoT and
+has been released as an IETF Internet-Draft. The specification is
+intended to be a joint work product of Protocol Labs (IPFS and
+Filecoin), the W3C Digital Verification Community Group, and the W3C
+Credentials Community Group.</p>
+<p>So, what problem does Multihash solve and why do we care?</p>
+<p>Our community depends on cryptographic hashes to generate short
+fingerprints for files and data. These fingerprints look like this as
+binary data:</p>
+<p>0x0a4ec6f1629e49262d7093e2f82a3278</p>
+<p>While that may look like gobbledygook to a human reader, it's enough for
+a computer to uniquely identify, for example, one picture among all of
+the other trillions of pictures on the Web. We use these fingerprints
+when working with Verifiable Credentials, DIDs, public keys, and
+evidence data (images, PDFs, etc.) that are linked to Verifiable Credentials.</p>
+<p>The problem is that we don't know what sort of cryptographic hash
+function generated the hash above, so we need to put an identifier at
+the front of that cryptographic hash. That's basically what Multihash
+does: it provides a mechanism to identify how cryptographic hashes were
+generated.</p>
+<p>This is useful because if we have a cryptographic hash identifier, we
+can design upgradability into the systems we're building today.
+Cryptographic hashing systems are broken every 10 years or so -- they
+have a shelf life and will eventually need to be upgraded. Building this
+concept of upgradability into our systems, especially 
+Decentralized Identifiers and Verifiable Credentials, is a good engineering 
+practice and the Multihash spec enables us to do just that. It's a fairly 
+short 10 page spec and can be found here:</p>
+<p>https://tools.ietf.org/html/draft-multiformats-multihash-00</p>
+<h1 id="hashlink">Hashlink</h1>
+<p>The Hashlink specification is intended to be a way to enforce that the content 
+at a given hyperlink has not changed since it was published.</p>
+<p>The specification is a joint work product of the W3C Digital Verification 
+Community Group, JSON-LD WG (unofficial), VCWG (unofficial), and the W3C 
+Credentials Community Group.</p>
+<p>Ok, so what's the problem and why do we care?</p>
+<p>We do the following things in this community:</p>
+<ul>
+<li>Link to JSON-LD Contexts</li>
+<li>Link to ZKP Schemas</li>
+<li>Link to evidence from Verifiable Credentials</li>
+<li>Link to external data from DID Documents</li>
+</ul>
+<p>... and we have no way to tell if the content at the end of that link
+has changed since the Verifiable Credential was issued, or the DID
+Document was created.</p>
+<p>In the best case, verification of the cryptographic signature fails
+(because the content at the end of the link changed). In the average
+case, the signature doesn't fail, and we use data that may have been
+modified. In the worst case, the data was modified by an attacker and
+really bad things happen (like a developer being sloppy with how they
+use JSON-LD Contexts in a financial system and the source/destination
+fields being flipped in a financial transaction). There are mitigations
+for all of these issues, but they require the developer to be aware of
+the problem in the first place.</p>
+<p>What would be great is if we could trust that when we use a hyperlink in
+our systems (like a Verifiable Credential or a DID Document), and
+digitally sign that hyperlink, that we're also signing the content at
+the hyperlink. That's what the hashlink specification enables us to do.</p>
+<p>Here's a simple example for the JSON-LD Context for the current DID
+Spec. Here's the current link:</p>
+<p>https://w3id.org/did/v0.11</p>
+<p>You have no idea if the version you retrieved and the version I
+retrieved are the same. Now, here's what it looks like when we secure it
+with a "Legacy URL" Hashlink (blake2b 8 byte multihash + base58btc
+multibase):</p>
+<p>https://w3id.org/did/v0.11?hl=z3aq31uzgnZBuWNzUB</p>
+<p>Now we both know that the version we download is the same (because of
+the little bit at the end starting with "hl=", which stands for
+Hashlink). Here's what it looks like as a (non-legacy) Hashlink URL:</p>
+<p>hl:z3aq31uzgnZBuWNzUB:zpr1Xd34f3NYqfr1yMzb6TBCrWWrvJeGVRJGsUMMyVWXS8</p>
+<p>Yes, that looks awful, but there are a number of redeeming
+characteristics with the second form. The first is that the latter value
+is optional -- you can discard everything after the second colon and
+it's still a valid Hashlink URL. All you really need is
+"hl:z3aq31uzgnZBuWNzUB" and you can get the data from anywhere else
+(like different URLs, a local cache, etc.) and still thwart the attacks
+listed above.</p>
+<p>The other nice thing about Hashlink URLs, and this is the really
+exciting bit, is that you can create multi-sourced hashlinks that span
+completely different network architectures. Let's say that you had
+information that you really wanted to make sure didn't disappear (like
+the DID JSON-LD Context above), and you publish it at the following
+locations:</p>
+<p>https://w3id.org/did/v0.11</p>
+<p>magnet:?xt=urn:btih:73C59D931B7E0C089C031D6CFE0D16AE</p>
+<p>ipfs://ipfs/QmR7W4GQUFWDPMVrQfmNE8xJC6LoVAyaWeRnDp4gS9/did-v0.11</p>
+<p>onion://pq6kufupl4mc43g2/didv0.11</p>
+<p>The Hashlink URL would be really long, something like this:</p>
+<p>hl:z3aq31uzgnZBuWNzUB:zeGVRWXS8TakFeJueF2bim3PaaDqbtqjkpxUc8ETS
+WXe6dQLWXQWvqiUdw8TJrncx3uKhwfc88MtM5xZbR27FhVRUKv9ogekamVtdE3U
+bXnXpMRT1AseCtoBUt1NE8x2SsnJxGfiZN45VVSCp6jh4dgcufL16tWrHREiSYE
+SEGP1J75yXCvAdvKPr7nb5aY</p>
+<p>... but the Hashlink URL above 1) ensures the integrity of the thing
+you're linking to, and 2) still works if 3 out of the 4 networks listed
+above failed. To put it another way, the link above could survive (for
+example) the failure of the Web, BitTorrent, and Tor.</p>
+<p>This approach also solves the following problems that other communities
+in our orbit are having by:</p>
+<ul>
+<li>JSON-LD WG: Enabling backwards-compatible content integrity for JSON-
+  LD Contexts.</li>
+<li>JSON-LD WG: Enabling non-Web-based, multi-sourced, compact, content
+  integrity for JSON-LD Contexts.</li>
+<li>Sovrin: Enabling content integrity protected blockchain-based ZKP
+  Schemas to be hosted on the Sovrin ledger (and Web-based
+  locations) and referenced from Verifiable Credentials.</li>
+<li>IPFS: Enable organizations to dip their toes into IPFS as a "backup
+  mechanism" w/o having to fully commit to jumping in with both
+  feet.</li>
+<li>Verifiable Credentials WG: All the JSON-LD benefits above and the
+  ability to digitally sign content integrity protected
+  hyperlinks to evidence, terms of use, and any other information
+  linked to from a Verifiable Credential.</li>
+<li>Credentials CG: Include links to data from DID Documents where the
+  content at the links are secured by the cryptography of the
+  ledger.</li>
+</ul>
+<p>The specification is 9 pages long and can be found here:</p>
+<p>https://tools.ietf.org/html/draft-sporny-hashlink-02</p>
+<h1 id="collaboration">Collaboration</h1>
+<p>A few of the authors and implementers of these specifications will be at 
+RWoT8 and are very interested in educating the community about these 
+specifications and getting feedback from the community about these 
+specifications in order to improve them before large scale implementation
+begins.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

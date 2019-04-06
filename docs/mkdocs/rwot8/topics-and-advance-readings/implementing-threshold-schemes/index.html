@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Implementing threshold schemes - MkDocs PoC</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../..">MkDocs PoC</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../details/">Details</a>
+                            </li>
+                            <li >
+                                <a href="../../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topic Papers <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 5</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Architectural-Layering-for-Decentralized-Identification">architectural-layering-for-decentralized-identification</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Biometric-credentials-as-high-privacy-verifiable-claims">biometric-credentials-as-high-privacy-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Biometric-transaction-signing-on-blockchain">biometric-transaction-signing-on-blockchain</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Blockchain-Based-Digital-Signatures--Admissibility-and-Enforceability">blockchain-based-digital-signatures-admissibility-and-enforceability</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/DIF-Hub-Permissions-RWOT-Intent">dif-hub-permissions-rwot-intent</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Data-minimization-and-selective-disclosure">data-minimization-and-selective-disclosure</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Framework-for-Comparison-of-Identity-Systems">framework-for-comparison-of-identity-systems</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Identifying-challenges-in-the-digital-economy">identifying-challenges-in-the-digital-economy</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/README">readme</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/RWOT-User-Story">rwot-user-story</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/Visa-Really">visa-really</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/activitypub-decentralized-distributed">activitypub-decentralized-distributed</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/btcr-dids-ddos">btcr-dids-ddos</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/byzantine-fault-tolerant-web-of-trust-based-key-value-storage">byzantine-fault-tolerant-web-of-trust-based-key-value-storage</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/credential-handler-api">credential-handler-api</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-3d-web">did-3d-web</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-gentle-intro">did-gentle-intro</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/did-tooling">did-tooling</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/dkms-recommendations">dkms-recommendations</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/first-xdi-link-contract-between-btcr-did-and-sov-did">first-xdi-link-contract-between-btcr-did-and-sov-did</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/hypercerts-blockcerts_revocation">hypercerts-blockcerts-revocation</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/open-badges-as-verifiable-claims">open-badges-as-verifiable-claims</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/owned-vs-unowned-claims-and-ssi">owned-vs-unowned-claims-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/paper">paper</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/self-sovereign-identity-primer">self-sovereign-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/trust-objects-proposal">trust-objects-proposal</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/veres-one-did-method">veres-one-did-method</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/verifiable-claims-of-impact">verifiable-claims-of-impact</a>
+</li>
+            
+<li >
+    <a href="../../../rwot5/topics-and-advance-readings/verifiable-claims-primer">verifiable-claims-primer</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">RWoT 8</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../A-DID-for-every-thing---Agile-Driving-Data-Chain">a-did-for-every-thing-agile-driving-data-chain</a>
+</li>
+            
+<li >
+    <a href="../Aligning-SSI-with-European-Union-Identity-legislation-eIDAS">aligning-ssi-with-european-union-identity-legislation-eidas</a>
+</li>
+            
+<li >
+    <a href="../Anonymous_DIDs">anonymous-dids</a>
+</li>
+            
+<li >
+    <a href="../Applying_POLA_to_User_Interaction">applying-pola-to-user-interaction</a>
+</li>
+            
+<li >
+    <a href="../DID-Content-References">did-content-references</a>
+</li>
+            
+<li >
+    <a href="../Digital-Identity-for-the-Homeless">digital-identity-for-the-homeless</a>
+</li>
+            
+<li >
+    <a href="../DigitalTrustProtocol">digitaltrustprotocol</a>
+</li>
+            
+<li >
+    <a href="../P2P-DID">p2p-did</a>
+</li>
+            
+<li >
+    <a href="../Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities">proof-of-key-ownership-with-openid-connect-self-issued-identities</a>
+</li>
+            
+<li >
+    <a href="../Providing_Decentralized_Identity_to_the_most_vulnerable_populations">providing-decentralized-identity-to-the-most-vulnerable-populations</a>
+</li>
+            
+<li >
+    <a href="../RWOT-local-chapters">rwot-local-chapters</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../SSI-FrameworkProposal">ssi-frameworkproposal</a>
+</li>
+            
+<li >
+    <a href="../The-Untimely-Death-Of-SSI">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../Universal-DID-Operations">universal-did-operations</a>
+</li>
+            
+<li >
+    <a href="../Using-Immutable-Data-Objects">using-immutable-data-objects</a>
+</li>
+            
+<li >
+    <a href="../Zero-knowledge-Proofs">zero-knowledge-proofs</a>
+</li>
+            
+<li >
+    <a href="../bootstrap_web-of-trust_reliance-lifecycle">bootstrap-web-of-trust-reliance-lifecycle</a>
+</li>
+            
+<li >
+    <a href="../bringing-dependencies-btcr-wallet-to-swift-ecosystem">bringing-dependencies-btcr-wallet-to-swift-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../contextual_nondiscrete_identity">contextual-nondiscrete-identity</a>
+</li>
+            
+<li >
+    <a href="../credentials-and-correlation">credentials-and-correlation</a>
+</li>
+            
+<li >
+    <a href="../data-vala-realization">data-vala-realization</a>
+</li>
+            
+<li >
+    <a href="../decentralized-digital-identity-book">decentralized-digital-identity-book</a>
+</li>
+            
+<li >
+    <a href="../did-fee-market-using-micropayments">did-fee-market-using-micropayments</a>
+</li>
+            
+<li >
+    <a href="../did-namespace-records">did-namespace-records</a>
+</li>
+            
+<li >
+    <a href="../did-primer-extended">did-primer-extended</a>
+</li>
+            
+<li >
+    <a href="../did-primer">did-primer</a>
+</li>
+            
+<li >
+    <a href="../did-spec-current-status">did-spec-current-status</a>
+</li>
+            
+<li >
+    <a href="../did-ux">did-ux</a>
+</li>
+            
+<li >
+    <a href="../digital-contraception">digital-contraception</a>
+</li>
+            
+<li >
+    <a href="../diverse-teams">diverse-teams</a>
+</li>
+            
+<li >
+    <a href="../educational-credentialing-ecosystem">educational-credentialing-ecosystem</a>
+</li>
+            
+<li >
+    <a href="../exploring_adoption_of_sharing_vcs">exploring-adoption-of-sharing-vcs</a>
+</li>
+            
+<li >
+    <a href="../financing-self-sovereign-stack">financing-self-sovereign-stack</a>
+</li>
+            
+<li >
+    <a href="../functional-identity-primer">functional-identity-primer</a>
+</li>
+            
+<li >
+    <a href="../glossary-primer">glossary-primer</a>
+</li>
+            
+<li >
+    <a href="../graphs-everywhere">graphs-everywhere</a>
+</li>
+            
+<li >
+    <a href="../handshake">handshake</a>
+</li>
+            
+<li >
+    <a href="../humanity-API">humanity-api</a>
+</li>
+            
+<li >
+    <a href="../identity-containers">identity-containers</a>
+</li>
+            
+<li >
+    <a href="../identity-for-people-places">identity-for-people-places</a>
+</li>
+            
+<li >
+    <a href="../idm-concept">idm-concept</a>
+</li>
+            
+<li >
+    <a href="../idm-spec">idm-spec</a>
+</li>
+            
+<li >
+    <a href=".">implementing-threshold-schemes</a>
+</li>
+            
+<li >
+    <a href="../introductory-capability-dht-concept">introductory-capability-dht-concept</a>
+</li>
+            
+<li >
+    <a href="../journalistic-use-cases">journalistic-use-cases</a>
+</li>
+            
+<li >
+    <a href="../libp2p_did_auth.">libp2p-did-auth</a>
+</li>
+            
+<li >
+    <a href="../multiformat-superfriends">multiformat-superfriends</a>
+</li>
+            
+<li >
+    <a href="../name-services-and-ssi">name-services-and-ssi</a>
+</li>
+            
+<li >
+    <a href="../notebook-workbench">notebook-workbench</a>
+</li>
+            
+<li >
+    <a href="../oidc-profile-for-ssi">oidc-profile-for-ssi</a>
+</li>
+            
+<li >
+    <a href="../on-interpersonal-data">on-interpersonal-data</a>
+</li>
+            
+<li >
+    <a href="../psdad">psdad</a>
+</li>
+            
+<li >
+    <a href="../rightsframeworks">rightsframeworks</a>
+</li>
+            
+<li >
+    <a href="../security_shamirs">security-shamirs</a>
+</li>
+            
+<li >
+    <a href="../social-key-recovery">social-key-recovery</a>
+</li>
+            
+<li >
+    <a href="../ssi20XX-model-use-case-def">ssi20xx-model-use-case-def</a>
+</li>
+            
+<li >
+    <a href="../supporting-btcr">supporting-btcr</a>
+</li>
+            
+<li >
+    <a href="../the-untimely-death-of-ssi">the-untimely-death-of-ssi</a>
+</li>
+            
+<li >
+    <a href="../trusting-attributes">trusting-attributes</a>
+</li>
+            
+<li >
+    <a href="../united-humans-critiqal-questions">united-humans-critiqal-questions</a>
+</li>
+            
+<li >
+    <a href="../universal-id-framework">universal-id-framework</a>
+</li>
+            
+<li >
+    <a href="../universal-ledger-agent">universal-ledger-agent</a>
+</li>
+            
+<li >
+    <a href="../universe-is-blockchain">universe-is-blockchain</a>
+</li>
+            
+<li >
+    <a href="../vcs-agent-centric">vcs-agent-centric</a>
+</li>
+            
+<li >
+    <a href="../verifiable-credentials-primer">verifiable-credentials-primer</a>
+</li>
+            
+<li >
+    <a href="../verifiable-displays-in-HTML">verifiable-displays-in-html</a>
+</li>
+            
+<li >
+    <a href="../verifiable-postal-address-claims">verifiable-postal-address-claims</a>
+</li>
+            
+<li >
+    <a href="../w3c-identity-workshop-report">w3c-identity-workshop-report</a>
+</li>
+            
+<li >
+    <a href="../why-WOTs-work">why-wots-work</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#implementing-threshold-schemes">Implementing threshold schemes</a></li>
+            <li><a href="#author">Author</a></li>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#1-introduction">1. Introduction</a></li>
+            <li><a href="#2-shamir-secret-sharing">2. Shamir secret sharing</a></li>
+            <li><a href="#3-background-verifiable-secret-sharing">3. Background: verifiable secret sharing</a></li>
+            <li><a href="#4-sss-with-hashed-shares">4. SSS with hashed shares</a></li>
+            <li><a href="#5-implementing-a-secret-sharing-scheme">5. Implementing a secret sharing scheme</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="implementing-threshold-schemes">Implementing threshold schemes</h1>
+<h2 id="author">Author</h2>
+<p>Daan Sprenkels <code>&lt;hello@dsprenkels.com&gt;</code></p>
+<h2 id="abstract">Abstract</h2>
+<p>"Shamir secret sharing is a method to split secrets into shares, and to later recombine them. However, it does not feature integrity protection of the secret. This article elaborates on Feldman VSS and Pederson VSS, which <em>do</em> protect the message integrity. Furthermore, we show how hashing the shares also protects the message integrity, but is vulnerable to a cheating dealer.</p>
+<blockquote>
+<p>Markdown does not really support footnotes. In this document, I use blockquotes for this purpose.</p>
+<p>A couple of weeks ago, Christopher Allen requested me to "summarize [my] post https://dsprenkels.com/sss-34c3.html" and submit it to the <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona">RWOT8 repo</a>.</p>
+</blockquote>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Threshold schemes are cryptographic schemes that allow a group of people to split a secret message $m$ up in a set of different <em>shares</em> $s_i$. These shares can later be used to recombine the shares into the original message.</p>
+<p>A prominent detail of threshold schemes is that the <em>dealer</em> can specify the <em>threshold</em> of the amount shares that needs to be reached for the message to be recombined. For instance, they can split a message into 5 shares, but allow the message to be recovered if only 4 shares are recombined. Should one share be lost by any of the participants, then the message can still be recovered.</p>
+<p>In this article, I will try to set forth a general description on Shamir's secret sharing scheme in Section 2, and the two verifiable secret sharing schemes from Feldman and Pederson in Section 2. In Section 4 I will introduce a patched version of Shamir's scheme, using hash functions and analyze its security properties. In Section 5, I will briefly argue about some details that are important when choosing and implementing these kinds of schemes.</p>
+<h2 id="2-shamir-secret-sharing">2. Shamir secret sharing</h2>
+<p>The first and still most relevant scheme is <a href="https://dl.acm.org/citation.cfm?doid=359168.359176">Shamir's secret sharing scheme</a> (SSS). The idea is quite simple. Consider the dealer has a message $m$, which they want to split into $n=5$ shares, with a recombination threshold of $t=4$.</p>
+<ul>
+<li><strong>Distribution.</strong> The dealer:<ul>
+<li>generates a <em>random</em>  polynomial $f(x)$ of order $t$, i.e. $f(x) = a_{t-1}x^{t-1} + \ldots + a_{0}$;</li>
+<li>sets the lowest order coefficient $a_0$ to $m$, s.t. $f(0) = m$;</li>
+<li>evaluates $n$ points on the polynomial: $s_{1} = (1, f(1)), \ldots, s_{n} = (n, f(n))$, and distributes them among the participants.</li>
+</ul>
+</li>
+<li><strong>Reconstruction.</strong> The participants:<ul>
+<li>collect at least $t$ shares;</li>
+<li>fit a polynomial $f'(x)$ between the points $s_{1}, \ldots, s_{t}$, which can be done using Lagrange interpolation; and</li>
+<li>they recover $m = f'(0)$.</li>
+</ul>
+</li>
+</ul>
+<p>Essentially, in Shamir's scheme the dealer creates a system of $t$ equations that the participants have to solve to get the message back. Indeed, the recombination could also be implemented using another kind of solving algorithm, like <a href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian Elimination</a>. Figure 1 shows an example of this idea.</p>
+<p><img alt="Figure showing $m=42$ and four shares as points on a parabola." src="implementing-threshold-schemes-media/graph_overview.svg" />
+Figure 1: In this case the dealer has their secret $m = 42$. They choose the threshold $t = 3$ and will be splitting $m$ into $n = 4$ shares. They generate the polynomial $f(x) = 4x^2 - 25x + 42$. If we plot the shares for $x = 1$ up to $x = 4$, we can see that we could fit this polynomial back from the points. To do this, we would need at least 3 points.</p>
+<p>Shamir's scheme is---what we call in crypto---<em>information theoretically secure</em> for confidentiality. In this case, this means that the $y$-coordinates of the shares cannot be distinguished from numbers that are purely random. The consequence is that without a sufficient number of shares, the secret <em>can never</em> be recovered. No computer in the world---not even a quantum computer---has enough power to "crack" the secret.</p>
+<p>In the previous paragraph, I explicitly mention that SSS is secure for <em>confidentiality</em>. That is because SSS is very much insecure for <em>integrity</em>. If one of the participants knows something about the actual value of the secret, they can manipulate their share to force $m$ into some value that they prefer. Therefore, one should not share any value that has to be integrity-protected in some kind of way, using only schoolbook SSS. Conversely, any participant can alter their share such that the original secret will be garbled. This will generally not be detectable by the others. Basically, when you are using schoolbook SSS, you must only share keys that are generated randomly.</p>
+<blockquote>
+<p>If you are interested in the details of forging shares, I refer you to an <a href="https://crypto.stackexchange.com/a/54582/45787">explanation</a> I wrote earlier on the Crypto StackExchange.</p>
+</blockquote>
+<p>Of schoolbook SSS, we can write down some benefits and downsides.</p>
+<h4 id="benefits">Benefits</h4>
+<ul>
+<li>Information-theoretical security for confidentiality.</li>
+<li>Needs no mathematical assumptions.</li>
+</ul>
+<h4 id="downsides">Downsides</h4>
+<ul>
+<li>No integrity protection.<ul>
+<li>Thus, the dealer can cheat.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-background-verifiable-secret-sharing">3. Background: verifiable secret sharing</h2>
+<p>We could quite easily patch SSS to secure the integrity of the secret, I will get back to this further in this article. However, before rolling our own crypto, I would like us to first take a brief look at the two most popular <em>verifiable threshold schemes</em>. Maybe we can take some inspiration from those, before trying to solve the integrity problem ourselves.</p>
+<blockquote>
+<p>Note, these descriptions come from B. <a href="https://www.win.tue.nl/~berry/CryptographicProtocols/LectureNotes.pdf">Schoenmakers' lecture notes on Cryptographic Protocols</a> (Chapter 6). These notes contain more in depth security analyses on these threshold schemes.</p>
+</blockquote>
+<h3 id="31-feldman-vss">3.1. Feldman VSS</h3>
+<p>In, <a href="https://ieeexplore.ieee.org/abstract/document/4568297/">Feldman VSS</a>, let $\langle g \rangle$ be a group wherein the Diffie-Hellman assumption holds.</p>
+<ul>
+<li><strong>Distribution.</strong> The dealer:<ul>
+<li>runs Shamir's scheme on $m$ and gets $f(x), s_{1}, \ldots, s_{n}$; and</li>
+<li>computes and broadcasts commitments $B_{j} = g^{a_j}$ for $0 \le j &lt; t$.</li>
+</ul>
+</li>
+<li><strong>Reconstruction.</strong> The participants:<ul>
+<li>each verify <em>all</em> the shares by checking whether $g^{s_i} = \prod_{j=0}^{t-1} B_j^{i^j}$; and</li>
+<li>run Shamir's reconstruction protocol to recover $m$.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>DL-based security for confidentiality.</li>
+<li>Information-theoretical security for integrity.</li>
+<li>Dealer cannot cheat.</li>
+</ul>
+<p><strong>Downsides:</strong></p>
+<ul>
+<li>Assumes DL assumption.</li>
+<li>Can only share uniformly random messages.</li>
+</ul>
+<h3 id="32-pederson-vss">3.2. Pederson VSS</h3>
+<p>In <a href="https://link.springer.com/chapter/10.1007/3-540-46766-1_9">Pederson VSS</a>, let $\langle g \rangle$ be a group wherein the Diffie-Hellman assumption holds. Also, let $h$ be a random element from $\langle g \rangle$, s.t. the discrete logarithm $\log_g h$ is not known to anybody.</p>
+<ul>
+<li><strong>Distribution.</strong> The dealer:<ul>
+<li>generates two <em>random</em>  polynomials $f_a(x),f_b(x)$ of order $t$, i.e. $f_a(x) = a_{t-1}x^{t-1} + \ldots + a_{0}$ and $f_b(x) = b_{t-1}x^{t-1} + \ldots + b_{0}$;</li>
+<li>sets the lowest order coefficients $a_0,b_0$ to $m$, s.t. $f_a(0) = f_b(0) = m$;</li>
+<li>evaluates $n$ points on the polynomial $s_{1} = (1, f_a(1), f_b(1)), \ldots, s_{n} = (n, f_a(n), f_b(n))$, distributes them among the participants; and</li>
+<li>computes and broadcasts the commitments $C_j = g^{a_j}h^{b_j}$ for = $0 \le j &lt; t$.</li>
+</ul>
+</li>
+<li><strong>Reconstruction.</strong> The participants:<ul>
+<li>collect at least $t$ shares;</li>
+<li>fit a polynomial $f'(x)$ between the points $s_{1}, \ldots, s_{t}$, which can be done using Lagrange interpolation; and</li>
+<li>they recover $m = f'(0)$.</li>
+</ul>
+</li>
+</ul>
+<h4 id="benefits_1">Benefits</h4>
+<ul>
+<li>Information theoretical security for confidentiality.</li>
+<li>DL-based security for integrity.</li>
+<li>Dealer cannot cheat.</li>
+</ul>
+<h4 id="downsides_1">Downsides</h4>
+<ul>
+<li>Assumes DL assumption.</li>
+</ul>
+<h3 id="33-observation">3.3. Observation</h3>
+<p>We see that both schemes are based on broadcasting <em>commitment</em> values. These commitments force the shares to be some kind of value, without revealing that actual value. A participant can use these commitments to verify if their share is actually correct, but from these commitments, one cannot reproduce the shares.</p>
+<h2 id="4-sss-with-hashed-shares">4. SSS with hashed shares</h2>
+<p>From my experiences implementing crypto, I find that correctly implementing discrete logarithm-based schemes is very difficult. We do however know another building block which we can use to build a commitment scheme, that is the <em>hash function</em>. For RWOT8, this was first proposed by Peg in his <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/security_shamirs.md">article</a>:</p>
+<blockquote>
+<p>He says: "This is also something we considered, but feel that it gives custodians more unnecessary extra information and less accountability compared to other methods."</p>
+</blockquote>
+<p>So, instead of committing to the polynomial coefficients, we commit to the values of the shares. I.e. we propose the following scheme:</p>
+<ul>
+<li><strong>Distribution.</strong> The dealer:<ul>
+<li>runs Shamir's scheme on $m$ and gets $f(x), s_{1}, \ldots, s_{n}$; and</li>
+<li>computes and broadcasts commitments $D_i = H(s_i)$ for $1 \le i \le n$, where $H$ is a preimage resistant hash function.</li>
+</ul>
+</li>
+<li><strong>Reconstruction.</strong> The participants:<ul>
+<li>each verify <em>all</em> the shares by checking whether $H(s_i) = D_i$; and</li>
+<li>run Shamir's reconstruction protocol to recover $m$.</li>
+</ul>
+</li>
+</ul>
+<p>Broadcasting the hashes of the shares makes sure that no participant can manipulate with the shares, because their share's hash would not verify in the reconstruction phase. Futhermore, the other participants will know if a specific share is invalid, instead of ending up with a garbled or different reconstructed message. This property is shown by the following proof:</p>
+<p><strong>Claim.</strong> Assume $H$ is preimage resistant, an honest dealer, a single malicious participant cannot force $m' \ne m$ to be reconstructed.</p>
+<p><strong>Proof.</strong> Assume a participant is able to force the reconstruction of $m'$, given $s_1, \ldots, s_t, D_1, \ldots, D_t$. Because $m' \ne m$, $f'(x) \ne f(x)$. Because $f(x)$ is of order $t$, at least one of the shares must be different from its original. W.l.o.g., assume only one share $s_\mathcal{A}'$ is different from its original $s_\mathcal{A}$. However, because the reconstruction succeeded, we know that $H(s_\mathcal{A}') = D_A$, but $s_\mathcal{A}' \ne s_\mathcal{A}$, so this contradicts preimage resistance. $\square$</p>
+<p>So if this option was always, possible, why is it not very commonly described by cryptographers as a verifiable secret sharing scheme? Well, the reason is that in this hash-based scheme, the dealer can cheat.</p>
+<p>In particular, the dealer can act as follows: They split a message into shares and distribute them to the participants. They compute the commitments $D_1, \ldots, D_n$, but secretly changes one of them to $D_\text{bad}$ before publishing. During the reconstruction phase, the participants will verify the shares and see that some share does not verify correctly. ]</p>
+<p>The participants will not know whether this participant was malicious, or if the dealer was malicious. In short, if the dealer is not completely trusted, we should not use this scheme. Instead we should probably use one of Section 3.</p>
+<p>In conclusion, here is a listing of benefits and downsides, similar to the listings that were provided in the previous sections.</p>
+<h4 id="benefits_2">Benefits</h4>
+<ul>
+<li>Information theoretical security for confidentiality.</li>
+<li>Hash-based security for integrity.</li>
+</ul>
+<h4 id="downsides_2">Downsides</h4>
+<ul>
+<li>Dealer can cheat.</li>
+<li>Assumes hash function preimage resistance.</li>
+</ul>
+<h2 id="5-implementing-a-secret-sharing-scheme">5. Implementing a secret sharing scheme</h2>
+<blockquote>
+<p>This section will be different from the previous ones. Where the previous sections are mainly about the theory, this will mainly be based on my personal experiences while implementing my <a href="https://github.com/dsprenkels/sss">personal secret sharing library</a> and other cryptographic software.</p>
+</blockquote>
+<p>As we all probably know, writing cryptographic software is hard. The main nemesis of a piece of cryptographic code is the <em>side-channel attack</em>. On regular PCs, the main attack that must be protected against is the (cache) timing attack. These attacks exploit the time that an algorithm takes to execute, which---on a computer---can be measured with a really precise resolution. A proposed solution to defend against this is to only run code on your computer that is trusted. However, we all know that this is nigh-on impossible to achieve, especially when we realize that web pages run tons of code that is not audited by the user.</p>
+<p>Instead, we have to write all the software in a deterministic manner. That means we cannot use if-statements or table-lookups that depend on secret data.</p>
+<p>Another consideration is the complexity of our cryptosystem. As a rule of thumb: Symmetric crypto and hash functions are relatively easy; Asymmetric crypto is generally very hard. Therefore, I would personally stay away from any discrete log based system, unless the requirements <em>really</em> ask for it. In my own <a href="https://github.com/dsprenkels/sss">library</a>, I have opted to use the off-the-shelf AEAD "Salsa20/Poly1305" for integrity protection, and I have implemented all the arithmetic related to SSS in $GF(256)$ using <a href="https://en.wikipedia.org/wiki/Bit_slicing">bitslicing</a>.</p>
+<blockquote>
+<p>An interesting case where we saw that the implementation of asymmetric crypto is hard where cryptonote-based currencies <a href="https://ww.getmonero.org/2017/05/17/disclosure-of-a-major-bug-in-cryptonote-based-currencies.html">forgot to protect</a> against <a href="https://safecurves.cr.yp.to/twist.html">small-subgroup attacks</a> in Curve25519 in 2017.</p>
+</blockquote></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

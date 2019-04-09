@@ -9,11 +9,19 @@
 # Quickstart
 
 ```
-git clone git@github.com:korsimoro/pubtest
+git clone git@github.com:korsimoro/pubtest --recursive
 cd pubtest
+<<<<<<< HEAD
 ./toolkit/setup.sh
 . ./toolkit/activate.sh
+=======
+>>>>>>> documentation
 ```
+
+See [Serving Live Docs](#serving-live-docs) for more information on how to
+serve local docs.
+
+
 
 # Purpose
 
@@ -23,6 +31,7 @@ RWoT and other identity-tech community data with the following properties:
 ## [Repository Based](#repository-based)
   - *provenance* / *git audit trail*
     The git audit trail provides the skeleton for information provenance.
+<<<<<<< HEAD
 
   - *data integration*
     the contents of the documentation should be derived deterministically
@@ -30,6 +39,15 @@ RWoT and other identity-tech community data with the following properties:
     that the information presented in the web site is bound to the audit
     trail.
 
+=======
+
+  - *data integration*
+    the contents of the documentation should be derived deterministically
+    from the the contents of the repository.  This allows us to guarantee
+    that the information presented in the web site is bound to the audit
+    trail.
+
+>>>>>>> documentation
 ## [Community Engagement](#community-engagement)
   - integrate with external data sources
     - Snapshots of chat and other feed data (calendars, etc.)
@@ -278,3 +296,41 @@ However,
 integrate with external data sources
 (like Forms, or chats)
 support moderated, timely publication, backed by an editorial actor
+<<<<<<< HEAD
+=======
+
+# Serving Live Docs
+
+If you are interested in serving live docs, you should execute two additional
+commands.  These may not work on windows (yet)
+
+```
+git clone git@github.com:korsimoro/pubtest --recursive
+cd pubtest
+./toolkit/setup.sh
+. ./toolkit/activate.sh
+```
+
+At this point, a python virtual environment and a ruby virtual environment
+are active within your shell.  This lets you use ```jekyll``` which is ruby
+based, and ```mkdocs``` which is python based, along with using the data
+conversion ```tool``` which is in the same python environment.
+
+## Serving Jekyll Docs
+
+```
+cd docs
+jekyll exec bundle serve
+```
+
+## Serving mkdocs Docs
+
+```
+cd docs/mkdocs-src
+mkdocs serve
+```
+
+## Updating Local ```docs/_data```
+
+Description of ```tool``` here
+>>>>>>> documentation

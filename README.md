@@ -25,11 +25,20 @@ RWoT and other identity-tech community data with the following properties:
 
 
 ## [Repository Based](#repository-based)
-- very specifically, no active resource
+  - *provenance* / *git audit trail*
+    The git audit trail provides the skeleton for information provenance.
+
+  - *data integration*
+    the contents of the documentation should be derived deterministically
+    from the the contents of the repository.  This allows us to guarantee
+    that the information presented in the web site is bound to the audit
+    trail.
 
 ## [Community Engagement](#community-engagement)
   - integrate with external data sources
-    - (like Forms, or chats)
+    - Snapshots of chat and other feed data (calendars, etc.)
+    - Embedded Visualizers
+    - Embedded Forms
   - support moderated, timely publication, backed by an editorial actor
 
 ## machine processable rich data
@@ -247,13 +256,13 @@ Commands:
   new        Create a new MkDocs project
   serve      Run the builtin development server
 ```
+# Repository Based
 
 # Community Engagement
 
 This documentation data model provides access to the people and organizations
 impacted by this information, however, it does so through the filtering of
 a group of curators and the integration of feedback and other channels.
-
 
 
 ## Representation over direct democracy

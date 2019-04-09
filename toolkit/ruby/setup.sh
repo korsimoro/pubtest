@@ -11,6 +11,8 @@ echo "Activate with : . $rvm_path/scripts/rvm"
 
 echo "Activating"
 . $rvm_path/scripts/rvm
+echo "installing ruby-head"
+rvm install ruby-head
 echo "running bundle install to load all the Gemfile bits"
 bundle install
 

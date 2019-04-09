@@ -8,7 +8,7 @@ import sqliteschema
 @click.option('--dir','basedir',
     help="Base Directory (Checkout)",
     # this is relative to the tool/__init__.py file in development
-    default=os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..")
+    default=os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","..")
 )
 @click.pass_context
 def cli(ctx,basedir):

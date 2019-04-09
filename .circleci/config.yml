@@ -68,7 +68,7 @@ jobs:
             . toolkit/python/venv/bin/activate
             for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
             	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
-            	tool gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
+            	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
             done
 
       - run:

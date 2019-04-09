@@ -32,7 +32,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "./toolkit/requirements.txt" }}
+            - v1-dependencies-{{ checksum "./toolkit/python/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -44,37 +44,37 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv toolkit/venv
-            . toolkit/venv/bin/activate
-            cd toolkit
+            python3 -m venv ~/repo/toolkit/python/venv
+            . ~/repo/toolkit/python/venv/bin/activate
+            cd toolkit/python
             pip install -r requirements.txt
 
       - save_cache:
           paths:
-            - ./toolkit/venv
-          key: v1-dependencies-{{ checksum "./toolkit/requirements.txt" }}
+            - ./toolkit/python/venv
+          key: v1-dependencies-{{ checksum "./toolkit/python/requirements.txt" }}
 
       - run:
           name: install latest tool
           command: |
-            . toolkit/venv/bin/activate
-            cd toolkit
+            . toolkit/python/venv/bin/activate
+            cd toolkit/python
             pip install -e .
             tool --dir ~/repo db-to-yaml
 
       - run:
           name: generate commit logs
           command: |
-            . toolkit/venv/bin/activate
+            . toolkit/python/venv/bin/activate
             for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
             	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
-            	tool gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
+            	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
             done
 
       - run:
           name: run mkdocs
           command: |
-            . ~/repo/toolkit/venv/bin/activate
+            . ~/repo/toolkit/python/venv/bin/activate
             cd ~/repo/docs/mkdocs-src
             mkdocs build
 

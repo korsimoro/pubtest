@@ -1,9 +1,6 @@
 #!/bin/bash
 TOOLKIT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd $TOOLKIT_DIR
-virtualenv -p python3 ./venv
-. ./venv/bin/activate
-pip install -r requirements.txt
-pip install -e .
-tool
-echo "To Activate - type this : . $PWD/venv/bin/activate"
+PYTHON_TOOLKIT_DIR=$TOOLKIT_DIR/python
+RUBY_TOOLKIT_DIR=$TOOLKIT_DIR/ruby
+$PYTHON_TOOLKIT_DIR/setup.sh
+$RUBY_TOOLKIT_DIR/setup.sh

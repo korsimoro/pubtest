@@ -499,10 +499,11 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#counter-aaa-on-pubtestreadmemd">Counter : AAA on pubtest/README.md</a></li>
+        <li class="main active"><a href="#pubtest-rwot-documentation-poc">PubTest - RWoT Documentation PoC</a></li>
         <li class="main "><a href="#quickstart">Quickstart</a></li>
         <li class="main "><a href="#purpose">Purpose</a></li>
-            <li><a href="#community-engagement">community engagement</a></li>
+            <li><a href="#repository-based">Repository Based</a></li>
+            <li><a href="#community-engagement">Community Engagement</a></li>
             <li><a href="#machine-processable-rich-data">machine processable rich data</a></li>
             <li><a href="#proof-of-concept-recording-the-exploration-of-mission-support-technologies">Proof of Concept - recording the exploration of mission support technologies</a></li>
             <li><a href="#explore-the-use-of-git-github">explore the use of git &amp; github</a></li>
@@ -521,34 +522,56 @@
             <li><a href="#95datadb-name95queryyml">_data/[db-name]_[query].yml</a></li>
         <li class="main "><a href="#toolkit">Toolkit</a></li>
             <li><a href="#tool">tool</a></li>
-            <li><a href="#sqlitebiter">Sqlitebiter</a></li>
+            <li><a href="#sqlitebiter">sqlitebiter</a></li>
             <li><a href="#mkdocs_1">mkdocs</a></li>
+        <li class="main "><a href="#repository-based_1">Repository Based</a></li>
+        <li class="main "><a href="#community-engagement_1">Community Engagement</a></li>
+            <li><a href="#representation-over-direct-democracy">Representation over direct democracy</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="counter-aaa-on-pubtestreadmemd">Counter : AAA on pubtest/README.md</h1>
+<h1 id="pubtest-rwot-documentation-poc">PubTest - RWoT Documentation PoC</h1>
 <ul>
 <li><a href="#quickstart">Quickstart</a></li>
 <li><a href="#purpose">Purpose</a></li>
 <li><a href="#git-configuration">Git Configuration</a></li>
+<li><a href="#key-directories">Key Directories</a></li>
+<li><a href="#community-engagement">Community Engagement</a></li>
 </ul>
 <h1 id="quickstart">Quickstart</h1>
 <pre><code>git clone git@github.com:korsimoro/pubtest
 cd pubtest
 ./toolkit/setup.sh
 . ./toolkit/activate.sh
-./toolkit/ruby/setup.sh
-. ./toolkit/ruby/activate.sh
-tool
 </code></pre>
 
 <h1 id="purpose">Purpose</h1>
-<p>The purpose of this repository is to develop a
-publication technology with the following properties:</p>
-<h2 id="community-engagement">community engagement</h2>
+<p>The purpose of this repository is to develop a publication technology for the
+RWoT and other identity-tech community data with the following properties:</p>
+<h2 id="repository-based"><a href="#repository-based">Repository Based</a></h2>
 <ul>
-<li>integrate with external data inputs (like Forms, or chats)</li>
+<li>
+<p><em>provenance</em> / <em>git audit trail</em>
+    The git audit trail provides the skeleton for information provenance.</p>
+</li>
+<li>
+<p><em>data integration</em>
+    the contents of the documentation should be derived deterministically
+    from the the contents of the repository.  This allows us to guarantee
+    that the information presented in the web site is bound to the audit
+    trail.</p>
+</li>
+</ul>
+<h2 id="community-engagement"><a href="#community-engagement">Community Engagement</a></h2>
+<ul>
+<li>integrate with external data sources<ul>
+<li>Snapshots of chat and other feed data (calendars, etc.)</li>
+<li>Embedded Visualizers</li>
+<li>Embedded Forms</li>
+</ul>
+</li>
+<li>support moderated, timely publication, backed by an editorial actor</li>
 </ul>
 <h2 id="machine-processable-rich-data">machine processable rich data</h2>
 <ul>
@@ -673,10 +696,10 @@ Commands:
   db-to-yaml         Extract data from sqlite and place as _data.
 </code></pre>
 
-<h2 id="sqlitebiter">Sqlitebiter</h2>
-<p>```
-Usage: sqlitebiter [OPTIONS] COMMAND [ARGS]...</p>
-<p>Options:
+<h2 id="sqlitebiter"><code>sqlitebiter</code></h2>
+<pre><code>Usage: sqlitebiter [OPTIONS] COMMAND [ARGS]...
+
+Options:
   --version                       Show the version and exit.
   -o, --output-path PATH          Output path of the SQLite database file.
                                   Defaults to 'out.sqlite'.
@@ -699,38 +722,60 @@ Usage: sqlitebiter [OPTIONS] COMMAND [ARGS]...</p>
                                   The
                                   following suffixes can be recognized as type
                                   hints (case insensitive):
-                                  "text": TEXT
+                                  &quot;text&quot;: TEXT
                                   datatype.
-                                  "integer": INTEGER datatype.
-                                  "real": REAL datatype.
+                                  &quot;integer&quot;: INTEGER datatype.
+                                  &quot;real&quot;: REAL datatype.
   --replace-symbol TEXT           Replace symbols in attributes.
   -v, --verbose
   --debug                         For debug print.
   -q, --quiet                     Suppress execution log messages.
-  -h, --help                      Show this message and exit.</p>
-<p>Commands:
+  -h, --help                      Show this message and exit.
+
+Commands:
   completion  A helper command to setup command completion.
   configure   Configure the following application settings: (1) Default...
   file        Convert tabular data within CSV/Excel/HTML/JSON/Jupyter...
   gs          Convert a spreadsheet in Google Sheets to a SQLite database...
   url         Scrape tabular data from a URL and convert data to a SQLite...
-  ```</p>
+</code></pre>
+
 <h2 id="mkdocs_1">mkdocs</h2>
-<p>```
-(venv) pubtest&gt; mkdocs
-Usage: mkdocs [OPTIONS] COMMAND [ARGS]...</p>
-<p>MkDocs - Project documentation with Markdown.</p>
-<p>Options:
+<pre><code>(venv) pubtest&gt; mkdocs
+Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
+
+  MkDocs - Project documentation with Markdown.
+
+Options:
   -V, --version  Show the version and exit.
   -q, --quiet    Silence warnings
   -v, --verbose  Enable verbose output
-  -h, --help     Show this message and exit.</p>
-<p>Commands:
+  -h, --help     Show this message and exit.
+
+Commands:
   build      Build the MkDocs documentation
   gh-deploy  Deploy your documentation to GitHub Pages
   new        Create a new MkDocs project
   serve      Run the builtin development server
-  ```</p></div>
+</code></pre>
+
+<h1 id="repository-based_1">Repository Based</h1>
+<h1 id="community-engagement_1">Community Engagement</h1>
+<p>This documentation data model provides access to the people and organizations
+impacted by this information, however, it does so through the filtering of
+a group of curators and the integration of feedback and other channels.</p>
+<h2 id="representation-over-direct-democracy">Representation over direct democracy</h2>
+<p>This model favors the publication of information by a sponsoring organization.</p>
+<p>For example, when Rebooting the Web of Trust publishes information about the
+proceedings at one of the events, that should be the prerogative of RWoT.</p>
+<p>This provides substantial utility, in that we can tie the act of a repository
+owner, updating a branch, into a set of automatic processing, including, as
+a final stage, the publication of an updated website based on the information
+in the repository.</p>
+<p>However,</p>
+<p>integrate with external data sources
+(like Forms, or chats)
+support moderated, timely publication, backed by an editorial actor</p></div>
         </div>
 
         <footer class="col-md-12">

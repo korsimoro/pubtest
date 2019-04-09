@@ -11,9 +11,12 @@
 ```
 git clone git@github.com:korsimoro/pubtest --recursive
 cd pubtest
-./toolkit/setup.sh
-. ./toolkit/activate.sh
 ```
+
+See [Serving Live Docs](#serving-live-docs) for more information on how to
+serve local docs.
+
+
 
 # Purpose
 
@@ -278,3 +281,38 @@ However,
 integrate with external data sources
 (like Forms, or chats)
 support moderated, timely publication, backed by an editorial actor
+
+# Serving Live Docs
+
+If you are interested in serving live docs, you should execute two additional
+commands.  These may not work on windows (yet)
+
+```
+git clone git@github.com:korsimoro/pubtest --recursive
+cd pubtest
+./toolkit/setup.sh
+. ./toolkit/activate.sh
+```
+
+At this point, a python virtual environment and a ruby virtual environment
+are active within your shell.  This lets you use ```jekyll``` which is ruby
+based, and ```mkdocs``` which is python based, along with using the data
+conversion ```tool``` which is in the same python environment.
+
+## Serving Jekyll Docs
+
+```
+cd docs
+jekyll exec bundle serve
+```
+
+## Serving mkdocs Docs
+
+```
+cd docs/mkdocs-src
+mkdocs serve
+```
+
+## Updating Local ```docs/_data```
+
+Description of ```tool``` here

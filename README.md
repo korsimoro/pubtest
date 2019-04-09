@@ -9,7 +9,7 @@
 # Quickstart
 
 ```
-git clone git@github.com:korsimoro/pubtest
+git clone git@github.com:korsimoro/pubtest --recursive
 cd pubtest
 ./toolkit/setup.sh
 . ./toolkit/activate.sh

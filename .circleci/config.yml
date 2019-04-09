@@ -57,7 +57,7 @@ jobs:
       - run:
           name: install latest tool
           command: |
-            . toolkit/venv/bin/python/activate
+            . toolkit/python/venv/bin/activate
             cd toolkit/python
             pip install -e .
             tool --dir ~/repo db-to-yaml

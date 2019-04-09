@@ -13,16 +13,12 @@ git clone git@github.com:korsimoro/pubtest
 cd pubtest
 ./toolkit/setup.sh
 . ./toolkit/activate.sh
-./toolkit/ruby/setup.sh
-. ./toolkit/ruby/activate.sh
-tool
 ```
 
 # Purpose
 
 The purpose of this repository is to develop a publication technology for the
 RWoT and other identity-tech community data with the following properties:
-
 
 ## [Repository Based](#repository-based)
   - *provenance* / *git audit trail*

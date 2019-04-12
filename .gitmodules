@@ -13,3 +13,6 @@
 [submodule "toolkit/submodules/infominer33/DIDecentralized"]
 	path = toolkit/submodules/infominer33/DIDecentralized
 	url = https://github.com/infominer33/DIDecentralized
+[submodule "playground/SourceCrypto"]
+	path = playground/SourceCrypto
+	url = https://github.com/infominer33/SourceCrypto

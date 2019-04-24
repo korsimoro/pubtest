@@ -13,6 +13,8 @@ git clone git@github.com:korsimoro/pubtest --recursive
 cd pubtest
 ./toolkit/setup.sh
 . ./toolkit/activate.sh
+cd docs
+runjekyll serve
 ```
 
 # Purpose

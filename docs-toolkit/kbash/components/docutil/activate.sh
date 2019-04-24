@@ -9,6 +9,6 @@ EOF
 export -f activate_environment_ptdoc_docutil_help
 
 activate_environment_ptdoc_docutil() {
-  activate_python_env $DOCUTIL_BASE
+  activate_python_env $DOCUTIL_VENV
 }
 export -f activate_environment_ptdoc_docutil

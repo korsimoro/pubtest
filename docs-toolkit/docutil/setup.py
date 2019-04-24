@@ -21,6 +21,7 @@ setup(
         'pytablewriter',
         'mkdocs',
         'datetime',
+        'python-dateutil',
         'gitpython',
         'toml'
     ],

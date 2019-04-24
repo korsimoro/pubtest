@@ -5,8 +5,5 @@ PYTHON_TOOLKIT_DIR=$TOOLKIT_DIR/python
 . $PYTHON_TOOLKIT_DIR/venv/bin/activate
 tool
 
-#RUBY_TOOLKIT_DIR=$TOOLKIT_DIR/ruby
-#export rvm_path=$RUBY_TOOLKIT_DIR/.rvm
-#echo "Activating: . $rvm_path/scripts/rvm"
-#. $rvm_path/scripts/rvm
-#ruby --version
+. $TOOLKIT_DIR/ruby/activate.sh
+

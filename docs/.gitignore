@@ -1,2 +1,4 @@
+.bundle
+mkdocs-output
 _site
 .sass-cache

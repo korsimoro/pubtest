@@ -1,0 +1,17 @@
+Obtaining file:///home/ewelton/Repos/pubtest/docs-toolkit/mkdocs
+Requirement already satisfied: mkdocs in ./venv/lib/python3.6/site-packages (from Pubtest-Mkdocs-Ability==0.1) (1.0.4)
+Requirement already satisfied: tornado>=5.0 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (6.0.2)
+Requirement already satisfied: click>=3.3 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (7.0)
+Requirement already satisfied: Jinja2>=2.7.1 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (2.10.1)
+Requirement already satisfied: livereload>=2.5.1 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (2.6.0)
+Requirement already satisfied: Markdown>=2.3.1 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (3.1)
+Requirement already satisfied: PyYAML>=3.10 in ./venv/lib/python3.6/site-packages (from mkdocs->Pubtest-Mkdocs-Ability==0.1) (5.1)
+Requirement already satisfied: MarkupSafe>=0.23 in ./venv/lib/python3.6/site-packages (from Jinja2>=2.7.1->mkdocs->Pubtest-Mkdocs-Ability==0.1) (1.1.1)
+Requirement already satisfied: six in ./venv/lib/python3.6/site-packages (from livereload>=2.5.1->mkdocs->Pubtest-Mkdocs-Ability==0.1) (1.12.0)
+Requirement already satisfied: setuptools>=36 in ./venv/lib/python3.6/site-packages (from Markdown>=2.3.1->mkdocs->Pubtest-Mkdocs-Ability==0.1) (41.0.1)
+Installing collected packages: Pubtest-Mkdocs-Ability
+  Found existing installation: Pubtest-Mkdocs-Ability 0.1
+    Uninstalling Pubtest-Mkdocs-Ability-0.1:
+      Successfully uninstalled Pubtest-Mkdocs-Ability-0.1
+  Running setup.py develop for Pubtest-Mkdocs-Ability
+Successfully installed Pubtest-Mkdocs-Ability

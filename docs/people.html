@@ -1,5 +1,6 @@
 ---
 layout: collection
+permalink: people/
 ---
 <u> Commit check : people.html - AAX </u>
 
@@ -16,7 +17,13 @@ searches, but maybe, term searches?
 <h3>People - List</h3>
 Sometimes raw lists are just the best.
 And I have no idea how to get pagination working! ;)
+
+pagination works if you have a blog post /info
+.notice--danger
+
 And shouldn't this just be a searchable table... 
+<!--That is not my forte'-->
+
 <ul class="inline">
   {% for item in site.data.rwot_people %}
     <li>{{ item.Label }}</li>

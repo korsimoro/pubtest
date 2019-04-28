@@ -1,6 +1,6 @@
-- Description: "#N/A"
+- Description: "N/A"
   Label: Alacrity Software
-  Link: ""
+  Link: "N/A"
 - Description: "Company Overview\r\nAlphaPoint is a financial technology company helping\
     \ make illiquid assets liquid. It enables customers to launch new products and\
     \ services by providing institutions enterprise-grade blockchain solutions to\
@@ -11,9 +11,9 @@
     \ and CTO"
   Label: AlphaPoint
   Link: "https://www.alphapoint.com/"
-- Description: "#N/A"
-  Label: an anonymous donor
-  Link: "#N/A"
+- Description: "N/A"
+  Label: "an anonymous donor"
+  Link: "N/A"
 - Description: BigchainDB is a blockchain database offering decentralization, immutability
     and native assets. BigchainDB allows for the deployment of large-scale applications
     in a variety of use cases and industries from intellectual property and identity
@@ -93,9 +93,9 @@
     to the open source community. "
   Label: Digital Bazaar
   Link: "https://digitalbazaar.com/"
-- Description: "#N/A"
+- Description: "N/A"
   Label: Digital Contract Design
-  Link: "#N/A"
+  Link: "N/A"
 - Description: "\r\nEconomic Space Agency is a group of radical economists, finance\
     \ theorists, computer scientists, software architects, game designers, peer production\
     \ experts, and decentralized application engineers\u200A... working on creating\
@@ -269,9 +269,9 @@
     \ to bring it to you."
   Label: Reliable Identities, Inc
   Link: "https://reliableid.com/"
-- Description: "#N/A"
+- Description: "N/A"
   Label: Respect Network
-  Link: "#N/A"
+  Link: "N/A"
 - Description: We"re a team of Boston-based movement technologists working with activists
     and community organizations to integrate security culture into the fabric of work
     towards liberation.

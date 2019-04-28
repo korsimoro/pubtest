@@ -6,8 +6,10 @@ permalink: organizations/
 
 <u>Commit Check organizations.html</u>
 
+<!--needs an if\then statement to only build a link if a link shows-->
+
 {% for item in site.data.rwot_orgsummary %}
-  <h2><a href="{{ item.Url }}">{{ item.Label }}</a></h2>
+  <h2><a href="{{ item.Link }}">{{ item.Label }}</a></h2>
   <ul>
     <li>{{ item.Description }}</li>
   </ul>

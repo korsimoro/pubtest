@@ -7,8 +7,7 @@ permalink: organizations/
 <u>Commit Check organizations.html</u>
 
 {% for item in site.data.rwot_orgsummary %}
-  <h2>{{ item.Label }}</h2>
-  <b>{{ item.URL }}</li></b>
+  <h2><a href="{{ item.URL }}">{{ item.Label }}</a></h2>
   <ul>
     <li>{{ item.Description }}</li>
   </ul>

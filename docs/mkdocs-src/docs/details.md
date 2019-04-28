@@ -1,25 +1,43 @@
-# Counter : AAA on pubtest/README.md
+# PubTest - RWoT Documentation PoC
+
 - [Quickstart](#quickstart)
 - [Purpose](#purpose)
 - [Git Configuration](#git-configuration)
+- [Key Directories](#key-directories)
+- [Community Engagement](#community-engagement)
 
 # Quickstart
 
 ```
-git clone git@github.com:korsimoro/pubtest
+git clone git@github.com:korsimoro/pubtest --recursive
 cd pubtest
 ./toolkit/setup.sh
-. ./toolkit/venv/bin/activate
-tool
+. ./toolkit/activate.sh
+cd docs
+runjekyll serve
 ```
 
 # Purpose
 
-The purpose of this repository is to develop a
-publication technology with the following properties:
+The purpose of this repository is to develop a publication technology for the
+RWoT and other identity-tech community data with the following properties:
 
-## community engagement
-  - integrate with external data inputs (like Forms, or chats)
+## [Repository Based](#repository-based)
+  - *provenance* / *git audit trail*
+    The git audit trail provides the skeleton for information provenance.
+
+  - *data integration*
+    the contents of the documentation should be derived deterministically
+    from the the contents of the repository.  This allows us to guarantee
+    that the information presented in the web site is bound to the audit
+    trail.
+
+## [Community Engagement](#community-engagement)
+  - integrate with external data sources
+    - Snapshots of chat and other feed data (calendars, etc.)
+    - Embedded Visualizers
+    - Embedded Forms
+  - support moderated, timely publication, backed by an editorial actor
 
 ## machine processable rich data
   - normalize tabular data as sqlite files
@@ -170,7 +188,7 @@ Commands:
   db-to-yaml         Extract data from sqlite and place as _data.
 ```
 
-## Sqlitebiter
+## ```sqlitebiter```
 
 ```
 Usage: sqlitebiter [OPTIONS] COMMAND [ARGS]...
@@ -214,10 +232,11 @@ Commands:
   file        Convert tabular data within CSV/Excel/HTML/JSON/Jupyter...
   gs          Convert a spreadsheet in Google Sheets to a SQLite database...
   url         Scrape tabular data from a URL and convert data to a SQLite...
-  ```
+```
+
 ## mkdocs
 
-  ```
+```
 (venv) pubtest> mkdocs
 Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
 
@@ -234,4 +253,30 @@ Commands:
   gh-deploy  Deploy your documentation to GitHub Pages
   new        Create a new MkDocs project
   serve      Run the builtin development server
-  ```
+```
+# Repository Based
+
+# Community Engagement
+
+This documentation data model provides access to the people and organizations
+impacted by this information, however, it does so through the filtering of
+a group of curators and the integration of feedback and other channels.
+
+
+## Representation over direct democracy
+
+This model favors the publication of information by a sponsoring organization.
+
+For example, when Rebooting the Web of Trust publishes information about the
+proceedings at one of the events, that should be the prerogative of RWoT.
+
+This provides substantial utility, in that we can tie the act of a repository
+owner, updating a branch, into a set of automatic processing, including, as
+a final stage, the publication of an updated website based on the information
+in the repository.
+
+However,
+
+integrate with external data sources
+(like Forms, or chats)
+support moderated, timely publication, backed by an editorial actor

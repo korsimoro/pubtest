@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: single
 <!-- posts: site.data.rwot_orgsummary   | this is not proper frontmatter -afaik- not sure what you're trying to do. -info-->
 permalink: organizations/
 ---
@@ -7,10 +7,10 @@ permalink: organizations/
 <u>Commit Check organizations.html</u>
 
 {% for item in site.data.rwot_orgsummary %}
-<ul>
-  <li>{{ item.Label }}</li>
-  <li>{{ item.URL }}</li>
-  <li>{{ item.Description }}</li>
-</ul>
+  <h2>{{ item.Label }}</h2>
+  <b>{{ item.URL }}</li></b>
+  <ul>
+    <li>{{ item.Description }}</li>
+  </ul>
 {% endfor %}
   

@@ -1,11 +1,16 @@
 #!/bin/bash
-# Detailed Information about KBASH
-# example usage print_kidlist_help COMMAND
+# Serve the site on http://127.0.0.1:4000
 #
-# print the top level help, subsequent subcommands will override this
-# function with the appropriate help
 print_help() {
-  run
+  printf "`cat << EOF
+${BLUE}ptdoc serve${NC}
+
+This performs the following actions:
+- builds mkdocs portions of the site
+- runs the jekyll server
+
+EOF
+`\n"
 }
 run() {
   ptdoc build mkdocs

@@ -20,6 +20,7 @@ setup(
         'sqlitestructure',
         'pytablewriter',
         'mkdocs',
+        'python-dateutil',
         'datetime',
         'gitpython',
         'toml'

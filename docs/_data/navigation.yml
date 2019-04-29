@@ -6,12 +6,12 @@ main:
     url: /people/
   - title: "Organizations"
     url: /organizations/
-  - title: "Commit History"
-    url: /commithistory/
+  - title: "Timeline"
+    url: /timeline/
   - title: "MkDocs"
     url: /mkdocs/
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "Static"
+    url: /static/
   - title: "Sample Posts"
     url: /year-archive/
   - title: "Sample Collections"

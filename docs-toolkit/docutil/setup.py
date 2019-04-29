@@ -22,6 +22,7 @@ setup(
         'mkdocs',
         'python-dateutil',
         'datetime',
+        'python-dateutil',
         'gitpython',
         'toml'
     ],

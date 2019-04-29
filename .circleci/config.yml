@@ -32,40 +32,39 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "./toolkit/python/requirements.txt" }}
+            - v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: copy repository README to mkdocs PoC
           command: |
-            cp ~/repo/README.md ~/repo/docs/mkdocs-src/docs/details.md
+            cp ~/repo/README.md ~/repo/docs-toolkit/mkdocs/docs/details.md
 
       - run:
           name: install dependencies
           command: |
-            python3 -m venv ~/repo/toolkit/python/venv
-            . ~/repo/toolkit/python/venv/bin/activate
-            cd toolkit/python
-            pip install -r requirements.txt
+            python3 -m venv ~/repo/docs-toolkit/docutil/venv
+            . ~/repo/docs-toolkit/docutil/venv/bin/activate
+            cd docs-toolkit/docutil
+            pip install .
 
       - save_cache:
           paths:
             - ./toolkit/python/venv
-          key: v1-dependencies-{{ checksum "./toolkit/python/requirements.txt" }}
+          key: v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
 
       - run:
           name: install latest tool
           command: |
-            . toolkit/python/venv/bin/activate
-            cd toolkit/python
-            pip install -e .
-            tool --dir ~/repo db-to-yaml
+            . ~/repo/docs-toolkit/docutil/venv/bin/activate
+            cd docs-toolkit/docutil
+            echo docutil --dir ~/repo db-to-yaml
 
       - run:
           name: generate commit logs
           command: |
-            . toolkit/python/venv/bin/activate
+            . ~/repo/docs-toolkit/docutil/venv/bin/activate
             for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
             	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
             	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
@@ -74,8 +73,9 @@ jobs:
       - run:
           name: run mkdocs
           command: |
-            . ~/repo/toolkit/python/venv/bin/activate
-            cd ~/repo/docs/mkdocs-src
+
+            . ~/repo/docs-toolkit/mkdocs/venv/bin/activate
+            cd ~/repo/docs-toolkit/mkdocs
             mkdocs build
 
       - run:

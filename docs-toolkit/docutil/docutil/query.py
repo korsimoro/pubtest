@@ -9,35 +9,6 @@ import tabledata
 
 
 
-def define_table(name,data):
-    keys = set()
-    for x in data:
-        if type(x) == dict:
-            for key in x.keys():
-                keys.add(key)
-        else:
-            for key in x.__dict__.keys():
-                keys.add(key)
-
-    headers = list(keys)
-    headers.sort()
-    rows = []
-
-    for obj in data:
-        row_data = []
-        for key in headers:
-            if type(obj) == dict:
-                target = obj
-            else:
-                target = obj.__dict__
-            if key in target:
-                row_data.append(target[key])
-            else:
-                row_data.append(None)
-        rows.append(row_data)
-
-    return tabledata.TableData(name,headers,rows)
-
 
 
 @cli.command(name="db-query")
@@ -67,13 +38,13 @@ def query_out(basedir,formats,query_,db_):
             print("Skipping")
             continue
 
-        print("PROCESSING",descriptor)
         db_dir = value_of(descriptor,'local.dir')
         db_file = value_of(descriptor,'local.databasefile')
         db_key = value_of(descriptor,'dbkey')
         yml_data_dir = data_dir(basedir,db_key)
         generated_data_dir=os.path.join(generated_data_base_dir,db_key)
 
+        print("PROCESSING",db_key)
         os.makedirs(yml_data_dir,exist_ok=True)
         os.makedirs(generated_data_dir,exist_ok=True)
 
@@ -95,7 +66,7 @@ def query_out(basedir,formats,query_,db_):
                             yaml.dump(data, outfile, default_flow_style=False)
                             print("Updated",result_path)
 
-                        td = define_table(db_key+":"+query_name,data)
+                        td = tabledata_from_dictlist(db_key+":"+query_name,data)
                         for format in formats:
                             output_file_name = query_name + "." + format
                             result_path = os.path.join(generated_data_dir,output_file_name)

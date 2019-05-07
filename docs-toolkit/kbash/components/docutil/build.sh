@@ -1,14 +1,14 @@
 #!/bin/bash
-build_environment_ptdoc_docutil_help() {
+build_environment_pd_docutil_help() {
 printf "`cat << EOF
-${BLUE}ptdoc build docutil${NC}
+${BLUE}pd build docutil${NC}
 
 EOF
 `\n"
 }
-export -f build_environment_ptdoc_docutil_help
+export -f build_environment_pd_docutil_help
 
-build_environment_ptdoc_docutil() {
+build_environment_pd_docutil() {
   echo "Component[docutil]:build"
 }
-export -f build_environment_ptdoc_docutil
+export -f build_environment_pd_docutil

@@ -1,14 +1,14 @@
 #!/bin/bash
-build_environment_ptdoc_jekyll_help() {
+build_environment_pd_jekyll_help() {
 printf "`cat << EOF
-${BLUE}ptdoc build jekyll${NC}
+${BLUE}pd build jekyll${NC}
 
 EOF
 `\n"
 }
-export -f build_environment_ptdoc_jekyll_help
+export -f build_environment_pd_jekyll_help
 
-build_environment_ptdoc_jekyll() {
+build_environment_pd_jekyll() {
   echo "Component[jekyll]:build"
 }
-export -f build_environment_ptdoc_jekyll
+export -f build_environment_pd_jekyll

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export DOCUTIL_BASE=$PTDOC/docutil
+export DOCUTIL_BASE=$PD/docutil
 export DOCUTIL_NODE_VERSION=
 export DOCUTIL_NODE_MODULES=$DOCUTIL_BASE/node_modules
 
@@ -12,31 +12,33 @@ export DOCUTIL_VENV=$DOCUTIL_BASE/venv
 
 export DOCUTIL_LOG=$DOCUTIL_BASE/setup-logs
 
-oneline_description_of_ptdoc_docutil() {
+oneline_description_of_pd_docutil() {
   echo "Python environment for docutil"
 }
-export -f oneline_description_of_ptdoc_docutil
+export -f oneline_description_of_pd_docutil
 
-vet_environment_ptdoc_docutil() {
-  echo "Component[docutil]:vet"
-}
-export -f vet_environment_ptdoc_docutil
 
-describe_environment_ptdoc_docutil_help() {
+describe_environment_pd_docutil_help() {
 printf "`cat << EOF
-${BLUE}ptdoc describe docutil${NC}
+${BLUE}pd describe docutil${NC}
 
 EOF
 `\n"
 }
-export -f describe_environment_ptdoc_docutil_help
+export -f describe_environment_pd_docutil_help
 
-describe_environment_ptdoc_docutil() {
-  echo "Component[docutil]:describe"
+describe_environment_pd_docutil() {
 
-  report_vars "docutil Build Environment" \
+  report_vars "Docutil Build Environment" \
       DOCUTIL_BASE\
-      DOCUTIL_NODE_VERSION\
-      DOCUTIL_PYTHON_VERSION
+      DOCUTIL_VENV
+
+  local COMMAND=$(command -v docutil)
+  if [ -z "$COMMAND" ]; then
+    report_error "Can not find command docutil, environment does not appear to be correctly set up."
+  else
+    report_ok "docutil found at $COMMAND"
+    true
+  fi
 }
-export -f describe_environment_ptdoc_docutil
+export -f describe_environment_pd_docutil

@@ -1,29 +1,29 @@
 #!/bin/bash
 
 
-export JEKYLL_BASE=$PTDOC/jekyll
+export JEKYLL_BASE=$PD/jekyll
 export JEKYLL_LOG=$JEKYLL_BASE/setup-logs
 
-oneline_description_of_ptdoc_jekyll() {
+oneline_description_of_pd_jekyll() {
   echo "Support for running Jekyll Locally"
 }
-export -f oneline_description_of_ptdoc_jekyll
+export -f oneline_description_of_pd_jekyll
 
-vet_environment_ptdoc_jekyll() {
+vet_environment_pd_jekyll() {
   check_basic_ruby_ability
 }
-export -f vet_environment_ptdoc_jekyll
+export -f vet_environment_pd_jekyll
 
-describe_environment_ptdoc_jekyll_help() {
+describe_environment_pd_jekyll_help() {
 printf "`cat << EOF
-${BLUE}ptdoc describe jekyll${NC}
+${BLUE}pd describe jekyll${NC}
 
 EOF
 `\n"
 }
-export -f describe_environment_ptdoc_jekyll_help
+export -f describe_environment_pd_jekyll_help
 
-describe_environment_ptdoc_jekyll() {
+describe_environment_pd_jekyll() {
   report_heading "Jekyll Build Environment"
 
   report_vars "Settings" \
@@ -32,4 +32,4 @@ describe_environment_ptdoc_jekyll() {
 
   report_ruby_env
 }
-export -f describe_environment_ptdoc_jekyll
+export -f describe_environment_pd_jekyll

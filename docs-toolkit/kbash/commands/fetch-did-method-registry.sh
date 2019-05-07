@@ -1,20 +1,16 @@
 #!/bin/bash
-# Serve the site on http://127.0.0.1:4000
+# Extract the current did-method-registry from the web
 #
 print_help() {
   printf "`cat << EOF
-${BLUE}ptdoc serve${NC}
-
-This performs the following actions:
-- builds mkdocs portions of the site
-- runs the jekyll server
+${BLUE}pd fetch-did-method-registry${NC}
 
 EOF
 `\n"
 }
 run() {
-  activate_environment_ptdoc_docutil
-  local DIR=$PTDOC/docs/_data/sqlite/w3c_ccg
+  activate_environment_pd_docutil
+  local DIR=$PD/docs/_data/sqlite/w3c_ccg
   mkdir -p $DIR
   cd $DIR
   sqlitebiter url https://w3c-ccg.github.io/did-method-registry

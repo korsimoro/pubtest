@@ -1,14 +1,14 @@
 #!/bin/bash
-clean_environment_ptdoc_jekyll_help() {
+clean_environment_pd_jekyll_help() {
   printf "`cat << EOF
-${BLUE}ptdoc clean jekyll${NC}
+${BLUE}pd clean jekyll${NC}
 
 EOF
 `\n"
 }
-export -f clean_environment_ptdoc_jekyll_help
+export -f clean_environment_pd_jekyll_help
 
-clean_environment_ptdoc_jekyll() {
+clean_environment_pd_jekyll() {
   echo "Component[jekyll]:clean"
 }
-export -f clean_environment_ptdoc_jekyll
+export -f clean_environment_pd_jekyll

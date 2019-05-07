@@ -24,119 +24,91 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-@cli.command(name="db-to-yaml")
-@click.pass_obj
-def db_to_yaml(basedir):
-    """Extract data from sqlite and place as _data."""
-    dataPath = os.path.join(basedir,"docs","_data")
-    basePath = os.path.join(dataPath,"sqlite")
-    for elt in os.listdir(basePath):
-        queryBase = os.path.join(basePath,elt)
-        if os.path.isdir(queryBase):
-            dbPath = os.path.join(queryBase,"database.sqlite")
-            with db.connect(dbPath) as conn:
-                conn.row_factory = dict_factory
-                for possibleQueryFile in os.listdir(queryBase):
-                    if possibleQueryFile.endswith(".sql"):
-                        queryFilePath = os.path.join(queryBase,possibleQueryFile)
-                        with open(queryFilePath,"r") as queryFile:
-                            query = queryFile.read()
-                            cur = conn.cursor()
-                            cur.execute(query)
-                            data = cur.fetchall()
+def value_of(data,key):
+    if data == None:
+        return None
 
-                            yaml_name = elt+"_"+possibleQueryFile[:-4] + ".yml"
-                            result_path = os.path.join(dataPath,yaml_name)
-                            with open(result_path, 'w') as outfile:
-                                yaml.dump(data, outfile, default_flow_style=False)
-                                print("Updated",result_path)
-from git import Repo
-@cli.command(name="gitlog")
-@click.option('--org','org_',
-    required=True,
-    help="GitHub Organization",
-    default=""
-)
-@click.option('--repo','repo_',
-    required=True,
-    help="Repository Name"
-)
-@click.pass_obj
-def gitlog(basedir,org_,repo_):
-    """extract commit log from repository"""
-    gitPath = os.path.join(basedir,".git/modules/toolkit/submodules",org_,repo_)
-    repo = Repo(gitPath)
-    log = [dict(
-        authored_date=x.authored_date,
-        author_tz_offset=x.author_tz_offset,
-        committer=dict(
-            conf_email = x.committer.conf_email,
-            conf_name = x.committer.conf_name,
-            email = x.committer.email,
-            env_author_email  = x.committer.env_author_email,
-            env_author_name = x.committer.env_author_name,
-            env_committer_email = x.committer.env_committer_email,
-            env_committer_name = x.committer.env_committer_name,
-            name = x.committer.name
-        ),
-        committed_date=x.committed_date,
-        committer_tz_offset=x.committer_tz_offset,
-        message=x.message
-        ) for x in repo.iter_commits('HEAD')]
+    if key == None:
+        return data
 
-    print(log)
+    split = key.split(".",1)
+    probe = split[0]
+    remainder = split[1] if len(split)>1 else None
 
-import toml
-import json
-@cli.command(name="toml")
-@click.option("--format","format",
-    type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),
-    default="markdown"
-)
-@click.option("--in","in_",
-    type=click.File("r"),
-    help="file to load",
-    required=True
-)
-@click.pass_obj
-def db_schema_table(basedir,format,in_):
-    data = toml.loads(in_.read())
-    print(json.dumps(data,sort_keys=True,indent=2))
+    if probe in data:
+        return value_of(data[probe],remainder)
+    else:
+        return None
+
+def docs_dir(basedir,scope):
+    return os.path.join(basedir,"docs",scope)
+
+def data_dir(basedir,scope):
+    dataPath = docs_dir(basedir,"_data")
+    basePath = os.path.join(dataPath,scope)
+    return basePath
 
 
-@cli.command(name="db-schema-table")
-@click.option("--format","format",
-    type=click.Choice(['csv','elasticsearch','excel','htm','html','javascript','js','json','json_lines','jsonl','latex_matrix','latex_table','ldjson','ltsv','markdown','md','mediawiki','ndjson','null','numpy','pandas','py','python','rst','rst_csv','rst_csv_table','rst_grid','rst_grid_table','rst_simple','rst_simple_table','space_aligned','sqlite','toml','tsv','unicode']),
-    default="markdown"
-)
-@click.pass_obj
-def db_schema_table(basedir,format):
-    """Dump schema"""
-    dataPath = os.path.join(basedir,"docs","_data")
-    basePath = os.path.join(dataPath,"sqlite")
-    verbosity_level=6
-    for elt in os.listdir(basePath):
-        dirname = os.path.join(basePath,elt)
-        if os.path.isdir(dirname):
-            db_path = os.path.join(dirname,"database.sqlite")
-            extractor = sqliteschema.SQLiteSchemaExtractor(db_path)
-            print(extractor.dumps(format,verbosity_level))
 
-@cli.command(name="db-schema-to-yaml")
-@click.pass_obj
-def db_schema_to_yaml(basedir):
-    """Extract schema from sqlite and place as _data."""
-    dataPath = os.path.join(basedir,"docs","_data")
-    basePath = os.path.join(dataPath,"sqlite")
-    verbosity_level=6
-    for elt in os.listdir(basePath):
-        queryBase = os.path.join(basePath,elt)
-        if os.path.isdir(queryBase):
-            db_path = os.path.join(queryBase,"database.sqlite")
-            extractor = sqliteschema.SQLiteSchemaExtractor(db_path)
+def list_database_paths(basedir):
+    """List database paths."""
+    sqliteBase = data_dir(basedir,"sqlite")
+    for elt in os.listdir(sqliteBase):
+        dbPath = os.path.join(sqliteBase,elt)
+        if os.path.isdir(dbPath):
+            yield dbPath
 
-            yaml_name = elt + "_schema.json"
-            result_path = os.path.join(dataPath,yaml_name)
-            with open(result_path, 'w') as outfile:
-                outfile.write(extractor.dumps("json",verbosity_level))
-                print("Wrote Schema To",result_path)
+def database_descriptor(dbdir):
+    """List database definitions."""
+    if not os.path.isdir(dbdir):
+        print("Warning - %s does not exist" % dbdir)
+        return None
+
+    descriptor = os.path.join(dbdir,"descriptor.yml")
+    if not os.path.isfile(descriptor):
+        print("Warning - %s does not exist" % descriptor)
+        return None
+
+    with open(descriptor,"r") as fin:
+        local = dict()
+        local['dir']=dbdir
+        local['databasefile']=os.path.join(dbdir,'database.sqlite')
+        schemafile = os.path.join(dbdir,'schema.sqlite')
+        local['schemafile']=schemafile
+        #if os.path.isfile(schemafile):
+        #    with open(schemafile,"r") as fin2:
+        #        local['schema'] = yaml.safe_load(fin2)
+
+        # load and add properties
+        obj = yaml.safe_load(fin)
+        obj['local']=local
+        return obj
+
+def list_database_defns(basedir):
+    """List database definitions."""
+    for path in list_database_paths(basedir):
+        yield database_descriptor(path)
+
+def build_dbkey_map(basedir):
+    result = dict()
+    for db in list_database_defns(basedir):
+        if db != None:
+            result[db['dbkey']]=db
+    return result
+
+def filter_db_list(options,basedir):
+    if options == None or len(options) == 0:
+        for db in list_database_defns(basedir):
+            yield db
+    m = build_dbkey_map(basedir)
+    for opt in options:
+        if opt in m:
+            yield m[opt]
+        else:
+            print("Error - can not find db with dbkey=%s, options are" % opt,list(m.keys()))
+
+from .db import *
+from .schema import *
+from .query import *
+from .gitlog import *
+from .toml import *

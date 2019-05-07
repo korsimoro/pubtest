@@ -1,16 +1,21 @@
 #!/bin/bash
-build_environment_ptdoc_mkdocs_help() {
+build_environment_pd_mkdocs_help() {
 printf "`cat << EOF
-${BLUE}ptdoc build mkdocs${NC}
+${BLUE}pd build mkdocs${NC}
 
 EOF
 `\n"
 }
-export -f build_environment_ptdoc_mkdocs_help
+export -f build_environment_pd_mkdocs_help
 
-build_environment_ptdoc_mkdocs() (
-  cd $MKDOCS_BASE
-  activate_environment_ptdoc_mkdocs
-  mkdocs build
+build_environment_pd_mkdocs() (
+  if ensure_environment_pd_mkdocs; then
+    cd $MKDOCS_BASE
+    mkdocs build
+  else
+    report_error "unabe to build documents, perhaps the environment is not set up"
+    describe_environment_pd_mkdocs
+    false
+  fi
 )
-export -f build_environment_ptdoc_mkdocs
+export -f build_environment_pd_mkdocs

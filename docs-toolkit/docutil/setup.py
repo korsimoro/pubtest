@@ -19,11 +19,13 @@ setup(
         'sqlitebiter',
         'sqlitestructure',
         'pytablewriter',
+        'tabledata',
         'mkdocs',
         'python-dateutil',
         'datetime',
         'python-dateutil',
         'gitpython',
+        'dominate',
         'toml'
     ],
     entry_points = {

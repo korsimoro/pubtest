@@ -3,7 +3,7 @@
 #
 print_help() {
   printf "`cat << EOF
-${BLUE}ptdoc copy-rwot${NC}
+${BLUE}pd copy-rwot${NC}
 
 Copies the rwot data
 EOF

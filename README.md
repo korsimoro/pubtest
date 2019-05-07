@@ -9,9 +9,8 @@
 # Quickstart
 
 ```
-git clone git@github.com:korsimoro/pubtest --recursive
-cd pubtest
-./toolkit/setup.sh
+git clone --branch documentation git@github.com:korsimoro/pubtest --recursive
+./pubtest/docs-toolkit/kbash/shell.sh
 . ./toolkit/activate.sh
 cd docs
 runjekyll serve
@@ -19,7 +18,7 @@ runjekyll serve
 
 # Purpose
 
-The purpose of this repository is to develop a publication technology for the
+The purpose of this repository is to develop a publication technology for IIW,
 RWoT and other identity-tech community data with the following properties:
 
 ## [Repository Based](#repository-based)
@@ -40,6 +39,7 @@ RWoT and other identity-tech community data with the following properties:
   - support moderated, timely publication, backed by an editorial actor
 
 ## machine processable rich data
+  - capture ontology in json-ld
   - normalize tabular data as sqlite files
   - use sql queries to generate reports
   - use graphql queries to generate reports

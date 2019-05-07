@@ -3,7 +3,7 @@
 #
 print_help() {
   printf "`cat << EOF
-${BLUE}ptdoc serve${NC}
+${BLUE}pd serve${NC}
 
 This performs the following actions:
 - builds mkdocs portions of the site
@@ -13,8 +13,17 @@ EOF
 `\n"
 }
 run() {
-  ptdoc build mkdocs
-  ptdoc activate jekyll
-  cd $PTDOC/../docs
-  ptdoc bundle exec jekyll serve
+
+  # make sure we abort on any errors
+  set -e
+
+  # build the mkdocs portion
+  local LOG=$MKDOCS_KBASH_LOGS/serve-build.txt
+  report_progress "step1" "Logging to $LOG"
+  pd build mkdocs >$LOG
+
+  pd docutil run db-to-yaml
+  
+  # now serve the jekyll docs and incorporate the updated mkdocs
+  pd jekyll serve
 }

@@ -9,7 +9,7 @@ main:
   - title: "Timeline"
     url: /timeline/
   - title: "MkDocs"
-    url: /mkdocs/
+    url: /mkdocs-output/
   - title: "Static"
     url: /static/
   - title: "Sample Posts"

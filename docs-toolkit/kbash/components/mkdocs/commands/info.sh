@@ -3,14 +3,14 @@
 
 print_help() {
 printf "`cat << EOF
-${BLUE}ptdoc mkdocs info${NC}
+${BLUE}pd mkdocs info${NC}
 
-Info about ptdoc mkdocs
+Info about pd mkdocs
 
 EOF
 `\n"
 }
 
 run() (
-  echo "Info about ptdoc mkdocs"
+  echo "Info about pd mkdocs"
 )

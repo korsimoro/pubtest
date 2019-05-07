@@ -1,14 +1,14 @@
 #!/bin/bash
-clean_environment_ptdoc_docutil_help() {
+clean_environment_pd_docutil_help() {
   printf "`cat << EOF
-${BLUE}ptdoc clean docutil${NC}
+${BLUE}pd clean docutil${NC}
 
 EOF
 `\n"
 }
-export -f clean_environment_ptdoc_docutil_help
+export -f clean_environment_pd_docutil_help
 
-clean_environment_ptdoc_docutil() {
+clean_environment_pd_docutil() {
   echo "Component[docutil]:clean"
 }
-export -f clean_environment_ptdoc_docutil
+export -f clean_environment_pd_docutil

@@ -1,5 +1,5 @@
 import click
-import sqlite3 as db
+import sqlite3
 import yaml
 import os
 import sqliteschema
@@ -28,27 +28,21 @@ import tabledata
     default=None
 )
 @click.pass_obj
-def query_out(basedir,formats,query_,db_):
+def query_out(app,formats,query_,db_):
     """Extract data from sqlite and place as _data."""
     verbosity_level=6
-    generated_data_base_dir = docs_dir(basedir,'_generated')
-    for descriptor in filter_db_list(db_,basedir):
+    for db in app.dbconfig.filter_db_list(db_):
 
-        if descriptor == None:
-            print("Skipping")
-            continue
+        db_dir = db.value_of('local.dir')
+        db_file = db.value_of('local.databasefile')
+        db_key = db.dbkey
+        yml_data_dir = data_dir(app.basedir,db_key)
+        generated_data_dir=os.path.join(app.generated_data_base_dir,db_key)
 
-        db_dir = value_of(descriptor,'local.dir')
-        db_file = value_of(descriptor,'local.databasefile')
-        db_key = value_of(descriptor,'dbkey')
-        yml_data_dir = data_dir(basedir,db_key)
-        generated_data_dir=os.path.join(generated_data_base_dir,db_key)
-
-        print("PROCESSING",db_key)
         os.makedirs(yml_data_dir,exist_ok=True)
         os.makedirs(generated_data_dir,exist_ok=True)
 
-        with db.connect(db_file) as conn:
+        with sqlite3.connect(db_file) as conn:
             conn.row_factory = dict_factory
             for possibleQueryFile in os.listdir(db_dir):
                 if possibleQueryFile.endswith(".sql"):

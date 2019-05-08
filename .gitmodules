@@ -19,3 +19,6 @@
 [submodule "docs-toolkit/.kbash"]
 	path = docs-toolkit/.kbash
 	url = git@github.com:korsimoro/kbash
+[submodule "docs-toolkit/docutil/sqliteschema"]
+	path = docs-toolkit/docutil/sqliteschema
+	url = git@github.com:korsimoro/sqliteschema

@@ -1,2 +1,2 @@
-[3J[H[2J[3J[H[2J[0;32mUsing virtual environment in /home/ewelton/r/pubtest/docs-toolkit/mkdocs/venv[0m
+[3J[H[2J[0;32mUsing virtual environment in /home/ewelton/r/pubtest/docs-toolkit/mkdocs/venv[0m
 Built

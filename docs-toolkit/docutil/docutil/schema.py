@@ -1,5 +1,4 @@
 import click
-import sqlite3 as db
 import yaml
 import os
 import sqliteschema
@@ -7,21 +6,19 @@ import tabledata
 from . import *
 
 @cli.command(name="db-schema-digest")
+@click.option("--db","db_",
+    required=False,
+    multiple=True,
+    default=None
+)
 @click.pass_obj
-def db_schema_digest(basedir):
+def db_schema_digest(app,db_):
     """Produce all schema files generatable from database"""
     verbosity_level = 6
-    for descriptor in list_database_defns(basedir):
-        db_path = descriptor['dbfile']
-        schemafile = descriptor['schemafile']
-        extractor = sqliteschema.SQLiteSchemaExtractor(db_path)
-        with open(schemafile,"w") as fout:
-            try:
-                fout.write(extractor.dumps("yml",verbosity_level))
-            except Exception as E:
-                print("Error writing",schemafile)
-                print("---",E)
-
+    for db in app.dbconfig.filter_db_list(db_):
+        for table in db.tables:
+            print("%s:%s" % (db.dbkey,table))
+            s = db.value_of('local.schema.'+table)
 
 @cli.command(name="db-schema")
 @click.option("--format","format",
@@ -45,11 +42,11 @@ def db_schema_digest(basedir):
     default=None
 )
 @click.pass_obj
-def db_schema(basedir,format,out_,table_,db_):
+def db_schema(app,format,out_,table_,db_):
     """Dump schema"""
     verbosity_level=6
-    for descriptor in filter_db_list(db_,basedir):
-        db_path = descriptor['dbfile']
+    for db in app.dbconfig.filter_db_list(db_):
+        db_path = db.value_of('local.databasefile')
         #out_.write(extractor.dumps(format,verbosity_level))
         try:
             extractor = sqliteschema.SQLiteSchemaExtractor(db_path)

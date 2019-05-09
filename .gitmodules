@@ -1,17 +1,17 @@
 [submodule "toolkit/submodules/WebOfTrustInfo/rwot7-toronto"]
-	path = docs-toolkit/submodules/WebOfTrustInfo/rwot7-toronto
+	path = docs-data/submodules/WebOfTrustInfo/rwot7-toronto
 	url = https://github.com/WebOfTrustInfo/rwot7-toronto
 [submodule "toolkit/submodules/WebOfTrustInfo/rwot5-boston"]
-	path = docs-toolkit/submodules/WebOfTrustInfo/rwot5-boston
+	path = docs-data/submodules/WebOfTrustInfo/rwot5-boston
 	url = https://github.com/WebOfTrustInfo/rwot5-boston
 [submodule "toolkit/submodules/WebOfTrustInfo/rwot8-barcelona"]
-	path = docs-toolkit/submodules/WebOfTrustInfo/rwot8-barcelona
+	path = docs-data/submodules/WebOfTrustInfo/rwot8-barcelona
 	url = https://github.com/WebOfTrustInfo/rwot8-barcelona
 [submodule "toolkit/submodules/WebOfTrustInfo/rwot6-santabarbara"]
-	path = docs-toolkit/submodules/WebOfTrustInfo/rwot6-santabarbara
+	path = docs-data/submodules/WebOfTrustInfo/rwot6-santabarbara
 	url = https://github.com/WebOfTrustInfo/rwot6-santabarbara
 [submodule "toolkit/submodules/infominer33/DIDecentralized"]
-	path = docs-toolkit/submodules/infominer33/DIDecentralized
+	path = docs-data/submodules/infominer33/DIDecentralized
 	url = https://github.com/infominer33/DIDecentralized
 [submodule "playground/SourceCrypto"]
 	path = playground/SourceCrypto

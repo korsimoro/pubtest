@@ -1,0 +1,24 @@
+
+Why Jekyll
+  Lots of available plugins - these can be incrementally integrated
+  to improve what we can do.  There are clearly a lot of things that
+  might be useful, and it is at the heart of a large git-oriented
+  user community - e.g. people hosting on github pages.
+	- https://github.com/planetjekyll/awesome-jekyll-plugins
+
+
+https://stackoverflow.com/questions/80801/how-can-i-merge-many-sqlite-databases
+
+
+
+Combine databases with different schemas
+
+c:\sqlite>sqlite3.exe old_db.sqlite
+sqlite> .output mytable_dump.sql
+sqlite> .dump my_table
+sqlite> .quit
+Read the dump into the new_db.sqlite assuming the table there does not exist
+
+c:\sqlite>sqlite3.exe new_db.sqlite
+sqlite> .read mytable_dump.sql
+

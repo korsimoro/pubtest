@@ -36,3 +36,19 @@ def db_list(app,output_format,out_):
     writer.from_tabledata(td)
     writer.stream = out_
     writer.write_table()
+
+
+@cli.command(name="db-digest")
+@click.option("--db","db_",
+    required=False,
+    multiple=True,
+    default=None
+)
+@click.pass_obj
+def db_schema_digest(app,db_):
+    """Produce all schema files generatable from database"""
+    verbosity_level = 6
+    for db in app.dbconfig.filter_db_list(db_):
+        for table in db.tables:
+            print("%s:%s" % (db.dbkey,table))
+            s = db.value_of('local.schema.'+table)

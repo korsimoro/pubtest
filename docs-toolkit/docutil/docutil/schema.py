@@ -5,20 +5,6 @@ import sqliteschema
 import tabledata
 from . import *
 
-@cli.command(name="db-schema-digest")
-@click.option("--db","db_",
-    required=False,
-    multiple=True,
-    default=None
-)
-@click.pass_obj
-def db_schema_digest(app,db_):
-    """Produce all schema files generatable from database"""
-    verbosity_level = 6
-    for db in app.dbconfig.filter_db_list(db_):
-        for table in db.tables:
-            print("%s:%s" % (db.dbkey,table))
-            s = db.value_of('local.schema.'+table)
 
 @cli.command(name="db-schema")
 @click.option("--format","format",
@@ -46,14 +32,13 @@ def db_schema(app,format,out_,table_,db_):
     """Dump schema"""
     verbosity_level=6
     for db in app.dbconfig.filter_db_list(db_):
-        db_path = db.value_of('local.databasefile')
-        #out_.write(extractor.dumps(format,verbosity_level))
         try:
-            extractor = sqliteschema.SQLiteSchemaExtractor(db_path)
             if table_:
-                schema = extractor.fetch_table_schema(table_)
-                out_.write(schema.dumps(format,verbosity_level))
+                with db:
+                    schema = db.connection.schema_extractor.fetch_table_schema(table_)
+                    out_.write(schema.dumps(format,verbosity_level))
             else:
+                extractor = sqliteschema.SQLiteSchemaExtractor(db_path)
                 out_.write(extractor.dumps(format,verbosity_level))
         except Exception as E:
-            print("ERROR",db_path,E)
+            print("ERROR",db.path,E)

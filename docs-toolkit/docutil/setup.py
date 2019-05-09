@@ -13,11 +13,13 @@ setup(
         'docutil'
     ],
     install_requires=[
+        'markdown==2.6.11',
         'click',
         'PyYAML',
         'python-slugify',
         'sqlitebiter',
         'sqlitestructure',
+        'simplesqlite',
         'pytablewriter',
         'tabledata',
         'mkdocs',

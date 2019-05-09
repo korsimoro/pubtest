@@ -45,9 +45,7 @@ def docs_dir(basedir,scope):
     return os.path.join(basedir,"docs",scope)
 
 def data_dir(basedir,scope):
-    dataPath = docs_dir(basedir,"_data")
-    basePath = os.path.join(dataPath,scope)
-    return basePath
+    return os.path.join(basedir,"docs-data",scope)
 
 
 

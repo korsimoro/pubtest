@@ -1,0 +1,20 @@
+# main links
+main:
+  - title: "Repo Details"
+    url: /mkdocs/details
+  - title: "People"
+    url: /people/
+  - title: "Organizations"
+    url: /organizations/
+  - title: "Timeline"
+    url: /timeline/
+  - title: "MkDocs"
+    url: /mkdocs-output/
+  - title: "Static"
+    url: /static/
+  - title: "Sample Posts"
+    url: /year-archive/
+  - title: "Sample Collections"
+    url: /collection-archive/
+  - title: "Sitemap"
+    url: /sitemap/

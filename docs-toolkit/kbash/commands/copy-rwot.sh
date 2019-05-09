@@ -33,4 +33,4 @@ run() {
   for paper in $LIST; do
           echo "      - $(slugify $paper):'$RWOT/$SCOPE/$paper'"
   done
-:}
+}

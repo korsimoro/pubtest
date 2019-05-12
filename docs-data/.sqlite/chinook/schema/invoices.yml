@@ -1,0 +1,151 @@
+invoices:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - InvoiceId
+    - - Index
+      - true
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - PRI
+    - - Default
+      - ''
+    - - Extra
+      - AUTOINCREMENT
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - CustomerId
+    - - Index
+      - true
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - InvoiceDate
+    - - Index
+      - false
+    - - Type
+      - DATETIME
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BillingAddress
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(70)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BillingCity
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BillingState
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BillingCountry
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BillingPostalCode
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(10)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Total
+    - - Index
+      - false
+    - - Type
+      - NUMERIC(10
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - 2)
+    - - Index
+      - false
+    - - Type
+      - NOT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

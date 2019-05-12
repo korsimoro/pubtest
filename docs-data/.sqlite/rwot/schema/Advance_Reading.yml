@@ -1,0 +1,151 @@
+Advance_Reading:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Label
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Type
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Event
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Primary Topic Tag
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Secondary Topic Tag
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Repository
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Google Doc Id
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Url
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Title
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Abstract
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

@@ -10,7 +10,7 @@ EOF
 }
 run() {
   activate_environment_pd_docutil
-  local DIR=$PD/docs-data/sqlite/w3c_ccg
+  local DIR=$PD_DATA/sqlite/w3c_ccg
   mkdir -p $DIR
   cd $DIR
   sqlitebiter url https://w3c-ccg.github.io/did-method-registry

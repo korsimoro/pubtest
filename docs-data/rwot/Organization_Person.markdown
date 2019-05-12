@@ -1,0 +1,33 @@
+# Organization_Person
+|          From           |                To                |  Type   |
+|-------------------------|----------------------------------|---------|
+|Manu Sporny              |Digital Bazaar                    |affiliate|
+|Dave Longley             |Digital Bazaar                    |affiliate|
+|Joe Andrieu              |Legendary Requirements, LLC       |affiliate|
+|Bob Clint                |Spiritus Partners, Inc.           |affiliate|
+|Shannon Appelcline       |Skotos Tech                       |affiliate|
+|Lyre Calliope            |Securing Change                   |affiliate|
+|Toni Lane Casserly       |Cultu.re / CoinTelegraph          |affiliate|
+|Tim Chen                 |Coding Dojo                       |affiliate|
+|David Fields             |PTB Ventures                      |affiliate|
+|Michael Haley            |AlphaPoint                        |affiliate|
+|Shireen Mitchell         |Stop Online Violence Against Women|affiliate|
+|Heather Vescent          |The Purple Tornado                |affiliate|
+|João Santos              |Instituto Superior Técnico        |affiliate|
+|Kim Hamilton Duffy       |Learning Machine                  |affiliate|
+|Brent Zundel             |Evernym                           |affiliate|
+|Brent Zundel             |Sovrin Foundation                 |affiliate|
+|Zachary Larson           |Economic Space Agency             |affiliate|
+|Katryna Dow              |Meeco                             |affiliate|
+|Marta Piekarska          |Linux Foundation                  |affiliate|
+|Michael Lodder           |Evernym                           |affiliate|
+|Michael Lodder           |Sovrin Foundation                 |affiliate|
+|Nate Otto                |Concentric Sky                    |affiliate|
+|Kulpreet Singh           |Chlu                              |affiliate|
+|Luiz Gustavo Ferraz Aoqui|IBM                               |affiliate|
+|Dan Gisolfi              |IBM                               |affiliate|
+|Moses Ma                 |FutureLab                         |affiliate|
+|Claire Rumore            |FutureLab                         |affiliate|
+|Wes Kussmaul             |Reliable Identities, Inc          |affiliate|
+|Dan Greening             |Senex Rex                         |affiliate|
+|Lionel Wolberger         |Platin.io                         |affiliate|

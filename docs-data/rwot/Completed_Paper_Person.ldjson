@@ -1,0 +1,192 @@
+{"From": "Christopher Allen", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Arthur Brock", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Vitalik Buterin", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Jon Callas", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Duke Dorje", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Christian Lundkvist", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Pavel Kravchenko", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Jude Nelson", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Drummond Reed", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Markus Sabadello", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Greg Slepak", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Noah Thorp", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Harlan Wood", "To": "DPKI Paper", "Type": "Authored"}
+{"From": "Shannon Appelcline", "To": "Rebranding the Web of Trust", "Type": "Authored"}
+{"From": "Dave Croker", "To": "Rebranding the Web of Trust", "Type": "Authored"}
+{"From": "Randall Farmer", "To": "Rebranding the Web of Trust", "Type": "Authored"}
+{"From": "Justin Newton", "To": "Rebranding the Web of Trust", "Type": "Authored"}
+{"From": "Kim Hamilton Duffy", "To": "BTCR DID Resolver Specification", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "BTCR DID Resolver Specification", "Type": "Authored"}
+{"From": "Ryan Grant", "To": "BTCR DID Resolver Specification", "Type": "Authored"}
+{"From": "Dan Pape", "To": "BTCR DID Resolver Specification", "Type": "Authored"}
+{"From": "Samuel M. Smith Ph.D.", "To": "Decentralized Autonomic Data (DAD)", "Type": "Authored"}
+{"From": "Vishal Gupta", "To": "Decentralized Autonomic Data (DAD)", "Type": "Contributed"}
+{"From": "Christopher Allen", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Joe Andrieu", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Shannon Appelcline", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Erica Connell", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Claire Rumore", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Manu Sporny", "To": "Decentralized Identifers v1.0", "Type": "Workshop Credit"}
+{"From": "Heather Vescent", "To": "Sustainable Technology Commons using", "Type": "Contributed"}
+{"From": "Kaliya Young", "To": "Sustainable Technology Commons using", "Type": "Contributed"}
+{"From": "Adrian Gropper", "To": "Sustainable Technology Commons using", "Type": "Contributed"}
+{"From": "Juan Caballero", "To": "Sustainable Technology Commons using", "Type": "Contributed"}
+{"From": "Daniel Buchner", "To": "Identity Hub Attestation Flows", "Type": "Contributed"}
+{"From": "Cherie Duncan", "To": "Identity Hub Attestation Flows", "Type": "Contributed"}
+{"From": "John Toohey", "To": "Identity Hub Attestation Flows", "Type": "Contributed"}
+{"From": "Ron Kreutzer", "To": "Identity Hub Attestation Flows", "Type": "Contributed"}
+{"From": "Stephen Curran", "To": "Identity Hub Attestation Flows", "Type": "Contributed"}
+{"From": "Markus Sabadello", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Kyle Den Hartog", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Christian Lundkvist", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Cedric Franz", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Alberto Elias", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Andrew Hughes", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "John Jordan", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Dmitri Zagidulin", "To": "Introduction to DID Auth", "Type": "Authored"}
+{"From": "Eugeniu Rusu", "To": "Introduction to DID Auth", "Type": "Contributed"}
+{"From": "Adam Powers", "To": "Introduction to DID Auth", "Type": "Contributed"}
+{"From": "John Callahan", "To": "Introduction to DID Auth", "Type": "Contributed"}
+{"From": "Joe Andrieu", "To": "Introduction to DID Auth", "Type": "Contributed"}
+{"From": "Nate Otto", "To": "Open Badges are Verifiable Credentials", "Type": "Authored"}
+{"From": "Kim Hamilton Duffy", "To": "Open Badges are Verifiable Credentials", "Type": "Authored"}
+{"From": "Kulpreet Singh", "To": "Open Badges are Verifiable Credentials", "Type": "Contributed"}
+{"From": "Luiz Gustavo Ferraz Aoqui", "To": "Open Badges are Verifiable Credentials", "Type": "Contributed"}
+{"From": "Moses Ma", "To": "SSI: A Roadmap", "Type": "Authored"}
+{"From": "Claire Rumore", "To": "SSI: A Roadmap", "Type": "Authored"}
+{"From": "Dan Gisolfi", "To": "SSI: A Roadmap", "Type": "Authored"}
+{"From": "Wes Kussmaul", "To": "SSI: A Roadmap", "Type": "Authored"}
+{"From": "Dan Greening", "To": "SSI: A Roadmap", "Type": "Authored"}
+{"From": "Joe Andrieu", "To": "Identity Crisis", "Type": "Authored"}
+{"From": "Kevin Gannon", "To": "Identity Crisis", "Type": "Authored"}
+{"From": "Igor Kruiper", "To": "Identity Crisis", "Type": "Authored"}
+{"From": "Ajit Tripathi", "To": "Identity Crisis", "Type": "Authored"}
+{"From": "Adrian Gropper", "To": "Powering the Physician-Patient Relationship with HIE of One Blockchain Health IT", "Type": "Authored"}
+{"From": "Wayne Hennessy-Barrett", "To": "Protecting Digital Identities in Developing Countries", "Type": "Authored"}
+{"From": "Drummond Reed", "To": "Requirements for DIDs", "Type": "Authored"}
+{"From": "Les Chasen", "To": "Requirements for DIDs", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "Smarter Signatures: Experiments in Verifications", "Type": "Authored"}
+{"From": "Shannon Appelcline", "To": "Smarter Signatures: Experiments in Verifications", "Type": "Authored"}
+{"From": "Drummond Reed", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Authored"}
+{"From": "Les Chasen", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Authored"}
+{"From": "Ryan Grant", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Authored"}
+{"From": "Manu Sporny", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "David Longley", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Jason Law", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Daniel Hardman", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Markus Sabadello", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Christian Lundkvist", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Jonathan Endersby", "To": "DID Data Model Implementer\u2019s Draft", "Type": "Contributed"}
+{"From": "Manu Sporny", "To": "Digital Verification Advancements", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "Digital Verification Advancements", "Type": "Authored"}
+{"From": "Harlan Wood", "To": "Digital Verification Advancements", "Type": "Authored"}
+{"From": "Jason Law", "To": "Digital Verification Advancements", "Type": "Authored"}
+{"From": "Daniel Hardman", "To": "Embedding Human Wisdom in Our Digital Tomorrow", "Type": "Authored"}
+{"From": "Kaliya Young", "To": "Embedding Human Wisdom in Our Digital Tomorrow", "Type": "Authored"}
+{"From": "Matthew Schutte", "To": "Embedding Human Wisdom in Our Digital Tomorrow", "Type": "Authored"}
+{"From": "Daniel Buchner", "To": "Hubs", "Type": "Authored"}
+{"From": "Wayne Vaughan", "To": "Hubs", "Type": "Authored"}
+{"From": "Ryan Shea", "To": "Hubs", "Type": "Authored"}
+{"From": "Joe Andrieu", "To": "Joram 1.0.0", "Type": "Authored"}
+{"From": "Bob Clint", "To": "Joram 1.0.0", "Type": "Authored"}
+{"From": "Shannon Applecline", "To": "Joram 1.0.0", "Type": "Contributed"}
+{"From": "Zachary Larson", "To": "Joram 1.0.0", "Type": "Contributed"}
+{"From": "Vivian Shen", "To": "Joram 1.0.0", "Type": "Contributed"}
+{"From": "Natalie Smolenski", "To": "Joram 1.0.0", "Type": "Contributed"}
+{"From": "Christopher Allen", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Tim Daubensch\u00fctz", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Manu Sporny", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Noah Thorp", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Harlan Wood", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Glenn Willen", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Alessandro Voto", "To": "Portable Reputation Toolkit Use Cases", "Type": "Authored"}
+{"From": "Shaun Conway", "To": "Smart Consent Protocol", "Type": "Authored"}
+{"From": "Lohan Spies", "To": "Smart Consent Protocol", "Type": "Authored"}
+{"From": "Jonathan Endersby", "To": "Smart Consent Protocol", "Type": "Authored"}
+{"From": "Tim Daubensch\u00fctz", "To": "Smart Consent Protocol", "Type": "Authored"}
+{"From": "Angus Champion de Crespigny", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Authored"}
+{"From": "Dmitry Khovratovich", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Florent Blondeau", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Klara Sok", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Philippe Honigman", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Nikolaos Alexopoulos", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Fabien Petitcolas", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Shaun Conway", "To": "Design Considerations for Decentralized Reputation Systems", "Type": "Contributed"}
+{"From": "Kim Hamilton Duffy", "To": "LD Signature Format Alignment", "Type": "Authored"}
+{"From": "Rodolphe Marques", "To": "LD Signature Format Alignment", "Type": "Authored"}
+{"From": "Markus Sabadello", "To": "LD Signature Format Alignment", "Type": "Authored"}
+{"From": "Manu Sporny", "To": "LD Signature Format Alignment", "Type": "Authored"}
+{"From": "Joe Andrieu", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Frederic Engel", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Adam Lake", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Moses Ma", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Olivier Maas", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Mark van der Waal", "To": "What Users Really Want", "Type": "Authored"}
+{"From": "Christopher Webber", "To": "ActivityPub: from decentralized to distributed social networks", "Type": "Contributed"}
+{"From": "Manu Sporny", "To": "ActivityPub: from decentralized to distributed social networks", "Type": "Contributed"}
+{"From": "Joe Andrieu", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Shannon Appelcline", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Lyre Calliope", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Toni Lane Casserly", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Tim Chen", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "David Fields", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Michael Haley", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Shireen Mitchell", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Heather Vescent", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Kaliya Young", "To": "Amira 1.0.0", "Type": "Authored"}
+{"From": "Pat McBennett", "To": "Amira 1.0.0", "Type": "Contributed"}
+{"From": "Raghav Chawla", "To": "Amira 1.0.0", "Type": "Contributed"}
+{"From": "Greg Slepak", "To": "The DCS Theorem", "Type": "Authored"}
+{"From": "Anya Petrova", "To": "The DCS Theorem", "Type": "Authored"}
+{"From": "Jo\u00e3o Santos", "To": "A Decentralized Approach to Blockcerts Credential Revocation", "Type": "Authored"}
+{"From": "Kim Hamilton Duffy", "To": "A Decentralized Approach to Blockcerts Credential Revocation", "Type": "Authored"}
+{"From": "Lionel Wolberger", "To": "Engineering Privacy for Verified Credentials", "Type": "Authored"}
+{"From": "Brent Zundel", "To": "Engineering Privacy for Verified Credentials", "Type": "Authored"}
+{"From": "Zachary Larson", "To": "Engineering Privacy for Verified Credentials", "Type": "Authored"}
+{"From": "Irene Hernandez", "To": "Engineering Privacy for Verified Credentials", "Type": "Authored"}
+{"From": "Katryna Dow", "To": "Engineering Privacy for Verified Credentials", "Type": "Authored"}
+{"From": "Adrian Gropper", "To": "Identity Hubs Capabilities Perspective", "Type": "Authored"}
+{"From": "Drummond Reed", "To": "Identity Hubs Capabilities Perspective", "Type": "Authored"}
+{"From": "Mark S. Miller", "To": "Identity Hubs Capabilities Perspective", "Type": "Authored"}
+{"From": "Christopher Webber", "To": "Linked Data Capabilities", "Type": "Authored"}
+{"From": "Mark S. Miller", "To": "Linked Data Capabilities", "Type": "Authored"}
+{"From": "Manu Sporny", "To": "Veres One DID Method 1.0", "Type": "Authored"}
+{"From": "Dave Longley", "To": "Veres One DID Method 1.0", "Type": "Authored"}
+{"From": "Marta Piekarska", "To": "When GDPR becomes real", "Type": "Authored"}
+{"From": "Michael Lodder", "To": "When GDPR becomes real", "Type": "Authored"}
+{"From": "Zachary Larson", "To": "When GDPR becomes real", "Type": "Authored"}
+{"From": "Kaliya Young", "To": "When GDPR becomes real", "Type": "Authored"}
+{"From": "Shannon Appelcline", "To": "How to Convince Dad* of the Importance of Self-Sovereign Identity", "Type": "Authored"}
+{"From": "Kenneth Bok", "To": "How to Convince Dad* of the Importance of Self-Sovereign Identity", "Type": "Authored"}
+{"From": "Lucas Parker", "To": "How to Convince Dad* of the Importance of Self-Sovereign Identity", "Type": "Authored"}
+{"From": "Peter Scott", "To": "How to Convince Dad* of the Importance of Self-Sovereign Identity", "Type": "Authored"}
+{"From": "Matthew Wong", "To": "How to Convince Dad* of the Importance of Self-Sovereign Identity", "Type": "Authored"}
+{"From": "Harrison Stahl", "To": "Peer to Peer Degrees of Trust", "Type": "Authored"}
+{"From": "Titus Capilnean", "To": "Peer to Peer Degrees of Trust", "Type": "Authored"}
+{"From": "Peter Snyder", "To": "Peer to Peer Degrees of Trust", "Type": "Authored"}
+{"From": "Tyler Yasaka", "To": "Peer to Peer Degrees of Trust", "Type": "Authored"}
+{"From": "Ganesh Annan", "To": "Resource Integrity Proofs", "Type": "Authored"}
+{"From": "Kim Hamilton Duffy", "To": "Resource Integrity Proofs", "Type": "Contributed"}
+{"From": "Dave Longley", "To": "Resource Integrity Proofs", "Type": "Contributed"}
+{"From": "Manu Sporny", "To": "Resource Integrity Proofs", "Type": "Contributed"}
+{"From": "David Lehn", "To": "Resource Integrity Proofs", "Type": "Contributed"}
+{"From": "Bohdan Andriyiv", "To": "Resource Integrity Proofs", "Type": "Contributed"}
+{"From": "du5t", "To": "Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data", "Type": "Authored"}
+{"From": "Kaliya Young", "To": "Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data", "Type": "Authored"}
+{"From": "John Edge", "To": "Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data", "Type": "Authored"}
+{"From": "Drummond Reed", "To": "Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data", "Type": "Authored"}
+{"From": "Noah Thorp", "To": "Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Greg Maxwell", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Peter Todd", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Ryan Shea", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Pieter Wuille", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Joseph Bonneau", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Joseph Poon", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Tyler Close", "To": "Smart Signatures", "Type": "Authored"}
+{"From": "Shannon Appelcline", "To": "Creating the New World of Trust", "Type": "Authored"}
+{"From": "Christopher Allen", "To": "Creating the New World of Trust", "Type": "Authored"}
+{"From": "Brian Weller", "To": "Creating the New World of Trust", "Type": "Authored"}
+{"From": "Sonia Sawhney", "To": "Creating the New World of Trust", "Type": "Authored"}

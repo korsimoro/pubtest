@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>LD Signature Format Alignment - RWoT DIR Launchpad</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "LD Signature Format Alignment", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Status", url: "#status" },
+              {title: "Next steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="ld-signature-format-alignment">LD Signature Format Alignment</h1>
+<p>By Kim Hamilton Duffy, Rodolphe Marques, Markus Sabadello</p>
+<h2 id="abstract">Abstract</h2>
+<p>Our goal was to develop working prototypes of the proposed <a href="https://w3c-dvcg.github.io/lds-rsa2017/">RSA Signature Suite 2017</a> spec to answer two questions. First, is the spec sufficiently clear for implementors? Second, what is the impact to existing JSON-LD signature implementations?</p>
+<p>Existing implementors of JSON-LD signatures expressed concerns about the impact/feasibility of JSON Web Signatures, as described in <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/topics-and-advance-readings/SignatureFormatAlignment">Aligning Signature Formats</a>. This working group aimed to investigate/derisk these concerns, as follows:</p>
+<ul>
+<li>Develop prototypes in several key languages, to ensure library support</li>
+<li>Ensure minimal impact on usability of Verifiable Claims and JSON-LD signatures</li>
+</ul>
+<p>Note that the only algorithm supported by RSA Signature Suite 2017 is RS256 -- a subset of the <a href="https://datatracker.ietf.org/doc/html/rfc7797">JSON Web Signature Unencoded Payload Option RFC 7797</a>.</p>
+<h2 id="status">Status</h2>
+<p>We delivered prototypes of the new RSA Signature Suite 2017 that provided sufficient confidence to move forward with the proposed aligned signature approach.</p>
+<p>We verified that the impact to existing JSON-LD signature implementations -- and usability in general -- was minimal. Specifically, the RSA Signature Suite 2017 avoids the requirement of preserving the original binary form of the payload.</p>
+<p>The major obstacle we encountered while performing this work was the lack of JSON Web Signature library support for detached paylods, which is addressed in "Next Steps"</p>
+<h3 id="implementations-of-ld-jws-signing">Implementations of LD JWS signing</h3>
+<ul>
+<li>Javascript/Node.js: https://github.com/WebOfTrustInfo/jsonld-signatures (this is a fork of JSON-LD signatures official library)</li>
+<li>Python: https://github.com/blockchain-certificates/ld-koblitz-signatures/tree/ld-jws</li>
+<li>Java: https://github.com/WebOfTrustInfo/ld-signatures-java</li>
+</ul>
+<h3 id="json-ld-jws-implementation-guidance-cross-platform">JSON-LD JWS Implementation Guidance (cross-platform)</h3>
+<p>We created a whitepaper to describe the precise differences between existing LD signatures and the new approach.</p>
+<ul>
+<li><a href="SignatureAlignmentImplementation">Signature Alignment Implementation</a></li>
+</ul>
+<h2 id="next-steps">Next steps</h2>
+<p>Because the primary gap was lack of JWS detached payload support -- and therefore accounted for most of our development work -- we propose to recraft the prototypes as JWS detached signature libraries. Such a library would expose simple sign and verify APIs, for example:</p>
+<pre><code>signature = sign(headers: JSON, payload: STRING);
+
+</code></pre>
+
+<p>Where payload is assumed to be a detached payload, as described in <a href="https://tools.ietf.org/html/rfc7797">RFC 7797</a></p>
+<p>Such a library would facilitate minimal changes to existing JSON-LD signature implementations.</p>
+<p>Detailed list of next steps:</p>
+<ul>
+<li>Determine how to address problem that JWS implementations are lacking support for RFC 7797:</li>
+<li>Recraft prototypes as JWS detached signature libraries to provide a RFC 7797 implementation (with a least RS256) to either be merged into official JWS libraries, or standalone bridges until official support is provided.</li>
+<li>Double-check end-to-end samples with RS256 algorithm (not provided in RFC 7797 or PHP tests)</li>
+<li>Determine way to embed JSON-LD signature options <code>created</code>, <code>creator</code> and <code>nonce</code>, and <code>domain</code>. Same as in <code>_getDataToHash</code>, use JWS headers, or other.</li>
+<li>Add new signature suite to JSON-LD signature libraries, consuming JWS detached payload implementation</li>
+<li>Prototype <code>verify</code></li>
+<li>Merkle proof draft spec (deprioritized)</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A Verifiable Claims Primer - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "A Verifiable Claims Primer", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Use Cases", url: "#use-cases" },
+              {title: "Ecosystem", url: "#ecosystem" },
+              {title: "Claims, Credentials, and Profiles", url: "#claims-credentials-and-profiles" },
+              {title: "Participating", url: "#participating" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="a-verifiable-claims-primer">A Verifiable Claims Primer</h1>
+<p><strong><em>by Manu Sporny, Digital Bazaar</em></strong></p>
+<h2 id="introduction">Introduction</h2>
+<p>It is currently difficult to transmit credentials such as driver's licenses,
+proofs of age, education qualifications, and healthcare data, via the
+Internet in a way that is verifiable yet protects individual privacy. These
+credentials are composed of statements called <strong><em>verifiable claims</em></strong>.</p>
+<p>Starting in 2013, the
+<a href="https://w3c-ccg.github.io/">W3C Credentials Community Group</a> started to
+work in earnest on solutions in this space followed shortly thereafter by the
+<a href="http://www.weboftrust.info/">Rebooting Web of Trust Community</a>
+and
+<a href="https://www.w3.org/2017/vc/">W3C Verifiable Claims Working Group</a>.
+These groups, composed of 150+ individuals and organizations, are currently
+focused on the creation, storage, transmission, and verification of digital
+credentials via the Internet.</p>
+<p>This document is a primer for those that want to learn about the
+Verifiable Claims initiative, the use cases and ecosystem,
+a basic overview of the technology, and how to get involved.</p>
+<h2 id="use-cases">Use Cases</h2>
+<p>Verifiable Claims are useful when a person needs to prove that they are:</p>
+<ul>
+<li>above a certain age,</li>
+<li>capable of driving a particular motor vehicle,</li>
+<li>require a particular medication,</li>
+<li>trained and certified as an electrician,</li>
+<li>professionally licensed to practice medicine, and</li>
+<li>cleared to travel internationally.</li>
+</ul>
+<p>The use cases above are merely a high-level introduction to the problem
+space. Readers that would like to explore the use cases in more detail
+are urged to read the
+<a href="https://w3c.github.io/vc-use-cases/">Verifiable Claims Working Groups' Use Cases</a>
+document.</p>
+<h2 id="ecosystem">Ecosystem</h2>
+<p>The Verifiable Claims ecosystem is composed of four primary roles:</p>
+<ul>
+<li>The <strong><em>Issuer</em></strong>, who issues verifiable credentials about a specific
+  <strong><em>Subject</em></strong>.</li>
+<li>The <strong><em>Holder</em></strong> stores credentials on behalf of a <strong><em>Subject</em></strong>.
+  <strong><em>Holders</em></strong> are typically also the <strong><em>Subject</em></strong> of a credential.</li>
+<li>The <strong><em>Verifier</em></strong> requests a <strong><em>profile</em></strong> of the <strong><em>Subject</em></strong>. A
+  <strong><em>profile</em></strong> contains a specific set of credentials. The <strong><em>verifier</em></strong>
+  verifies that the credentials provided in the profile are fit-for-purpose.</li>
+<li>The <strong><em>Identifier Registry</em></strong> is a mechanism that is used to issue
+  identifiers for <strong><em>Subjects</em></strong>.</li>
+</ul>
+<p>A visual depiction of the ecosystem above is shown below:</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/ecosystem.svg" width="100%" height="400">
+</a></p>
+<h2 id="claims-credentials-and-profiles">Claims, Credentials, and Profiles</h2>
+<p>The ecosystem roles exchange data that enables the realization of the previously
+mentioned use cases. The data that is exchanged differs based on the roles
+participating, but is fundamentally composed of Claims, Credentials, and
+Profiles.</p>
+<p>A claim is statement about a subject, expressed as a subject-property-value
+relationship:</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/claim-simple.svg" width="50%">
+</a></p>
+<p>The data model for claims described above is powerful and can be used to
+express a large variety of statements. For example, whether or not someone is
+over the age of 21 may be expressed as follows:</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/claim-example.svg" width="50%">
+</a></p>
+<p>These claims may be merged together to express a graph of information about
+a particular subject. The example below extends the data model above by
+adding claims that state that Pat knows Sam and that Sam is a student.</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/claim-multiple.svg" width="50%">
+</a></p>
+<p>When an Issuer sends data to a Holder, it bundles a set of claims into a
+data structure called a credential and digitally signs the data structure:</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/credential.svg" width="50%">
+</a></p>
+<p>When a Verifier asks for data from a Holder, the Holder typically bundles a
+set of credentials into a data structure called a profile and digitally signs
+the data structure:</p>
+<p><a href="https://w3c.github.io/vc-data-model/">
+  <img src="https://rawgithub.com/msporny/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/verifiable-claims-primer-diagrams/profile.svg" width="50%">
+</a></p>
+<p>The depictions above are a high-level introduction to the data model and gloss
+over specifics. Readers that would like to explore the data model in more depth
+are urged to read the
+<a href="https://w3c.github.io/vc-data-model/">Verifiable Claims Working Groups' Data Model Specification</a>.</p>
+<h2 id="participating">Participating</h2>
+<p>If you would like to participate in shaping this work, there are multiple ways
+to participate:</p>
+<ol>
+<li>If you want weekly updates and are NOT a W3C Member, or want to participate
+   in the more experimental work, you should
+   <a href="https://www.w3.org/community/wp-login.php?redirect_to=%2Fcommunity%2Fcredentials%2Fjoin">join the Credentials Community Group</a>. The W3C Credentials Community Group <a href="https://w3c-ccg.github.io/">holds weekly calls that are open to the public</a>.</li>
+<li>If you want weekly updates and are a W3C Member, you should
+   <a href="https://www.w3.org/2004/01/pp-impl/98922/join">join the Verifiable Claims Working Group</a>. The W3C Verifiable Claims Working Group <a href="https://lists.w3.org/Archives/Member/member-vc-wg/2017Apr/0000.html">holds weekly calls that are open to W3C Members</a>.</li>
+<li>We hold bi-yearly face-to-face meetings in the spring and fall at
+   <a href="http://www.weboftrust.info/">Rebooting Web of Trust</a>
+   and once a year in the fall at the
+   <a href="https://www.w3.org/participate/meetings">W3C Technical Plenary</a>.</li>
+</ol>
+<p>The groups are very inclusive and welcome input and participation people
+from all disciplines and levels of expertise.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

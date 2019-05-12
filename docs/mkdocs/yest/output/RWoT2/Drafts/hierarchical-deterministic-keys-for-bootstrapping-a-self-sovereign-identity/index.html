@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Hierarchical Deterministic Keys for Bootstrapping a Self-Sovereign Identity - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Hierarchical Deterministic Keys for Bootstrapping a Self-Sovereign Identity", url: "#_top", children: [
+              {title: "Abstract.", url: "#abstract" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "1. Derivations and Standards", url: "#1-derivations-and-standards" },
+              {title: "2. Identity Models", url: "#2-identity-models" },
+              {title: "3. Use-cases", url: "#3-use-cases" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="hierarchical-deterministic-keys-for-bootstrapping-a-self-sovereign-identity">Hierarchical Deterministic Keys for Bootstrapping a Self-Sovereign Identity</h1>
+<p>v0.2 July 18, 2016</p>
+<hr />
+<h3 id="abstract">Abstract.</h3>
+<p>In the context of Bitcoin, Hierarchical deterministic (HD) keys are predominately used to simplify wallet backups. Because the child key can operate independently and the parent key has the ability to monitor and control each child key, that parent key can still continue to operate even if the child key is compromised. When a Bitcoin or similar blockchain token is used to represent a person or an identity, the master HD key facilitates the creation and control of an identity that can then create subsequent child identities or personas. HD keys simplify key management in Bitcoin, and when HD keys are used to represent an identity it simplifies identity management on a blockchain.</p>
+<hr />
+<h3 id="introduction">Introduction</h3>
+<p>In 1991, PGP was the first piece of software to introduce the concept of identity-based cryptography by associating an individual to a cryptographic key pair for encrypted communication. One significant impediment to adoption of identity-based cryptography was its dependence on a centralized public-key infrastructure. The set of procedures needed to create, manage, distribute, use, store, revoke, and manage keys all take place locally to the user, then need to be broadcasted to the centralized public-key server.</p>
+<p>The blockchain offers a solution to the centralized public-key infrastructure by decentralizing key management. When HD keys are implemented on a blockchain specific to identity, key management is improved further still.</p>
+<p>There are two primary benefits of using HD keys over random non-deterministic keys. </p>
+<ol>
+<li>
+<p>Improved privacy</p>
+<ul>
+<li>Because the child key is generated from a known seed there is a relationship between the parent and child keys that is invisible to anyone without that seed. </li>
+<li>HD keys allow the user to securely hand out child keys with no risk to the parent key. This makes for greater security usage on a server: since the public keys are generated for each transaction in a receive-only capacity the server does not have any of the private keys to spend those funds.</li>
+</ul>
+</li>
+<li>
+<p>Prudent key management</p>
+<ul>
+<li>If a child key is lost or compromised it can be derived again from its parent, providing the functionality of revocation and recovery of those exact child keys with ownership of the seed.</li>
+<li>Best practices with bitcoin wallets dictate that each key be considered single use and HD keys offer a unification of all the keys under a users control.</li>
+</ul>
+</li>
+</ol>
+<p>For Bitcoin, HD keys are functionally master wallets defined by the BIP0032 standard. </p>
+<p><strong>BIP0032</strong> Specifies a system for deriving a tree of key pairs from a single seed.</p>
+<p>The HD keys can generate a nearly infinite number of child keys from its parent, although BIP0032 standardizes this at three max deviations. </p>
+<p>The standard or specific blockchain where HD key are used is somewhat less relevant than the functionality of the HD keys themselves. The BIP0032 standard was designed specifically for Bitcoin transactions and to create a uniformity of Bitcoin wallets. Implementations of HD keys on blockchains specifically designed for identity may take a verity of different approaches to their HD key targeted uses, derivations, and standards. </p>
+<h3 id="1-derivations-and-standards">1. Derivations and Standards</h3>
+<p>[Still Drafting..]</p>
+<h3 id="2-identity-models">2. Identity Models</h3>
+<p>Identities can be represented at any key pair of a hierarchical deterministic key set. Because the master key has the control of every subsequent child key, position of the master key is the only form of truly self-sovereign identity model. For use cases where the user chooses to differ key management of the master key to a third party such that they control one of the child keys of the master, they do so by compromising on the degree of access an individual has over their keys and related identity. </p>
+<p><img alt="" src="http://i.imgur.com/cgvgbWf.jpg?1" /></p>
+<p><strong>1.1 Self-Sovereign Model.</strong> 
+Placing the individual at the core root of the derivation (depth 0), where the user is the holder of the seed and master key is the self-sovereign identity model. Here the user has the greatest degree of control and responsibility in managing their identity client-side.</p>
+<p><strong>1.2 Trusted Third-party Model.</strong>
+Placing the individual at a depth of 1 or any subsequent derivation is the trusted third-party model. In some cases where an individual is not willing or capable of managing their own keys on their device.</p>
+<h3 id="3-use-cases">3. Use-cases</h3>
+<p><strong>Browser Authorization.</strong>
+HD keys allow for greater control on the part of the user since the parent keys can easily revoke its child keys. An individual can give their browser a key pair and permission to sign certificates with a newly generated child from that key pair each time. If the user ever wants to revoke that ability their parent key can revoke the authority of the child key it gave to the browser.</p>
+<p><strong>Multiple Personas.</strong>
+In an identity system where the user creates and manages multiple identities for different purposes, separating child keys to create a distinct persona would allow for a greater degree of control and manageability for the user while maintaining privacy between the individual personas.</p>
+<p><strong>Governance.</strong>
+In the context of governments, corporations, or families, the built-in hierarchy of HD keys could mirror a real-life separation of control. It could also express meaning: branches of keys can be used to separate different departments in these various systems. Finally, it can offer a crypto identity for related financial systems.  </p>
+<p><strong>Credit Reputation.</strong>
+Bitcoin has prided itself on letting users 'be their own bank'. Cryptocurrency currently allows users to 'make deposits', transfer money, and prove ownership, yet there is no possibility of a credit system without identity. In managing a credit reputation, a borrower's repayment history is the basis of an individual's financial reputation for lenders to use when determining financial risk. It is possible to manage and prove an individual's credit history with HD keys by fragmenting a part of a user's identity into individual payments with child keys, then revealing some larger part of their identity with its parent key when it's required or relevant.</p>
+<h3 id="references">References</h3>
+<hr />
+<p>Allen, Christopher. "<a href="https://github.com/ChristopherA/self-sovereign-identity">Principles of Self-Sovereign Identity</a>." 2016.</p>
+<p>Allen, Christopher and Appelcline, Shannon. "<a href="../../../RWoT1/Topics/hierarchical-deterministic-keys--bip32-and-beyond/">Hierarchical Deterministic Keys: BIP32 &amp; Beyond</a>" 2015.</p>
+<p>Lundkvist, Christian and Heck, Rouven. "<a href="../../../RWoT1/Topics/Identity-Property-Simulation/">Questions around key management for digital identity systems</a>". 2015.</p>
+<p>Shea, Ryan. "<a href="../../../RWoT1/Topics/Selective-Disclosure-of-Identity/">Selective Disclosure of Identity with Hierarchical Deterministic Keys and JSON Web Tokens</a>". 2015.</p>
+<p>Wuille, Pieter. "<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">Hierarchical Deterministic Wallets</a>". 2016.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

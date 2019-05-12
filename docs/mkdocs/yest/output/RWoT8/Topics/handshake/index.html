@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Handshake - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Handshake", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Name Auctions", url: "#name-auctions" },
+              {title: "Network Bootstrapping", url: "#network-bootstrapping" },
+              {title: "Software", url: "#software" },
+              {title: "Project Paper", url: "#project-paper" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h2 id="handshake">Handshake</h2>
+<p>by Boyma Fahnbulleh \&lt;<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#111;&#121;&#109;&#97;&#110;&#106;&#111;&#114;&#64;&#112;&#114;&#111;&#116;&#111;&#110;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#98;&#111;&#121;&#109;&#97;&#110;&#106;&#111;&#114;&#64;&#112;&#114;&#111;&#116;&#111;&#110;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>></p>
+<h3 id="introduction">Introduction</h3>
+<p>Handshake is a decentralized, permission-less naming protocol compatible with
+DNS. We seek to solve <a href="https://web.archive.org/web/20011020191610/http://zooko.com/distnames.html">Zooko's triangle</a> through the use of a utxo-based
+blockchain, which manages the registration, renewal, and transfer of DNS
+top-level domains (TLDs). The initial goal is not to replace the DNS protocol but
+to replace the root zone file and the root servers with a decentralized, public
+commons. By tying name ownership to a utxo, and embedding DNS records into its
+metadata, a chain of trust can be created by a digital signature and verified
+by querying blockchain data. A decentralized network of validating peers anchors
+this chain of trust. The ultimate goal is to provide an alternative to existing
+Certificate Authorities.</p>
+<p>Our naming protocol differs from its predecessors in that it has no concept of
+subdomains at the consensus layer. The protocol also provides secure name
+resolutions via light client resolvers by committing to name data in the block
+headers and using compact, merklelized proofs of inclusion and non-inclusion.</p>
+<p>We believe this project could be used to add human readability to DIDs by
+committing to them in the DNS records of names registered on the network.
+Or the names themselves could exist as DIDs and DID documents could be
+committed to in the DNS records.</p>
+<h3 id="name-auctions">Name Auctions</h3>
+<p>Second-price, blind bid (Vickrey) auctions manage the issuance of names on-chain.
+A consensus-level covenant system facilitates these auctions by encumbering utxos
+with spending restrictions. A collection of these covenants model an auction
+state machine.</p>
+<p>For example, to bid on a name, one must spend a utxo in a transaction which creates
+an output which carries a 'BID' covenant. This output will have a value which
+is equal to (or higher) than the amount the user intends to bid on the name.
+It will also include the name up for auction and a commitment to the actual
+bid amount. The 'BID' covenant will restrict this output from being spent in
+any transaction that does not create an output with a 'REVEAL' covenant.</p>
+<p>The 'REVEAL' covenant essentially reveals the actual bid amount and allows the
+excess value in the 'BID' covenant to be spent freely. The rest of the auction
+process, as well as DNS record updates and name transfers, are modeled
+in this covenant system.</p>
+<h3 id="network-bootstrapping">Network Bootstrapping</h3>
+<p>Consensus rules reserve all entries in ICANN's existing root zone file. Names in
+the list of Alexa top 100,000 domains are also reserved. The latter names are
+converted to TLDs by selecting their first domain name label. Name owners can
+bypass the auction system and claim names through the use of DNSSEC ownership
+proofs. We also have a sunrise period to allow trademark holders without domains
+in the Alexa top 100,000 to reserve names.</p>
+<p>The DNSSEC ownership proofs mentioned above are a stricter subset of
+<a href="https://tools.ietf.org/html/rfc4033">DNSSEC proofs</a>. They do not allow for CNAME glue or wildcards, and every
+label must be separated by a zone cut using a typical DS-to-DNSKEY setup for
+referrals. All zone referrals are retrieved and combined to produce the final proof.</p>
+<p>These proofs must stem from ICANN's key-signing keys (KSKs) to the final ZSK in the
+target zone. The ultimate zone-signing key (ZSK) must sign a TXT record which commits
+to the name's desired address on the blockchain. The proof is broadcast to the
+peer-to-peer network and included by miners in the coinbase transaction of a block.
+The consensus rules dictate that the miner must create an output for the associated
+proof, granting the name to the committed address.</p>
+<h3 id="software">Software</h3>
+<p><a href="https://github.com/handshake-org/hsd">hsd</a> is a full node, Javascript implementation of the protocol and an
+authoritative name resolver for the root zone. <a href="https://github.com/handshake-org/hnsd">hnsd</a> is an SPV name resolver
+written in C. It acts as a light client to the blockchain, as well as a recursive
+name server. It can serve provable resource records without having the resource
+requirements of a full node.</p>
+<h3 id="project-paper">Project Paper</h3>
+<p>This document is a high-level overview of the Handshake protocol. For a more detailed
+description of the protocol, please read the
+<a href="https://handshake.org/files/handshake.txt">project paper</a>.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,7 +1,0 @@
-name: RWOT
-dbkey: rwotpapers
-source:
-  type: google
-  fileid: id
-  input: gspread
-

@@ -2,6 +2,7 @@
 
 
 export MKDOCS_BASE=$PD/mkdocs
+export MKDOCS_PROJECTS=$PD/../docs/mkdocs
 
 export MKDOCS_PYTHON_VERSION=v3.6.2
 export MKDOCS_VENV=$MKDOCS_BASE/venv
@@ -31,11 +32,19 @@ EOF
 export -f describe_environment_pd_mkdocs_help
 
 describe_environment_pd_mkdocs() {
-  echo "Component[mkdocs]:describe"
-
-  report_vars "mkdocs Build Environment" \
+  report_vars "mkdocs environment" \
       MKDOCS_BASE\
-      MKDOCS_NODE_VERSION\
-      MKDOCS_PYTHON_VERSION
+      MKDOCS_PROJECTS\
+      MKDOCS_PYTHON_VERSION\
+      MKDOCS_VENV\
+      MKDOCS_LOG\
+      MKDOCS_KBASH_LOGS
+
+  if [ -d "$MKDOCS_VENV" ]; then
+    report_ok "Venv dir exists:$MKDOCS_VENV"
+  else
+    report_warning "Venv dir does not exist:$MKDOCS_VENV"
+    report_warning "run pd setup mkdocs"
+  fi
 }
 export -f describe_environment_pd_mkdocs

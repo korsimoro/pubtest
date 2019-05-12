@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Using OpenID Connect Self-Issued to achieve DID Auth - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Using OpenID Connect Self-Issued to achieve DID Auth", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Background and Motivations", url: "#background-and-motivations" },
+              {title: "Use Cases", url: "#use-cases" },
+              {title: "## Terminology", url: "#terminology" },
+              {title: "Nature of the Design Decisions", url: "#nature-of-the-design-decisions" },
+              {title: "How to Prove Control of a DID", url: "#how-to-prove-control-of-a-did" },
+              {title: "Conclusions", url: "#conclusions" },
+              {title: "Open Questions", url: "#open-questions" },
+              {title: "RWoT Paper Initial Proposals:", url: "#rwot-paper-initial-proposals" },
+              {title: "Related Specs, for Reference:", url: "#related-specs-for-reference" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="using-openid-connect-self-issued-to-achieve-did-auth">Using OpenID Connect Self-Issued to achieve DID Auth</h1>
+<p>Authors:</p>
+<ul>
+<li>Ivan Basart</li>
+<li>Egido Casati</li>
+<li>Michael B. Jones</li>
+<li>Andrés Junge</li>
+<li>David Stark</li>
+<li>Oliver Terbu</li>
+<li>Dmitri Zagidulin</li>
+</ul>
+<h2 id="abstract">Abstract</h2>
+<p>Proving control of a DID requires proving ownership of a private key corresponding to a public key for the DID. Of course, this could be done with a new DID-specific protocol. However, there already exist standard protocols for proving ownership of a public/private key pair.</p>
+<p>This paper describes how to reuse the OpenID Connect Self-Issued protocol messages to prove control of a DID.  It describes both why and how to do this.  Related topics, such as release of claims are also touched upon.</p>
+<h2 id="background-and-motivations">Background and Motivations</h2>
+<p>OpenID Connect is a widely used JSON/REST-based identity protocol.  Section 7 of the OpenID Connect Core [ref] specification defines how to authenticate using an identity that you control yourself, which is represented by a public key.  The authentication protocol messages prove that you are in possession of the private key corresponding to the public key.</p>
+<p>We believe that using the OpenID Connect Self-Issued functionality to prove ownership of a DID has multiple advantages.  It reuses existing functionality, possibly accelerating adoption relative to approaches utilizing new custom protocols.</p>
+<h2 id="use-cases">Use Cases</h2>
+<ul>
+<li>Sign into RP</li>
+<li>Sign into RP with a DID</li>
+<li>Presentation of Claims</li>
+</ul>
+<h2 id="terminology">## Terminology</h2>
+<ul>
+<li>SIOP - Self-Issued OpenID Connect Provider (Issuer+Holder in the SSI model)</li>
+<li>RP - Relying Party (the Verifier in the SSI model)</li>
+</ul>
+<p>Non-Goals / Out of Scope</p>
+<ul>
+<li>Using DID Auth for local authentication of user to the Self-Issued OpenID Provider (fairly obvious, no spec needed)</li>
+<li>Exchange of verifiable claims (separate paper)</li>
+<li>Zero Knowledge Proofs (could be added by experts in the field)</li>
+<li>Issuing access tokens to resources</li>
+</ul>
+<h2 id="nature-of-the-design-decisions">Nature of the Design Decisions</h2>
+<ul>
+<li>Whenever possible, reuse of existing specs.</li>
+<li>Remain compatible with existing specs that are reused.</li>
+<li>Layer DID auth functionality such that it can be added incrementally without breaking existing uses of the self-issued functionality</li>
+</ul>
+<h2 id="how-to-prove-control-of-a-did">How to Prove Control of a DID</h2>
+<h3 id="keys-used">Keys Used</h3>
+<ul>
+<li>The self-issued key used must be one of the DID Authentication Section keys</li>
+</ul>
+<h3 id="authorization-request">Authorization Request</h3>
+<ul>
+<li>As specified in OpenID Connect</li>
+<li>(Also see Request Objects section below for additional possibilities)</li>
+<li>Do we want something in the request saying that a DID-based identity is being requested, and if so, what?</li>
+</ul>
+<h3 id="authorization-response">Authorization Response</h3>
+<ul>
+<li>Add a claim with name &quot;did&quot; in the ID Token that contains the DID</li>
+<li>Note that the &quot;sub&quot; claim is base64url encoding of JWK Thumbprint, as specified in OpenID Connect Core Section 7</li>
+</ul>
+<h3 id="did-validation">DID Validation</h3>
+<p>\&lt;put in some language that this is a layer above the SIOC flow. that this validation is for the did auth use case specifically.\&gt;</p>
+<p>When using this flow the client MUST validate the response as follows:</p>
+<ol>
+<li>Verify the response is a valid Self-Issued OpenID Provider Response (as specified in Section 7.4 of the OpenID Connect Core specification</li>
+<li>The id token returned contains the additional attribute &quot;did&quot; and that it is a valid DID format. (Conforms to the ABNF rules of the DID spec). Note: If the ID Token does <em>not</em> contain a &quot;did&quot; attribute, it may still be a valid SIOC ID Token, but it is not a valid DID Auth response.</li>
+<li>Perform a <a href="https://w3c-ccg.github.io/did-resolution/">DID Resolution</a> operation (the specifics vary by individual DID method, but typically involves using a resolver retrieve the DID document specified by the did attribute in the ID Token).</li>
+<li>The self-issued key used to sign the response (specified in the sub_jwk claim) is present and not expired or revoked in the &quot;authentication&quot; attribute of the DID Document. The key specified in the DID Document can be in various formats and</li>
+</ol>
+<p>TODO: Ask M. Jones about Section 7.1 SIOC Discovery -- the static configuration value implies that ONLY RS256 algorithm is supported as an ID Token signing algorithm.</p>
+<ul>
+<li>Steps are layered on top of the self-issued ID Token validation steps</li>
+<li>First do self-issued validation steps</li>
+<li>Then retrieve the DID</li>
+<li>Verify that the self-issued key is one of the DID Authentication Section keys</li>
+<li>Verify that the algorithm used with the key is the one specified in the DID. (Note, conversion/translation between the algorithms from JOSE format to Linked Data keys format will likely need to be done, and is out of scope of this document.)</li>
+<li>Verify that the DID key has not expired or been revoked, in cases where expiration and/or revocation is possible</li>
+</ul>
+<h3 id="relationship-to-other-openid-connect-features">Relationship to Other OpenID Connect Features</h3>
+<h4 id="provider-selection-via-did-document">Provider Selection via DID Document</h4>
+<ul>
+<li>A DID Document could optionally contain (in the serviceEndpoint section) the user&#39;s preferred OpenID Connect Provider (or a set of preferred providers). For example: …
+This is useful for situations where a user&#39;s DID is already known by the RP (or transmitted out of band).</li>
+</ul>
+<h4 id="provider-discovery">Provider Discovery</h4>
+<ul>
+<li>Discuss using key sets in the self-issued discovery doc</li>
+<li>A jwk_set value could be included in the discovery information</li>
+<li>DID Auth as a Provider Discovery method for OIDC ?</li>
+<li>If the OP&#39;s DID has encryption keys, they could be advertised in the OP&#39;s jwk_set discovery information</li>
+</ul>
+<h4 id="dynamic-registration">Dynamic Registration</h4>
+<ul>
+<li>(Optional) Can we discuss the ability for a client app to use a DID as its client_id (instead of a redirect_uri)? Both in the Registration request -- <a href="https://openid.net/specs/openid-connect-core-1_0.html#RegistrationParameter">Section 7.2.1</a>, self issued <code>registration</code> , param, and <a href="https://openid.net/specs/openid-connect-registration-1_0.html">Dynamic Registration</a> spec, and in the Authorization request?</li>
+<li>If the RP has a DID, keys used to encrypt content to that DID could be advertised in the RP&#39;s jwk_set or jwk_uri parameters if encrypted ID Tokens are being used</li>
+</ul>
+<h4 id="presentation-of-claims">Presentation of Claims</h4>
+<ul>
+<li>Already supported by OpenID Connect spec</li>
+<li>Can include any claims pertinent to use case</li>
+<li>For instance, could include some claims using JWT claim definitions from W3C Verifiable Credentials spec, if relevant to the use case</li>
+<li>As specified in OpenID Connect Core, aggregated and distributed claims can be used in responses, including in Self-Issued ID Tokens</li>
+<li>For instance, National eID claims, such as claims from EIDAS claim providers could be represented in that way</li>
+<li>Note that OpenID Connect does not define validation rules for claims issued by third parties, as they are in general, specific to the use case</li>
+</ul>
+<h4 id="request-objects">Request Objects</h4>
+<ul>
+<li>Request Objects could be used to authenticate RP</li>
+<li>Request Object signing key could come from an RP DID</li>
+</ul>
+<h4 id="non-self-issued-openid-connect-flows">Non-Self-Issued OpenID Connect Flows</h4>
+<ul>
+<li>Flows using a third party OP cannot be used to prove control of a DID</li>
+<li>They lack the public key as the identifier of the subject of the identity</li>
+<li>A &quot;did&quot; claim could be returned as a UserInfo or ID Token claim, which means that the OP is asserting that the DID is associated with the End User</li>
+</ul>
+<h2 id="conclusions">Conclusions</h2>
+<ul>
+<li>Reuse of the OpenID Connect Self-Issued mechanism to prove control of a DID is effective and straightforward.  The authors believe that reusing this mechanism will be more effective in promoting DID adoption than using a new custom DID authentication protocol.</li>
+</ul>
+<h2 id="open-questions">Open Questions</h2>
+<ul>
+<li>To be explored and specified further: Use case where the Self-Issued flow is being initiated from a Desktop browser (or other environment that does not have a protocol handler installed). Current deployed or proposed solutions:</li>
+<li>This is currently being solved by methods like uPort via a combination of QR code which contains a JWT request that includes the response callback of the RP.</li>
+<li>Potentially could be solved by an agreed-upon site hosted by the community, &quot;Log in with SSI&quot;, that would redirect desktop user to a page that shows the QR code.</li>
+</ul>
+<h2 id="rwot-paper-initial-proposals">RWoT Paper Initial Proposals:</h2>
+<ul>
+<li><a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/oidc-profile-for-ssi.md">OIDC Profile for SSI</a>  by Oliver Terbu, Andres Junge</li>
+<li><a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities.md">Proof of Key Ownership with OpenID Connect Self-Issued Identities</a></li>
+</ul>
+<h2 id="related-specs-for-reference">Related Specs, for Reference:</h2>
+<ul>
+<li><a href="https://openid.net/specs/openid-connect-core-1_0.html">https://openid.net/specs/openid-connect-core-1_0.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=tTeN_SxQ_OI">https://www.youtube.com/watch?v=tTeN_SxQ_OI</a> , [NS18]</li>
+<li><a href="https://nat.sakimura.org/2018/12/11/todo-list-for-self-issued-op/">https://nat.sakimura.org/2018/12/11/todo-list-for-self-issued-op/</a> , [NS18]</li>
+<li><a href="https://iiw.idcommons.net/OIDC_DID-Auth_Profile">https://iiw.idcommons.net/OIDC_DID-Auth_Profile</a> , [II18]</li>
+<li><a href="https://github.com/WebOfTrustInfo/rwot6-santabarbara/blob/master/final-documents/did-auth.md">https://github.com/WebOfTrustInfo/rwot6-santabarbara/blob/master/final-documents/did-auth.md</a> , [RWOT6]</li>
+<li><a href="https://iiw.idcommons.net/Open_ID_v._FIDO_v._SSI">https://iiw.idcommons.net/Open_ID_v._FIDO_v._SSI</a></li>
+<li><a href="https://w3c.github.io/vc-data-model/#json-web-token">https://w3c.github.io/vc-data-model/#json-web-token</a> , [W3C]</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

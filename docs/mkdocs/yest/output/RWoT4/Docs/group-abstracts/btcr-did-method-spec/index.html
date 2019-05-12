@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>BTCR DID Method Specification - RWoT DIR Launchpad</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "BTCR DID Method Specification", url: "#_top", children: [
+              {title: "abstract", url: "#abstract" },
+              {title: "introduction", url: "#introduction" },
+              {title: "Method syntax", url: "#method-syntax" },
+              {title: "DDOs", url: "#ddos" },
+              {title: "DID Operations for btcr", url: "#did-operations-for-btcr" },
+              {title: "DID resolving for btcr", url: "#did-resolving-for-btcr" },
+              {title: "Security Considerations", url: "#security-considerations" },
+              {title: "proving ownership of the DDO example", url: "#proving-ownership-of-the-ddo-example" },
+              {title: "proving ownership of the control key", url: "#proving-ownership-of-the-control-key" },
+          ]},
+          {title: "other sections from DID spec to incorporate into the outline", url: "#other-sections-from-did-spec-to-incorporate-into-the-outline", children: [
+              {title: "9.3 Authentication Service Endpoints", url: "#93-authentication-service-endpoints" },
+              {title: "9.4 Non-Repudiation", url: "#94-non-repudiation" },
+              {title: "9.5 Notification of DDO Changes", url: "#95-notification-of-ddo-changes" },
+              {title: "9.6 Key and Signature Expiration", url: "#96-key-and-signature-expiration" },
+              {title: "9.7 Key Revocation and Recovery", url: "#97-key-revocation-and-recovery" },
+          ]},
+          {title: "another other section from DID spec: 10. Privacy Considerations", url: "#another-other-section-from-did-spec-10-privacy-considerations", children: [
+              {title: "10.1 Requirements of DID Method Specifications", url: "#101-requirements-of-did-method-specifications" },
+              {title: "10.2 Keep Personally-Identifiable Information (PII) Off-Ledger", url: "#102-keep-personally-identifiable-information-pii-off-ledger" },
+              {title: "10.3 DID Correlation Risks and Pseudonymous DIDs", url: "#103-did-correlation-risks-and-pseudonymous-dids" },
+              {title: "10.4 DDO Correlation Risks", url: "#104-ddo-correlation-risks" },
+              {title: "10.5 Herd Privacy", url: "#105-herd-privacy" },
+          ]},
+          {title: "Future Considerations", url: "#future-considerations", children: [
+              {title: "Equivalence", url: "#equivalence" },
+              {title: "from DID spec: 11.4 Time Locks and DDO Recovery", url: "#from-did-spec-114-time-locks-and-ddo-recovery" },
+              {title: "11.5 Smart Signatures", url: "#115-smart-signatures" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="btcr-did-method-specification">BTCR DID Method Specification</h1>
+<p>There is a <a href="https://docs.google.com/document/d/15HWtXTDXcvyUjgAqnewPoZKbgSWhl-XiIDas1ip94Hs/edit">Collaborative working URL</a>, at Google Docs.</p>
+<h2 id="abstract">abstract</h2>
+<h2 id="introduction">introduction</h2>
+<h3 id="background">background</h3>
+<h3 id="motivation">motivation</h3>
+<h3 id="purpose">purpose</h3>
+<h2 id="method-syntax">Method syntax</h2>
+<h3 id="name-btcr">name: "btcr"</h3>
+<h3 id="specific-idstring-component">specific-idstring component</h3>
+<p>Bitcoin public address</p>
+<h3 id="btcr-paths">btcr paths</h3>
+<p>None.  (unless use instead of fragment)</p>
+<h3 id="btcr-fragments">btcr fragments</h3>
+<h3 id="when-output-index-is-required">when output index is required</h3>
+<h3 id="length-considerations">length considerations</h3>
+<h4 id="p2pkh">P2PKH</h4>
+<h4 id="p2wsh">P2WSH</h4>
+<h3 id="example-btcr-method-specific-dids">example BTCR Method-Specific DIDs</h3>
+<pre><code>DID did:btcr:123…
+key to check did:btcr:123…#1
+</code></pre>
+<h2 id="ddos">DDOs</h2>
+<h3 id="inferred-background-on">inferred - background on</h3>
+<p>for details, see section on reading DDO, below</p>
+<h3 id="stored">stored</h3>
+<h3 id="linking-to-external-stored">linking to external stored</h3>
+<h4 id="ipfs">ipfs</h4>
+<h4 id="sia">sia</h4>
+<h3 id="example-stored-ddo">example stored DDO</h3>
+<h2 id="did-operations-for-btcr">DID Operations for btcr</h2>
+<h3 id="create-btcr-did-creation">create: btcr DID creation</h3>
+<h4 id="meaning-of-first-conforming-transaction">meaning of first conforming transaction</h4>
+<h4 id="tracing-the-chain-for-valid-outputs">tracing the chain for valid outputs</h4>
+<h4 id="example-generation-from-bitcoind">example generation from bitcoind</h4>
+<h3 id="read-btcr-ddo-implicit-read">read: btcr DDO implicit read</h3>
+<h4 id="valid-context">valid context</h4>
+<h4 id="proof-of-ownership">proof of ownership</h4>
+<h5 id="example">example</h5>
+<h4 id="proof-of-control">proof of control</h4>
+<h5 id="orcontrol-with-timelocked-last-output-and-override-n-1">orcontrol with timelocked last output, and override n-1</h5>
+<h6 id="recognition-of-compliant-use-of-n-1-pattern">recognition of compliant use of n-1 pattern</h6>
+<h4 id="service-endpoints">service endpoints</h4>
+<p>see also endpoint authentication</p>
+<h5 id="bitcoind">bitcoind</h5>
+<h5 id="discussion-of-spv-clients">discussion of SPV clients</h5>
+<h5 id="discussion-of-block-explorers">discussion of block explorers</h5>
+<h5 id="discussion-of-blockchain-median-time-past">discussion of blockchain median time past</h5>
+<h6 id="created">created</h6>
+<h6 id="updated">updated</h6>
+<h5 id="interpretation-of-signature">interpretation of signature</h5>
+<h4 id="code-to-generate">code to generate</h4>
+<h3 id="update-btcr-ddo-update-via-new-transaction">update: btcr DDO update via new transaction</h3>
+<h3 id="revoke-btcr-did-invalidation-by-spending-the-coin">revoke: btcr DID invalidation by spending the coin</h3>
+<h2 id="did-resolving-for-btcr">DID resolving for btcr</h2>
+<p>bitcoind CLI </p>
+<h2 id="security-considerations">Security Considerations</h2>
+<h3 id="attacks-and-their-residual-risks">attacks and their residual risks</h3>
+<p><em>At least the following forms of attack MUST be considered: eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle.  Potential denial of service attacks MUST be identified as well.  If the protocol incorporates cryptographic protection mechanisms, it should be clearly indicated which portions of the data are protected and what the protections are (i.e., integrity only, confidentiality, and/or endpoint authentication, etc.).  Some indication should also be given to what sorts of attacks the cryptographic protection is susceptible.  Data which should be held secret (keying material, random seeds, etc.) should be clearly labeled. If the technology involves authentication, particularly user-host authentication, the security of the authentication method MUST be clearly specified.</em></p>
+<p>residual risks (such as the risks from compromise in a related protocol, incorrect implementation, or cipher) after threat mitigation has been deployed.</p>
+<p>This section MUST provide integrity protection and update authentication for all operations required by Section 7 of this specification (DID Operations).</p>
+<h3 id="bitcoin-infrastructure-burden-and-dos-considerations">Bitcoin infrastructure burden and DoS considerations</h3>
+<h3 id="endpoint-authentication">endpoint authentication</h3>
+<h4 id="bitcoind_1">bitcoind</h4>
+<h4 id="spv">SPV</h4>
+<h4 id="block-explorers">block explorers</h4>
+<h3 id="unique-assignment">unique assignment</h3>
+<p>2^167, etc.</p>
+<h2 id="proving-ownership-of-the-ddo-example">proving ownership of the DDO example</h2>
+<p>???</p>
+<h3 id="resolving-ddo">resolving DDO</h3>
+<h3 id="verification-of-ownership">verification of ownership</h3>
+<h2 id="proving-ownership-of-the-control-key">proving ownership of the control key</h2>
+<p>???</p>
+<h3 id="background-signing-with-the-address-in-bitcoin">background: signing with the address in Bitcoin</h3>
+<p>and quantum-crypto considerations</p>
+<h3 id="external-ddos-may-be-signed">external DDOs may be signed</h3>
+<h3 id="cr-using-nonce">C/R using nonce</h3>
+<h4 id="creating-the-challenge">creating the challenge</h4>
+<h4 id="notes-on-channels">notes on channels</h4>
+<h4 id="example-verification-using-bitcoind-cli">example verification using bitcoind CLI</h4>
+<h3 id="923-identity-owner-authentication-and-verifiable-claims">9.2.3 Identity Owner Authentication and Verifiable Claims</h3>
+<h1 id="other-sections-from-did-spec-to-incorporate-into-the-outline">other sections from DID spec to incorporate into the outline</h1>
+<h2 id="93-authentication-service-endpoints">9.3 Authentication Service Endpoints</h2>
+<h2 id="94-non-repudiation">9.4 Non-Repudiation</h2>
+<h2 id="95-notification-of-ddo-changes">9.5 Notification of DDO Changes</h2>
+<h2 id="96-key-and-signature-expiration">9.6 Key and Signature Expiration</h2>
+<h2 id="97-key-revocation-and-recovery">9.7 Key Revocation and Recovery</h2>
+<h1 id="another-other-section-from-did-spec-10-privacy-considerations">another other section from DID spec: 10. Privacy Considerations</h1>
+<h2 id="101-requirements-of-did-method-specifications">10.1 Requirements of DID Method Specifications</h2>
+<h2 id="102-keep-personally-identifiable-information-pii-off-ledger">10.2 Keep Personally-Identifiable Information (PII) Off-Ledger</h2>
+<h2 id="103-did-correlation-risks-and-pseudonymous-dids">10.3 DID Correlation Risks and Pseudonymous DIDs</h2>
+<h2 id="104-ddo-correlation-risks">10.4 DDO Correlation Risks</h2>
+<h2 id="105-herd-privacy">10.5 Herd Privacy</h2>
+<h1 id="future-considerations">Future Considerations</h1>
+<h2 id="equivalence">Equivalence</h2>
+<h2 id="from-did-spec-114-time-locks-and-ddo-recovery">from DID spec: 11.4 Time Locks and DDO Recovery</h2>
+<p>Section 9.7 mentions one possible clever use of time locks to recover
+control of a DID after a key compromise. The technique relies on an
+ability to override the most recent update to a DDO with Proof of
+Control applied by an earlier version of the DDO in order to defeat
+the attacker.</p>
+<p>This protection depends on adding a <a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki#Abstract">time lock (see Bitcoin BIP
+65)</a>
+to protect part of the transaction chain, enabling a Proof of Control
+block to be used to recover control.</p>
+<p>We plan to add support for time locks in a future version of this
+specification.</p>
+<h2 id="115-smart-signatures">11.5 Smart Signatures</h2>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -8,8 +8,10 @@ main:
     url: /organizations/
   - title: "Timeline"
     url: /timeline/
-  - title: "MkDocs"
-    url: /mkdocs-output/
+  - title: "MD-POC"
+    url: /mkdocs/poc/output/
+  - title: "MD-YEST"
+    url: /mkdocs/yest/output/
   - title: "Static"
     url: /static/
   - title: "Sample Posts"

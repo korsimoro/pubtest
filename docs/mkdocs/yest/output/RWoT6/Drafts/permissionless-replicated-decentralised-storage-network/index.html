@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Permissionless, replicated, decentralised storage network for storing verifiable credentials - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Permissionless, replicated, decentralised storage network for storing verifiable credentials", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Common Patterns of Storing Decentralised Credentials", url: "#common-patterns-of-storing-decentralised-credentials" },
+              {title: "Features", url: "#features" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="permissionless-replicated-decentralised-storage-network-for-storing-verifiable-credentials">Permissionless, replicated, decentralised storage network for storing verifiable credentials</h1>
+<p>Authors: Kulpreet Singh, Joao Santos, Nate Otto, Ron Kreutzer</p>
+<h2 id="abstract">Abstract</h2>
+<p>We identify common usage patterns of storing verifiable credentials
+and try to separate them in to two groups where the data has to be
+stored on an active agent or can be stored on a permissionless,
+replicated and decentralised storage network. We then identify a set
+of features that we would like such a storage network to provide. We
+don't believe that all these features are necessarily compatible and
+should all be provided, instead we claim that a number of different
+storage networks are possible that support different combinations of
+these features.</p>
+<h2 id="introduction">Introduction</h2>
+<p>A permissionless, replicating, decentralised storage network is a peer
+to peer network that stores verifiable credentials so that these
+credentials are always available, publicly readable and allow anyone
+to join and obtain a replica of the entire data set stored on the
+network. We envision that each node in this decentralised network can
+choose to store data for a one or more Dapps, so that not all nodes
+store data for all Dapps.</p>
+<p>In the next sections we identify common patterns used by Dapps to
+store verifiable credentials and identify if they need an active agent
+for storage or if a permissionless, decentralised storage network is
+needed. Finally, we identify a set of features that such a storage
+network might want to support.</p>
+<h2 id="common-patterns-of-storing-decentralised-credentials">Common Patterns of Storing Decentralised Credentials</h2>
+<p>In this section we identify common patterns of using storage of
+verifiable credentials among three projects - dClaims, Pillar Project,
+Open Badges and Chlu. We then identify if each of the identified
+patterns 1) requires an active agent to store the credentials, 2)
+requires a permissionless, decentralised storage network or 3) can be
+provided by both approaches.</p>
+<h3 id="storing-protected-personal-information">Storing Protected Personal Information</h3>
+<p>Storing protected personal information and mediating access to the
+same requires that an active agent running on a device controlled by
+an entity or explicitly run on behalf of the entity provides the
+access control. If an application needs to store PPI data, we believe
+they should provide access to these through an active agent that can
+adhere to entity selected authorisation policies.</p>
+<h3 id="mediated-access">Mediated access</h3>
+<p>If any data requires that an authorisation policy be strictly
+respected then, just like the last section, the data should be access
+through an active agent.</p>
+<h3 id="no-mediated-access-censorship-resistant-verifiable-credentials">No mediated access, censorship resistant verifiable credentials</h3>
+<p>[TODO: This can be highlighted much earlier]</p>
+<p>If data has to be publicly accessible without a mediated access, then
+such data can be stored on a public, permissionless decentralised
+storage network. In fact, if the verifiable credential is being
+created for an entity by another entity, for example a claim written
+by a reader about an article, and it needs to be censorship resistant,
+then we have to store it in a permissionless decentralised storage
+network.</p>
+<h3 id="revoking-access-to-verifiable-credentials">Revoking access to verifiable credentials</h3>
+<p>In cases where an entity wants to revoke access to a verifiable
+credential, we think agents will provide a stronger guarantee to be
+able to do so. Using decentralised storage network, revoking access is
+possible through revocation lists, but the trust that no nodes on the
+network misbehave and ignore the revocation lists.</p>
+<h3 id="share-credentials-with-a-community">Share credentials with a community</h3>
+<p>[TODO: This can work with agents. Should we remove this case?]</p>
+<p>Another use case, similar to the one above is sharing verifiable
+credentials within a community, where other members are also sharing
+credentials to build a network of trust relations. In this case, other
+entities in the community need to access the verifiable credentials
+even if the entities that shared the verifiable credentials left with
+their device.</p>
+<h3 id="running-services">Running services</h3>
+<p>Agents need to be run somewhere and the cost of running them has to be
+paid by somebody. In some use cases, for example a vendor reviews or
+claims made by readers of online news sites, running an agent or hub
+to manage access to decentralised claims can be difficult to provide.</p>
+<p>Agents can however provide much stronger guarantees for revoking
+access to a decentralised claims, which a replicated decentralised
+storage network can only do through revocation lists.</p>
+<h2 id="features">Features</h2>
+<p>In this section we identify a set of features that a permissionless,
+replicated, decentralised, storage network can support. We realise
+that some of these features might be incompatible with each other, and
+we invite feedback from the community about any features that seem
+problematic or if there any features we missed out.</p>
+<h3 id="verification">Verification</h3>
+<p>Each node that stores a verifiable credential has to verify the
+credential before storing it. This prevents nodes being abused to
+store data that is not relevant to the network.</p>
+<h3 id="loadable-modules-for-verification">Loadable Modules for Verification</h3>
+<p>Nodes can choose to support an application by loading the verification
+module for the application. This allows the same node to support a
+number of applications and at the same time not require the node to
+support all applications.</p>
+<h3 id="availability">Availability</h3>
+<p>The data stored on the storage network should be always available, as
+long as at least one node is online. This can be solved in a number of
+ways, and we don't suggest any single solution. For example, all nodes
+on the network can store all the verifiable credentials that were ever
+stored or we can choose a system where each credential is stored with
+a k replicas. [TODO: Use p2p terminology here].</p>
+<h3 id="nodes-can-choose-to-not-provide-access-to-all-data">Nodes can choose to not provide access to all data</h3>
+<p>Following from the above point, some nodes might want to only store
+data from a subset of issuers, and still be a member of the node. For
+example, nytimes could choose to only store claims written against
+their articles.</p>
+<h3 id="versioning-and-updates">Versioning and Updates</h3>
+<p>The network should support ability to publish and discover updates to
+a verifiable claim. This is a hard problem to solve and our suggested
+solution is to use full nodes and to use hash pointers from a new
+version of a credential to the old version. This will assure that a
+node can quickly check if a new version of a credential is available
+in and then serve the new version.</p>
+<p>[IMAGE]</p>
+<h3 id="reciprocity-no-free-riders">Reciprocity - No free riders</h3>
+<h3 id="identify-bad-actors">Identify bad actors</h3>
+<p>Nodes should be able to identify if any nodes are not serving the
+correct data. Some full nodes will have the entire data set and they
+can police other nodes to check if they are serving correct data. In
+case, a node is sending incorrect data, the policing nodes should be
+able to call out the bad nodes along with a proof of the incorrect
+data served.</p>
+<h3 id="freshness">Freshness</h3>
+<p>Node should be able to specify the lifetime they are willing to store
+data for. This is useful in the dclaims use case. Claims written
+against x years old articles might not be of interest to the
+community.</p>
+<h3 id="synchronisation">Synchronisation</h3>
+<p>When a new node starts it should be able to fetch the entire data
+stored on the network. This is similar to bitcoin full node obtaining
+the entire blockchain.</p>
+<h3 id="prove-full-node-status">Prove full node status</h3>
+<p>Full nodes should be able to prove that they are storing the entire
+data set, and anyone should be able to check the same. Our proposal is
+that a "full node verifier" look at the blockchain for all anchors
+published there and then fetch verifiable credentials from a given
+node. If the node is able to provide all verifiable credentials then
+it is a full node.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

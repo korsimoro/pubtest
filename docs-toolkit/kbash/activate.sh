@@ -10,8 +10,8 @@ export PD_DOCS=$PD/docs
 export PD_DATA=$PD/data
 
 # change this if you did not clone into ~/.kbash
-#. ~/.kbash/boot.sh\
-. $PD/.kbash/boot.sh\
+#. $PD/.kbash/boot.sh\
+. ~/.kbash/boot.sh\
     "pd"  \
     "PD"  \
     ""            \

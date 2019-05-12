@@ -19,8 +19,10 @@ run() {
   if [ -z "$RELATIVE_PATH" ]; then
     error "usage pd install-data-file relative-path"
   else
-    mkdir -p $(dirname "$TARGET/$RELATIVE_PATH" )
-    cp $SOURCE/$RELATIVE_PATH $TARGET/$RELATIVE_PATH
-    report_progress "cp" "$RELATIVE_PATH"
+    TARGET_DIR=$(dirname "$TARGET/$RELATIVE_PATH")
+    TARGET_FILE=$(basename "$TARGET/$RELATIVE_PATH"  )
+    mkdir -p $TARGET_DIR
+    cp $SOURCE/$RELATIVE_PATH $TARGET_DIR/$TARGET_FILE
+    report_progress "cp" "$SOURCE/$RELATIVE_PATH -> $TARGET_DIR/$TARGET_FILE"
   fi
 }

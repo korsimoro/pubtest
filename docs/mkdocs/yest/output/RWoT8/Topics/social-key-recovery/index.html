@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A New Approach to Social Key Recovery - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "A New Approach to Social Key Recovery", url: "#_top", children: [
+              {title: "by Christopher Allen &amp; Mark Friedenbach", url: "#by-christopher-allen-mark-friedenbach" },
+              {title: "Milestones", url: "#milestones" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="a-new-approach-to-social-key-recovery">A New Approach to Social Key Recovery</h1>
+<h2 id="by-christopher-allen-mark-friedenbach">by Christopher Allen &amp; Mark Friedenbach</h2>
+<p>The goal of social key recovery is for the user to specify groups of
+individuals that together possess the ability to recover the root
+secret of a wallet. A good social key recovery protocol should not
+just reflect what cryptographic primitives happen to be available for
+use, but rather instead should be designed to correspond with the
+structure of trust in the user’s social network while balancing the
+technical tradeoffs involved under the hood.</p>
+<p>The most popular social key recovery algorithm, Shamir Secret Sharing,
+is considered information-theoretically secure. That is, any
+combination of shares less than the necessary threshold convey
+absolutely no information about the secret. However, all secrets have
+equal weight and once a sufficient threshold is achieved the secret
+can be reconstructed. In social contexts this can cause a number of
+problems in common real-world scenarios. In addition, Shamir Secret
+Sharing has a history of being naively implemented including a number
+of serious vulnerabilities.</p>
+<p>To quote Bitcoin Core Developer Greg Maxwell:</p>
+<blockquote>"I think Shamir Secret Sharing (and a number of other
+things, RNGs for example), suffer from a property where they are just
+complex enough that people are excited to implement them often for
+little good reason, and then they are complex enough (or have few
+enough reasons to invest significant time) they implement them
+poorly.”</blockquote>
+
+<p>Ideally an implementation of social key recovery should balancing
+numerous competing goals:</p>
+<ul>
+<li>
+<p>Key recovery should require approval of many individuals so as to
+minimize potential for theft or deliberate key compromise by a small
+malicious subset of users.</p>
+</li>
+<li>
+<p>Key recovery should require the smallest acceptable threshold so as
+to prevent loss of funds from destroyed/lost/inaccessible shares.</p>
+</li>
+<li>
+<p>Key recovery requiring interaction with too many individuals is
+undesirable, as each interaction must involve re-authentication at
+the inconvenience of all involved.</p>
+</li>
+<li>
+<p>Social trust is not uniformly distributed among different social
+circles, such as friends, business acquaintances, and family.
+Individuals may be fungible within a certain circle of trust, but
+not more broadly.  A “family member” is not the same as a “business
+partner.”</p>
+</li>
+</ul>
+<p>For example, Alice might want a minimum of three people to sign off on
+a key recovery attempt, with individuals chosen among her friends,
+family, and close business partners.  More than 3 would be
+inconvenient and risk loss of funds, while any combination of less
+than 3 individuals would not be trustworthy. However some combinations
+of 3 individuals drawn from this entire set would not be reliable: she
+wouldn’t want her 3 business partners alone having control over her
+funds, as they may act maliciously in their shared business interests
+and not for her.</p>
+<p>One solution for Alice is to require 3 individuals for social key
+recovery, but also require that these three individuals include AT
+LEAST one friend and one family member.</p>
+<p>This can be accomplished by constructing a three-way linear key split
+with shares X, Y, and Z. X is given to family members, Y is given to
+friends, and Z is further split using 3-of-N Shamir secret sharing,
+with unique shares given to each family member, friend, and trusted
+business partner. Thus each family member knows X and one share of Z,
+each friend knows Y and one share of Z, and business partners only
+know their share of Z. As the original key is constructed as X+Y+Z,
+all three must be reconstructed, which requires the assistance of at
+least one family member, at least one friend, and a total of three
+individuals drawn from all three sets.</p>
+<p>We suggest calling these separate groups of individuals “circles,” and
+we suggest designing a social key recovery system where users are
+allowed to specify participation thresholds for the recovery of the
+key split associated with each circle (3 “friends” are required, 2
+“business partners”, etc.), and then also specify which circle
+thresholds are required in disjunctive normal form, e.g. “Friends AND
+Family” OR “Family AND Coworkers”. Under the hood this is translated
+into a set of linear key splits and Shamir secret shares that are
+encrypted and transmitted to each participant.</p>
+<p>Longer term on the hardware side, an HSM with secure I/O for user
+authentication could be used to perform the social key recovery. A
+potential early place to implement this is the HTC Exodus
+cryptocurrency phone. When a user attempts key recovery, they present
+a fresh set of identity keys to their friend/family/coworker/etc. and
+authenticate themselves to the individual. If the individual is
+convinced to participate, they authorize their device to reveal their
+shares, which is done by decrypting on the HSM and then re-encrypting
+to the temporary identity keys of the user’s new or wiped device. When
+a user does this with enough shares to reconstruct the original key,
+their device automatically does so and retires the temporary identity,
+replacing with the recovered master key.</p>
+<p>In terms of cryptographic implementation, this requires combining
+Shamir secret sharing with linear key splits, and then building a
+social key recovery API centered around the recovery protocol rather
+than the cryptographic primitives. It will also require some work in
+defining serialization formats and web-of-trust public key
+infrastructure for encryption and authentication of the key splits
+both at the time of distribution and recovery, as well as some
+thoughts on best ways to store keyshares offline.</p>
+<h2 id="milestones">Milestones</h2>
+<p>Stage 1 would be a review of newer academic papers on
+improvements to Shamir Secret Sharing as well as linear key
+splits. </p>
+<p>Stage 2 would be a specific proposal that we can submit to
+arXiv and/or academic conferences regarding our specific new proposal.</p>
+<p>The remaining stages are code. </p>
+<p>In Stage 3, a preliminary secure implementation of the underlying
+cryptography for this proposal such that we can get code review by
+various parties.</p>
+<p>In Stage 4, we reqiest a formal independent review of the
+code by an outside party. </p>
+<p>In Stage 5, we implement a UI version of
+this for the iPhone. </p>
+<p>None of these stages would be for secure hardware such as for
+TrustZone (HTC) or TinyPython for Ledger, or other secure hardware,
+but would include architectural considerations for such in the future.</p>
+<h2 id="references">References</h2>
+<p>Shamir, Adi (1979). “How to share a secret”. Communications of the ACM. 22 (11): 612–613. doi:10.1145/359168.359176. <a href="https://cs.jhu.edu/~sdoshi/crypto/papers/shamirturing.pdf">https://cs.jhu.edu/~sdoshi/crypto/papers/shamirturing.pdf</a></p>
+<p>Beimel A. (2011) Secret-Sharing Schemes: A Survey. In: Chee Y.M. et
+al. (eds) Coding and Cryptology. IWCC 2011. Lecture Notes in Computer
+Science, vol 6639. Springer, Berlin, Heidelberg
+<a href="https://www.cs.bgu.ac.il/~beimel/Papers/Survey.pdf">https://www.cs.bgu.ac.il/~beimel/Papers/Survey.pdf</a></p>
+<p>Rait, Seth (2016). “Shamir Secret Sharing and Threshold Cryptography”
+<a href="https://sethrait.com/Shamir-Secret-Sharing-and-Threshold-Cryptography">https://sethrait.com/Shamir-Secret-Sharing-and-Threshold-Cryptography</a></p>
+<p>Dautrich J.L., Ravishankar C.V. (2012) “Security Limitations of Using
+Secret Sharing for Data Outsourcing. In: Cuppens-Boulahia” N., Cuppens
+F., Garcia-Alfaro J. (eds) Data and Applications Security and Privacy
+XXVI. DBSec 2012. Lecture Notes in Computer Science, vol
+7371. Springer, Berlin, Heidelberg
+<a href="http://www.cs.ucr.edu/~ravi/Papers/DBConf/secret_sharing.pdf">http://www.cs.ucr.edu/~ravi/Papers/DBConf/secret_sharing.pdf</a>)</p>
+<p>Komargodski I., Naor M., Yogev E. (2016) How to Share a Secret,
+Infinitely. In: Hirt M., Smith A. (eds) Theory of Cryptography. TCC
+2016. Lecture Notes in Computer Science, vol 9986. Springer, Berlin,
+Heidelberg <a href="https://eprint.iacr.org/2016/194.pdf">https://eprint.iacr.org/2016/194.pdf</a></p>
+<p>Coron JS., Prouff E., Roche T. (2013) On the Use of Shamir’s Secret
+Sharing against Side-Channel Analysis. In: Mangard S. (eds) Smart Card
+Research and Advanced Applications. CARDIS 2012. Lecture Notes in
+Computer Science, vol 7771. Springer, Berlin, Heidelberg
+<a href="https://www.ssi.gouv.fr/uploads/IMG/pdf/aesshamir_Coron_Prouff_Roche.pdf">https://www.ssi.gouv.fr/uploads/IMG/pdf/aesshamir_Coron_Prouff_Roche.pdf</a></p>
+<p>Blakley, G.R. (1979). “Safeguarding Cryptographic Keys”. Managing Requirements Knowledge, International Workshop on (AFIPS). 48: 313–317. doi:10.1109-/AFIPS.1979.98. https://pdfs.semanticscholar.org/32d2/1ccc21a807627fcb21ea829d1acdab23be12.pdf</p>
+<p>Feldman, Paul (1987) “A practical scheme for non-interactive
+Verifiable Secret Sharing” Proceedings of the 28th Annual Symposium on
+Foundations of Computer Science
+<a href="https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf">https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf</a></p>
+<p>Harn, e, Changlu L (2009). “Detection and identification of cheaters
+in (t, n) secret sharing scheme” Des. Codes Cryptography 52, 1 (July
+2009), 15-24. DOI=10.1007/s10623-008-9265-8
+<a href="http://dx.doi.org/10.1007/s10623-008-9265-8">http://dx.doi.org/10.1007/s10623-008-9265-8</a></p>
+<p>Schoenmakers, Berry (1999) “A Simple Publicly Verifiable Secret
+Sharing Scheme and its Application to Electronic Voting” Advances in
+Cryptology-CRYPTO’99, volume 1666 of Lecture Notes in Computer
+Science, pages 148-164, Berlin,
+1999. Springer-Verlag. <a href="https://www.win.tue.nl/~berry/papers/crypto99.pdf">https://www.win.tue.nl/~berry/papers/crypto99.pdf</a></p>
+<p>Rusnak, P, et. al (2018) “SLIP-0039 : Shamir’s Secret-Sharing for
+Mnemonic Codes” Satoshi Labs
+Github. <a href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">https://github.com/satoshilabs/slips/blob/master/slip-0039.md</a></p>
+<p>Stack Exchange (2016) “Why is Shamir Secret Sharing not secure against
+active adversaries out-of-the-box?” Stack Exchange
+<a href="https://crypto.stackexchange.com/questions/41994/why-is-shamir-secret-sharing-not-secure-against-active-adversaries-out-of-the-bo">https://crypto.stackexchange.com/questions/41994/why-is-shamir-secret-sharing-not-secure-against-active-adversaries-out-of-the-bo</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

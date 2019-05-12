@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Requirements for DIDs (Decentralized Identifiers) - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Requirements for DIDs (Decentralized Identifiers)", url: "#_top", children: [
+              {title: "26 June 2016", url: "#26-june-2016" },
+          ]},
+          {title: "Introduction", url: "#introduction", children: [
+          ]},
+          {title: "Summary of Requirements", url: "#summary-of-requirements", children: [
+              {title: "Principles", url: "#principles" },
+              {title: "Design Goals", url: "#design-goals" },
+              {title: "Public and Private DIDs", url: "#public-and-private-dids" },
+          ]},
+          {title: "Registration and Discovery Architecture", url: "#registration-and-discovery-architecture", children: [
+              {title: "Approach 1: Peer Ledgers", url: "#approach-1-peer-ledgers" },
+              {title: "Approach 2: Addressable Ledgers", url: "#approach-2-addressable-ledgers" },
+              {title: "Approach 3: Meta-Consensus Protocol", url: "#approach-3-meta-consensus-protocol" },
+              {title: "Approach 4: Index Ledger aka \u201cDID Registry\u201d", url: "#approach-4-index-ledger-aka-did-registry" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="requirements-for-dids-decentralized-identifiers">Requirements for DIDs (Decentralized Identifiers)</h1>
+<h3 id="26-june-2016">26 June 2016</h3>
+<h4 id="by-drummond-reed-and-les-chasen-respect-network">by Drummond Reed and Les Chasen, Respect Network</h4>
+<h1 id="introduction">Introduction</h1>
+<p>Respect Network is conducting a research project for the U.S. Department of Homeland Security, HSHQDC-16-C-00061, to analyze the applicability of blockchain technologies to a decentralized identifier system. Our thesis is that blockchains, or more generically distributed ledgers, are a potentially powerful new tool for “identity roots” — the starting points for an Internet identity. However “blockchain identity” may not fully address the core security and privacy principles needed in a complete identity system. In this case DIDs — Decentralized Identifiers rooted on a distributed ledger — may end up being a foundational building block for higher level identity management solutions.</p>
+<p>During this phase of our work, we interviewed industry experts in identity and blockchain technology, both in informal discussions at major identity conferences as well as in-depth interviews. This included a series of sessions on DIDs at the ID2020 Design Workshop held in New York City on May 21-22. Attendees included Drummond Reed, Les Chasen, Christopher Allen, Manu Sporny, Markus Sabadello, Juan Bennet, Ryan Shea, Christian lundkvist, Rouven Heck, and Greg Slepak.</p>
+<p>From those sessions and our interviews, we have gathered the following set of requirements for DIDs.</p>
+<h1 id="summary-of-requirements">Summary of Requirements</h1>
+<h2 id="principles">Principles</h2>
+<p>The following principles were originally drafted by the XDI.org Registry Working Group (XRWG) to describe their requirements for an XDI registry. Our discussions have lead us to believe they apply to DID as well, so we have included them as guiding principles for design.</p>
+<ul>
+<li><strong>Maximum Interoperability.</strong> DID infrastructure must conform to open standards and should enable any set of users and communities to discover and interoperate with each other.</li>
+<li><strong>Maximum Decentralization.</strong> DID infrastructure should be designed to minimize central points of control and attack.</li>
+<li><strong>Critical Infrastructure.</strong> DID infrastructure must provide for a high level of reliability, stability, scalability, security, sustainability and other requirements typical of critical internet infrastructure.</li>
+<li><strong>Sovereign Identity.</strong> DID infrastructure should enable any principal (person or organization) to fully administer the principal’s own set of DIDs without the need to rely on an external administrative authority.</li>
+<li><strong>Neutrality.</strong> DID infrastructure should be available to all members of the public and should not discriminate against any party that wishes to use it for any lawful purpose.</li>
+</ul>
+<h2 id="design-goals">Design Goals</h2>
+<p>At the ID2020 Design Workshop, there was broad consensus on the following two major goals for the DID specifications:</p>
+<ol>
+<li>
+<p><strong>DID:</strong> Define the structure of a universally unique system-independent discoverable identifier (a decentralized identifier) that can serve as the key to a value</p>
+</li>
+<li>
+<p><strong>DID Object:</strong> Define the structure of a value for that key that can meet four requirements:</p>
+<ol>
+<li>
+<p>Provide cryptographic proof of:</p>
+<ol>
+<li>
+<p>Ownership of the DID</p>
+</li>
+<li>
+<p>Permission to update the DID object</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Provide pointers to:</p>
+<ol>
+<li>
+<p>Other sources of claims</p>
+</li>
+<li>
+<p>Other peer DIDs</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>The combination of a DID and its associated DID object is called a <strong>DID Registration</strong>. From the standpoint of <a href="https://en.wikipedia.org/wiki/Claims-based_identity"><em>claims-based identity</em></a>, a DID registration is “the genesis claim” for an identity.</p>
+<h2 id="public-and-private-dids">Public and Private DIDs</h2>
+<p>In developing DID architecture, it has become clear that DIDs will exist in two different contexts: public and private. A <strong>Public DID</strong> is discoverable and enables a high degree of correlation (i.e., it is associated with “public” identity, or what Kim Cameron in the <a href="https://www.identityblog.com/stories/2005/05/13/TheLawsOfIdentity.pdf"><em>Laws of Identity</em></a> calls an <strong>Omnidirectional Identifier</strong>).</p>
+<p>A <strong>private DID</strong> is a DID registration that is shared just between two parties, or a limited number of parties. It is intentionally not discoverable, or discoverable only in a limited context, so that correlation can be controlled (i.e., it's what Kim Cameron in the <a href="https://www.identityblog.com/stories/2005/05/13/TheLawsOfIdentity.pdf"><em>Laws of Identity</em></a> calls a <strong>Unidirectional Identifier</strong>).</p>
+<h1 id="registration-and-discovery-architecture">Registration and Discovery Architecture</h1>
+<p>At the ID2020 Design Workshop, there was considerable exploration and debate about the most desirable way to perform registration and discovery of DID objects via blockchains, distributed ledgers, or DHTs. For the purposes of this document, these different DID database options will be referred to as “ledgers”. Discussion revolved around five specific ledgers:</p>
+<ul>
+<li>
+<p>Bitcoin</p>
+</li>
+<li>
+<p>Ethereum</p>
+</li>
+<li>
+<p>Stellar</p>
+</li>
+<li>
+<p>IPFS</p>
+</li>
+<li>
+<p>Sovrin</p>
+</li>
+</ul>
+<p>Following is a summary of four major approaches discussed by the group.</p>
+<h2 id="approach-1-peer-ledgers"><strong>Approach 1: Peer Ledgers</strong></h2>
+<h3 id="approach">Approach</h3>
+<p>A DID conforming to standard DID specifications may be registered in any qualified ledger (i.e., any ledger capable of accepting DID registration). The structure of a DID and DID object would be logically the same on any qualified ledger. Each qualified ledger would define its own way of registering a DID and storing a DID object so a client can look up and return the associated DID object and perform updates as governed by the access control policy in the DID object.</p>
+<h3 id="advantages">Advantages</h3>
+<ul>
+<li>
+<p>DIDs are atomic and portable.</p>
+</li>
+<li>
+<p>Principals can register DIDs in the ledger of their choice.</p>
+</li>
+<li>
+<p>No consensus is required across ledgers.</p>
+</li>
+<li>
+<p>Each ledger can optimize the implementation of a DID registration for its format/protocol.</p>
+</li>
+<li>
+<p>Lookups can be very efficient on each specific ledger.</p>
+</li>
+</ul>
+<h3 id="disadvantages">Disadvantages</h3>
+<ul>
+<li>
+<p>Discovery of a DID requires searching across all possible ledgers; there is no known starting point.</p>
+</li>
+<li>
+<p>There is no clear source of authority if the same DID registration is registered on multiple ledgers.</p>
+</li>
+<li>
+<p>DID impersonation attacks are difficult or impossible to prevent.</p>
+</li>
+</ul>
+<h2 id="approach-2-addressable-ledgers"><strong>Approach 2: Addressable Ledgers</strong></h2>
+<h3 id="approach_1">Approach</h3>
+<p>Unify all qualified ledgers into a global namespace in which each qualified ledger is addressable using a prefix. There are two options for the prefix:</p>
+<p>Option #1: Use a URI or URN scheme:</p>
+<blockquote>
+<p>urn:btc:&lt;ledger-specific-address&gt;</p>
+</blockquote>
+<p>Option #2: Use a meta-ledger that assigns DIDs to other ledgers. DIDs become hierarchical pairs in the format:</p>
+<blockquote>
+<p>&lt;ledger-location-did&gt;&lt;ledger-specific-address&gt;
+ did:33ad7beb-1abc-4a26-b892-466df4379a51/&lt;ledger-specific-address&gt;</p>
+</blockquote>
+<h3 id="advantages_1">Advantages</h3>
+<ul>
+<li>
+<p>Principals can make DID registrations in the ledger of their choice.</p>
+</li>
+<li>
+<p>DID impersonation attacks are impossible because any DID hierarchical pair is unique and only registered once.</p>
+</li>
+<li>
+<p>No direct consensus is required across ledgers.</p>
+</li>
+<li>
+<p>Each ledger can optimize the implementation of a DID registration for its format.</p>
+</li>
+<li>
+<p>Lookups can efficiently follow a two-level path, the first leg being pre-cached and the second leg being very efficient on each specific ledger.</p>
+</li>
+</ul>
+<h3 id="disadvantages_1">Disadvantages</h3>
+<ul>
+<li>
+<p>DIDs become location-specific so portability must be provided using semantic equivalence statements.</p>
+</li>
+<li>
+<p>If a meta-ledger is used, community consensus must be reached on implementing and maintaining the meta ledger.</p>
+</li>
+<li>
+<p>If a meta-ledger is not used, all relying parties must keep track of all ledger prefix addresses.</p>
+</li>
+</ul>
+<h2 id="approach-3-meta-consensus-protocol"><strong>Approach 3: Meta-Consensus Protocol</strong></h2>
+<h3 id="approach_2">Approach</h3>
+<p>All participating ledgers implement a meta-consensus protocol that ensures uniqueness of a DID across all participating ledgers.</p>
+<h3 id="advantages_2">Advantages</h3>
+<ul>
+<li>
+<p>DIDs are atomic and portable.</p>
+</li>
+<li>
+<p>Principals can register DIDs in the ledger of their choice.</p>
+</li>
+<li>
+<p>DID impersonation attacks are impossible because a DID can only be registered once.</p>
+</li>
+<li>
+<p>Each ledger can optimize the implementation of DID for its format.</p>
+</li>
+<li>
+<p>Lookups can be very efficient on each specific ledger.</p>
+</li>
+</ul>
+<h3 id="disadvantages_2">Disadvantages</h3>
+<ul>
+<li>
+<p>DID transactions require direct consensus across all participating ledgers — a nearly impossible burden for each of the ledgers.</p>
+</li>
+<li>
+<p>Discovery of a DID requires searching across all possible ledgers.</p>
+</li>
+</ul>
+<h2 id="approach-4-index-ledger-aka-did-registry"><strong>Approach 4: Index Ledger aka “DID Registry”</strong></h2>
+<h3 id="approach_3">Approach</h3>
+<p>Create a new DID index ledger that maps a unique DID to any ledger or repository that can store a DID object. The DID itself is a UUID or similar identifier and the value is either:</p>
+<ol>
+<li>
+<p>A DID object, OR</p>
+</li>
+<li>
+<p>A pointer to a DID object on another ledger or repository.</p>
+</li>
+</ol>
+<h3 id="advantages_3">Advantages</h3>
+<ul>
+<li>
+<p>DIDs are atomic and portable.</p>
+</li>
+<li>
+<p>Principals can register DID objects in the ledger or repository of their choice.</p>
+</li>
+<li>
+<p>DID impersonation attacks are impossible because a DID can only be registered once.</p>
+</li>
+<li>
+<p>Each ledger can optimize the implementation of a DID object for its format.</p>
+</li>
+<li>
+<p>Discovery is easy and authoritative because it always starts with the index ledger.</p>
+</li>
+<li>
+<p>Lookups are efficient due to following a two-level path, the first leg being optimized for the index ledger and the second leg optimized for each specific ledger or repository.</p>
+</li>
+</ul>
+<h3 id="disadvantages_3">Disadvantages</h3>
+<ul>
+<li>Community consensus must be reached on implementing and maintaining an index ledger.</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

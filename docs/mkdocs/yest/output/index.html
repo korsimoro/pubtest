@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="None">
+    
+    
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>RWoT DIR Launchpad</title>
+    <link href="./css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="./css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap-3.3.7.min.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    
+      <script src="./js/elasticlunr.min.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '.';
+      var is_top_frame = (window === window.parent);
+        
+        var pageToc = [
+          {title: "Yes Deployment MkDocs", url: "#_top", children: [
+              {title: "Commands", url: "#commands" },
+              {title: "Project layout", url: "#project-layout" },
+          ]},
+        ];
+
+    </script>
+    <script src="./js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+<nav class="navbar wm-page-top-frame">
+  <div class="container-fluid wm-top-container">
+    
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <form class="dropdown wm-vcentered" id="wm-search-form" action="./search.html">
+        
+        <button id="wm-search-show" class="btn btn-sm btn-default" type="submit"
+          ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+        <div class="input-group input-group-sm wm-top-search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
+          <span class="input-group-btn" role="search">
+            
+            <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul id="mkdocs-search-results" class="dropdown-menu dropdown-menu-right"></ul>
+            <button id="wm-search-go" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    
+    <div class="wm-top-tool wm-vcenter pull-right wm-small-left">
+      <button id="wm-toc-button" type="button" class="btn btn-sm btn-default wm-vcentered"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+    </div>
+
+    
+    
+
+    
+    <a href="" class="wm-top-brand wm-top-link wm-vcenter">
+      
+      <div class="wm-top-title">
+        RWoT DIR Launchpad<br>
+        
+      </div>
+    </a>
+  </div>
+</nav>
+
+  <div id="main-content" class="wm-page-top-frame">
+    
+<nav class="wm-toc-pane">
+  
+  <ul class="wm-toctree">
+        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Yes Deployment MkDocs</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="LICENSE-CC-BY-4.0/" class="wm-article-link wm-toc-text">LICENSE-CC-BY-4.0.md</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT1</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT1/" class="wm-article-link wm-toc-text">RWoT1 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Docs/" class="wm-article-link wm-toc-text">Event Documents</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/1-introduction/" class="wm-article-link wm-toc-text">1 introduction</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/2-top-topics/" class="wm-article-link wm-toc-text">2 top topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/3-table-topics/" class="wm-article-link wm-toc-text">3 table topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/4-dayonesummary/" class="wm-article-link wm-toc-text">4 dayonesummary</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/5-insights-and-building-trust/" class="wm-article-link wm-toc-text">5 insights and building trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/6-presentations/" class="wm-article-link wm-toc-text">6 presentations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/7-where-do-we-go-from-here/" class="wm-article-link wm-toc-text">7 where do we go from here</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT1/Docs/plenaries/8-table-seven/" class="wm-article-link wm-toc-text">Table Seven Topics</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Docs/supporting-files/" class="wm-article-link wm-toc-text">Supporting Files</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/Decentralized-Public-Key-Infrastructure-CURRENT/" class="wm-article-link wm-toc-text">Decentralized Public Key Infrastructure</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/Distributed-Permanent-Identifier-Registry/" class="wm-article-link wm-toc-text">Distributed Permanent Identifier Registry</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/detecting-key-misuse-on-a-blockchain/" class="wm-article-link wm-toc-text">Detecting Key Misuse on a Blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/rebranding-web-of-trust/" class="wm-article-link wm-toc-text">Rebranding the Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/satisfying-real-world-use-cases/" class="wm-article-link wm-toc-text">Opportunities Created by the Web of Trust for Controlling and Leveraging Personal Data</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/smart-signatures/" class="wm-article-link wm-toc-text">Smart Signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/whats-the-next-step/" class="wm-article-link wm-toc-text">Creating the New World of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Drafts/DPKI-OBSOLETE/" class="wm-article-link wm-toc-text">DPKI-Obsolete</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Final/dpki/" class="wm-article-link wm-toc-text">Dpki</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Final/rebranding-web-of-trust/" class="wm-article-link wm-toc-text">Rebranding web of trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Final/satisfying-real-world-use-cases/" class="wm-article-link wm-toc-text">Satisfying real world use cases</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Final/smart-signatures/" class="wm-article-link wm-toc-text">Smart signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Final/whats-the-next-step/" class="wm-article-link wm-toc-text">Whats the next step</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/" class="wm-article-link wm-toc-text">Topics & Advance Readings - RWoT1</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/AvoidingConfusedDeputyAttackUsingCapabilities/" class="wm-article-link wm-toc-text">AvoidingConfusedDeputyAttackUsingCapabilities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Decentralized-Authentication-with-Blockchain-Auth/" class="wm-article-link wm-toc-text">Decentralized Authentication with Blockchain Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/DecentralizedCooperationNeedsDecentralizedReputation/" class="wm-article-link wm-toc-text">Decentralized Cooperation needs Decentralized Reputation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Distributed-Trust-Systems-and-the-Kenyesian-Beauty-Contest/" class="wm-article-link wm-toc-text">Distributed Trust Systems and the Kenyesian Beauty Contest</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/DistributedMulti-ledgerModelForFinancialIndustry/" class="wm-article-link wm-toc-text">Distributed multi-ledger model for financial industry</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Distributed_Receptor-Based_Computing/" class="wm-article-link wm-toc-text">Distributed Receptor-Based Computing</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/FirstEncountersWithPGP/" class="wm-article-link wm-toc-text">First Encounters with PGP</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Five-Desired-WoT-Features/" class="wm-article-link wm-toc-text">Five Desirable Features for the Next Generation Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/How-Not-to-build-an-Orwellian-reputation-system/" class="wm-article-link wm-toc-text">How Not to build and Orwellian reputation system</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Identity-Property-Simulation/" class="wm-article-link wm-toc-text">rebooting-the-web-of-trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Identity_Guidance_and_Situational_Awareness/" class="wm-article-link wm-toc-text">Identity Guidance and Situational Awareness</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Key-revokation-of-lost-and-stolen-keys/" class="wm-article-link wm-toc-text">Key revocation of lost and stolen keys</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/LICENSE/" class="wm-article-link wm-toc-text">LICENSE</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Principle-of-Relativity-for-WoT/" class="wm-article-link wm-toc-text">Principle of Relativity for WoT</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/ReputationAndTheRealWorld/" class="wm-article-link wm-toc-text">ReputationAndTheRealWorld</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Schnorr-Signatures--An-Overview/" class="wm-article-link wm-toc-text">Schnorr Signatures  An Overview</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Secure-Naming-on-the-Blockchain/" class="wm-article-link wm-toc-text">Secure Naming on the Blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Selective-Disclosure-of-Identity/" class="wm-article-link wm-toc-text">Selective Disclosure of Identity with Hierarchical Deterministic Keys and JSON Web Tokens</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Trust Models, Accountability, LIfeCycle and Social Context/" class="wm-article-link wm-toc-text">Trust Models, Accountability, LIfeCycle and Social Context</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Trust-Exchange-An-Architecture-for-a-Permanent-Open-Trust-Network/" class="wm-article-link wm-toc-text">Trust Exchange: An Architecture for a Permanent Open Trust Network</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/Web-of-Trust-with-Blockchain-IDs/" class="wm-article-link wm-toc-text">Web of Trust with Blockchain IDs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/advanced-web-of-trust-concepts/" class="wm-article-link wm-toc-text">Advanced web of trust concepts</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/authorities-vs-peers--pain-points-in-security/" class="wm-article-link wm-toc-text">Authorities vs peers  pain points in security</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/binding-identity-in-decentralized-system/" class="wm-article-link wm-toc-text">Binding identity in decentralized system</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/cool-hack-xdi-blockstore-bip32/" class="wm-article-link wm-toc-text">Cool hack xdi blockstore bip32</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/dealing_with_key_loss_in_digital_identity/" class="wm-article-link wm-toc-text">Dealing with private key loss or compromise in digital identity systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/decentralized_e-commerce/" class="wm-article-link wm-toc-text">Building a web of trust for decentralized e-commerce platforms (e.g. OpenBazaar)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/different-models-for-trust/" class="wm-article-link wm-toc-text">Different models for trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/hierarchical-deterministic-keys--bip32-and-beyond/" class="wm-article-link wm-toc-text">Hierarchical deterministic keys  bip32 and beyond</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/ipfs-keychain/" class="wm-article-link wm-toc-text">Notes on the IPFS Keychain (or the Web Keychain)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/ipfs-links/" class="wm-article-link wm-toc-text">IPFS - The Permanent Web</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/key-exchange-as-capability-system/" class="wm-article-link wm-toc-text">Secret Handshake : Key Exchange as a Capability System</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/key-transparency-for-end-users/" class="wm-article-link wm-toc-text">Key transparency for end users</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/knowing-when-your-identity-has-been-compromised/" class="wm-article-link wm-toc-text">Knowing when your identity has been compromised</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/lightning-network-and-web-of-trust/" class="wm-article-link wm-toc-text">Lightning network and web of trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/linked-local-names/" class="wm-article-link wm-toc-text">Linked local names</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/modern-pki-identity-assertions/" class="wm-article-link wm-toc-text">Modern PKI: Identity Assertions Forming Trust Networks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/multiplexed--a-slightly-radical-framing-of-identity/" class="wm-article-link wm-toc-text">multiplexed: a 'slightly radical' framing of identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/pki_tools_in_evm_blockchains/" class="wm-article-link wm-toc-text">PKI Tools in EVM-based Blockchains</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/progressive-trust/" class="wm-article-link wm-toc-text">Progressive trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/refugee-use-case/" class="wm-article-link wm-toc-text">Refugee use case</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/rlpx/" class="wm-article-link wm-toc-text">Rlpx</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/sfs/" class="wm-article-link wm-toc-text">Self-certifying File System</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/shared_terminology_for_digital_identity_systems/" class="wm-article-link wm-toc-text">Attempts at common terminology for Digital Identity systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/tensions-related-to-identity-and-community-regulation/" class="wm-article-link wm-toc-text">Tensions related to identity and community regulation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/thin-clients/" class="wm-article-link wm-toc-text">The Need For A Generic Thin Client Protocol</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/white-papers--specifications---and-proof-of-concept-code/" class="wm-article-link wm-toc-text">White papers  specifications   and proof of concept code</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT1/Topics/xdi-link-contracts/" class="wm-article-link wm-toc-text">XDI Link Contracts: An Overview</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT2</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT2/" class="wm-article-link wm-toc-text">RWoT2 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Docs/invite1/" class="wm-article-link wm-toc-text">Invite</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Docs/graphic-recording/" class="wm-article-link wm-toc-text">Graphic Recordings</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Docs/photos/" class="wm-article-link wm-toc-text">Photos</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/1-opening/" class="wm-article-link wm-toc-text">1 opening</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/2-reportout-weboftrust/" class="wm-article-link wm-toc-text">2 reportout weboftrust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/3-reportout-id2020/" class="wm-article-link wm-toc-text">3 reportout id2020</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/4-identitypanels/" class="wm-article-link wm-toc-text">4 identitypanels</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/5-reportout/" class="wm-article-link wm-toc-text">5 reportout</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/6-self-sovereign-id-model/" class="wm-article-link wm-toc-text">6 self sovereign id model</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/7-did-reportout/" class="wm-article-link wm-toc-text">7 did reportout</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/8-finalreportout/" class="wm-article-link wm-toc-text">8 finalreportout</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT2/Docs/plenaries/9-finale/" class="wm-article-link wm-toc-text">9 finale</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Docs/process/pick-a-panel/" class="wm-article-link wm-toc-text">pick-a-panel</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Docs/supporting-files/" class="wm-article-link wm-toc-text">Supporting Files</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/" class="wm-article-link wm-toc-text">Drafts - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/FidingIdentity/" class="wm-article-link wm-toc-text">FidingIdentity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/blockchain-extensions-for-linked-data-signatures/" class="wm-article-link wm-toc-text">Blockchain Extensions for Linked Data Signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/hierarchical-deterministic-keys-for-bootstrapping-a-self-sovereign-identity/" class="wm-article-link wm-toc-text">Hierarchical Deterministic Keys for Bootstrapping a Self-Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/identity-crisis/" class="wm-article-link wm-toc-text">Identity crisis</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/protecting-digital-identities-in-developing-countries/" class="wm-article-link wm-toc-text">Protecting digital identities in developing countries</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/requirements-for-dids/" class="wm-article-link wm-toc-text">Requirements for DIDs (Decentralized Identifiers)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/smarter-signatures/" class="wm-article-link wm-toc-text">Smarter signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Drafts/the-insecurity-of-charging-for-security-and-how-it-relates-to-decentralized-identifiers/" class="wm-article-link wm-toc-text">The insecurity of charging for security and how it relates to decentralized identifiers</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/" class="wm-article-link wm-toc-text">Topics & Advance Readings - RWoT2</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/Crocker-ID-Usability-Multiplicity/" class="wm-article-link wm-toc-text">Crocker ID Usability Multiplicity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/DID-Whitepaper/" class="wm-article-link wm-toc-text">Decentralized Identifiers (DIDs) and Decentralized Identity Management (DIDM)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/DexPredicatesForSmarterSigs/" class="wm-article-link wm-toc-text">Dex: Deterministic Predicate Expressions for Smarter Signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/Erik Anderson-USE CASE story/" class="wm-article-link wm-toc-text">Erik Anderson USE CASE story</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/IdentitiesForMovingThings/" class="wm-article-link wm-toc-text">Identities for Moving Things</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/Identity-and-decentralised-communications/" class="wm-article-link wm-toc-text">Identity and decentralised communications</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/Legalizing-Identity-Protocols-United-Nations/" class="wm-article-link wm-toc-text">Legalizing Identity Protocols for the United Nations 16.9</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/Trust-i-ness/" class="wm-article-link wm-toc-text">Trust-i-ness</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/XDI-Graphs-in-IPFS/" class="wm-article-link wm-toc-text">XDI Graphs in IPFS</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/blockstack-rules-and-multiple-blockchains/" class="wm-article-link wm-toc-text">Blockstack rules and multiple blockchains</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/clues/" class="wm-article-link wm-toc-text">Clues</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/double_edged_identity/" class="wm-article-link wm-toc-text">Double edged identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/identity_to_refugee_status_determination/" class="wm-article-link wm-toc-text">From Identity to Refugee Status Determination</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/no-secure-protocol-equals-no-sovereign-identity/" class="wm-article-link wm-toc-text">No Secure Protocol = No Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/questions_around_key_management/" class="wm-article-link wm-toc-text">Questions around key management for digital identity systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/scaling-a-bft-consensus-protocol-for-identity/" class="wm-article-link wm-toc-text">Scaling a bft consensus protocol for identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT2/Topics/the-path-to-self-sovereign-identity/" class="wm-article-link wm-toc-text">The Path to Self-Sovereign Identity</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT3</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT3/" class="wm-article-link wm-toc-text">RWoT3 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/1-intro/" class="wm-article-link wm-toc-text">1 intro</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/2-lightning/" class="wm-article-link wm-toc-text">2 lightning</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/3-topicvoting/" class="wm-article-link wm-toc-text">3 topicvoting</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/4-dayoneend-planneddeliverables/" class="wm-article-link wm-toc-text">4 dayoneend planneddeliverables</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/5-daytwoend-topics/" class="wm-article-link wm-toc-text">5 daytwoend topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/6-aboutusandforward/" class="wm-article-link wm-toc-text">6 aboutusandforward</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/7-projectupdate/" class="wm-article-link wm-toc-text">7 projectupdate</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT3/Docs/plenaries/8-finalnotes/" class="wm-article-link wm-toc-text">8 finalnotes</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Docs/supporting-files/" class="wm-article-link wm-toc-text">Supporting Files</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/" class="wm-article-link wm-toc-text">Drafts - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/WisdomEmbedding-Human-Wisdom-in-Our-Digital-Tomorrow/" class="wm-article-link wm-toc-text">Embedding Human Wisdom in Our Digital Tomorrow</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/did-implementer-draft-10/" class="wm-article-link wm-toc-text">Did implementer draft 10</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/hubs/" class="wm-article-link wm-toc-text">Hubs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/reputation-toolkit/" class="wm-article-link wm-toc-text">Portable Reputation Toolkit Use Cases</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/rwot3-digital-verification-outcomes/" class="wm-article-link wm-toc-text">Digital Verification Advancements at RWoT III</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/smart-consent-protocol/" class="wm-article-link wm-toc-text">Smart consent protocol</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Drafts/portable-reputation/" class="wm-article-link wm-toc-text">Portable Reputation Toolkit</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/" class="wm-article-link wm-toc-text">Topics & Advance Readings - RWoT3</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/Consent and rights to use Personal Data/" class="wm-article-link wm-toc-text">Consent and rights to use Personal Data</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/DistributedIdentityDistributedSelf/" class="wm-article-link wm-toc-text">Distributed Identity, Distributed Self</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/EU-General-Data-Protection Regulation-Self-Sovereign Identifiers/" class="wm-article-link wm-toc-text">EU General Data Protection Regulation Self Sovereign Identifiers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/JXD-Examples/" class="wm-article-link wm-toc-text">JXD Examples</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/Proof-of-stake-without-native-coin/" class="wm-article-link wm-toc-text">Proof of stake without native coin</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/Sovereign-Identity-Model-for-Digital-Ecologies/" class="wm-article-link wm-toc-text">Sovereign Identity Model for Digital Ecologies</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/alternative-futures-framework/" class="wm-article-link wm-toc-text">Alternative Futures: Framework for Identity Scenarios</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/anonymous-credentials-in-sovrin/" class="wm-article-link wm-toc-text">Anonymous Credentials in Sovrin</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/attestation-taxonomies/" class="wm-article-link wm-toc-text">Blockchain Attestation Taxonomies</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/blockchain-extensions-for-linked-data-signatures/" class="wm-article-link wm-toc-text">Blockchain Extensions for Linked Data Signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/blockchain-technologies-feature-analysis/" class="wm-article-link wm-toc-text">Blockchain Technologies Feature Analysis</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/did-spec-wd03/" class="wm-article-link wm-toc-text">Did spec wd03</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/did-spec-working-draft-03/" class="wm-article-link wm-toc-text">DID (Decentralized Identifier) Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/fit-for-purpose-blockchains/" class="wm-article-link wm-toc-text">Fit for Purpose Blockchains</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/identity-as-linked-data-on-immutable-ledgers/" class="wm-article-link wm-toc-text">Identity as Linked Data on Immutable Ledgers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/identity-forking-and-federated-reputation/" class="wm-article-link wm-toc-text">Identity Forking and Federated Reputation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/opentimestamps/" class="wm-article-link wm-toc-text">OpenTimestamps: Scalable, Trustless, Distributed Timestamping with Bitcoin</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/portable-reputation-toolkit/" class="wm-article-link wm-toc-text">Portable Reputation Toolkit</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/privacy-preserving-identity-architectures/" class="wm-article-link wm-toc-text">Privacy Preserving Web Identity Architectures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/rgrant-user-interface-standards-rwot-fall2016/" class="wm-article-link wm-toc-text">Towards a User Interface for Selectively Revealing Fine-Grained Personal Information to Transaction Counterparties</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT3/Topics/user-controlled-key-recovery/" class="wm-article-link wm-toc-text">Recovery strategy for user-controlled keys for self-sovereign identity</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT4</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT4/" class="wm-article-link wm-toc-text">RWoT4 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Docs/" class="wm-article-link wm-toc-text">Documents - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Group abstracts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/DesignConsiderationsOfDecentralizedReputationSystems_Abstract/" class="wm-article-link wm-toc-text">Design considerations of decentralized reputation systems #</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/SignatureAlignment-Day1ProblemStatement/" class="wm-article-link wm-toc-text">LD Signature Alignment Problem Statement</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/SignatureAlignmentAbstract/" class="wm-article-link wm-toc-text">LD Signature Format Alignment</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/SignatureAlignmentImplementation/" class="wm-article-link wm-toc-text">Implementing the JSON-LD RSA Signature Suite 2017</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/btcr-did-method-spec/" class="wm-article-link wm-toc-text">BTCR DID Method Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/did-auth/" class="wm-article-link wm-toc-text">DID Auth Overview</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT4/Docs/group-abstracts/work-abstract-did-methods-btcr-pgpr/" class="wm-article-link wm-toc-text">Method Specification Work for did:**btcr** and did:**pgpr**</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Drafts/" class="wm-article-link wm-toc-text">Drafts - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Drafts/ld-signatures/" class="wm-article-link wm-toc-text">LD Signature Format Alignment</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Drafts/what-users-really-want/" class="wm-article-link wm-toc-text">What Users Really Want</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Final/ld-signatures/" class="wm-article-link wm-toc-text">Ld signatures</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Final/reputation-design/" class="wm-article-link wm-toc-text">Design Considerations for Decentralized Reputation Systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Final/what-users-really-want/" class="wm-article-link wm-toc-text">Re-Imagining What Users Really Want</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/" class="wm-article-link wm-toc-text">Topics & Advance Readings - RWoT4</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/BlockcertsAlignment/" class="wm-article-link wm-toc-text">Blockcerts and Open Badges signature alignment</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Booting-a-Web-of-Sovereignty-with-a-Decentralized-Social-App/" class="wm-article-link wm-toc-text">Booting a Web of Sovereignty with a Decentralized Social App</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Credit-based-Reputations-for-Identity-Management/" class="wm-article-link wm-toc-text">Credit-based Reputations for Identity Management with Blockchain and Flow Networks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Fostering-resilience/" class="wm-article-link wm-toc-text">Fostering resilience</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Levrage_EU_identities/" class="wm-article-link wm-toc-text">Distributed identities as a EU cross-border identity infrastructure</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/ProjectVouch_Peer-attestation-and-reputation-based-identity/" class="wm-article-link wm-toc-text">Project Vouch - A decentralized identity network based on public attestation, reputation, and approval of identity attributes</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/RWoT_proposals_and_modern_portable_secure_hardware/" class="wm-article-link wm-toc-text">RWoT proposals and modern portable secure hardware</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/SignatureFormatAlignment/" class="wm-article-link wm-toc-text">Aligning Signature Formats</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Towards-a-user-centered-web-of-trust/" class="wm-article-link wm-toc-text">Towards a user-centered web of trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/Using-an-IP-blockchain-to-enhance-global-responsiveness-to-infectious-disease-outbreak/" class="wm-article-link wm-toc-text">The IP Blockchain: enhancing global responsiveness to infectious disease outbreaks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/WoTVerifiableClaims/" class="wm-article-link wm-toc-text">Verifiable Claims and Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/certificate_chains_dids/" class="wm-article-link wm-toc-text">Certificate chains for DID-based self-sovereign identities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/did-auth/" class="wm-article-link wm-toc-text">DID Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/did-family-of-specifications/" class="wm-article-link wm-toc-text">The DID Family of Specifications</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/did-methods-btcr-pgpr/" class="wm-article-link wm-toc-text">DID Method Specifications / BTCR and PGPR</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/did-names/" class="wm-article-link wm-toc-text">DID Names</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/dkms-decentralized-key-mgmt-system/" class="wm-article-link wm-toc-text">Decentralized Key Management System</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/id-blockchain/" class="wm-article-link wm-toc-text">Id blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/rep-proofs/" class="wm-article-link wm-toc-text">Reputation proofs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/topic_alexopoulos/" class="wm-article-link wm-toc-text">Trust for Security and Security for Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT4/Topics/xdi-verifiable-claims-link-contracts/" class="wm-article-link wm-toc-text">Xdi verifiable claims link contracts</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT5</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT5/" class="wm-article-link wm-toc-text">RWoT5 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Docs/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Docs/photos/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/0-day1-overview/" class="wm-article-link wm-toc-text">0 day1 overview</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/0-day2-overview/" class="wm-article-link wm-toc-text">0 day2 overview</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/0-day3-overview/" class="wm-article-link wm-toc-text">0 day3 overview</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/0-initial-plenary/" class="wm-article-link wm-toc-text">Initial Plenary: Introducing RWOT</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/1-primer-discussions/" class="wm-article-link wm-toc-text">What We Learned from Discussing Our Primers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/2-lightning-talks/" class="wm-article-link wm-toc-text">Sixteen Lightning Talks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/3-first-day-close/" class="wm-article-link wm-toc-text">3 first day close</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/4-demos/" class="wm-article-link wm-toc-text">Day Two: Demos of Interesting Topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/5-finalreports/" class="wm-article-link wm-toc-text">5 finalreports</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/plenaries/6-finaldiscussion/" class="wm-article-link wm-toc-text">6 finaldiscussion</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Docs/supporting-files/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Verifiable news</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/verifiable-news/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Docs/verifiable-news/final-debriefing/" class="wm-article-link wm-toc-text">Final debriefing</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/Amira-SSWOT-Engagement-Model/" class="wm-article-link wm-toc-text">Amira SSWOT Engagement Model</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/DID Method Spec Template Definition/" class="wm-article-link wm-toc-text">DID Method Spec Template Definition</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/DIF-Hub-Capabilities-RWOT/" class="wm-article-link wm-toc-text">Hub Asset Access Control System (Revision: RWOT 2017-10)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/GDPR-Self-Soverign-ID/" class="wm-article-link wm-toc-text">GDPR Self Soverign ID</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/blockcerts_revocation/" class="wm-article-link wm-toc-text">Blockcerts revocation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/did-primer/" class="wm-article-link wm-toc-text">DID Primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/functional-identity-primer/" class="wm-article-link wm-toc-text">A Primer on Functional Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/identity-hubs-capabilities-perspective/" class="wm-article-link wm-toc-text">Identity Hubs Capabilities Perspective</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/self-sovereign-identity-primer/" class="wm-article-link wm-toc-text">A Primer on Self-Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/smarm/" class="wm-article-link wm-toc-text">Smarm: Requirements for a smart-signatures Scheme</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/verifiable-claims-primer/" class="wm-article-link wm-toc-text">A Verifiable Claims Primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/BreakingDownAndConnectingLawAndTech/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/DataMinimization/Data Minimzation and Selective Disclosure/" class="wm-article-link wm-toc-text">Data Minimization and Selective Disclosure</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">UniversalResolver</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Drafts/UniversalResolver/examples/" class="wm-article-link wm-toc-text">Universal Resolver - Examples</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT5/Drafts/UniversalResolver/resources/" class="wm-article-link wm-toc-text">Universal Resolver - Resources</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/activitypub-decentralized-distributed/activitypub-decentralized-distributed/" class="wm-article-link wm-toc-text">ActivityPub: from decentralized to distributed social networks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/dcs-theorem/The-DCS-Theorem/" class="wm-article-link wm-toc-text">\textbf{The DCS Theorem}</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/did - iot - bigchaindb/iot devices with dids on bigchaindb/" class="wm-article-link wm-toc-text">Representing IoT devices in BigchainDB using DID</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/did-client-issuer/did-client-issuer/" class="wm-article-link wm-toc-text">DID Client - Verifiable Claims Issuer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Drafts/lds-ocap/lds-ocap/" class="wm-article-link wm-toc-text">Linked Data Capabilities</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/activitypub-decentralized-distributed/" class="wm-article-link wm-toc-text">ActivityPub: from decentralized to distributed social networks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/amira/" class="wm-article-link wm-toc-text">Amira</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/blockcerts-revocation/" class="wm-article-link wm-toc-text">A Decentralized Approach to Blockcerts Credential Revocation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/data-minimization-sd/" class="wm-article-link wm-toc-text">Data minimization sd</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/did-method-veres-one/" class="wm-article-link wm-toc-text">Did method veres one</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/gdpr/" class="wm-article-link wm-toc-text">When GDPR becomes real, and Blockchain is no longer Fairy Dust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/identity-hubs-capabilities-perspective/" class="wm-article-link wm-toc-text">Identity Hubs Capabilities Perspective</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/lds-ocap/" class="wm-article-link wm-toc-text">Linked Data Capabilities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Final/DCS-Theorem/" class="wm-article-link wm-toc-text">\textbf{The DCS Theorem}</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Architectural-Layering-for-Decentralized-Identification/" class="wm-article-link wm-toc-text">Architectural Layering for Decentralized Identification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Biometric-credentials-as-high-privacy-verifiable-claims/" class="wm-article-link wm-toc-text">The Horcrux protocol: Biometric credentials as high-privacy verifiable claims</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Biometric-transaction-signing-on-blockchain/" class="wm-article-link wm-toc-text">Biometric transaction signing on blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Blockchain-Based-Digital-Signatures--Admissibility-and-Enforceability/" class="wm-article-link wm-toc-text">Blockchain Based Digital Signatures: Admissibility and Enforceability</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/DIF-Hub-Permissions-RWOT-Intent/" class="wm-article-link wm-toc-text">Hub Asset Access Control System - Intent</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Data-minimization-and-selective-disclosure/" class="wm-article-link wm-toc-text">Data minimization and selective disclosure</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Distributed-Social-Web-Building-Blocks/" class="wm-article-link wm-toc-text">Distributed Social Web Building Blocks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Framework-for-Comparison-of-Identity-Systems/" class="wm-article-link wm-toc-text">Framework for Comparison of Identity Systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Identifying-challenges-in-the-digital-economy/" class="wm-article-link wm-toc-text">Identifying challenges in the digital economy</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/RWOT-User-Story/" class="wm-article-link wm-toc-text">RebootingWebOfTrust User Story & Tech Concept</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/Visa-Really/" class="wm-article-link wm-toc-text">Visa Really</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/activitypub-decentralized-distributed/" class="wm-article-link wm-toc-text">Activitypub decentralized distributed</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/btcr-dids-ddos/" class="wm-article-link wm-toc-text">BTCR DIDs and DDOs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/byzantine-fault-tolerant-web-of-trust-based-key-value-storage/" class="wm-article-link wm-toc-text">Byzantine fault tolerant web of trust based key value storage</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/credential-handler-api/" class="wm-article-link wm-toc-text">Decentralized Identifier Tooling</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/did-3d-web/" class="wm-article-link wm-toc-text">DID for the 3D Web</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/did-gentle-intro/" class="wm-article-link wm-toc-text">DID Gentle Introduction</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/did-primer/" class="wm-article-link wm-toc-text">DID Primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/did-tooling/" class="wm-article-link wm-toc-text">Decentralized Identifier Tooling</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/dkms-recommendations/" class="wm-article-link wm-toc-text">Recommendations for Decentralized Key Management Systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/first-xdi-link-contract-between-btcr-did-and-sov-did/" class="wm-article-link wm-toc-text">First xdi link contract between btcr did and sov did</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/functional-identity-primer/" class="wm-article-link wm-toc-text">A Primer on Functional Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/hypercerts-blockcerts_revocation/" class="wm-article-link wm-toc-text">Hypercerts: Blockcerts Revocation Improvements</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/open-badges-as-verifiable-claims/" class="wm-article-link wm-toc-text">Open Badges as Verifiable Claims</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/owned-vs-unowned-claims-and-ssi/" class="wm-article-link wm-toc-text">Owned vs. Unowned Claims and Self-Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/self-sovereign-identity-primer/" class="wm-article-link wm-toc-text">A Primer on Self-Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/trust-objects-proposal/" class="wm-article-link wm-toc-text">Trust Objects: Enabling advanced reputation services on the Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/veres-one-did-method/" class="wm-article-link wm-toc-text">Veres One DID Method Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/verifiable-claims-of-impact/" class="wm-article-link wm-toc-text">Verifiable Claims of Impact #</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT5/Topics/verifiable-claims-primer/" class="wm-article-link wm-toc-text">A Verifiable Claims Primer</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT6</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT6/" class="wm-article-link wm-toc-text">RWoT6 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Docs/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/01-intro/" class="wm-article-link wm-toc-text">Rebooting the Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/02-primers/" class="wm-article-link wm-toc-text">Three Primers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/03-topic-paper-reports/" class="wm-article-link wm-toc-text">Topic Paper Report-Outs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/04-weak-signals/" class="wm-article-link wm-toc-text">Weak Signals</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/05-potentialpapers/" class="wm-article-link wm-toc-text">Topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/06-paper-reports/" class="wm-article-link wm-toc-text">End of Day One: The Papers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/07-daytwo-intro/" class="wm-article-link wm-toc-text">Day Two Rebooting the Web of Trust Intro</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/08-demos/" class="wm-article-link wm-toc-text">Technology Demos</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/09-daytwo-paper-reports/" class="wm-article-link wm-toc-text">Day Two: Paper Reports</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/10-daythree-intro/" class="wm-article-link wm-toc-text">Day Three Introduction</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/11-secondaries/" class="wm-article-link wm-toc-text">Secondary Sessions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/12-rwot/" class="wm-article-link wm-toc-text">Meta RWOT</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT6/Docs/plenaries/13-finalday/" class="wm-article-link wm-toc-text">13 finalday</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Docs/supporting-files/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/" class="wm-article-link wm-toc-text">RWOT6 Draft Papers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/Biometrics/" class="wm-article-link wm-toc-text">Biometrics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/DID Auth/" class="wm-article-link wm-toc-text">DID Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/DecentralizedAutonomicData/" class="wm-article-link wm-toc-text">Decentralized Autonomic Data (DAD) and the three R's of Key Management</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/Identity Hub Attestation Handling/" class="wm-article-link wm-toc-text">Identity Hub Attestation Flows and Components</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/TLS-Flex/" class="wm-article-link wm-toc-text">TLS Flex</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/Towards a Sustainable Technology Commons/" class="wm-article-link wm-toc-text">Towards a Sustainable Technology Commons</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/a-roadmap-for-ssi/" class="wm-article-link wm-toc-text">SSI: A Roadmap for Adoption</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/btcr_resolver/" class="wm-article-link wm-toc-text">BTCR DID Resolver Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/decentralized-interfaces/" class="wm-article-link wm-toc-text">Decentralized Interfaces</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/did-spec-1.0/" class="wm-article-link wm-toc-text">Decentralized Identifiers v1.0</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/did_auth_draft/" class="wm-article-link wm-toc-text">Introduction to DID Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/introducing_btcr/" class="wm-article-link wm-toc-text">Introducing the BTCR DID Method Spec</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/key_recovery_methods/" class="wm-article-link wm-toc-text">Survey of Cryptographic Key Recovery Methods</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/key_recovery_uport/" class="wm-article-link wm-toc-text">Key recovery uport</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/making-dids-invisible-with-petnames/" class="wm-article-link wm-toc-text">Making DIDs invisible: Petnames and their secure user interfaces</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/open-badges-are-verifiable-credentials/" class="wm-article-link wm-toc-text">Open Badges are Verifiable Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/permissionless-replicated-decentralised-storage-network/" class="wm-article-link wm-toc-text">Permissionless, replicated, decentralised storage network for storing verifiable credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Drafts/topics-and-advance-readingsWeb Of Trust Schema RWOT 6/" class="wm-article-link wm-toc-text">topics and advance readingsWeb Of Trust Schema RWOT 6</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/DecentralizedAutonomicData/" class="wm-article-link wm-toc-text">Decentralized Autonomic Data (DAD) and the three R's of Key Management</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/a-roadmap-for-ssi/" class="wm-article-link wm-toc-text">SSI: A Roadmap for Adoption</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/btcr-resolver/" class="wm-article-link wm-toc-text">BTCR DID Resolver Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/did-auth/" class="wm-article-link wm-toc-text">Introduction to DID Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/did-spec-1.0/" class="wm-article-link wm-toc-text">Decentralized Identifiers v1.0</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/identity-hub-attestations/" class="wm-article-link wm-toc-text">Identity Hub Attestation Flows and Components</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/open-badges-are-verifiable-credentials/" class="wm-article-link wm-toc-text">Open Badges are Verifiable Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Final/sustainable-commons/" class="wm-article-link wm-toc-text">Sustainable commons</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/AttributeBasedCredentials_and_VariableLengthDataGraphs/" class="wm-article-link wm-toc-text">Attribute Based Credentials and Variable Length Data Graphs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/Blockchains-Timestamps-Unnecessary-In-PoW/" class="wm-article-link wm-toc-text">Blockchain Timestamps Unnecessary In Proof-of-Work?</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/CredentialProvider_App_Integration/" class="wm-article-link wm-toc-text">Credential Providers for Signing Application Requests #</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/DClaims/" class="wm-article-link wm-toc-text">DClaims News - A Fake News Mitigation Platform</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/DID-Auth-protocol/" class="wm-article-link wm-toc-text">DID-Auth Protocol</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/DID-Auth:-Scope,-Formats,-and-Protocols/" class="wm-article-link wm-toc-text">DID Auth: Scope, Formats, and Protocols</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/DID-Method-erc725/" class="wm-article-link wm-toc-text">DID Method erc725</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/DecentralizedAutonomicData/" class="wm-article-link wm-toc-text">Decentralized Autonomic Data (DAD) and the three R's of Key Management</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/Diam/" class="wm-article-link wm-toc-text">Integrating Identity silos via address books</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/OpenTLS/" class="wm-article-link wm-toc-text">Open TLS</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/SustainableTechnologyCommons-HeatherVescentv3/" class="wm-article-link wm-toc-text">Towards a Sustainable Technology Commons</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/TheOrgBook-RWoT-Mar-2018-Province-of-BC/" class="wm-article-link wm-toc-text">Open Verifiable Data to Drive the Digital Economy</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/Web-of-Pragmatics/" class="wm-article-link wm-toc-text">Web of Pragmatics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/btcr_did_resolver/" class="wm-article-link wm-toc-text">BTCR DID Resolver Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/cannabis-kyc/" class="wm-article-link wm-toc-text">Decentralized Identities for the Cannabis Industry</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/data_wallet_serivce_integration/" class="wm-article-link wm-toc-text">Proposed collaboration on open standards for data wallet and data service integration</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/decentralised-attestations-storage-network-challenges/" class="wm-article-link wm-toc-text">Decentralized Attestations Storage - Current Challenges</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/decentralized-interfaces/" class="wm-article-link wm-toc-text">Decentralized Interfaces and the Request-Responsive World</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/did-primer-extended/" class="wm-article-link wm-toc-text">DID Primer Spring 2018</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/did-primer/" class="wm-article-link wm-toc-text">A Short Primer for Decentralized Identifiers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/distributed-reputation-systems-kate-sills/" class="wm-article-link wm-toc-text">Distributed Reputation Systems Using Blockchain Records</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/documentorum/" class="wm-article-link wm-toc-text">Using blockchain to store academic accreditations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/functional-identity-primer/" class="wm-article-link wm-toc-text">Functional identity primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/hashed-PII-Question/" class="wm-article-link wm-toc-text">hashed PII Question</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/identy_immersive_ambient_computing/" class="wm-article-link wm-toc-text">Identy immersive ambient computing</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/ld-ocap-recent-happenings/" class="wm-article-link wm-toc-text">Recent happenings with Linked Data Capabilities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/openbadges-prototypes-action-items-2018/" class="wm-article-link wm-toc-text">Openbadges prototypes action items 2018</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/petnames/" class="wm-article-link wm-toc-text">Petnames for Self Sovereign and Human Readable Identifiers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/self-sovereign-compliance/" class="wm-article-link wm-toc-text">Self-Sovereign Compliance: Use case for DIDs and VCs in decentralized capital formation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/sidetrees-explainer/" class="wm-article-link wm-toc-text">Sidetree Asset Protocol</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/sovrin-did-method-spec-pointer/" class="wm-article-link wm-toc-text">Sovrin DID Method Spec Pointer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/sovrin-web-of-trust-3-primary-roles/" class="wm-article-link wm-toc-text">The Three Primary Roles in the Sovrin Web of Trust Model</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/veres-one-demo/" class="wm-article-link wm-toc-text">A Demonstration of the Veres One Blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/veres-one-did-method/" class="wm-article-link wm-toc-text">The Veres One DID Method</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/veres-one-primer/" class="wm-article-link wm-toc-text">A Primer on the Veres One Decentralized Identifier Blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT6/Topics/verifiable-credentials-primer/" class="wm-article-link wm-toc-text">A Verifiable Credentials Primer</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT7</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT7/" class="wm-article-link wm-toc-text">RWoT7 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Docs/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/1-intro/" class="wm-article-link wm-toc-text">Intro Plenary</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/10-reportout/" class="wm-article-link wm-toc-text">Report Outs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/11-feedback/" class="wm-article-link wm-toc-text">Feedback</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/12-finalreport/" class="wm-article-link wm-toc-text">Report Outs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/2-topicpapers/" class="wm-article-link wm-toc-text">Topic Papers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/3-horizons/" class="wm-article-link wm-toc-text">Three Horizons</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/4-sponsorships/" class="wm-article-link wm-toc-text">Sponsor Presentations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/5-topics/" class="wm-article-link wm-toc-text">The Papers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/6-losttopics/" class="wm-article-link wm-toc-text">6 losttopics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/7-sponsorcivic/" class="wm-article-link wm-toc-text">Sponsors</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/8-sponsormicrosoft/" class="wm-article-link wm-toc-text">Sponsors</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT7/Docs/plenaries/9-demos/" class="wm-article-link wm-toc-text">Demos</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Docs/supporting-files/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/" class="wm-article-link wm-toc-text">Draft Status</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/A_DID_for_everything/" class="wm-article-link wm-toc-text">A DID for Everything</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Agent-Communication-Protocols/" class="wm-article-link wm-toc-text">Agent Protocols</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Digital Credential Wallet/" class="wm-article-link wm-toc-text">Digital Credential Wallet</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Digital-Identity-for-the-Homeless/" class="wm-article-link wm-toc-text">Digital Identity for the Homeless</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Guidance_and_Standards_for_Interoperability_of_Decentralized_Identity_Systems/" class="wm-article-link wm-toc-text">Guidance and Standards for Interoperability of Decentralized Identity Systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Use Cases and Proposed Solutions for Verifiable Offline Credentials/" class="wm-article-link wm-toc-text">Use Cases and Proposed Solutions for Verifiable Offline Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/Verifiable_Claims_Promise_Theory.org/" class="wm-article-link wm-toc-text">Verifiable Claims Promise Theory.org</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/btcr_0_1/" class="wm-article-link wm-toc-text">BTCR v0.1 Decisions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/convincing-dad/" class="wm-article-link wm-toc-text">Convincing dad</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/ipld_did_documents/" class="wm-article-link wm-toc-text">IPLD as a general pattern for DID documents and Verifiable Claims</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/mental-models/" class="wm-article-link wm-toc-text">Models of Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/peer-to-peer-degrees-of-trust/" class="wm-article-link wm-toc-text">Peer to peer degrees of trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/resource-integrity-proofs/" class="wm-article-link wm-toc-text">Resource Integrity Proofs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Drafts/user-study-MarinaDBW/" class="wm-article-link wm-toc-text">User study: Marina DBW</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/A_DID_for_everything/" class="wm-article-link wm-toc-text">A DID for Everything</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/btcr_0_1/" class="wm-article-link wm-toc-text">BTCR v0.1 Decisions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/convincing-dad/" class="wm-article-link wm-toc-text">Convincing dad</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/ipld-did/" class="wm-article-link wm-toc-text">IPLD as a general pattern for DID documents and Verifiable Claims</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/mental-models/" class="wm-article-link wm-toc-text">Five Mental Models of Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/offline-use-cases/" class="wm-article-link wm-toc-text">Use Cases and Proposed Solutions for Verifiable Offline Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/peer-to-peer-degrees-of-trust/" class="wm-article-link wm-toc-text">Peer to peer degrees of trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Final/resource-integrity-proofs/" class="wm-article-link wm-toc-text">Resource Integrity Proofs</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Adoption/" class="wm-article-link wm-toc-text">Addressing Global/Local Barriers to Adoption of Decentralized Identity Systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Cryptocurrency-wallets-a-an-application-of-Functional-Identity/" class="wm-article-link wm-toc-text">Cryptocurrency wallets as a form of Functional Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Decentralized-Collective-Identity/" class="wm-article-link wm-toc-text">Is a Decentralized Collective Identity Possible?</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Digital-Identity-for-the-Homeless/" class="wm-article-link wm-toc-text">Digital Identity for the Homeless</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Nobody_REALLY_Trusts_the_Blockchain/" class="wm-article-link wm-toc-text">Nobody REALLY Trusts the Blockchain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/Secure-Crypto-Wallet-Introductions/" class="wm-article-link wm-toc-text">Secure Crypto-Wallet Introductions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/The_Role_of_Standards_in_Accelerating_Innovation/" class="wm-article-link wm-toc-text">The Role of Standards in Accelerating Innovation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/ZeroTrustComputingWithDidsAndDads/" class="wm-article-link wm-toc-text">Zero Trust Computing with DIDs and DADs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/a-public-web-of-trust-of-public-identities/" class="wm-article-link wm-toc-text">A Public Web of Trust of Public Identities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/a2a-comm-protocol-overview/" class="wm-article-link wm-toc-text">Agent to Agent Communication Protocol Overview: Addressing principles and concerns</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/blockcerts_roadmap/" class="wm-article-link wm-toc-text">Blockcerts -- where we are, and what's next</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/capauth/" class="wm-article-link wm-toc-text">CapAuth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/crypto-data-model-requirements/" class="wm-article-link wm-toc-text">Cryptographic and Data Modeling Requirements from RWoT</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/decentralized-error-reporting/" class="wm-article-link wm-toc-text">**Decentralized Error Reporting**</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/did-auth-jwe/" class="wm-article-link wm-toc-text">Decentralized Identity – Hub Authentication & Message Encryption</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/did-primer-extended/" class="wm-article-link wm-toc-text">DID Primer Spring 2018</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/did-primer/" class="wm-article-link wm-toc-text">A Short Primer for Decentralized Identifiers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/did-resolution-topics/" class="wm-article-link wm-toc-text">Did resolution topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/diddoc-conventions-for-interoperability/" class="wm-article-link wm-toc-text">DIDDoc Conventions for Interoperability</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/dids-in-dpki/" class="wm-article-link wm-toc-text">DIDs In DPKI (Decentralized Public-key Infrastructure)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/exploring-browser-wot-use/" class="wm-article-link wm-toc-text">Exploring Browser Web of Trust Use Cases</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/five-mental-models-of-identity/" class="wm-article-link wm-toc-text">Five Mental Models of Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/functional-identity-primer/" class="wm-article-link wm-toc-text">Functional identity primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/identity-hub-permissions/" class="wm-article-link wm-toc-text">Identity Hub Permissions/Authorization</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/ipld_did_documents/" class="wm-article-link wm-toc-text">IPLD as a general pattern for DID documents</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/leveraging-eidas-for-did/" class="wm-article-link wm-toc-text">Decentralized Identities and eIDAS</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/magenc/" class="wm-article-link wm-toc-text">Magenc Magnet URIs: Secure Object Permanence for the Web</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/measuring-trust/" class="wm-article-link wm-toc-text">Measuring Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/more-control-for-identity-holders/" class="wm-article-link wm-toc-text">More control for Identity Holders</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/not-a-bot/" class="wm-article-link wm-toc-text">Not a bot</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/political-economy-of-naming/" class="wm-article-link wm-toc-text">The Political Economy of Naming - RWoT Fall 2018</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/resource-integrity-proofs/" class="wm-article-link wm-toc-text">Resource Integrity Proofs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/standards-for-governance/" class="wm-article-link wm-toc-text">Standards for governance</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/towards-a-terminology-concept-map/" class="wm-article-link wm-toc-text">A Concept Diagram For RWOT Identity Terms</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/towards-proof-of-person/" class="wm-article-link wm-toc-text">Towards Proof-of-Person</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/trustless-web-of-trust/" class="wm-article-link wm-toc-text">A Trustless Web-of-Trust &ndash; establishing identity uniqueness</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/united-humans/" class="wm-article-link wm-toc-text">The United Humans</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/verifiable-credentials-primer/" class="wm-article-link wm-toc-text">A Verifiable Credentials Primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/verifiable-offline-credentials/" class="wm-article-link wm-toc-text">Verifiable Offline Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/verifiable_displays/" class="wm-article-link wm-toc-text">Verifiable Displays</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/what-and-who-is-in-your-wallet/" class="wm-article-link wm-toc-text">What and Who Is In Your Wallet?</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT7/Topics/presentation-request/presentation-request/" class="wm-article-link wm-toc-text">Scoped Presentation Request on Verifiable Credentials</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">RWoT8</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="RWoT8/" class="wm-article-link wm-toc-text">RWoT8 - Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Docs</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Docs/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 wm-toc-opener"><span class="wm-toc-text">Plenaries</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/01-intro-friday/" class="wm-article-link wm-toc-text">Introduction</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/02-initialtopics/" class="wm-article-link wm-toc-text">Initial Topics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/03-weaksignals/" class="wm-article-link wm-toc-text">Weak Signals</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/04-presentation-vennagency/" class="wm-article-link wm-toc-text">Presentation: Venn Agency</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/05-reportout-friday/" class="wm-article-link wm-toc-text">Initial Group Abstracts</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/06-intro-saturday/" class="wm-article-link wm-toc-text">Introduction: Day Two</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/07-demos/" class="wm-article-link wm-toc-text">Demos</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/08-reportout-saturday/" class="wm-article-link wm-toc-text">Group Report-out</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/09-intro-sunday/" class="wm-article-link wm-toc-text">Intro (Our Last Day)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/10-community/" class="wm-article-link wm-toc-text">Community Evolution</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev4 "><a href="RWoT8/Docs/plenaries/11-reportout-sunday/" class="wm-article-link wm-toc-text">Final Report Out</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Drafts</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/" class="wm-article-link wm-toc-text">Draft Documents</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/ContainerId/" class="wm-article-link wm-toc-text">Identity Containers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/Evaluating-social-recovery/" class="wm-article-link wm-toc-text">RWOT8: Evaluating social schemes for recovering control of an identifier</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/Joram_Illustrated/" class="wm-article-link wm-toc-text">Joram Illustrated</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/did-auth-oidc/" class="wm-article-link wm-toc-text">Using OpenID Connect Self-Issued to achieve DID Auth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/did-auth-vc-exchange/" class="wm-article-link wm-toc-text">Using OpenID Connect Self-Issued to achieve Verifiable Credentials Presentation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/did-key-management-browser/" class="wm-article-link wm-toc-text">Did key management browser</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/did-spec-refinement/" class="wm-article-link wm-toc-text">RWoT8 DID Specification Refinement</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/digital-citizen/" class="wm-article-link wm-toc-text">Digital citizen</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/driving-adoption-with-basic-human-needs/" class="wm-article-link wm-toc-text">Driving adoption with basic human needs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/establishing_the-identity_of_the_issuer_by_the_verifier_in_verifiable_credentials/" class="wm-article-link wm-toc-text">Establishing the Identity of the Issuer by the Verifier in Verifiable Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/how-ssi-will-survive-capitalism/" class="wm-article-link wm-toc-text">How SSI Will Survive Capitalism</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/ipid-crud/" class="wm-article-link wm-toc-text">CRUD and multi-device for IPID</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/joram.2.0.0/" class="wm-article-link wm-toc-text">Joram.2.0.0</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/journalism-use-cases/" class="wm-article-link wm-toc-text">Use Cases and Research Directions for self-sovereign publication and journalism</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/libp2p_did_auth./" class="wm-article-link wm-toc-text">libp2p for DID Authentication and the exchange of Verifiable Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/naming-survey/" class="wm-article-link wm-toc-text">Human-meaningful names for SSI</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/peer-DID-method-spec-report/" class="wm-article-link wm-toc-text">Peer DID Method Specification Report</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/satyrn/" class="wm-article-link wm-toc-text">Satyrn</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/self-signed-credentials/" class="wm-article-link wm-toc-text">Enabling a Web of Trust with Self-Signed and Self-Issued Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/shamir-secret-sharing-best-practices/" class="wm-article-link wm-toc-text">Shamir secret sharing best practices</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/understanding-dids-in-greater-depth/" class="wm-article-link wm-toc-text">Understanding dids in greater depth</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/vc-museum-playground/" class="wm-article-link wm-toc-text">Verifiable Credential playground-museum</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Drafts/joram-illustrations/" class="wm-article-link wm-toc-text">JORAM Illustrations</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Final</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Final/" class="wm-article-link wm-toc-text">Rebooting the Web of Trust VIII (Spring 2019) Final Papers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Final/did-spec-refinement/" class="wm-article-link wm-toc-text">RWoT8 DID Specification Refinement</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Final/how-ssi-will-survive-capitalism/" class="wm-article-link wm-toc-text">How SSI Will Survive Capitalism</a>
+</li>
+  </ul>
+</li>
+
+      <li class="wm-toc-li wm-toc-lev2 wm-toc-opener"><span class="wm-toc-text">Topics</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/" class="wm-article-link wm-toc-text">Index</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/A-DID-for-every-thing-Agile-Driving-Data-Chain/" class="wm-article-link wm-toc-text">A DID for every thing Agile Driving Data Chain</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Aligning-SSI-with-European-Union-Identity-legislation-eIDAS/" class="wm-article-link wm-toc-text">Aligning SSI with European Union identity legislation (aka eIDAS Regulation)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Anonymous_DIDs/" class="wm-article-link wm-toc-text">Staying Anonymous With DIDs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Applying_POLA_to_User_Interaction/" class="wm-article-link wm-toc-text">Applying the Principle of Least Authority to User Interaction</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/DID-Content-References/" class="wm-article-link wm-toc-text">DID Content References</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Designing-Trust-in-Identity-Systems/" class="wm-article-link wm-toc-text">RWoT 8 Topic Paper</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Digital-Identity-for-the-Homeless/" class="wm-article-link wm-toc-text">Digital Identity for the Homeless</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/DigitalTrustProtocol/" class="wm-article-link wm-toc-text">Digital Trust Protocol</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/P2P-DID/" class="wm-article-link wm-toc-text">Peer to Peer DIDs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Proof_of_Key_Ownership_with_OpenID_Connect_Self-Issued_Identities/" class="wm-article-link wm-toc-text">Proof of Key Ownership with OpenID Connect Self-Issued Identities</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Providing_Decentralized_Identity_to_the_most_vulnerable_populations/" class="wm-article-link wm-toc-text">Providing Decentralized Identity to the most vulnerable populations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/RWOT-local-chapters/" class="wm-article-link wm-toc-text">RWOT local chapters</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/RightToErasure/" class="wm-article-link wm-toc-text">GDPR: Right to erasure</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/SSI-FrameworkProposal/" class="wm-article-link wm-toc-text">Self-Sovereign Identity Framework/Thought Model</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Socia_-Key_Recovery_design_implentation/" class="wm-article-link wm-toc-text">Socia  Key Recovery design implentation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Universal-DID-Operations/" class="wm-article-link wm-toc-text">Universal DID Operations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Using-Immutable-Data-Objects/" class="wm-article-link wm-toc-text">Using Immutable Data Objects to Define Verifiable Credential Data</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/Zero-knowledge-Proofs/" class="wm-article-link wm-toc-text">Zero-knowledge proofs in identity systems</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/bootstrap_web-of-trust_reliance-lifecycle/" class="wm-article-link wm-toc-text">How do we bootstrap the web of trust in Verifiable Claims</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/bringing-dependencies-btcr-wallet-to-swift-ecosystem/" class="wm-article-link wm-toc-text">Bringing the Dependencies of a BTCR Wallet to the Swift Ecosystem</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/contextual_nondiscrete_identity/" class="wm-article-link wm-toc-text">Contextual Non-discrete Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/credentials-and-correlation/" class="wm-article-link wm-toc-text">**Credentials and Correlation**</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/data-vala-realization/" class="wm-article-link wm-toc-text">Data Value Realisation: Control, Commons & Ownership</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/decentralized-digital-identity-book/" class="wm-article-link wm-toc-text">Decentralized Digital Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-fee-market-using-micropayments/" class="wm-article-link wm-toc-text">Re-inventing Incentive Structures Using DID and Microtransactions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-namespace-records/" class="wm-article-link wm-toc-text">DID Namespace Records</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-primer-extended/" class="wm-article-link wm-toc-text">DID Primer Spring 2018</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-primer/" class="wm-article-link wm-toc-text">A Short Primer for Decentralized Identifiers</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-spec-current-status/" class="wm-article-link wm-toc-text">The Current Status of the DID Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/did-ux/" class="wm-article-link wm-toc-text">Where's the UX?</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/digital-contraception/" class="wm-article-link wm-toc-text">Digital Contraception</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/diverse-teams/" class="wm-article-link wm-toc-text">Assist underrepresented groups when entering the labour market through self sovereign identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/educational-credentialing-ecosystem/" class="wm-article-link wm-toc-text">Designing a Recipient-Centric Educational Digital Credential Ecosystem</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/exploring_adoption_of_sharing_vcs/" class="wm-article-link wm-toc-text">Exploring adoptation of VC sharing to provide value today</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/financing-self-sovereign-stack/" class="wm-article-link wm-toc-text">Financing a Self-sovereign Technology Stack</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/functional-identity-primer/" class="wm-article-link wm-toc-text">Functional identity primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/glossary-primer/" class="wm-article-link wm-toc-text">A Glossary of Terms for Rebooting the Web of Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/graphs-everywhere/" class="wm-article-link wm-toc-text">I see graphs everywhere. On the importance of graphs and graph analysis way of thinking.</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/handshake/" class="wm-article-link wm-toc-text">Handshake</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/humanity-API/" class="wm-article-link wm-toc-text">Humanity's API - solving Fermi paradox.</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/identity-containers/" class="wm-article-link wm-toc-text">Sikaris - Decentralized Identity with Identity Containers (SSI)</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/identity-for-people-places/" class="wm-article-link wm-toc-text">Identity for people places</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/idm-concept/" class="wm-article-link wm-toc-text">Identity Manager Concept</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/idm-spec/" class="wm-article-link wm-toc-text">Identity Manager Specification</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/implementing-threshold-schemes/" class="wm-article-link wm-toc-text">Implementing threshold schemes</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/introductory-capability-dht-concept/" class="wm-article-link wm-toc-text">Introductory Capability DHT</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/journalistic-use-cases/" class="wm-article-link wm-toc-text">Journalistic use-cases for SSI:  signatures, verified claims, and canonical-text registries</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/libp2p_did_auth/" class="wm-article-link wm-toc-text">libp2p for DID Authentication and the exchange of Verifiable Credentials</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/multiformat-superfriends/" class="wm-article-link wm-toc-text">The Multibase, Multihash, and Hashlink Specifications</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/name-services-and-ssi/" class="wm-article-link wm-toc-text">Name services and ssi</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/notebook-workbench/" class="wm-article-link wm-toc-text">A Notebook Workbench for SSI</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/oidc-profile-for-ssi/" class="wm-article-link wm-toc-text">OIDC Profile for SSI</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/on-interpersonal-data/" class="wm-article-link wm-toc-text">On interpersonal data</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/psdad/" class="wm-article-link wm-toc-text">PSDAD - A new data format with secure semantics</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/rightsframeworks/" class="wm-article-link wm-toc-text">Rightsframeworks</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/security_shamirs/" class="wm-article-link wm-toc-text">Security shamirs</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/social-key-recovery/" class="wm-article-link wm-toc-text">A New Approach to Social Key Recovery</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/ssi20XX-model-use-case-def/" class="wm-article-link wm-toc-text">SSI20XX - Model Use-Case Definitions and Implementation Commitment for higher Solution Interoperability and Robust Specifications.</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/structures_of_identity/" class="wm-article-link wm-toc-text">Structures of Identity: Namespace</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/supporting-btcr/" class="wm-article-link wm-toc-text">Querying Bitcoin blockchain for BTCR support</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/the-untimely-death-of-ssi/" class="wm-article-link wm-toc-text">The Untimely Death of SSI</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/trusting-attributes/" class="wm-article-link wm-toc-text">Multi-Factor Attribute Trust</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/united-humans-critiqal-questions/" class="wm-article-link wm-toc-text">The United Humans - can it really work?</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/universal-id-framework/" class="wm-article-link wm-toc-text">Universal id framework</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/universal-ledger-agent/" class="wm-article-link wm-toc-text">The universal ledger agent: a logical result of Rabobank's journey in blockchain based self-sovereign identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/universe-is-blockchain/" class="wm-article-link wm-toc-text">Is the Universe a blockchain?  A cryptographic model of the Universe.</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/vcs-agent-centric/" class="wm-article-link wm-toc-text">Vcs agent centric</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/verifiable-credentials-primer/" class="wm-article-link wm-toc-text">A Verifiable Credentials Primer</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/verifiable-displays-in-HTML/" class="wm-article-link wm-toc-text">Verifiable Displays: secure presentation of Verifiable Credentials in HTML</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/verifiable-postal-address-claims/" class="wm-article-link wm-toc-text">Verifiable Claims for Postal Addresses: A Use Case for Decentralized Postal Services using DIDs, VCs and Blockchains</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/w3c-identity-workshop-report/" class="wm-article-link wm-toc-text">_DRAFT_ W3C Strong Authentication and Identity Workshop Report</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev3 "><a href="RWoT8/Topics/why-WOTs-work/" class="wm-article-link wm-toc-text">Why webs of trust work, even the PGP one?</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">SSI</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/" class="wm-article-link wm-toc-text">self-sovereign-identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/7-myths-of-self-sovereign-identity/" class="wm-article-link wm-toc-text">7 myths of self sovereign identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/LICENSE-CC-BY-4.0/" class="wm-article-link wm-toc-text">LICENSE-CC-BY-SA-4.0.md</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/Schutte-on-SSI/" class="wm-article-link wm-toc-text">Schutte on SSI</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/ThePathToSelf-SovereignIdentity/" class="wm-article-link wm-toc-text">The Path to Self-Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/characteristics-of-sovereign-identity/" class="wm-article-link wm-toc-text">Core Characteristics of Sovereign Identity</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/self-sovereign-identity-bill-of-rights/" class="wm-article-link wm-toc-text">lifeID Self-Sovereign Identity Bill of Rights</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="SSI/self-sovereign-identity-principles/" class="wm-article-link wm-toc-text">Self sovereign identity principles</a>
+</li>
+  </ul>
+</li>
+
+  </ul>
+</nav>
+
+    <div class="wm-content-pane">
+      <iframe class="wm-article" name="article"></iframe>
+    </div>
+  </div>
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="yes-deployment-mkdocs">Yes Deployment MkDocs</h1>
+<p><strong>thank you for your patience while search and navigation load</strong> :D</p>
+<p>This is for testing purposes, and practice working with MkDocs.</p>
+<hr />
+<p>Because of the way MkDocs works, it's best to use the <code>master</code> branch for your markdown and configuration, and publish to <code>gh-pages</code>.</p>
+<p>Reason being, every time you make a change, MkDocs <code>touches</code> every single file in the build... meaning when I was building in the master branch I would see those 1000 files change, every time I made an edit.</p>
+<p>This way, the UX of my editor is way less clogged, and it makes the project easier to contribute to.. because otherwise mydocs writes over your configuration files on github so others only see the finished site files.</p>
+<ul>
+<li><a href="https://www.mkdocs.org/">https://www.mkdocs.org/</a></li>
+<li><a href="https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins">/mkdocs/mkdocs/wiki/MkDocs-Plugins</a></li>
+<li><a href="https://yakworks.github.io/mkdocs-material-components/cheat-sheet/">MkDocs Material Components - Cheat Sheet</a></li>
+<li><a href="https://mkdocs.readthedocs.io">mkdocs.readthedocs.io</a></li>
+<li><a href="https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins">mkdocs/mkdocs/wiki/MkDocs-Plugins</a></li>
+<li><a href="https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin">mkdocs-awesome-pages-plugin</a></li>
+<li><a href="https://www.wheelodex.org/entry-points/mkdocs.plugins/">mkdocs.plugins/</a></li>
+<li><a href="https://blogs.pjjk.net/phil/metadata-for-markdown-mkdocs/">metadata-for-markdown-mkdocs/</a></li>
+<li><a href="https://gristlabs.github.io/mkdocs-windmill/#">https://gristlabs.github.io/mkdocs-windmill/</a></li>
+<li><a href="https://github.com/gristlabs/mkdocs-windmill">gristlabs/mkdocs-windmill</a></li>
+<li><a href="https://python-markdown.github.io/extensions/">https://python-markdown.github.io/extensions/</a></li>
+<li><a href="https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions">Python-Markdown/markdown/wiki/Third-Party-Extensions</a></li>
+<li><a href="https://python-markdown.github.io/extensions/smarty/">https://python-markdown.github.io/extensions/smarty/</a></li>
+<li><a href="https://scalified.com/2018/01/16/injecting-pdf-html-page/">injecting-pdf-html-page/</a></li>
+</ul>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
+<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
+<li><code>mkdocs build</code> - Build the documentation site.</li>
+<li><code>mkdocs help</code> - Print this help message.</li>
+<li><code>mkdocs gh-deploy</code> - Build and Push to GitHub. (assuming you've set the repository in mkdocs.yml and you have SSL enabled, otherwise it just builds)</li>
+</ul>
+<h2 id="project-layout">Project layout</h2>
+<pre><code>mkdocs.yml    # The configuration file.
+docs/
+    index.md  # The documentation homepage.
+    ...       # Other markdown pages, images and other files.
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2019-05-12 06:18:45
+-->

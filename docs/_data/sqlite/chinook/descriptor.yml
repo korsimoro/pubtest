@@ -1,7 +1,0 @@
-name: Chinook
-dbkey: sample
-source:
-  type: web
-  url: http://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip
-  input: unzip
-

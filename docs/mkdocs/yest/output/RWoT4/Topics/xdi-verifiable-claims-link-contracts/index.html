@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Xdi verifiable claims link contracts - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "XDI Verifiable Claims and Link Contracts", url: "#_top", children: [
+              {title: "XDI Verifiable Claims", url: "#xdi-verifiable-claims" },
+              {title: "XDI Link Contracts", url: "#xdi-link-contracts" },
+              {title: "Issuing XDI Verifiable Claims", url: "#issuing-xdi-verifiable-claims" },
+              {title: "Additional Notes", url: "#additional-notes" },
+              {title: "Related Work", url: "#related-work" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="xdi-verifiable-claims-and-link-contracts">XDI Verifiable Claims and Link Contracts</h1>
+<p>Markus Sabadello, Danube Tech (https://danubetech.com), Vienna, April 15th 2017</p>
+<p>There is a high level of interest in the Rebooting-the-Web-of-Trust community and beyond in "verifiable claims", i.e. "a cryptographically non-repudiable set of statements made by an entity about another entity" (see <strong>[1]</strong>). This work foresees that "the next generation of web applications will authorize entities to perform actions based on rich sets of credentials issued by trusted parties" (see <strong>[2]</strong>).</p>
+<p>XDI (eXtensible Data Interchange) is a technology for modeling, storing and sharing personal and organizational identity data. One key component of this technology is the "link contract", i.e. a "data sharing agreement between the publisher of the data, called the authorizing authority, and a party who wants to access the data, called the requesting authority" (see <strong>[3]</strong>).</p>
+<p>XDI link contracts contain a policy tree which is used to decide if the permissions granted by the link contract can be invoked by a requesting authority. This policy evaluates conditions based on input elements such as the authorizing authority, requesting authority, and an incoming request message. Simple conditions of the policy could e.g. require the presentation of a valid password or signature. </p>
+<p>This topic paper explores the use of verifiable claims as part of an XDI link contract's policy. This way, an XDI link contract could grant permissions to a requesting authority only if it is able to present a certain verifiable claim.</p>
+<h2 id="xdi-verifiable-claims">XDI Verifiable Claims</h2>
+<p>While the larger verifiable claims community at the moment may be unlikely to base its work on the XDI graph model, the concept of verifiable claims itself should be understood to be abstract and independent of any concrete technological realization. In other words, "the data model should be data syntax agnostic" (see <strong>[4]</strong>).</p>
+<p>A claim as an assertion of the value of an attribute of a subject (see <strong>[5]</strong>) can be represented as a simple XDI statement (in this case, an XDI "relational" statement):</p>
+<pre><code>=!:did:sov:21tD/$is#/#doctor
+</code></pre>
+<p>The fact that the subject of the claim is also the claimant, i.e. it is the subject itself making the assertion, can be represented using an XDI peer root:</p>
+<pre><code>(=!:did:sov:21tD)=!:did:sov:21tD/$is#/#doctor
+</code></pre>
+<p>Expressing that the claimant is different from the subject could also be done using an XDI peer root: </p>
+<pre><code>(+!:did:sov:QQiF)=!:did:sov:21tD/$is#/#doctor
+</code></pre>
+<p>In order to express that the assertion is made specifically within the context of the relationship between claimant and subject, an XDI inner root can be used:</p>
+<pre><code>(+!:did:sov:QQiF/=!:did:sov:21tD)=!:did:sov:21tD/$is#/#doctor
+</code></pre>
+<p>To make the claim "verifiable", an XDI signature and other data such as a timestamp are added:</p>
+<pre><code>(+!:did:sov:QQiF/=!:did:sov:21tD)=!:did:sov:21tD/$is#/#doctor
+(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;/&amp;/"R0wdp.....Y5w=="
+(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;/$is#/$sha$256$rsa$2048
+(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;&lt;$t&gt;/&amp;/"2017-04-13T05:14:38Z"
+</code></pre>
+<h2 id="xdi-link-contracts">XDI Link Contracts</h2>
+<p>An XDI link contract with a policy that grants permissions if a certain verifiable claim is presented could look like this:</p>
+<pre><code>(+hospital/#doctor)$contract$do/$add/+hospital[#patient]
+(+hospital/#doctor)($contract$do$if$and/$true){$msg}&lt;$sig&gt;&lt;$valid&gt;/&amp;/true
+(+hospital/#doctor)($contract$do$if$and/$true)(+!:did:sov:QQiF/{$from}){$from}/$is#/#doctor
+(+hospital/#doctor)($contract$do$if$and/$true)(+!:did:sov:QQiF/{$from})&lt;$sig&gt;&lt;$valid&gt;/&amp;/true
+</code></pre>
+<p>Note that the variable <code>{$from}</code> stands for the requesting authority that is using the link contract.</p>
+<h2 id="issuing-xdi-verifiable-claims">Issuing XDI Verifiable Claims</h2>
+<p>Using XDI, a verifiable claim could be "issued" by requesting an assertion to be signed by a claimant (issuer), using the XDI <code>$do$sign</code> operation:</p>
+<pre><code>=!:did:sov:21tD[$msg]@~0/$from/(=!:did:sov:21tD)
+=!:did:sov:21tD[$msg]@~0/$to/(+!:did:sov:QQiF)
+=!:did:sov:21tD[$msg]@~0/$contract/(+!:did:sov:QQiF/=!:did:sov:21tD)$contract
+(=!:did:sov:21tD[$msg]@~0$do/$do$sign)(+!:did:sov:QQiF/=!:did:sov:21tD)=!:did:sov:21tD/$is#/#doctor
+</code></pre>
+<p>Response:</p>
+<pre><code>+!:did:sov:QQiF[$msg]@~0/$from/(+!:did:sov:QQiF)
++!:did:sov:QQiF[$msg]@~0/$to/(=!:did:sov:21tD)
++!:did:sov:QQiF[$msg]@~0/$is$msg/=!:did:sov:21tD[$msg]@~0
+(+!:did:sov:QQiF[$msg]@~0/$do$sign)(+!:did:sov:QQiF/=!:did:sov:21tD)=!:did:sov:21tD/$is#/#doctor
+(+!:did:sov:QQiF[$msg]@~0/$do$sign)(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;/&amp;/"R0wdp.....Y5w=="
+(+!:did:sov:QQiF[$msg]@~0/$do$sign)(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;/$is#/$sha$256$rsa$2048
+(+!:did:sov:QQiF[$msg]@~0/$do$sign)(+!:did:sov:QQiF/=!:did:sov:21tD)&lt;$sig&gt;&lt;$t&gt;/&amp;/"2017-04-13T05:14:38Z"
+</code></pre>
+<p>The response contains the XDI verifiable claim as described earlier in this document.</p>
+<p>Note that the issuing request also requires an XDI link contract in order to be authorized and executed. This can enable scenarios where a certain verifiable claim is required by an XDI link contract as a condition for another verifiable claim to be issued. </p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>DIDs (see <strong>[6]</strong>) in this document are abbreviated and "XDIified" (see <strong>[7]</strong>)-</p>
+<p>XDI examples in this document use the "XDI DISPLAY" format. Conversion to other formats such as "JXD" is possible (see <strong>[8]</strong>). </p>
+<p>XDI cryptographic signatures are currently specifically designed for XDI's unique hierarchical graph model. It will be interesting to explore if there are potential synergies with the ongoing effort to align signature formats (see <strong>[9]</strong>). </p>
+<h2 id="related-work">Related Work</h2>
+<p>Previous XDI-related contributions to RWoT include: </p>
+<ul>
+<li>XDI, Blockstore, and BIP32: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/cool-hack-xdi-blockstore-bip32.md</li>
+<li>XDI Link Contracts: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/xdi-link-contracts.md</li>
+<li>XDI Graphs in IPFS: https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/topics-and-advance-readings/XDI-Graphs-in-IPFS.md</li>
+<li>JXD Examples: https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/topics-and-advance-readings/JXD-Examples.md</li>
+</ul>
+<p>Thank you to the wonderful RWoT community for its great and idealistic work! </p>
+<h2 id="references">References</h2>
+<p><strong>[1]</strong> http://w3c.github.io/vctf/#verifiable-claim</p>
+<p><strong>[2]</strong> https://opencreds.github.io/vc-use-cases/</p>
+<p><strong>[3]</strong> https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/xdi-link-contracts.md</p>
+<p><strong>[4]</strong> https://docs.google.com/document/d/1tCKHSTFhhGgu4rVDJe4VM2QoCQcNRvx7tNku1Mg8p5Q/</p>
+<p><strong>[5]</strong> http://wiki.idcommons.net/Claim</p>
+<p><strong>[6]</strong> https://docs.google.com/document/d/1Z-9jX4PEWtyRFD5fEyyzEnWK_0ir0no1JJLuRu8O9Gs/</p>
+<p><strong>[7]</strong> https://lists.oasis-open.org/archives/xdi/201611/msg00002.html</p>
+<p><strong>[8]</strong> https://server.xdi2.org/XDIConverter</p>
+<p><strong>[9]</strong> https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/topics-and-advance-readings/SignatureFormatAlignment.md</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

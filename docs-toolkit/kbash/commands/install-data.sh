@@ -24,7 +24,7 @@ run() {
 
   for EXT in yml json csv; do
     report_progress 'find' "Copying $EXT"
-    find . -name \*.$EXT -exec $PD_KBASH/shell.sh -c "pd install-data-file {}" \;
+    find . -not -path '*/\.*' -name \*.$EXT -exec $PD_KBASH/shell.sh -c "pd install-data-file {}" \;
   done
 
   report_ok "$SOURCE populated"

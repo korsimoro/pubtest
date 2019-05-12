@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A Primer on Functional Identity - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "A Primer on Functional Identity", url: "#_top", children: [
+          ]},
+          {title: "A Functional Definition", url: "#a-functional-definition", children: [
+          ]},
+          {title: "Identity Systems", url: "#identity-systems", children: [
+          ]},
+          {title: "Terminology", url: "#terminology", children: [
+          ]},
+          {title: "Input and Effect", url: "#input-and-effect", children: [
+          ]},
+          {title: "Making New Ideas", url: "#making-new-ideas", children: [
+          ]},
+          {title: "Securing Identity Information", url: "#securing-identity-information", children: [
+          ]},
+          {title: "Bridging the Gap", url: "#bridging-the-gap", children: [
+          ]},
+          {title: "People, Places and Things", url: "#people-places-and-things", children: [
+          ]},
+          {title: "Identity Information", url: "#identity-information", children: [
+          ]},
+          {title: "Identity Actions", url: "#identity-actions", children: [
+              {title: "For technologists", url: "#for-technologists" },
+              {title: "For laypeople", url: "#for-laypeople" },
+          ]},
+          {title: "Why?", url: "#why", children: [
+          ]},
+          {title: "Summary", url: "#summary", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="a-primer-on-functional-identity">A Primer on Functional Identity</h1>
+<hr />
+<p>By Joe Andrieu, Legendary Requirements <a href="mailto:joe@legreq.com">joe@legreq.com</a> </p>
+<p>There are many ways to approach identity. For the Rebooting Web of Trust, we prefer a <strong>functional approach</strong> to focus conversations on how identity works and how we use it.</p>
+<p>The varied facets of identity are so rich that we each bring our own <strong>hot buttons</strong> and <strong>agendas</strong> to any discussion. Some people engage from a <strong>philosophical</strong> perspective, others <strong>cultural</strong>. Some dive into <strong>political</strong> issues and others get <strong>meta-physical</strong> and <strong>spiritual</strong>. These different perspectives are valid views of identity’s impact on our lives. More than valid. <strong><strong>Vital</strong></strong>. They help answer the question of “Why?” Why identity matters, why we should care. Unfortunately, they also inflame <strong>passions</strong>. We sometimes talk past each other to make points that have minimal relevance for others, leaving people frustrated and unheard.</p>
+<p>As <strong>engineers</strong> and <strong>system designers</strong>, we’re concerned with <strong>how things work</strong>. We want to fix what’s broken and build new things. To do that, we want to discuss how things function. With identity, this functional perspective sidesteps the inflammatory rabbit holes, without dismissing them. Functional Identity lets us investigate <strong>the HOW</strong> without prejudice <strong>to WHY</strong>, viewing identity systems based on how they work and then, in turn, how they affect individuals and society.</p>
+<h1 id="a-functional-definition">A Functional Definition</h1>
+<blockquote>
+<p>Identity is how we keep track of people and things and, in turn, how they keep track of us.</p>
+</blockquote>
+<p><strong>That’s it</strong>. We learn people’s names, we observe them and hear gossip and consume media. We then apply our sense of who they are to our dealings with them. Others do the same in return.</p>
+<p>For many, this simple definition is <strong>provocative</strong>. It triggers thoughts of <strong>Big Brother</strong> and the <strong>surveillance</strong> state. It brings up ideas about embedded chips and tattooed serial numbers. It conjures fears of government or corporations constantly tracking what we do.</p>
+<p>Which is ok, because, in fact, those are the most <strong>feared abuses</strong> of identity. It’s important to realize when we talk about identity that we are always talking about how we keep track of people. </p>
+<p>There are also a number of wonderful uses of identity. The joy of <strong>a child</strong> asking for “Momma” or <strong>a lover</strong> calling out your name. The pride in your name on a diploma. The simple benefit of seeing another’s name tag at a workshop and better remembering that fascinating conversation. Identity enables so much good stuff because it <strong>helps</strong> us keep track of people and things. </p>
+<p>The functional approach reaches <strong>beyond digital</strong> systems to understand how identity works throughout society. Our identity is bigger than our digital selves. Our identities existed before and continue to exist independent of any digital representation. Digital identities are simply <strong>tools</strong> which help organizations and individuals manage real-world identity. In the simplest terms, digital identities help keep track of people digitally. </p>
+<p>Unfortunately, digital systems can <strong>unwittingly compromise</strong> real-world identity. Sometimes this occurs because digital identity systems neglect to consider external effects. Other times, it happens with systems that didn’t even realize they were dealing with identity-related personal information. A functional perspective allows engineers to see <strong>beyond</strong> static attributes and traditional notions of “Personally Identifiable Information” to better understand how engineering choices can impact identity, even outside their systems.</p>
+<p>With a better understanding of how identity functions, we will be able to build systems that <strong>enhance</strong> privacy and human dignity, while <strong>improving</strong> identity assurance and security. </p>
+<h1 id="identity-systems">Identity Systems</h1>
+<p>An identity system is a collection of tools and techniques used to keep track of people and things.</p>
+<p>As individuals, we do this <strong>naturally</strong>, in our minds. We name things, then use names and distinguishing features to remember what we learn. We treat people differently based on their identity: treating our friends and family differently from strangers and known threats.</p>
+<p>Organizations create processes, software, and services to <strong>achieve</strong> similar ends. These identity systems are best understood in terms of how they function, which is the same as how identity has worked since the dawn of <strong>civilization</strong>. </p>
+<h1 id="terminology">Terminology</h1>
+<p>In the diagrams below, the blue boxes are nouns and the red ovals are verbs – the building blocks for describing identity systems.</p>
+<p>We start with the simplest identity system, using three nouns and a verb:</p>
+<p><img alt="Subjects, Identifiers, Attributes, and Correlate" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/sub.id.attr.corr.svg" width="450px"></p>
+<ul>
+<li><strong>Subjects</strong> are entities—people or things—under consideration.</li>
+<li><strong>Identifiers</strong> are labels which refer to entities. They are used to keep track of what we know about those entities.</li>
+<li><strong>Attributes</strong> are what we know about people and things. They describe the state, appearance, or other qualities of an entity.</li>
+<li><strong>Correlate</strong> means to associate attributes with particular entities, to associate what we know about someone with either an identifier in the system or a subject in question.</li>
+</ul>
+<p>Identity systems <strong>correlate</strong> <strong>subjects</strong> with <strong>attributes</strong> in two ways. First, attributes are associated with <strong>identifiers</strong> referring to specific <strong>subjects</strong>, thus building a body of knowledge. Then, when we recognize a subject, we associate them with one or more identifiers, and in doing so, associate them with everything we know about those identifiers. </p>
+<p>These terms apply equally to things other than people, such as organizations, groups, or places. We correlate new attributes with identifiers and vice-versa as we learn about subjects. When we recognize a person or thing we can apply everything we have learned about them. In digital systems, this set of related attributes is sometimes referred to as a digital identity or profile.</p>
+<h1 id="input-and-effect">Input and Effect</h1>
+<p>We learn or acquire identity information over time, then apply what we’ve learned to various interactions, usually elsewhere. </p>
+<p><img alt="Acquire and Apply" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/acq.apply.svg" width="300px" ></p>
+<ul>
+<li><strong>Acquire</strong> means to gather identity information for use by the system.</li>
+<li><strong>Apply</strong> means to use identity information to affect change outside the identity system, typically to moderate an interaction of the subject with a related system. </li>
+</ul>
+<p>Identity information might be <strong>acquired</strong> by observation or by importing from elsewhere. We may learn about someone by watching them, or we may learn through references, rumors, and reputation. Identity systems acquire new information throughout their operational life, just as we continue to learn about people throughout our lives.</p>
+<p>Once acquired, identity information must be <strong>applied</strong> in a specific situation to have impact. If we know something about someone and that information never influences our behavior and is never shared, it doesn’t affect the world. The way that identity information is applied tells us how an identity system affects our lives.</p>
+<p>For example, a website might apply the email associated with my account to allow me to reset my password or it may send me unwanted advertisements. The U.S. Transportation Security Administration (TSA) applies the information on its no-fly list to prevent those identified as potential threats from flying.</p>
+<h1 id="making-new-ideas">Making New Ideas</h1>
+<p>We gain new insights by considering both existing identity information and previously unrelated observations. Identity is more than just what we know about people and apply to our interactions. It’s also how we make judgments based on what we know, gaining insights into character, capabilities, and proclivities. </p>
+<p><img alt="Raw data, Derived Attributes, and Reason" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/raw.der.reason.svg" width="300px"></p>
+<ul>
+<li><strong>Raw data</strong> are data which may or may not contain information relatable to any particular person or thing. </li>
+<li><strong>Derived attributes</strong> are conclusions reached by reasoning over identity information. They are what we learn when we consider what we know about people and things.</li>
+<li><strong>Reason</strong> means to evaluate existing identity information to generate new derived attributes. </li>
+</ul>
+<p><strong>Derived attributes</strong> are created by <strong>reasoning</strong> using <strong>raw data</strong> and known attributes. By applying reasoning to existing observations and related knowledge, we can gain insights that neither the subject nor the original author anticipated. Raw data such as search history, web browsing, and the time &amp; location information captured by our phones, may contain identity-related information, even when that was neither the purpose nor the intention at the time of capture. </p>
+<p>We also reason using known attributes to derive new ones. For example, we calculate a person’s age based on the birthdate on their driver’s license to determine if they are old enough to drink legally. Credit companies evaluate recent income, past transactions, and projections of future income to set interest rates and make loan approvals. We remember how people treat us and alter our behavior in future interactions. If someone repeatedly breaks their word, we may stop depending on them.  </p>
+<h1 id="securing-identity-information">Securing Identity Information</h1>
+<p>We go to great lengths to keep identity information secure.</p>
+<p><img alt="Secure" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/secure.svg" width="150px"></p>
+<ul>
+<li><strong>Secure</strong> means to restrict the creation and flow of identity information to the right people at the right time.</li>
+</ul>
+<p>Sometimes we keep <strong>secrets</strong> to prevent information from reaching certain people. We do this with tools like encryption, access control, and minimal disclosure. Legal <strong>agreements</strong> between people, businesses, institutions, and governments specify <strong>appropriate use</strong> of certain information while laws, regulations, and the courts allow governments and institutions to <strong>oversee</strong>, monitor, and intervene in the capture and use of identity information. How identity systems secure certain information, and not others, defines how they preserve and respect <strong>privacy</strong>. </p>
+<p>The right to keep private information private is often referred to as the <strong>right</strong> of privacy.
+Many people feel their privacy is <strong>threatened</strong> because so much information is shared over the Internet, in our workplaces, and through our devices. Information we share in different contexts (business, family, community, etc.) can <strong>leak</strong> unexpectedly and undesirably into other contexts.</p>
+<p>It is difficult as individuals to understand of all the ways we are publicly or privately tracked. Information is <strong>shared</strong> on social media, tracked in Internet searches, monitored when using navigation software, and captured as we use our phones. The sheer magnitude and complexity of the information tracked and used means the average person is essentially <strong>incapable</strong> of making informed decisions to consent to appropriate use. Some people <strong>give up</strong>, divulging personal information without regard to consequences. Others <strong>opt-out</strong>, participating as little as possible in our digitally connected world. </p>
+<p>Identity matters because the myriad ways we are tracked can <strong>impact</strong> our lives. It pays to <strong>understand</strong> the options we have as engineers, and as individuals, for protecting ourselves, our families, and our businesses. </p>
+<h1 id="bridging-the-gap">Bridging the Gap</h1>
+<p>The nouns and verbs above are grounded in the world of technology and may be unfamiliar for the average individual. More conversational synonyms are presented in the tables below. Use the most appropriate terms for your audience. </p>
+<h1 id="people-places-and-things">People, Places and Things</h1>
+<p>This is the point of identity: those people, places, and things we recognize. </p>
+<table>
+<thead>
+<tr>
+<th>Technologists</th>
+<th>Laypeople</th>
+<th>Common Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subject</td>
+<td>Person</td>
+<td>Someone under consideration. The focus of inquiry.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="identity-information">Identity Information</h1>
+<p>These are the abstract nouns of identity, the informational assets created and used by identity systems.</p>
+<table>
+<thead>
+<tr>
+<th>Technologists</th>
+<th>Laypeople</th>
+<th>Common Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identifiers</td>
+<td>Names</td>
+<td>Refers to entities. Used to keep track of people and things.</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Statements</td>
+<td>What we know about people and things. They describe the state, appearance, or other qualities of an entity.</td>
+</tr>
+<tr>
+<td>Raw data</td>
+<td>Observations</td>
+<td>Data which may or may not contain correlatable information.</td>
+</tr>
+<tr>
+<td>Derived attributes</td>
+<td>Beliefs</td>
+<td>Conclusions reached by reasoning over identity information. These are what we learn when we consider what we know about people and things.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="identity-actions">Identity Actions</h1>
+<p>These are the verbs of identity. These are the actions taken by identity systems working with identity information.</p>
+<table>
+<thead>
+<tr>
+<th>Technologists</th>
+<th>Laypeople</th>
+<th>Common Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acquire</td>
+<td>Collect</td>
+<td>Intake or generate identity information for use by the system.</td>
+</tr>
+<tr>
+<td>Correlate</td>
+<td>Relate</td>
+<td>Associate attributes or observations with particular entities. We associate what we know about someone with either an identifier in the system or with a subject in question.</td>
+</tr>
+<tr>
+<td>Reason</td>
+<td>Reason</td>
+<td>Evaluate existing identity information to generate new beliefs, expressed in attributes, captured in statements.</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>Apply</td>
+<td>Use identity information in a system, typically to moderate interactions with known entities.</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>Protect</td>
+<td>Restrict the creation and flow of identity information to the right people at the right time.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="for-technologists">For technologists</h3>
+<p><img alt="Technologists' language: Subjects, Identifiers, Attributes, Raw data, Derived attributes, Acquire, Correlate, Reason, Apply, Secure" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/technologist.svg" width="750px"></p>
+<p>We assign <strong>identifiers</strong> to <strong>subjects</strong>. We collect <strong>raw data</strong> and correlate <strong>attributes</strong> to the <strong>subjects</strong> we track. We <strong>reason</strong> over raw data and attributes, to <strong>derive</strong> new <strong>attributes</strong>. We then <strong>apply</strong> this information to current and future interactions with subjects. We <strong>secure</strong> identity information to keep secrets and preserve privacy.</p>
+<h3 id="for-laypeople">For laypeople</h3>
+<p><img alt="Regular language: People, Names, Statements, Observations, Beliefs, Collect, Relate, Reason, Apply, Protect" src="https://rawgithub.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/master/topics-and-advance-readings/functional-identity-primer-diagrams/layperson.svg" width="750px"></p>
+<p>We give <strong>names</strong> to <strong>people</strong>. We <strong>collect</strong> <strong>observations</strong> and record <strong>statements</strong> relating those observations to people we know. We <strong>reason</strong> over these observations, statements, and <strong>beliefs</strong> to generate new beliefs. We then <strong>apply</strong> what we know and believe when dealing with those we recognize. We <strong>protect</strong> identity information to keep secrets and preserve privacy.</p>
+<p>This is the <strong>vocabulary</strong> of Functional Identity, a way to discuss identity in terms of functionality: how it works and what it does for us. This is the language of identity for the Rebooting Web of Trust.</p>
+<h1 id="why">Why?</h1>
+<p>Engineers, entrepreneurs, and financiers have asked “Why are we spending so much time with a definition of identity? Why not just build something and fix it if it is broken?” The vital, simple reason is <strong>human dignity</strong>.</p>
+<p>When we build interconnected systems without a core understanding of identity, we risk <strong>inadvertently</strong> compromising human dignity. We risk <strong>accidentally</strong> building systems that deny self-expression, place individuals in harm’s way, and unintentionally oppress those most in need of self-determination.</p>
+<p>There are times when the needs of <strong>security</strong> outweigh the need for human dignity. Fine. It’s the job of our <strong>political</strong> systems—local, national, and international—to minimize abuse and to establish boundaries and practices that respect basic human rights.</p>
+<p>But when engineers <strong>unwittingly</strong> compromise the ability of individuals to self-express their identity, when we expose personal information in unexpected ways, when our systems deny basic services because of a flawed understanding of identity, these are <strong>avoidable tragedies</strong>. What might seem a minor technicality in one conversation could lead to the loss of privacy, liberty, or even life for an individual whose identity is <strong>unintentionally compromised</strong>. </p>
+<p>That’s why it pays to understand identity, so the systems we build intentionally enable human dignity instead of accidentally destroy it.</p>
+<h1 id="summary">Summary</h1>
+<p>Functional Identity focuses on <strong>how identity works</strong>. At the Rebooting Web of Trust, we ground our work in the functional notion of identity and <strong>avoid</strong> the psychological, cultural, political, and philosophical. These notions are important, but they can also <strong>distract</strong> us from understanding the <strong>technical choices</strong> involved in building and using identity in today’s networked world.</p>
+<p>This functional notion of identity began with a conversation at the <strong><a href="http://iiw.idcommons.net">Internet Identity Workshop</a></strong> in May of 2016, followed by conversations at <strong><a href="http://id2020summit.org">ID2020</a></strong> and the second Rebooting Web of Trust workshop that summer, resulting in the paper <a href="https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/final-documents/identity-crisis.pdf">Identity Crisis</a>. It continued in subsequent meetings in all three venues, and in two articles published by the People Centered Internet <a href="https://peoplecentered.net/2017/06/11/speaking-of-identity/">Speaking of Identity</a> and <a href="https://peoplecentered.net/2017/07/26/how-identity-can-enable-a-people-centered-internet/">How Identity Can Enable A People-Centered Internet</a>. </p>
+<p>This primer represents a <strong>current take</strong> on that conversation, geared to help Rebooting Web of Trust participants <strong>communicate</strong> more clearly and <strong>collaborate</strong> more effectively. We encourage your feedback and look forward to continuing the conversation.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

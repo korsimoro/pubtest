@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Privacy Preserving Web Identity Architectures - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Privacy Preserving Web Identity Architectures", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Problem", url: "#problem" },
+              {title: "Terminology", url: "#terminology" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Approach One: Same Origin Identity", url: "#approach-one-same-origin-identity" },
+              {title: "Approach Two: Self-sovereign Identity", url: "#approach-two-self-sovereign-identity" },
+              {title: "Implications of Each Approach", url: "#implications-of-each-approach" },
+              {title: "Next Steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="privacy-preserving-web-identity-architectures">Privacy Preserving Web Identity Architectures</h1>
+<p><strong><em>by Anonymous (no, not that Anonymous, the other one)</em></strong>
+<em>-- Dave Longley, Manu Sporny, Christopher Allen, Drummond Reed, and Marta Piekarska</em></p>
+<p><em>A White Paper from Rebooting the Web of Trust III</em></p>
+<h2 id="abstract">Abstract</h2>
+<p>It is important to be wary of the privacy implications and trade-offs of
+verifiable attribute, claim, and attestation systems. As with other ecosystems,
+different design decisions lead to different trade-offs. There is rarely one
+solution to a particular problem. Rather there tend to be a handful of
+solutions that make different trade-offs. This paper focuses on how privacy
+may be preserved using two different designs: same-origin identity and
+self-sovereign identity. We briefly analyze the trade-offs that come with each
+design approach in an attempt to progress a conversation in the community
+related to the appropriate path forward for a particular set of use cases.</p>
+<h2 id="problem">Problem</h2>
+<p>There is no widely used, privacy-preserving, standard protocol for sharing
+verifiable claims that cuts across industries and market verticals.</p>
+<h2 id="terminology">Terminology</h2>
+<p>A <strong>claim</strong> is the expression of one or more attributes about an entity.</p>
+<p>A <strong>verifiable claim</strong> is a claim whose authorship can be cryptographically
+asserted.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The general use case for sharing verifiable claims on the Web is as follows:</p>
+<p>You visit domain A and you need a verifiable claim from domain B in order to
+access some service.</p>
+<p>In this use case, you’re trying to prove to one party that another party
+(that they trust) believes something is true about you -- or that you have a
+certain "identity". In order to talk about a particular identity, computers
+typically assign an identifier (like an email address or UUID) to it. In order
+to give the identity meaning, entities may associate a variety of attributes
+with the identifier (such as name, place of residence, etc.).</p>
+<p>You may decide  to make this identifier public or keep some aspects of it
+private. Designers of identity systems are often concerned with making sure
+you’re aware of which aspects are public and which are private -- and this can
+be very difficult to do. Depending on how identifiers are handled between
+computer systems, unintentional correlations may become possible, potentially
+revealing more information about your identities than you intended.</p>
+<p>There are two emerging schools of thought on how to address the use case.
+Both schools take a layered approach to solving the problem and both are
+interested in protecting privacy. The foundational layer in each school
+sets out core principles for identity that result in effects in how
+identity interactions may occur and constraints upon the software that
+must exist to enable them.</p>
+<p>As each school relies upon different core principles, we must be careful to
+not assume that a school has no concern for certain values, such as protecting
+privacy. Rather, each approach has different advantages and disadvantages by
+pushing complexity in different directions.</p>
+<h2 id="approach-one-same-origin-identity">Approach One: Same Origin Identity</h2>
+<p>This school of thought is employed primarily in the Web browser and FIDO
+security model.</p>
+<h3 id="core-principles">Core Principles</h3>
+<ul>
+<li>Never create long lived, cross domain identifiers.</li>
+<li>Identifiers must always be uniquely tied to a particular domain,
+    never shared across domains, thus prohibiting any possibility
+    for undue privacy-harming correlation.</li>
+<li>Assume that many users lack the knowledge or experience to adequately
+    protect their own privacy. Note that this assumption does not address
+    collusion across domains (e.g. correlating based on email address).</li>
+<li>All layers in this approach must adhere to and build on top of this
+    foundational principle.</li>
+</ul>
+<h3 id="addressing-the-use-case">Addressing the Use Case</h3>
+<p>When you visit domain A, it will generate a random identifier that you take
+to domain B. Then, domain B will associate attributes with the random
+identifier and digitally sign this information, handing it back to you.
+You present this verifiable claim to domain A and get access to your
+desired service.</p>
+<p>The benefits of this approach include:</p>
+<ul>
+<li>There is no way for domain A or domain B to correlate the identifier
+    with anything other than the information it already knows.</li>
+<li>Domain B does not directly learn about the user’s decision to share
+    information with domain A.</li>
+<li>Users that do not understand the complexities of correlating identifiers
+    cannot harm themselves.</li>
+<li>Revocation is privacy preserving and can be implemented via short timeouts.</li>
+</ul>
+<p>The drawbacks of this approach include:
+  * Domain B must have highly available infrastructure in order to ensure
+    that you can get access to domain A.
+  * Domain A is dependent upon domain B implementing highly available
+    infrastructure in order to authenticate and service its users.
+  * The user does not get to use the claims made about them by domain B
+    independently of (without interaction with) domain B. In other words,
+    claims made about a user are not easily aggregated and made available
+    for independent reuse; rather a user’s identity information is fractured
+    across main domains or “identity providers”.
+  * For public identities, there exists no common correlatable identifier
+    for claims from different domains. User interaction or published
+    correlation maps are required to share public claims.</p>
+<h2 id="approach-two-self-sovereign-identity">Approach Two: Self-sovereign Identity</h2>
+<h3 id="core-principles_1">Core Principles</h3>
+<ul>
+<li>Identifiers must have independent existence from any particular domain;
+    users must have control over their identity, without fear of losing it.</li>
+<li>Management of identities should be simple and not spread across many
+    websites. Identifiers can therefore be long lived and travel across domains.</li>
+<li>If publicly accessible infrastructure is required to ensure people
+    have and control independent identifiers, that’s fine, so long as layers
+    can be added to blind identifiers for greater privacy.</li>
+<li>Start simple, rely on shared infrastructure, and add layers to support
+    private/anonymized identity.</li>
+<li>Trusted third parties may provide additional infrastructure to blind
+    identifiers as needed.</li>
+<li>Rely on software solutions in higher layers to help users make safe choices.</li>
+</ul>
+<h3 id="addressing-the-use-case_1">Addressing the Use Case</h3>
+<p>As users have more choice (at a cost of having to understand the choices),
+there are two options.</p>
+<p>Option #1: When you visit domain A you directly hand over a digitally signed
+verifiable claim from domain B.</p>
+<p>The benefits of this approach include:
+  * No interaction with domain B is necessary.
+  * Domain B does not learn about the user’s decision to share information
+    with domain A.
+  * Domain B does not need highly available infrastructure.
+  * Domain A is not dependent on domain B implementing highly available
+    infrastructure.
+  * Revocation can be privacy preserving through the use of a highly
+    available ledger running on shared infrastructure.</p>
+<p>The drawbacks of this approach include:
+  * Privacy-harming correlation is possible with the identifier in the
+    verifiable claim. This isn’t a problem for a publicly used identifier,
+    but it is for a private one.
+  * Users may not understand that correlations can be made and need some
+    level of assistance to avoid potentially harming themselves.</p>
+<p>Option #2: When you visit domain A, you give your pre-digitally signed
+verifiable claim from domain B to a trusted third party. That third party
+verifies the signature, anonymizes your identifier, and places their own
+signature on the claim before passing it back to you to hand to domain A.</p>
+<p>The benefits of this approach include:
+  * There is no way for domain A or domain B to correlate the identifier
+    with anything other than the information it already knows.
+  * No interaction with domain B is necessary.
+  * Domain B does not directly learn about the user’s decision to share
+    information with domain A.
+  * Domain B does not need highly available infrastructure.
+  * Domain A is not dependent on domain B implementing highly available
+    infrastructure.
+  * Users that do not understand the complexities of correlating identifiers
+    cannot harm themselves.
+  * Revocation can be privacy preserving through the use of a highly
+    available ledger running on shared infrastructure.
+  * Third party verifiers can add value to the ecosystem, providing highly
+    available infrastructure, privacy protection, and trustworthiness.</p>
+<p>The drawbacks of this approach include:</p>
+<ul>
+<li>Third party verifiable learns of your information and can correlate
+    identifiers. However, their viability as a service depends on their
+    trustworthiness and providing a good quality, privacy-preserving
+    service is a requirement for people to be interested in using them.</li>
+</ul>
+<h2 id="implications-of-each-approach">Implications of Each Approach</h2>
+<p>The Same Origin Identity approach leans on some assumptions about
+highly available infrastructure. Namely, that everyone has it or can
+provide it as needed. If this assumption is not true, then this approach
+has the potential to result in more centralized systems and blocking
+certain low budget or temporal parties from participating. Even if
+designers try really hard to make the core layer prevent the correlation
+of identifiers that the software framework introduces, that does not
+prevent the correlation of other strongly-personally-identifying
+identifiers that may be associated with identifiers from the framework.</p>
+<p>In other words, attributes such as email address, IP address, browser
+fingerprint, and first and last name may be associated with randomized
+identifiers. At this point, it does not matter that a lot of care is
+taken to randomize the identifier and that a lot of highly available
+infrastructure was put in place to prevent the correlation of that
+identifier with other information -- as an email address or any of the
+previously mentioned information is sufficiently correlatable already
+as strong personally identifiable information. It may be better to only
+pay the higher infrastructure costs when necessary -- instead of at
+the core layer (and, thus, for every problem in the whole ecosystem).</p>
+<p>The Self-Sovereign Identity supports privacy at a higher level instead
+of as a core assumption of its foundational layer. This approach
+actually enables privacy in a number of additional ways for example:</p>
+<ul>
+<li>Claims Issuers don’t have to be notified each time a credential is used.</li>
+<li>Identity Providers can be prevented from knowing where credentials are
+    being used.</li>
+<li>Anonymizer services may add value by providing stronger verification
+    of Subjects while not leaking information that otherwise would have
+    been leaked to Claims Inspectors.</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>We would like to explore these two approaches at Rebooting Web of Trust
+and see if there is agreement on the implications of each approach. We
+would then like to continue the conversation at the Internet Identity
+Workshop and see if we could bring people from these two schools of
+thought together to increase understanding among both groups. There
+seems to be a gulf of understanding between the two schools of
+thought that we’d like to fill with knowledge, discussion, and
+understanding.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

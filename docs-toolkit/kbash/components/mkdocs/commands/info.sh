@@ -5,12 +5,16 @@ print_help() {
 printf "`cat << EOF
 ${BLUE}pd mkdocs info${NC}
 
-Info about pd mkdocs
+The $MKDOCS/setup.py file defines the dependencies for mkdocs, including
+plugins and themes.
+
+The virtual env is in $MKDOCS_VENV
 
 EOF
 `\n"
+pd describe mkdocs
 }
 
 run() (
-  echo "Info about pd mkdocs"
+  print_help
 )

@@ -9,6 +9,6 @@ EOF
 export -f clean_environment_pd_mkdocs_help
 
 clean_environment_pd_mkdocs() {
-  echo "Component[mkdocs]:clean"
+  rm -rf $MKDOCS_VENV
 }
 export -f clean_environment_pd_mkdocs

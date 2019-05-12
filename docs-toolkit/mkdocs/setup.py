@@ -12,7 +12,9 @@ setup(
     packages=[
     ],
     install_requires=[
-        'mkdocs'
+        'mkdocs',
+        'mkdocs-awesome-pages-plugin',
+        'mkdocs-windmill'
     ],
     entry_points = {
     }

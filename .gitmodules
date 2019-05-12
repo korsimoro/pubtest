@@ -10,12 +10,12 @@
 [submodule "docs-data/.submodules/WebOfTrustInfo/rwot6-santabarbara"]
 	path = docs-data/.submodules/WebOfTrustInfo/rwot6-santabarbara
 	url = https://github.com/WebOfTrustInfo/rwot6-santabarbara
-[submodule "docs-data/.submodules/infominer33/DIDecentralized"]
-	path = docs-data/.submodules/infominer33/DIDecentralized
-	url = https://github.com/infominer33/DIDecentralized
 [submodule "docs-toolkit/.kbash"]
 	path = docs-toolkit/.kbash
 	url = git@github.com:korsimoro/kbash
 [submodule "docs-toolkit/docutil/sqliteschema"]
 	path = docs-toolkit/docutil/sqliteschema
 	url = git@github.com:korsimoro/sqliteschema
+[submodule "docs-data/.submodules/infominer33/yest"]
+	path = docs-data/.submodules/infominer33/yest
+	url = git@github.com:infominer33/yest

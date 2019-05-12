@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>RWOT8: Evaluating social schemes for recovering control of an identifier - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "RWOT8: Evaluating social schemes for recovering control of an identifier", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Table of Contents", url: "#table-of-contents" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Example schemes to consider", url: "#example-schemes-to-consider" },
+              {title: "References (TODO)", url: "#references-todo" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="rwot8-evaluating-social-schemes-for-recovering-control-of-an-identifier">RWOT8: Evaluating social schemes for recovering control of an identifier</h1>
+<p>Sean Gilligan, Peg, Adin Schmahmann, Andrew Hughes, Christopher Allen</p>
+<h3 id="abstract">Abstract</h3>
+<p>As systems where people are required to manage their own keys become more popular, social recovery or reissuance of keys increases in importance. Such systems are inherently empowering to users but safegaurding keys is a hard problem.</p>
+<p>We focus on social recovery of control of an identifier. There are several techniques to re-assert control over identifiers including key recovery and issuance of a new key. In many situations it is preferrable to establish a new key than recover the old one. </p>
+<p>We propose a rubrik for evaluating such schemes, and provide some possible schemes to consider.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Introduction</li>
+<li>Evaluation Rubric</li>
+<li>Example Schemes</li>
+<li>Conclusion</li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>With traditional multi-user systems, such as web-based services where users authenticate with a username and password, there is typically an authority who may revoke, re-issue or modify identifiers when problems arise. In recent years, the limitations of this model have become more apparent, but there are also problems with giving individual users ultimate control of their identifiers. </p>
+<p>Several proposals have been made for 'social recovery', generally involving consensus of a quorum of trusted peers chosen by the user themself. These offer a promising compromise but there are a multitude of social, technical and contextual factors which should be considered before adopting such a scheme. </p>
+<p>We address this problem by defining a rubrik to help determine the suitability of different social recovery schemes in a particular context.</p>
+<h3 id="a-rubrik-for-evaluating-recovery-schemes">A Rubrik for Evaluating Recovery Schemes</h3>
+<h4 id="definitions">Definitions:</h4>
+<h5 id="actors">Actors</h5>
+<ul>
+<li><strong>User</strong>: The entity whose key may need to be recovered</li>
+<li><strong>Peers</strong>: The entities who will be assisting the <strong>User</strong> in recovering their identity</li>
+</ul>
+<h5 id="lifecycle-of-indentifiers">Lifecycle of Indentifiers:</h5>
+<ul>
+<li><strong>Setup</strong>: The user does any preparation work required to use the recovery scheme in the future</li>
+<li><strong>Stasis</strong>: The time between the user's setup phase and the recovery phase</li>
+<li><strong>Recovery</strong>: The recovery method is used to assert control over their identifier</li>
+</ul>
+<h5 id="questions">Questions:</h5>
+<h6 id="actor-experience">Actor Experience</h6>
+<ul>
+<li>Must peers know their involvement before the setup phase?</li>
+<li>Is it neccessary to gain consent from trusted peers?</li>
+<li>What involvement is required from peers during stasis?</li>
+<li>If it's significant does the scheme have any mitigation efforts?<ul>
+<li>External incentives (friendship, business, family)</li>
+<li>Uses a peer's existing incentives (e.g. lose funds, phone stops working)</li>
+<li>Explicit rewards (gamification and/or cryptocurrency)</li>
+</ul>
+</li>
+<li>What involvement is required from the user during stasis?</li>
+<li>How does the scheme deal with a loss of confidence in one of the peers?</li>
+</ul>
+<h6 id="identfier-recovery-scenarios">Identfier Recovery Scenarios</h6>
+<ul>
+<li>Lost secret - control of the identifier has been lost, but it has not been compromised.  For example, device has fallen in the sea.</li>
+<li>Compromised secret.  For example, device is stolen.</li>
+<li>Inheritance after death or incapacitation - we want to enable control of the identifier to our hiers.</li>
+</ul>
+<h6 id="threat-model">Threat Model</h6>
+<ul>
+<li>Can the scheme work in a distributed architecture (e.g. high latency, partitioned networks, etc.)? </li>
+<li>How well does the system deal with malicious behaviour of individual peers</li>
+<li>Is there a single point of compromise during recovery?</li>
+<li>Is the anonymity of the trusted peers maintained?</li>
+<li>What security assumptions does the scheme rely on?</li>
+</ul>
+<h6 id="externalities">Externalities</h6>
+<ul>
+<li>How to measure/monitor the strength of the backup web?<ul>
+<li>Health check</li>
+<li>Transitive (indirect) peers</li>
+</ul>
+</li>
+<li>Network growth problem<ul>
+<li>Use can't rely on their key until they can rely on their peers and their peers rely on their keys.</li>
+</ul>
+</li>
+</ul>
+<h2 id="example-schemes-to-consider">Example schemes to consider</h2>
+<h3 id="master-secret-recovery">Master Secret Recovery</h3>
+<p>(TBW about master keys, HD derivation, recovery words, etc.)</p>
+<p>Multiple keys or passwords can be generated deterministically from a single master key. This has implications for recovery as it means it is only nessecary to safeguard a single master key. Furthermore, the key can be stored as a mnemonic phrase of consisting of dictionary words, which are easier for humans to read, write or remember.</p>
+<h4 id="secret-sharing-schemes">Secret sharing schemes</h4>
+<p>Threshold based secret sharing schemes, originally proposed by Shamir and Blakley, can be used to recover lost keys by generating a set of shares which are distributed to trusted peers. Shares are points on a polynomial where coefficients are random except for the lowest which is the secret. </p>
+<p>Feldman, Pederson and Berry proposed methods of introducing verification of shares. This mitigates the problem of not being able to identify which share has been maliciously or accidentally modified.</p>
+<p>For encryption keys these schemes are very useful, as the integrity of the original key is critical for decrypting existing material.  But for signing keys, when a key has been compromised we are often more interested in establishing a new key than recovering the old one. </p>
+<p>Secret sharing could be used for identifier or account recovery as follows:</p>
+<ul>
+<li>
+<p>The identifier holder, Alice, initially creates a signed message announcing that a root public key <code>R_pub</code> is the ultimate controller of Alice's identifier.</p>
+</li>
+<li>
+<p>Alice uses a secret sharing scheme to distribute the corresponding private key <code>R_priv</code> amongst m of n of her friends and deletes any traces of <code>R_priv</code> from her machine</p>
+</li>
+<li>
+<p>In the event of that Alice loses control of her identifier she contacts m of n group members and asks them to return their secret shares to her.</p>
+</li>
+<li>
+<p>Alice then computes <code>R_priv</code> and publishes a signed, timestamped message that reasserts Alice's control over her identifier. </p>
+</li>
+<li>
+<p>Any client software which seeks to validate Alice's identifier must resolve the identifiers current status by looking for messages published by <code>R_priv</code>. </p>
+</li>
+</ul>
+<p>Advantages: 
+ - Anonymity of group members is maintained
+ - This scheme is easily compatible with schemes where identifiers are controlled by private signing keys and where it is possible to define key or identifier hierarchies</p>
+<p>Issues:
+ - Alice must recover the root private key <code>R_priv</code> on a trusted device. If that single device is compromised Alice's identifier essentially becomes unrecoverable.
+ - Alice must trust her friends to protect the secrecy and integrity of her key shares, which they have no stake in.
+   - If Alice's friends have public encryption keys she can encrypt the shares for her friends and store the encrypted shares in a location that is trusted for availability</p>
+<h3 id="capability-recovery">Capability Recovery</h3>
+<p>(TBW One use to enable a change (for instance a single UTXO), requirements reliability, custody, fiduciary responsiblity)
+One particular thing is that Capabilility recover can better help in case of key compromise.
+Many capabilities each potentially different agents.</p>
+<h4 id="threshold-signature-schemes-group-signatures">Threshold signature schemes / Group signatures</h4>
+<p>Group signatures, originally described by David Chaum in 1991, allow a group member to make a signature which proves they are a group member but does not reveal who they are. Threshold-based group signatures require consensus of a specified quorum of group members, and as such have application in social recovery.</p>
+<h5 id="boney-lynn-shacham">Boney-Lynn-Shacham</h5>
+<p>The Boneh–Lynn–Shacham signature scheme, which uses Weil pairings on an elliptic curve, has some desireable properties for group signatures.</p>
+<p>Using BLS group signatures it is possible to have a signed message from <em>m</em> of <em>n</em> members of a group, with an identical signature and public key regardless of which group members signed.</p>
+<p>This has implications for privacy, as verification is possible without needing to know which group members signed, or even the public keys of any individual group members. </p>
+<h5 id="musig">MuSig</h5>
+<p>Threshold signatures are also possible with the MuSig signature scheme, which is based on Schnorr signatures and builds upon the Bellare-Nevan multi-signature scheme by also allowing key aggregation.</p>
+<p>MuSig signatures are provable unmalleable, meaning that given a message and a signature, it is not possible to produce another signature which is valid for that message with the same keypair.</p>
+<h5 id="application-for-social-recovery">Application for social recovery</h5>
+<p>Threshold signatures could be used for identifier or account recovery as follows:</p>
+<ul>
+<li>
+<p>The identifier holder, Alice, initially publishes a signed message announcing the aggregated public key of the group who are empowered to make assertions on her behalf.</p>
+</li>
+<li>
+<p>In the event of key loss or compromise, Alice generates a new keypair, send her group members a signed, timestamped message containing her new public key, and contacts them out of band to confirm it was her. </p>
+</li>
+<li>
+<p>n of m group members sign the message and their signatures are aggregated to produce and publish a single, signed message with Alice's new public key, which also serves to revoke the old one. </p>
+</li>
+<li>
+<p>Any client software which seeks to validate messages from Alice must resolve her current public key by looking for messages published by her trusted group. </p>
+</li>
+<li>
+<p>Alice publishes another signed message with her new key confirming the public key of her trusted group.</p>
+</li>
+</ul>
+<p>Advantages: 
+ - Anonymity of group members is maintained</p>
+<p>Issues:
+ - Unlike secret sharing schemes like Shamirs, this recovery mechanism requires changes to the system using it. It cannot be used for existing systems which have not implemented this mechanism. </p>
+<h4 id="social-identifier-post-recovery-in-offlinedistributed-systems">Social Identifier Post-Recovery in Offline/Distributed Systems</h4>
+<p>Since identifiers are recovered by messages signed by a trusted group, in order for the network to learn about changes to an identifier it is important the these recovery messages are propagated.</p>
+<p>In centralized systems this is trivial since the centralized authority is trusted to propagate messages from users.</p>
+<p>In decentralized linear consensus systems (e.g. proof of stake blockchains) the propagation of messages can be tied to the consensus mechanism. For example, Alice knows Bob saw her identifier update method as long as Bob has seen data consensus from after Alice published her update. Alice can then assume Bob has seen her update as long as Bob would notice something wrong if the consensus system stalled/did not make progress.</p>
+<p>In distributed systems, establishing a model for consensus is more difficult. However, one model that can be used is fork-consistency. With fork-consistency Alice can assert that Bob has seen her update <code>U</code> as long as Bob has seen any update Alice has made since <code>U</code>. In these systems the ability to see fresh/accurate data is gated by the amount of information in the system. For example, in bitcoin Alice's protection against Bob seeing a forked blockchain is that if Bob has any interaction with a peer using the correct blockchain he will realize he should look for more information before using Alice's identifier.</p>
+<h4 id="zk-key-ceremonies">ZK Key Ceremonies</h4>
+<p>(TBW: Instead of a hardware generation of a keys, it may possible to have a personal version of the Z-Cash ceremony where your peers create via MPC a key for you (or for all the peers), along with a shared proof that the key (or keys) were properly created. It may also be possible later for a threshold of those same peers to create a new key for you later, and using the old proof provide a new proof that the new key is created by the same people that created the old key.)</p>
+<h3 id="rubric-evaluations-wip">Rubric Evaluations (WIP)</h3>
+<p>Classic Shamir Usage:
+ - Peers are asked to store User's recovery data
+ - Peers are required to protect User's recovery data (and report issues if the recovery data is leaked)
+ - User doesn't need to do anything during stasis
+ - Relies on the channels peers use to send the recovery data to the user being private. Relies on the user's device being private
+ -  Requires redoing the setup phase (reissuing recovery data to all peers)
+ -  They are allowed to withhold or send incorrect recovery data
+ -  Yes, the user device
+ -  Yes, assuming that the channels peers use for sending recovery data are anonymous and protected from traffic analysis</p>
+<p>Multi Signature Schemes:</p>
+<ul>
+<li>Peers not required to store information beyond what they already have</li>
+<li>Peers required to protect their keys (and report issues if their keys are compromised)</li>
+<li>User doesn't need to do anything during stasis</li>
+<li>Requires redoing the setup phase (no peer interaction required)</li>
+</ul>
+<h3 id="conclusion-todo">Conclusion (TODO)</h3>
+<blockquote>
+<p>[name=peg] somewhere in the conclusion i would like to mention again this distinction between the need to recover lost encryption keys, and the need to re-establish new signing keys (not much point in recovering them). as this was the biggest 'aha' thing i took home from RWOT.</p>
+</blockquote>
+<h2 id="references-todo">References (TODO)</h2>
+<ul>
+<li><a href="https://link.springer.com/article/10.1007%2Fs00145-004-0314-9">Boneh, Lynn &amp; Shacham 'Short Signatures from the Weil Pairing' - Journal of Cryptology, Sept 2004 Vol 17 Issue 4 p297-319</a></li>
+<li><a href="https://www.semanticscholar.org/paper/Secure-Distributed-Key-Generation-for-Discrete-Log-Gennaro-Jarecki/bf9e630c13f570e2df05b6dcce3ea987015af7c3">Gennaro Jarecki - Secure distributed key generation for discrete log</a></li>
+<li><a href="https://blog.keep.network/threshold-signatures-ff2c2b98d9c7">Threshold Signatures on the keep network</a></li>
+<li><a href="https://wiki.parity.io/Secret-Store">Parity's 'secret store' distributed key generation</a></li>
+<li><a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716">BLS Signatures: better than Snorr - Medium ariticle</a></li>
+<li><a href="https://www.iacr.org/archive/eurocrypt2000/1807/18070209-new.pdf">Practical Threshold Signatures - Victor Shoup</a> on RSA, from 2000</li>
+<li><a href="https://github.com/dfinity/dkg">Dfinity's implementation of Distributed Key Generation using BLS</a></li>
+<li><a href="https://herumi.github.io/bls-wasm/bls-demo.html">web based demo of verifiable secret sharing using BLS</a></li>
+<li><a href="https://upcommons.upc.edu/bitstream/handle/2117/119360/memoria.pdf?sequence=1&amp;isAllowed=y">Colic, Petar Hlad - Anonymous Threshold Signatures</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.157.6146&amp;rep=rep1&amp;type=pdf">Back and Zheng - Identity-Based Threshold Signature Scheme from the Bilinear Pairings</a></li>
+<li><a href="https://eprint.iacr.org/2018/068.pdf">Gregory Maxwell, Andrew Poelstra1, Yannick Seurin, and Pieter Wuille - Simple Schnorr Multi-Signatures with Applications to Bitcoin</a></li>
+</ul>
+<p>TODO: Look for and include existing references on the network and social issues we've raised above. </p>
+<h3 id="revocation-of-compromised-keys">Revocation of compromised keys</h3>
+<p><a href="https://www.cs.bgu.ac.il/~frankel/TechnicalReports/2017/17-02.pdf">Permanent Revocation Systems - Brownstein, Gilboa,Dolev</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

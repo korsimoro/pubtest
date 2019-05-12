@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Credit-based Reputations for Identity Management with Blockchain and Flow Networks - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Credit-based Reputations for Identity Management with Blockchain and Flow Networks", url: "#_top", children: [
+              {title: "ABSTRACT", url: "#abstract" },
+              {title: "CONTEXT", url: "#context" },
+              {title: "PROPOSED APPROACH", url: "#proposed-approach" },
+              {title: "OPEN QUESTIONS", url: "#open-questions" },
+              {title: "IMPLEMENTATION WITH THE DATACOPP PLATFORM", url: "#implementation-with-the-datacopp-platform" },
+              {title: "ACKNOWLEDGEMENT", url: "#acknowledgement" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="credit-based-reputations-for-identity-management-with-blockchain-and-flow-networks">Credit-based Reputations for Identity Management with Blockchain and Flow Networks</h1>
+<hr />
+<p>Whitepaper proposal for the 04/2017 ‘Rebooting Web of Trust’ Design Workshop</p>
+<pre><code>    11 April 2017
+    Tobias Mayer, Omar Hasan, Lionel Brunie
+    Institut National des Sciences Appliquées (INSA) de Lyon, Laboratoire LIRIS
+    { tobias.mayer // omar.hasan // lionel.brunie} @insa-lyon.fr
+</code></pre>
+<h2 id="abstract">ABSTRACT</h2>
+<p>A secure management of digital identities is an obvious requirement for digital technologies and applications (digital payment, online shops, insurances, etc.). It is typically achieved by pre-defined certificate-based trust. However, pre-defined trust on centralized instances is not always possible or wanted for trust management and the “web-of-trust” emerged as a decentralized alternative. It determines a trust value by aggregating reputations issued by other entities, where the reputations represent a subjective evaluation of the user satisfaction. This mechanism is also suitable for the identity management when using reputations to indicate (the subjective impression of) an identity’s trustworthiness. However, such traditional reputation-based web-of-trust approaches suffer from Sybil attacks, where an identity can increase the own trust value by creating synthetic identities issuing reputations.</p>
+<p>We propose a trust management mechanism for the decentralized reputation-based web-of-trust approach, which operates among two avenues. First, issuing reputations imposes spending some credits, which are received through reputations and the total amount being limited in the system. In order to prevent Sybil attacks, circular reputations are not allowed, which is determined by applying flow network concepts to verify reputation validity. Second, identities and reputations are stored in a blockchain where and identity’s trust value can be determined by traversing the stored blocks and aggregating related values accordingly. The proposed mechanism is fully decentralized, able to prevent threats such as Sybil attacks or reputation flooding, offers secure and immutable storage characteristics, where any action can be cryptographically verified.</p>
+<h2 id="context">CONTEXT</h2>
+<p>Identity management with a web-of-trust (WoT) cannot rely on pre-defined trust as provided by certificate authorities in public key infra¬structures (PKI). To this end, WoT aggregates reputation values in a distributed manner. However, we cannot draw conclusions among off- and on-line identities such that any trust value is fully determined by activities and reputation values provided on-line. Malicious nodes can exploit this aspect, e.g. by creating additional identities to increase the own trust values through synthetic reputations. Moreover, reputation integrity and accountability need to be ensured. The blockchain theory has recently revolutionized the concept of electronic cash by eliminating the requirement of trusted third parties and by providing true decentralization. Its secure immutable distributed data storage is therefore crucial for reliable reputation-based trust management.</p>
+<p>We consider therefore the problems (1) that the pure aggregation of reputations is not sufficient and we require mechanisms to prevent reputation misuse or colluding parties; and (2) that a blockchain model shall be able to support and maintain trust &amp; reputation information.</p>
+<h2 id="proposed-approach">PROPOSED APPROACH</h2>
+<p>We propose a new identity management approach based on reputation and flow networks. Reputations are provided by spending some credits where the total amount of credits is limited in the system. This prevents misuse such as Sybil attacks through the imposed value and credit limitations. The economic mechanics serve thus as trust generator in addition to the absence of centralized pre-defined trust.</p>
+<p>We consider a system, where identities are represented by self-contained data (public key, unique id, etc.) and are able to provide reputations to other identities. A reputation is considered as a positive feedback for the receiving identity. The amount of received reputations represent the amount of available credits to spend and reputations can be provided as long as the issuing identity has sufficient credits. However, we require that circular reputations are not possible to prevent misuse (i.e. identity B cannot provide a reputation to identity A if B has received on by A beforehand). </p>
+<p>We leverage flow networks to determined circular dependencies and total credits available per identity as illustrated in Figure 1. Blockchain will be used to store provided reputations. Trust management aspects are integrated into the blockchain architectural design and the consensus algorithm (see section implementation possibilities).</p>
+<p><img alt="enter image description here" src="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/supporting-files/fig1b-tobias.png?raw=true" /></p>
+<p><em>Figure 1: The reputation (R) of each identity is determined by the amount of incoming reputation values that serve as credits (C) for issuing reputations. Here with a limit of 100 credits in the system and I2 being the first node in the system and thus initially owning some credits.</em></p>
+<h2 id="open-questions">OPEN QUESTIONS</h2>
+<ul>
+<li>What is an identity? A self-contained identity profile is an intuitive approach. However, a distributed approach may be beneficial where a “core identity” (name, address, etc.) is extended by distributed domain- or application-specific identity information.</li>
+<li>How to ensure privacy-preserving trust management? WoT reveals relationships between nodes and flow networks reveal the amount of trust/credit that a user A assigns to user B. Therefore, reputations shall not be linkable to an identity and it shall not be possible to determine the amount of available credits for other identities. Several mechanisms have been proposed that enable operations over encrypted data (e.g. fully/partial homomorphic encryption or multi-party computation).</li>
+<li>How to ensure traceability of user actions? Any action must be securely traceable in a time-ordered manner to enable accountability (e.g. to detect and handle misbehaviours), verifiability, accounting of identity management features etc.</li>
+<li>What are limits &amp; characteristics of the credit based trust management? The proposed mechanisms may have unknown limits &amp; characteristics. For example, the subjective value of reputations may differ through availability of credits or the limitation/value of credits lead to users to save their credits. This should be further assessed by an evaluation study.</li>
+<li>How to ensure verifiability? The correctness of reputation and available credits must be verifiable, particularly when operation on encrypted data. This requires a sound definition of verifiability, while a realization may integrate existing mechanisms (e.g. zero-knowledge proofs).</li>
+<li>How to securely store and maintain trust management data? We need to specify the identity and reputation data models and an architectural integration concept that allows additional logic (trust value calculation, flow network operations etc.). An example is a stack oriented approach with each layer encapsulating distinct features.</li>
+<li>How to make the identities &amp; reputations usable in applications &amp; business logic? The identities and reputation values shall accessible by third party platforms and applications such as accessing an insurance profile or negotiating deals in e-commerce. What are therefore the requirements for technical interoperability enabling the access of identity &amp; trust data, traceability of interactions and respect of privacy. Other requirements may be discovered by further discussions.</li>
+</ul>
+<h2 id="implementation-with-the-datacopp-platform">IMPLEMENTATION WITH THE DATACOPP PLATFORM</h2>
+<p>“DataCOPP” is an incubating project developed by T. Mayer at the INSA de Lyon with the aim to develop a high-performance hybrid blockchain as distributed platform for privacy-preserving data processing. The underlying blockchain architecture differs from those used in the ID-BLOCKCHAIN project (context of the proposed identity management approach). However, some of its design concepts can be beneficial for the realization of credit-based reputation approach and an architectural integration as outlined in the following:</p>
+<ul>
+<li>High extendibility through a layered architecture with nested payloads. Architectural layers enclose distinct functionalities with each layer’s data being stored as payload in the underlying layer. Trust management can be achieved as one or multiple additional layers (e.g. flow network, trust model).</li>
+<li>Hybrid blockchain for high adaptability, scalability &amp; performance. The blockchain federation consensus consists of a voting on block validity enabling high throughput performance and flexibility regarding parameters. An underlying database (Apache Cassandra in case of DataCOPP) enables linear scalability and adjustable data replication. This enables scalable performance &amp; data storage suitable for the integration of application related data into the blockchain storage system.</li>
+<li>Blockchain asset management for trust management operations. The DataCOPP asset management offers multiple asset management operations as shown and maintains identities to some degree (for example, Bitcoin offers CREATE and TRANSFER). This concept can be adapted to support reputation management of (e.g. maintenance of credits).</li>
+</ul>
+<p><img alt="enter image description here" src="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/supporting-files/fig2b-tobias.png?raw=true" /></p>
+<p><em>Figure 2: DataCOPP asset management operations for the entities of a traceability layer.</em></p>
+<ul>
+<li>Trust management integration into “deep validation” routines. During the storage process, the deep validation logic performs block validation checks of invalidity conditions on all architectural layers. This may be extended by trust management conditions to prevent storage of illegal reputations (e.g. no storage of circular reputations, spending to many credits than available).</li>
+<li>Privacy-preserving multi-party computation. A Master thesis aims in integrating privacy-preserving computation features into the DataCOPP platform by relying on the Shamir’s Shared Secret scheme using the <a href="http://sepia.ee.ethz.ch">SEPIA library</a>. It will store an arbitrary data set, e.g. an identity profile, in an encrypted and distributed way over participating nodes and enable operations over the encrypted data (e.g. average, sum). The Master student has started in March 2017 and will provide a proof-of-concept by September 2017. This proof-of-concept may be extended by reputation &amp; trust features.</li>
+</ul>
+<h2 id="acknowledgement">ACKNOWLEDGEMENT</h2>
+<p>The introduced approach has been developed in the context of the ID-BLOCKCHAIN project with Paymium and Ledger as industrial partners (https://idboussac.github.io). </p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

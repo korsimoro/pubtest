@@ -110,6 +110,10 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
+      - test-build:
+          filters:
+            branches:
+              only: kbash
       - build-and-deploy:
           filters:
             branches:

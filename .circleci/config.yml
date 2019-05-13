@@ -47,7 +47,6 @@ jobs:
             . ~/repo/docs-toolkit/kbash/activate.sh
             pd setup docutil
             pd setup mkdocs
-            pd setup jekyll
             pd build-all
 
       - save_cache:

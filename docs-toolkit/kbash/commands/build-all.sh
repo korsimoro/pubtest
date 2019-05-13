@@ -36,7 +36,7 @@ run() {
   install_formatted_data
 
   # build the mkdocs portion
-  local LOG=$MKDOCS_KBASH_LOGS/serve-build.txt
+  local LOG=$MKDOCS_KBASH_LOGS/build-all.txt
   report_progress "step1" "Logging to $LOG"
   pd build mkdocs >$LOG
 

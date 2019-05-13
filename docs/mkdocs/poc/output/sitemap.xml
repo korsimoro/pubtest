@@ -2,8 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>None</loc>
+<<<<<<< HEAD:docs/mkdocs/poc/output/sitemap.xml
 <<<<<<< HEAD:docs/mkdocs/sitemap.xml
      <lastmod>2019-05-05</lastmod>
+=======
+     <lastmod>2019-05-13</lastmod>
+>>>>>>> kbash:docs/mkdocs/poc/output/sitemap.xml
 =======
      <lastmod>2019-05-13</lastmod>
 >>>>>>> kbash:docs/mkdocs/poc/output/sitemap.xml
@@ -11,8 +15,12 @@
     </url>
     <url>
      <loc>None</loc>
+<<<<<<< HEAD:docs/mkdocs/poc/output/sitemap.xml
 <<<<<<< HEAD:docs/mkdocs/sitemap.xml
      <lastmod>2019-05-05</lastmod>
+=======
+     <lastmod>2019-05-13</lastmod>
+>>>>>>> kbash:docs/mkdocs/poc/output/sitemap.xml
 =======
      <lastmod>2019-05-13</lastmod>
 >>>>>>> kbash:docs/mkdocs/poc/output/sitemap.xml

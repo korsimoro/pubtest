@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>7 did reportout - RWoT DIR Launchpad</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>After a discussion of Manu's DID model, groups broke out to talk about subsets of the topic</p>
+<p><strong>Use Cases</strong></p>
+<p>Worked to digest the existing use cases</p>
+<p>Wanted to understand the human value
+- But it felt like the tech structure was the heart</p>
+<p>So, named each use case a
+- and listed the technical topics that each use case demonstrated</p>
+<p>Want <em>fewer</em> use cases that demonstrate everything</p>
+<p><em>Manu asks that these be sent to Verifiable Claims group.</em></p>
+<p><strong>Overall Model</strong></p>
+<ul>
+<li>Issuer might make claims about claims: this is a <em>witness</em></li>
+<li>Instead of Relying Party (geeky term of art): consumer, receiver</li>
+<li>Oracle instead of public ledger; may not be static</li>
+</ul>
+<p><strong>Privacy</strong></p>
+<p>Identity is not disclosed, claims are
+- How do you protect claims from being sent on?</p>
+<p>Choose what to disclose
+But then other people get to decide whether to trust you</p>
+<p>Systems where you have to disclose (e.g., DMV) are <em>different systems</em>.
+Don't try to solve those!
+- The Holder has absolute control!</p>
+<p><strong>DID</strong></p>
+<ul>
+<li>Not Identity!</li>
+<li>Not Verifiable Claims!</li>
+</ul>
+<p>Discoverable, uniform, random
+- The value of a DID on its own is very small (when issued)</p>
+<p>DID Object
+- Have Access Control to Update it
+- Point to Services that can do everything else
+- Must be able to do proof of ownership
+- Self-verifiable, self-validating</p>
+<p>Debates?
+- Cross-ledger friendly?
+- Resilient to chain failure?</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

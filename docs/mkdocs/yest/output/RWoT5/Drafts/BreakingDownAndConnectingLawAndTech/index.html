@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Index - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Intent", url: "#_top", children: [
+          ]},
+          {title: "Unraveling Signatures: Technical, Business, and Legal Perspectives", url: "#unraveling-signatures-technical-business-and-legal-perspectives", children: [
+          ]},
+          {title: "Next Steps", url: "#next-steps", children: [
+          ]},
+          {title: "Contributors", url: "#contributors", children: [
+          ]},
+          {title: "===========================", url: "#_1", children: [
+          ]},
+          {title: "PARKING LOT", url: "#parking-lot", children: [
+              {title: "Intro", url: "#intro" },
+          ]},
+          {title: "Matrix", url: "#matrix", children: [
+          ]},
+          {title: "Primitives", url: "#primitives", children: [
+          ]},
+          {title: "Conclusion", url: "#conclusion", children: [
+              {title: "Transferable Records:", url: "#transferable-records" },
+              {title: "single authoritative copy", url: "#single-authoritative-copy" },
+          ]},
+          {title: "Intro", url: "#intro_1", children: [
+          ]},
+          {title: "Current Matrix", url: "#current-matrix", children: [
+              {title: "Cross-Ref for Legal Signature to Technical Capabilities", url: "#cross-ref-for-legal-signature-to-technical-capabilities" },
+          ]},
+          {title: "Connecting Legal and Technical Dimensions", url: "#connecting-legal-and-technical-dimensions", children: [
+              {title: "Any sound, symbol or process", url: "#any-sound-symbol-or-process" },
+              {title: "Executed or adopted", url: "#executed-or-adopted" },
+              {title: "by a person", url: "#by-a-person" },
+              {title: "With the intent to sign", url: "#with-the-intent-to-sign" },
+          ]},
+          {title: "Decentralization Considerations", url: "#decentralization-considerations", children: [
+              {title: "Critical Technical Considerations", url: "#critical-technical-considerations" },
+          ]},
+          {title: "Legal &amp; Usability Frameworks", url: "#legal-usability-frameworks", children: [
+              {title: "The Act of Signing", url: "#the-act-of-signing" },
+              {title: "Legal Risks and Enforcability", url: "#legal-risks-and-enforcability" },
+              {title: "Matrix Roadmap", url: "#matrix-roadmap" },
+              {title: "Use Cases", url: "#use-cases" },
+              {title: "Use Case #2 - Notary", url: "#use-case-2-notary" },
+              {title: "FAQ", url: "#faq" },
+              {title: "Housekeeping", url: "#housekeeping" },
+          ]},
+          {title: "Blockchain and Law Briefing Book", url: "#blockchain-and-law-briefing-book", children: [
+              {title: "The Blockchain and Law Briefing", url: "#the-blockchain-and-law-briefing" },
+              {title: "Table of Blockchain Legal Issues and Examples", url: "#table-of-blockchain-legal-issues-and-examples" },
+              {title: "Existing Laws on Blockchain-based Signatures &amp; Smart Contracts", url: "#existing-laws-on-blockchain-based-signatures-smart-contracts" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>==# Breaking (Down) the Law</p>
+<h2 id="intent">Intent</h2>
+<p>This document begins to simplify how we understand and especially how we talk about signatures with non-experts as well as in legal settings, specifically for the purposes of evidentiary proceedings.</p>
+<p>The Parking Lot includes a digest of legal and other sources of information that supported the development of this work. Some topics covered are: legal statutes,  links to past work, and more... </p>
+<h2 id="unraveling-signatures-technical-business-and-legal-perspectives">Unraveling Signatures: Technical, Business, and Legal Perspectives</h2>
+<p>Imagine a scenario where Alice needs to sign a document to transact transact with Bob. That can happen via paper signature, electronic signature or digital signature. </p>
+<p><strong>Electronic vs. Digital Signatures</strong> </p>
+<p>Computer-based forms of signatures such as electronic (scanning a signature and pasting it on a <code>.pdf</code>) and digital (using  public-private key pairs to generate signatures with strong cryptographic properties) are gaining widespread adoption. By <strong><em>electronic</em></strong> we mean "any sound symbol or process associated with an electronic document" (UETA) whereas by <strong><em>digital</em></strong> we mean using a unique cryptographic fingerprint that identifies the signer. Today, electronic signatures are very common and we are increasingly seeing the growth of digital signature usage via cryptographically secure mechanisms.</p>
+<p><strong>Notaries</strong></p>
+<p>Often the process of signing and verifying a paper signature requires the inclusion of a notary to verify the process. For Alice (labeled <em>A</em>), the notary ensures that A's signature was actually done by A (<em>Authenticity</em> and <em>Provenance</em>) which prevents A from ever denying having signed that document (<em>Non-repudiation</em>). Furthermore, the notary also has the ability to judge A's state of mind and testify that the document was signed with free will and not under coercion (<em>Intent to Sign</em>).</p>
+<p>Table X shows a comparison between these three types. As one can see, electronic signatures offer the possibility of easily sharing the signed document (<em>Availability</em>) and Digital signatures introduce the possibility of hiding the signers identity (<em>Confidentiality</em>) and assurance that the document has not been tampered with (<em>Integrity</em>).</p>
+<p>This table summarizes the challenges with the different means of creating signatures with technologies.</p>
+<blockquote>
+<p><strong>Table 1: Evolution of Signature Technologies and Legalities</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>What's the objective?</th>
+<th>What does this mean?</th>
+<th>Paper</th>
+<th>Electronic Signature</th>
+<th>Digital Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentication</td>
+<td>You are who you say you are</td>
+<td>Yes**</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Provenance (also called attribition)</td>
+<td>You are the one who signed</td>
+<td>Yes**</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Non-Repudiation</td>
+<td>You cannot deny having signed it</td>
+<td>Yes**</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Intent*</td>
+<td>You meant to sign it</td>
+<td>Yes**</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>What you signed is available to all relevant parties</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Confidentiality</td>
+<td>The signature does not reveal the signer</td>
+<td>No</td>
+<td>No</td>
+<td>Supports</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>What you see has not been tampered with</td>
+<td>Yes**</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><em>Intent is a combination of Authentication, Non-repudiation, and perhaps something else.
+</em>* By a notary</p>
+<p>So, how does a cryptographic/ digital signature happen... technically? </p>
+<p>Through the exchange of public-private key pairs (also called assymetric key-pairs, which consist on a private key and a public key), we can acheive many of the above objectives.  Here is an example of  key pair exchange.  </p>
+<ol>
+<li>Alice and Bob know each other exist</li>
+<li>Alice generates a public-private key pair (because Alice wants to establish a relationship with Bob)</li>
+<li>Alice gives Bob a public key (because Bob wants to authenticate Alice's data) </li>
+<li>Alice signs data with private key (see below)</li>
+<li>Alice sends Bob the signature and data </li>
+<li>Bob verifies Alice's signature and data with Alice's public key (see below)</li>
+</ol>
+<p>(Note: Alice and Bob may be humans, machines, or any combination)</p>
+<p>Signing the Data / Locking the Padlock: Understanding this in a different context, signing data with a private key <em>(step 3 above)</em> is similar to using a padlock. A padlock has 2 important characteristics - it can be locked by anyone and it can only be unlocked by the person with the correct combination. If we consider that unlocking the padlock is similar to signing the document, then we can be sure that Alice is the only person who signed the data (with her private key). [Note: this example will be updated over time due to the inelegance of unlocking = signing. Suggestions are welcome!]</p>
+<p>Verifying the Signature + Data / Unsealing the Envelope: When Bob gets the data (message + signature) and verifies Alice's signature to be sure that it is the original document she provided, he uses Alice's public key to unlock it <em>(step 5 above)</em>. A public key is similar to the historical example of a King sealing an envelope with a stamp. A stamp/seal combination allows only 1 person to seal the envelope while anyone can open it. </p>
+<p>An attorney can use digital signatures with strong cryptographic properties to satisfy evidentiary requirements. Let us walk through it:</p>
+<blockquote>
+<ul>
+<li>Did Alice sign the document? </li>
+<li>Are we sure it was Alice?</li>
+<li>Can Alice deny that she signed the document?</li>
+<li>Did Alice intend to sign the document?</li>
+</ul>
+</blockquote>
+<p>Yes. The authenticity and non-repudiation properties (see Table 1) are sufficient to satisfy this.</p>
+<blockquote>
+<ul>
+<li>Does Alice know what she signed?</li>
+</ul>
+</blockquote>
+<p>Not necessarily. To ensure this a secondary mechanism should be implemented, such as a pop-up box that asks for confirmation or a complicated pattern to trace, similar to a software license agreement. The point here is to require an action to acknowledge awareness.</p>
+<blockquote>
+<ul>
+<li>How did Alice sign it? </li>
+</ul>
+</blockquote>
+<p>She signed it by providing her private key (that only she controls) to a piece of software responsible for generating the digital signature.</p>
+<blockquote>
+<ul>
+<li>Who verified that Alice signed the document?</li>
+</ul>
+</blockquote>
+<p>Pending on the availability of the document and Alice's public key, anyone can verify the signature.</p>
+<blockquote>
+<ul>
+<li>Did Alice sign the document before Bob verified it? </li>
+</ul>
+</blockquote>
+<p>Yes. Bob requires a digital signature to input into a digital signature verifier software. Without that input (which is provided by Alice) verification is impossible.</p>
+<blockquote>
+<ul>
+<li>Is Alice a person?</li>
+</ul>
+</blockquote>
+<p>Digital signatures do not offer this by default, an aditional sofware mechanism would be required to verify that Alice is a person.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li>Review/cull all Parking Lot content</li>
+<li>Supplement the technical explanation with additional legal language and statutes</li>
+<li>Differentiate legal language and technical realities (eg: owning a single digital copy of something isn't possible as it is with paper)</li>
+<li>Answer the question: What gaps exist in today's legal frameworks?</li>
+<li>Better understand why the legal requirements have been established to satisfy technical capabilities </li>
+<li>Answer the question: How does the current non-digital signing behavior compare to technical capacity () and how can current technical advance current legal capacity?</li>
+<li>More and more and more</li>
+</ol>
+<h2 id="contributors">Contributors</h2>
+<p>Dazza Greenwood <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#100;&#97;&#122;&#122;&#97;&#64;&#99;&#105;&#118;&#105;&#99;&#115;&#46;&#99;&#111;&#109;">&#100;&#97;&#122;&#122;&#97;&#64;&#99;&#105;&#118;&#105;&#99;&#115;&#46;&#99;&#111;&#109;</a>
+Eva Shon <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#118;&#97;&#46;&#115;&#104;&#111;&#110;&#64;&#99;&#111;&#110;&#115;&#101;&#110;&#115;&#121;&#115;&#46;&#110;&#101;&#116;">&#101;&#118;&#97;&#46;&#115;&#104;&#111;&#110;&#64;&#99;&#111;&#110;&#115;&#101;&#110;&#115;&#121;&#115;&#46;&#110;&#101;&#116;</a>
+Tiemae Roquerre <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#111;&#113;&#117;&#101;&#114;&#114;&#101;&#46;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#114;&#111;&#113;&#117;&#101;&#114;&#114;&#101;&#46;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+Peter Todd <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#101;&#116;&#101;&#64;&#112;&#101;&#116;&#101;&#114;&#116;&#111;&#100;&#100;&#46;&#111;&#114;&#103;">&#112;&#101;&#116;&#101;&#64;&#112;&#101;&#116;&#101;&#114;&#116;&#111;&#100;&#100;&#46;&#111;&#114;&#103;</a>
+Lily Bragg <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#108;&#121;&#98;&#64;&#118;&#111;&#117;&#99;&#104;&#46;&#105;&#100;">&#108;&#105;&#108;&#121;&#98;&#64;&#118;&#111;&#117;&#99;&#104;&#46;&#105;&#100;</a>
+Christian Smith <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#109;&#105;&#116;&#104;&#64;&#97;&#110;&#118;&#105;&#108;&#46;&#105;&#111;">&#115;&#109;&#105;&#116;&#104;&#64;&#97;&#110;&#118;&#105;&#108;&#46;&#105;&#111;</a></p>
+<h1 id="_1">===========================</h1>
+<h1 id="parking-lot">PARKING LOT</h1>
+<h2 id="intro">Intro</h2>
+<p>Decentralized trustworthy computational systems, such as blockchain and DID's are bringing up valid questions on how to treat requirements on legal primitives such as signature, commitments and single use seals. The very nature of decentralized technoligies requires a re-examination of why certain requirements exist and an understanding of how they can be mapped to said technologies.</p>
+<p>Building an appropriate and robust blockchain-based digital signature or notarization tool requires not only business and technical requirements but also legal and evidentiary requirements. Part of the crosswalking from digital to manual, will require a process for people to change (involving management, and training). Moreover, appropriately handling scalable processes to execute "digital-unique" processes are needed to transition from manual to digital processes for signatures and related legal activities. </p>
+<h1 id="matrix">Matrix</h1>
+<h1 id="primitives">Primitives</h1>
+<h1 id="conclusion">Conclusion</h1>
+<p>The intersection of legal primitives and decentralized computational systems accents the need for the law to be written in a way that is broad enough to be flexible amongst various systems, while also getting to the heart of problem they aim to solve. The question of which parts of the law remain the same, changes or must be completely re-evaluated remains an ongoing conversation that will evolve.</p>
+<ul>
+<li>Slack channel for this workgroup: <a href="https://weboftrustinfo.slack.com/messages/ZZZ">#breaklaw</a></li>
+</ul>
+<h2 id="transferable-records">Transferable Records:</h2>
+<ul>
+<li>UNCITRAL: <a href="http://www.uncitral.org/pdf/english/texts/electcom/MLETR_ebook.pdf">http://www.uncitral.org/pdf/english/texts/electcom/MLETR_ebook.pdf</a></li>
+<li>[UETA (Section 16)]</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Legal Requirement</th>
+<th>Tech Capability</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>single authoritative copy</td>
+<td>Text</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>identifying "the person"</td>
+<td>Text</td>
+<td>Text</td>
+</tr>
+</tbody>
+</table>
+<h2 id="single-authoritative-copy">single authoritative copy</h2>
+<p>The phrase "single authoritative copy" is fundamentally incoherent because the word "single" and "copy" conflict on the face of the meaning.  Adding the qualifier "authoritative" provides opportunities for creaetive legal interpretation but the technical reality is that there is ot way to distinguish between copies of digital information.  </p>
+<ul>
+<li>A constructuctive </li>
+</ul>
+<h1 id="intro_1">Intro</h1>
+<p>The goal of this document is to review the requirements related to distributed trustworthy computational systems such as for blockchain, DID's and more generally for electronic signatures and e-notarization, understand why they exist and discuss how they can be mapped to decentralized technologies.</p>
+<p>Building an appropriate and robust blockchain-based digital signature or notarization tool requires not only business and technical requirements but also legal and evidentiary requirements. </p>
+<p>Part of the crosswalking from digital to manual, will require a process for people to change ( involving management, training, ...</p>
+<p>Moreover, appropriately handling scalable processes to handle "digital-unique" processes are needed to transition from manual to digital processes for signatures and related legal activities. Examples of important and new types of processes include:</p>
+<p>Process</p>
+<ol>
+<li>Generate cryptographic credentials - not necessary for any central party for who generated it...should be generated by subject's own resource (offline process i.e. coin toss) --&gt; no one else knows private part of key pair.</li>
+<li>Bind real identity to public key - proving key ownership - Use public key to verify the ownership (i.e. certificates, recording on blockchain) --&gt; in order to make sure it's you, a trusted third party would have to verify by putting their signature on the key) --&gt; certificate doesn't include personally identifying identity of owner of key, would give identity of issues and then you would find identity of issuer. With the current PKI mechanism, identity is binded to a key via a Public Key certificate which is signed by a certification authority (a trusted party). In the DID model, that is not the case.  Much like in the PKI with certificate authorities, a DID can be used to retrieve a public key of its owner, however, by itself that provides little information about the identity of the owner. One of the properties of DIDs is that it gives the owner the ability to anchor documents, DID Docs, to the DID itself. This can be leveraged to anchor relevant information about you identity to your DID. The more information diplayed, the more likely another person will be to trust that you are who you say you are.</li>
+</ol>
+<p>--&gt; how to create protocal for backwards lookup </p>
+<ol>
+<li></li>
+</ol>
+<h1 id="current-matrix">Current Matrix</h1>
+<h2 id="cross-ref-for-legal-signature-to-technical-capabilities">Cross-Ref for Legal Signature to Technical Capabilities</h2>
+<p>Legal rules for this come from the <a href="LegalSources/ueta_final_99.pdf">Uniform Electronic Transaction Act</a>,
+<a href="LegalSources/ueta_final_99.pdf">UNICITRAL Model Law on Electronic Transferrable Records</a>, the <a href="LegalSources/2010_model_notary_act.pdf">Model Notary Act</a></p>
+<p>Most important legal rules from which technical requirements can be elicited:</p>
+<p><strong>Definition of signature:</strong> “Electronic signature” means an electronic sound, symbol, or process attached to or logically associated with a record and executed or adopted by a person with the intent to sign the record.</p>
+<p>| Legal Rule or Requirement |  Technical Requirement | Can Currently be Provided by |
+| -------- | -------- | -------- | -------- |
+| "Any sound, symbol or process"     |  Signer Attribution | Digital Signature | 
+| "executed or adopted"    | Signature Action/Event     |  Timestamp |
+| "by a person"     | Signer Authentication | Digital Signature |
+| "with the intent to sign"     | Signer Authorization | Digital Signature &amp; Approval |
+| "attached to or logically associated with the record"    | Record Authentication     | Signing a hashed record &amp; later verification |</p>
+<p>(TODO - how can the table above be made more useful and is it correct?)</p>
+<h1 id="connecting-legal-and-technical-dimensions">Connecting Legal and Technical Dimensions</h1>
+<h2 id="any-sound-symbol-or-process">Any sound, symbol or process</h2>
+<h4 id="how-this-technical-capability-addresses-this-legal-requirements-or-constraint">How this technical capability addresses this legal requirements or constraint</h4>
+<h4 id="why-does-this-legal-requirements-exist-in-the-first-place">Why does this legal requirements exist in the first place?</h4>
+<ul>
+<li>Evidence</li>
+</ul>
+<h2 id="executed-or-adopted">Executed or adopted</h2>
+<h4 id="how-this-technical-capability-addresses-this-legal-requirements-or-constraint_1">How this technical capability addresses this legal requirements or constraint</h4>
+<h4 id="why-does-this-legal-requirements-exist-in-the-first-place_1">Why does this legal requirements exist in the first place?</h4>
+<ul>
+<li>Ceremony</li>
+</ul>
+<h2 id="by-a-person">by a person</h2>
+<h4 id="how-this-technical-capability-addresses-this-legal-requirements-or-constraint_2">How this technical capability addresses this legal requirements or constraint</h4>
+<h4 id="why-does-this-legal-requirements-exist-in-the-first-place_2">Why does this legal requirements exist in the first place?</h4>
+<ul>
+<li>Distringuish between tools and legal entities</li>
+</ul>
+<h2 id="with-the-intent-to-sign">With the intent to sign</h2>
+<h4 id="how-this-technical-capability-addresses-this-legal-requirements-or-constraint_3">How this technical capability addresses this legal requirements or constraint</h4>
+<h4 id="why-does-this-legal-requirements-exist-in-the-first-place_3">Why does this legal requirements exist in the first place?</h4>
+<h4 id="attached-to-or-logically-associated-with-the-record">Attached to or logically associated with the record</h4>
+<h4 id="how-this-technical-capability-addresses-this-legal-requirements-or-constraint_4">How this technical capability addresses this legal requirements or constraint</h4>
+<h4 id="why-does-this-legal-requirements-exist-in-the-first-place_4">Why does this legal requirements exist in the first place?</h4>
+<ul>
+<li>Intent can be proved for someone being forced to track through a process. I.e. trace through a complex design, like a cat, or pattern?</li>
+</ul>
+<h1 id="decentralization-considerations">Decentralization Considerations</h1>
+<p>What changes might blockchains, <a href="../../Topics/did-primer">DIDs</a>, and other decentralized web technologies bring to the digital signature process?</p>
+<p>| Legal Rule or Requirement |  Technical Requirement | Decentralization Technology |
+| -------- | -------- | -------- | -------- |
+| "Any sound, symbol or process"     |  Signer Attribution | DID-based digital signature with a log of all key rotations | 
+| "executed or adopted"    | Signature Event     |  Digital signatures recorded on a blockchain as a timestamped transaction |
+| "by a person"     | Signer Authentication | DID-based identity with claims from KYC providers |
+| "with the intent to sign"     | Signer Authorization |  |
+| "attached to or logically associated with the record"    | Record Authentication     | Document hashes showing integrity can be on blockchain  |</p>
+<h2 id="critical-technical-considerations">Critical Technical Considerations</h2>
+<p><strong>Know Your Customer and DIDs</strong> </p>
+<p>Signer and document provider verification will require Know Your Customer (KYC) such as government-issued issued attestations about certain DIDs. Similar to how a </p>
+<p><strong>DIDs and Key Rotations</strong> </p>
+<p>Cryptographers recommend key rotation with DIDs as a security best practice, but could that invalidate or make DID-based digital signatures using past keys obsolete? Keeping a timestamped log of past keys will be necessary to ensure continued digital signature integrity. Even if a key is compromised in the future, cryptographic timestamp may be able to provide sufficient evidence of past validity. Perhaps future DID method specifications will require </p>
+<p>may say blockchain must keep it but if it can't may have ot keep some portion of it in some did document of retired keys</p>
+<p><strong>Proof of Location for Notary</strong></p>
+<p>Physical requirements of being present at a notarization event with a notary and/or witnesses may not be replicable in digital space. Although some states allow for webcam-based notary, there has been a known case of fraud where a signer was impersonated by an imposter using computer-generated imagry [source???]. <a href="https://www.nationalnotary.org/knowledge-center/reference-library/model-notary-act/model-electronic-notarization-act">The Model Electronic Notarization Act of 2017</a> recommends that... [TODO - add some summary of this act if its relevant!].</p>
+<p>Solving for these problems is still a technical challenge. For example, digital proof of location at a certain point in time to show that all relevant parties were present is still a research problem. Cell phone location data has been admissable for criminal cases but also have privacy tradeoffs. Perhaps in the future other personal device data (Fitbit, Apple Watch, etc.) and other kinds of tracking data can be triangulated as evidence, but these service do not exist in easily digestible format at this time.</p>
+<h1 id="legal-usability-frameworks">Legal &amp; Usability Frameworks</h1>
+<p>The goals of the ESIGN and UETA (Uniform Electronic Transaction Act)</p>
+<p>The following sections describe some important legal considerations in designing electronic and digital signature systems. These explain why these systems are the way they are, what they should aim for and what users should perhaps be made aware of when interacting with them.</p>
+<h3 id="the-act-of-signing">The Act of Signing</h3>
+<p>Signing a record can be an act with legal impact. The <a href="http://apps.americanbar.org/dch/thedl.cfm?filename=/ST230002/otherlinks_files/dsg.pdf">American Bar Association's Digital Signature Guidelines</a> (page 5) explains that the act of signing should provide the following key features: </p>
+<blockquote>
+<ol>
+<li><strong>Evidence</strong> that authenticates and is attributable to the signer and of the integrity of the record</li>
+<li><strong>Ceremony</strong> as an act of signing and its legal significance</li>
+<li><strong>Approval</strong> as the signer's agreement with and authorization of what is written and</li>
+<li><strong>Efficiency &amp; Logistics</strong> in the clarity and finality a signature imparts in consenting to a transaction or negotiation (to improve the efficiency of commerce).</li>
+</ol>
+</blockquote>
+<p>The general goals are to prevent fraud and tampering, inconsiderate engagements, misconstruing what has been approved, ambiguity and inefficiencies in communication around transactions, and preventing parties from modiying or terminating valid legal obligations that are enforceable in court.</p>
+<h3 id="legal-risks-and-enforcability">Legal Risks and Enforcability</h3>
+<p>Bloomberg's <a href="https://www.esignlive.com/site/_media/pdfs/Bloomberg_Law_Report-Enhancing_the_Admissibility.pdf?lipi=urn%3Ali%3Apage%3Ad_flagship3_pulse_read%3B%2B74jfaPaTbKtE1C4E5pJEQ%3D%3D">Enhancing the Admissibility and Enforceability of
+Electronically Signed Documents</a> provides the following six-point framework for evaluating risks in electronic signature integrity.</p>
+<blockquote>
+<ol>
+<li><strong>Authentication Risk</strong> - a signer or record provider is an imposter or false identity</li>
+<li><strong>Repudiation Risk</strong> - a record is altered after signing</li>
+<li><strong>Admissibility Risk</strong> - one party challenges whether a record is admissable because it is unreliable</li>
+<li><strong>Compliance Risk</strong> - the records or signatures do not comply with requirements of local laws</li>
+<li><strong>Adoption Risk</strong> - the user experience is too difficult leading to omissions or signer dissatisfaction</li>
+<li><strong>Relative Risk</strong> - users should evaluate whether an electronic signature process is any riskier than paper and ink signature</li>
+</ol>
+</blockquote>
+<p>Digital signature technology based on public-private key cryptography and hash functions, and now blockchains and other decentralization technology can significantly mitigate many of these risks although in some cases they can also introduce new risks. (We could make another table here or just quickly explain how these can be addressed...)</p>
+<ul>
+<li>Burden of Proof and Evidentiary Requirements for electronic signatures:
+ (TODO - 1. talk about differences between US and EU - in the US the burden of proof is on the signer vs. the document owner)
+<a href="http://www.pciaa.net/docs/default-source/meetings/20170727_1055_update-on-e-sign-and-digital-business-practices-and-blockchain-101---part-2_denise-vieira.pdf?sfvrsn=2">Source</a></li>
+</ul>
+<h2 id="matrix-roadmap">Matrix Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Legal Requirement</th>
+<th>Tech Capability</th>
+<th>Notes</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attribute</td>
+<td>ip address, browser</td>
+<td>Text</td>
+<td>Text   //not sure what this is about... attribute of what? - I knew the link I clicked is tied to the action I intended//</td>
+</tr>
+<tr>
+<td>Attest</td>
+<td>Text</td>
+<td>Text</td>
+<td>Certify that affiant is the correct person</td>
+</tr>
+<tr>
+<td>License</td>
+<td>state notary public service validation with timestamp</td>
+<td>Text</td>
+<td>Confirm that the notary is entitled to perform the function //should also include active verification + notification of status//</td>
+</tr>
+<tr>
+<td>Sign</td>
+<td>Text</td>
+<td>Text</td>
+<td>Commit and associate notary to legal document</td>
+</tr>
+<tr>
+<td>Witness</td>
+<td>Text</td>
+<td>Text</td>
+<td>Mitigate the possibility of collusion</td>
+</tr>
+<tr>
+<td>Notarize</td>
+<td>Text</td>
+<td>Text</td>
+<td>Certify the integrity of the document with an apostille</td>
+</tr>
+<tr>
+<td>Intend</td>
+<td>depends on implementation</td>
+<td>Text</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>Require Signature</td>
+<td>Text</td>
+<td>Text</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Text</td>
+<td>Text</td>
+<td>Text</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2"></h2>
+<h2 id="use-cases">Use Cases</h2>
+<ol>
+<li><strong>Legal Signature</strong></li>
+<li><strong>Notary</strong></li>
+<li>Birth Certificate</li>
+<li>Education Credential</li>
+<li>Profession/Job (Verfication)</li>
+<li>Transferrable Records (Bearer)</li>
+<li>Government-issued ID</li>
+</ol>
+<p><strong>focus areas for this project</strong></p>
+<h2 id="use-case-2-notary">Use Case #2 - Notary</h2>
+<h3 id="participants-for-notary">Participants for Notary</h3>
+<p>Trudy = Notary
+Bob = Customer
+Priya = Prosecutor</p>
+<h3 id="user-story">User Story</h3>
+<p>Bob (a Customer) has a will that he wants to notarize. He requests that Trudy (a Notary) witness his signing the will. Later on, Priya (Prosecutor) must verify that the will is legitimate in a court of law. </p>
+<h3 id="actions">Actions</h3>
+<h4 id="establish-identity-page">Establish identity page</h4>
+<blockquote>
+<p>Trudy, the notary, needs credentials to prove she's a notary.</p>
+</blockquote>
+<ul>
+<li>She needs to get training</li>
+<li>She needs to get a Government issued Notary licence</li>
+<li>That Notary license needs to have an ID</li>
+</ul>
+<blockquote>
+<p>Bob, the customer, needs to find a notary and establish a trust relationship with him.</p>
+</blockquote>
+<ul>
+<li>Validate the notary's credentials</li>
+<li>Fancy seal?</li>
+<li>Needs to know the physical location of the notary</li>
+<li>Reviews of the notary</li>
+</ul>
+<blockquote>
+<p>Priya, the prosecutor, needs to ensure that the notatization process obeyed the law</p>
+</blockquote>
+<h2 id="faq">FAQ</h2>
+<p>Question: Should the "intent" and "execution" legal elements be combined as one (on the same row)?</p>
+<p>Answer: No. Ex. Sometimes when work at company, you recieve a check signed by a signature machine. There are documents agreed upon and documented before that indicates what constitutes intent. </p>
+<p>Question: Should "Sound/Symbol/Process" and "Intent" be combined as one?</p>
+<p>Answer: No. </p>
+<ul>
+<li></li>
+</ul>
+<h2 id="housekeeping">Housekeeping</h2>
+<p>GitHub for draft:</p>
+<p>https://github.com/mitmedialab/rebooting-the-web-of-trust-fall2017/tree/master/draft-documents/BreakingDownAndConnectingLawAndTech
+?&gt;&gt;
+Note: This is the <a href="https://github.com/mitmedialab/rebooting-the-web-of-trust-fall2017">medialab's forked repo</a> of the RWOT repo.</p>
+<p>Slides to collaborate on diagrams: https://docs.google.com/presentation/d/11qrEZk1-FyD9h7mvig7VT5oR-kmZ7PVyeOkx9gmAQwY/edit#slide=id.p</p>
+<p>End Goal: 
+1. MIT Media Lab
+-Medium
+-Huffington Post
+2. Consensys Blog</p>
+<p>Attack Surfaces - Threat Analysis</p>
+<p>Soverign Identity v. </p>
+<h1 id="blockchain-and-law-briefing-book">Blockchain and Law Briefing Book</h1>
+<h2 id="the-blockchain-and-law-briefing">The <a href="https://computationallaw.org/blockchain-briefing-450aa4fb8d7c">Blockchain and Law Briefing</a></h2>
+<blockquote>
+<p>The <a href="https://computationallaw.org/blockchain-briefing-450aa4fb8d7c">Blockchain and Law Briefing</a> is a <a href="https://github.com/mitmedialab/BlockchainBriefingBook/edit/master/README.md">blog post</a> (occassionally updated on <a href="https://ComputationalLaw.org">ComputationalLaw.org</a>) providing an informal and general high level overview of blockchain and law.  </p>
+</blockquote>
+<p>Filling out the Blockchain Briefing narrative form, the below table of legal issues and examples is offered as a starting point for in-house and other legal counsel to learn about more general principles and practices related to blockchain technology.</p>
+<h2 id="table-of-blockchain-legal-issues-and-examples">Table of Blockchain Legal Issues and Examples</h2>
+<table>
+<thead>
+<tr>
+<th>Legal Issue</th>
+<th>Example Situation</th>
+<th>Leg/Reg Status</th>
+<th>Version &amp; Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does Blockchain Satisfy Long Term Records Retention Requirements?</td>
+<td>US Federal Credit Unions are expected to permanently retain Individual Share and Loan Ledgers</td>
+<td><a href="https://www.ecfr.gov/cgi-bin/text-idx?SID=6762593933cc723eab43cd5567470b75&amp;mc=true&amp;node=se12.7.749_10&amp;rgn=div8">12 CFR 749</a></td>
+<td>Version 1.0 (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/IssuesAndExamples">Relevant Materials</a>) Public Blockchain <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/IssuesAndExamples/OP_RETURN-BitcoinWiki.pdf">OP_RETURN</a> can ensure <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/IssuesAndExamples/OP_RETURN-for-Evidentiary-Records.md">evidentiary proof</a> by maintaining long term publicly verifiable hashes of records, addressing a key and costly aspect of <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/IssuesAndExamples/PermanentRecord.md">"permanent"</a> retention of <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/IssuesAndExamples/NCUA-RecordsRetentionPost.md">regulated records</a> expectations.</td>
+</tr>
+<tr>
+<td>Are Blockchain Signatures Enforceable Admissible in Court as Evidence?</td>
+<td>A merchant seeks to introduce evidence of the blockchain signature of a consumer on a contract for the sale of a used car</td>
+<td><a href="http://www.uniformlaws.org/Act.aspx?title=Electronic%20Transactions%20Act">UETA</a> and <a href="https://www.gpo.gov/fdsys/granule/USCODE-2011-title15/USCODE-2011-title15-chap96/content-detail.html">ESIGN</a> and <a href="https://www.gpo.gov/fdsys/search/pagedetails.action?collectionCode=CFR&amp;browsePath=Title+31%2FSubtitle+B%2FChapter+II%2FSubchapter+B%2FPart+370%2FSubpart+D%2FSection+370.39&amp;granuleId=CFR-2005-title31-vol2-sec370-39&amp;packageId=CFR-2005-title31-vol2&amp;collapse=true&amp;fromBrowse=true">31 C.F.R. § 370.39</a></td>
+<td>Version 0.2 - (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/LegalSignatures">Relevant Materials</a>) A valid signature may be formed by any sounds, symbol of process including Blockchain based electronic processes.  Blockchains provide extrinsic evidence regarding the authenticity of the digital signature needed to lay a proper foundation for admissibility.  The evidence is sufficient to prove the electronic message to which the digital signature is affixed has not been altered from its original form" and that the "digital signature corresponds to a specific public key pair."</td>
+</tr>
+<tr>
+<td>Are Smart Contracts Enforceable as Legal Contracts?</td>
+<td>tbd</td>
+<td><a href="http://www.uniformlaws.org/Act.aspx?title=Electronic%20Transactions%20Act">UETA</a> and <a href="https://www.gpo.gov/fdsys/granule/USCODE-2011-title15/USCODE-2011-title15-chap96/content-detail.html">ESIGN</a></td>
+<td>Version 0.2 - (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/LegalContracts">Relevant Materials</a>) Current <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/LegalContracts/README.md">drafting notes re adequacy of contract formation and evidentiary issues</a> and <a href="https://github.com/mitmedialab/BlockchainBriefingBook/blob/master/LegalContracts/README.md#monax-dual-integration-approach">good practice examples</a></td>
+</tr>
+<tr>
+<td>Do Records Entered onto Blockchain Satisfy Admissibility Requirements as Evidence?</td>
+<td>tbd</td>
+<td>tbd</td>
+<td>Version 0.1 - (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/LegalNotice">Relevant Materials</a>)</td>
+</tr>
+<tr>
+<td>Does Blockchain Provide Valid Legal Notice?</td>
+<td>tbd</td>
+<td>tbd</td>
+<td>Version 0.1 - (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/LegalNotice">Relevant Materials</a>)</td>
+</tr>
+<tr>
+<td>Does Blockchain Provide Satisfactory Record of Legal Title to Property?</td>
+<td>tbd</td>
+<td>tbd</td>
+<td>Version 0.0 -  (<a href="https://github.com/mitmedialab/BlockchainBriefingBook/tree/master/LegalTitle">Relevant Materials</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Transferable Records:
+Change to make: If you interpret single authorize copy as single authoritatize version
+WHY: To act on digital data means you have to make copies, consensus on the version
+of document is okay </p>
+<h2 id="existing-laws-on-blockchain-based-signatures-smart-contracts">Existing Laws on Blockchain-based Signatures &amp; Smart Contracts</h2>
+<p>Arizona passed <strong>House Bill 2417</strong> legalizing blockchain-based signatures and smart contracts in commerce:</p>
+<p>https://legiscan.com/AZ/text/HB2417/id/1588180</p>
+<p>==</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

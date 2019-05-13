@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>RWoT8 DID Specification Refinement - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "RWoT8 DID Specification Refinement", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Issue Triage", url: "#issue-triage" },
+              {title: "Feature Refinement", url: "#feature-refinement" },
+              {title: "New Features and Requirements", url: "#new-features-and-requirements" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="rwot8-did-specification-refinement">RWoT8 DID Specification Refinement</h1>
+<p>Paper Lead: Manu Sporny</p>
+<p>Team (in alphabetical order): Dan Burnett, Ken Ebert, Amy Guy, Drummond Reed, Manu Sporny</p>
+<p>2019-03-01</p>
+<p><a href="https://tinyurl.com/rwot8did">https://tinyurl.com/rwot8did</a> </p>
+<h2 id="abstract">Abstract</h2>
+<p>The Decentralized Identifier (DID) specification describes a new type of URL that is globally unique, highly available, and cryptographically verifiable and which has no central authority. The <a href="https://w3c-ccg.github.io/did-spec/">DID spec document</a> describes the expected ecosystem, data model, and syntaxes for DIDs. In December 2018, the W3C held a Strong Authentication and Identity Workshop that determined that a reasonable next step would be to create a W3C Working Group to standardize the DID specification. As a result, the W3C Credentials Community Group, which has been incubating the specification, will eventually need to hand the specification over to the newly formed W3C DID Working Group. In preparation for this hand off, a group at Rebooting the Web of Trust triaged issues related to the DID specification, refined existing proposals related to the specification, and gathered new features and requirements from the community. The result of this work is outlined in this document.</p>
+<h2 id="introduction">Introduction</h2>
+<p>In a recently published <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/w3c-identity-workshop-report.md">W3C Workshop Report on Strong Authentication and Identity</a>, it was suggested that the DID Specification should be considered for standardization at the W3C via a new group called the W3C Decentralized Identifier Working Group (DID WG). The current <a href="https://w3c-ccg.github.io/did-spec/">Decentralized Identifier Specification</a> maintains a <a href="https://github.com/w3c-ccg/did-spec/issues/">list of issues</a> that have been growing over the past year. Amy Guy and Dmitri Zagidulin performed an <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/did-spec-current-status.md">initial triage of the DID specification</a> issues as an advanced reading topic paper for Rebooting the Web of Trust 8 (RWoT8).</p>
+<p>In an attempt to provide the DID WG with a good foundation to build upon, the W3C Credentials Community Group, with aid from the Rebooting the Web of Trust community, worked on the specification at the Rebooting the Web of Trust 8 (RWoT8) event in Barcelona, Spain in early March 2019. The group processed issues related to the DID specification, refined existing proposals related to the specification, and gathered new features and requirements from the community. The state of the work as of the end of the RWoT8 event is outlined below.</p>
+<p>The first day consisted of triaging issues that resulted in three broad categories:</p>
+<ol>
+<li>Issues that are editorial and did not require debate.</li>
+<li>Current features that required debate and refinement.</li>
+<li>New features and requirements that needed to be captured.</li>
+</ol>
+<p>The second day consisted of communicating open questions and answering them so that the group could divide the work up into different work tracks that could progress independently. The third day consisted of executing on the work tracks and making as much progress as we could.</p>
+<p>The group had wanted to produce a document to detail a plan for the W3C Credentials Community Group to  summarize discussion or propose one or more PRs that add the feature to the specification</p>
+<h2 id="issue-triage">Issue Triage</h2>
+<p>One of the results of the issue triage was the desire to restructure the specification in order to communicate the concepts in the document more cleanly. The following structure was agreed upon by the group as an improvement that would need to be further refined:</p>
+<ul>
+<li>Intro</li>
+<li>A Simple Example</li>
+<li>Terminology</li>
+<li>Core Data Model (simple, short, overview) (~~151~~)</li>
+<li>Decentralised Identifiers (ABNF etc)</li>
+<li>DID Documents (detail on core concepts)</li>
+<li>DID Document Syntax</li>
+<li>DID Methods</li>
+<li>DID Resolvers</li>
+<li>Security Concerns</li>
+<li>Privacy Concerns</li>
+<li>Accessibility</li>
+</ul>
+<p>The result of the issue triage follow. Issue numbers with strike-throughs were resolved during the event. </p>
+<ul>
+<li>Update relationship between DID spec and URI spec: <a href="https://github.com/w3c-ccg/did-spec/issues/81">https://github.com/w3c-ccg/did-spec/issues/81</a></li>
+<li>Does the did-spec need to be specific about which parts of the URI RFC it is conformant with? <a href="https://github.com/w3c-ccg/did-spec/issues/169">https://github.com/w3c-ccg/did-spec/issues/169</a></li>
+<li>Intro overhaul<ul>
+<li>Improve abstract 115, 112</li>
+<li>Define target audience of the DID spec: <a href="https://github.com/w3c-ccg/did-spec/issues/157">https://github.com/w3c-ccg/did-spec/issues/157</a></li>
+<li>Terminology and explanations, what is a DID?<ul>
+<li>~~122~~ (Motivations)</li>
+<li>~~121~~ (Purpose, terminology)</li>
+<li>~~117~~ (entities in Overview)</li>
+<li><a href="https://github.com/w3c-ccg/did-spec/issues/156">156</a> &amp; <a href="https://github.com/w3c-ccg/did-spec/issues/155">155</a></li>
+<li>~~123, 124~~ (management of identifiers, Design Goals, terminology)</li>
+<li>130 title - close this once definition of DID and related parts are solidified throughout the rest of the spec</li>
+<li>127</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Remove uses of 'entity' and other fluffy terms when we mean DID Subject:<ul>
+<li>~~125, 145 139 154~~</li>
+</ul>
+</li>
+<li>Clarify language about keys:<ul>
+<li>147 143 105 166</li>
+</ul>
+</li>
+<li>Clarify language around ledgers:<ul>
+<li>150 119 149</li>
+<li>ACTION: ledger -&gt; Verifiable Data Registry (with clarification that there are multiple registries, see VC spec)  </li>
+<li>Michael&gt;&gt; You mean Verifiable Data Registry (VDR), n'est pas?</li>
+</ul>
+</li>
+<li>Quick fixes: ~~137~~, ~~144~~, 133, ~~116~~, ~~118~~, ~~129~~, ~~140, 141~~</li>
+<li>Clarify language about requirements: ~~120~~</li>
+</ul>
+<h2 id="feature-refinement">Feature Refinement</h2>
+<ul>
+<li>MIME Types 1: <a href="https://github.com/w3c-ccg/did-spec/issues/84">https://github.com/w3c-ccg/did-spec/issues/84</a></li>
+<li>MIME Types 2: <a href="https://github.com/w3c-ccg/did-spec/issues/82">https://github.com/w3c-ccg/did-spec/issues/82</a></li>
+<li>ABNF for DID Syntax<ul>
+<li>Use case: changing file hosting providers</li>
+<li>Use case: fragments continue to function after moving a resource that supports fragments (DB:  and what, precisely, is <em>the resource</em>?)</li>
+<li>Use case: change ActivityPub from one provider to another provider</li>
+<li>Use case: I want to advertise a legacy URL (Twitter, Linkedin, etc.)</li>
+<li>Use case: Citations</li>
+<li>Use case: Timo???</li>
+<li>Use case: MS services by type??? Need more details.</li>
+</ul>
+</li>
+<li>Semantics of DID URL vs DID</li>
+<li>Which URL spec? <a href="https://github.com/w3c-ccg/did-spec/issues/163">https://github.com/w3c-ccg/did-spec/issues/163</a><ul>
+<li>If we don't need WHAT WG URL spec features, then cite only the RFC3986.</li>
+</ul>
+</li>
+</ul>
+<h2 id="new-features-and-requirements">New Features and Requirements</h2>
+<p>The following new features and requirements were identified at RWoT8</p>
+<ul>
+<li>The need for a place to express keys that are used to digitally sign Verifiable Credentials (e.g. a "credentialIssuer" property)</li>
+<li>The need for a place to express keys that are used to digitally sign legal agreements (e.g. a "legalAgreement" property)</li>
+</ul>
+<p><strong>Michael Herman's Key Feedback</strong></p>
+<ul>
+<li>DID Resolution Technical Use Cases: <a href="https://github.com/w3c-ccg/did-resolution/issues/32">https://github.com/w3c-ccg/did-resolution/issues/32</a></li>
+<li>Check that small-e "entities" references are removed or better qualified</li>
+<li>Verifiable Data Registry - DID Resolver Architectures: <a href="https://github.com/mwherman2000/indy-arm/blob/master/images/HBB-DID-Resolver-Architecture%20v0.2.png">https://github.com/mwherman2000/indy-arm/blob/master/images/HBB-DID-Resolver-Architecture%20v0.2.png</a></li>
+<li>DID Data Object References feedback: <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/issues">https://github.com/WebOfTrustInfo/rwot8-barcelona/issues</a></li>
+<li>DID Namespaces feedback: <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/issues">https://github.com/WebOfTrustInfo/rwot8-barcelona/issues</a></li>
+</ul>
+<p><strong>Editorial work - WIP: <a href="https://github.com/w3c-ccg/did-spec/commits/rwot8-editorial">https://github.com/w3c-ccg/did-spec/commits/rwot8-editorial</a> </strong></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

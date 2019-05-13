@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>DID Names - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DID Names", url: "#_top", children: [
+          ]},
+          {title: "Introduction", url: "#introduction", children: [
+          ]},
+          {title: "The DID Names Specification", url: "#the-did-names-specification", children: [
+          ]},
+          {title: "DID Method Spaces", url: "#did-method-spaces", children: [
+          ]},
+          {title: "Examples", url: "#examples", children: [
+          ]},
+          {title: "Next Steps", url: "#next-steps", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="did-names">DID Names</h1>
+<p><em>Drummond Reed &amp; James Monaghan, 2017-04-15, Rebooting the Web of Trust #4, Paris, France</em></p>
+<h1 id="introduction">Introduction</h1>
+<p>The DID (decentralized identifier) specification, partially developed at previous RWOT events and funded in part by the U.S. Department of Homeland Security, has become a defacto standard for establishing interoperable self-sovereign digital identity. See the <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-implementer-draft-10.pdf">DID Data Model and Generic Syntax 1.0 specification</a> for more information.</p>
+<p>However, as explained in section 1.4 of the DID spec, DIDs are not human-friendly identifiers:</p>
+<blockquote>
+<p><strong>1.4 The Role of Human-Friendly Identifiers</strong></p>
+<p>DIDs achieve global uniqueness without the need for a central registration authority. This comes, however, at the cost of human memorability. The algorithms capable of generating globally unique identifiers automatically produce random strings of characters that have no human meaning. This leads to the axiom about identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko’s Triangle</a>: "human-meaningful, decentralized, secure—pick any two".</p>
+<p>There are of course many use cases where it is desirable to discover a DID starting from a human-friendly identifier—a natural language name, a domain name, or a conventional address for a DID owner, such as a mobile telephone number, email address, Twitter handle, blog URL, etc. However, the problem of mapping human-friendly identifiers to DIDs (and doing so in a way that can be verified and trusted) is out-of-scope for this specification. </p>
+</blockquote>
+<p>Section 1.4 goes on to make specific recommendations about specifications that will tackle the problem of mapping human-friendly identifiers to DIDs:</p>
+<blockquote>
+<p>Solutions to this problem (and there are many) should be defined in separate specifications that reference this specification. It is strongly recommended that such specifications carefully consider: (a) the numerous security attacks based on deceiving users about the true human-friendly identifier for a target entity, and (b) the privacy consequences of using human-friendly identifiers that are inherently correlatable, especially if they are globally unique.</p>
+</blockquote>
+<p>Given the growing demand to map human-friendly names to DIDs, this document is a proposal to create a new specification called <strong>DID Names</strong>.</p>
+<h1 id="the-did-names-specification">The DID Names Specification</h1>
+<p>The basic concept of DID Names is that the specification would directly parallel the DID specification as shown in this table:</p>
+<table>
+  <tr>
+    <td><strong>Specification</strong></td>
+    <td><strong>Scheme Name</strong></td>
+    <td><strong>Maps From</strong></td>
+    <td><strong>To</strong></td>
+  </tr>
+  <tr>
+    <td>DID Names Specification</td>
+    <td>id:</td>
+    <td>DID Name
+(human-friendly name string)</td>
+    <td>DID</td>
+  </tr>
+  <tr>
+    <td>DID Specification</td>
+    <td>did:</td>
+    <td>DID
+(machine-friendly "number" string)</td>
+    <td>DDO</td>
+  </tr>
+</table>
+
+<p>In other words, the DID Names specification would enable any compatible distributed ledger to map a human-friendly name string that begins with id: (a "DID name") to a DID the same way the DID specification enables any compatible distributed ledger to map a DID “number” that begins with did: to a DDO (DID descriptor object). From a technical standpoint, the only real difference is that a DID name would map directly to one and only one DID.</p>
+<p>For example, the following DID name</p>
+<p><code>id:sov:alice</code></p>
+<p>would resolve directly to a DID such as:</p>
+<p><code>did:sov:8uQhQMGzWxR8vw5P3UWH1j</code></p>
+<p>Note that this DID happens to be in the same DID method space ("sov") as the DID name. That is not a requirement—a DID name could also resolve to a DID in a different method space. For example, the DID name id:sov:alice could resolve to:</p>
+<p><code>did:eth:33ad7beb-1abc-4a26-b892-466df4379a51</code></p>
+<p>(Note that this is a theoretical example—the <code>did:eth:</code> method has not yet been defined).</p>
+<p>To simplify and align the work, it is proposed that the DID Names specification be written as an extension to the DID specification, i.e., rather than define a specific DID namespace, the DID Names specification would specify <strong>what is required in order for a DID method specification to also specify how it will support DID names</strong>. These requirements would include:</p>
+<ol>
+<li>
+<p>Defining the DID name syntax supported by the DID method spec.</p>
+</li>
+<li>
+<p>Defining how to perform the CRUD operations on a DID name record.</p>
+</li>
+<li>
+<p>Defining the policies governing the DID names in this DID method space.</p>
+</li>
+</ol>
+<p>Using this approach, each DID method can define everything necessary to manage a human-friendly DID namespace as well as a DID "numberspace".</p>
+<h1 id="did-method-spaces">DID Method Spaces</h1>
+<p>Although mapping DID names to DIDs is technically very simple compared to mapping DIDs to DDOs (where all the complexity lies), the inherent value of human-friendly names means the complexity lies instead with <strong>the design and governance of these new namespaces</strong>—just as it has with DNS. </p>
+<p>In a DID name, the string between the first and second colon is called the <strong>DID method space</strong>. It is tempting to compare a DID method space to a DNS top-level domain (TLD). That analogy would suggest that a DID method space could be in very high demand (ICANN currently charges US$185,000 for a generic TLD (gTLD) application).</p>
+<p>However this analogy is flawed for two reasons:</p>
+<ol>
+<li>
+<p><strong>DID method names are structural, not semantic, components.</strong> Unlike DNS TLDs, DID methods are not just strings in a table. Each method name corresponds to code that knows how to implement DID name operations (create, read, update, delete) associated with that DID method.</p>
+</li>
+<li>
+<p><strong>With DID names, semantic namespaces begin at the third level.</strong> In the DID name id:sov:alice, for example, it is really "alice" that is the equivalent of a DNS TLD.</p>
+</li>
+</ol>
+<p>Since the whole purpose of decentralized identity infrastructure is to prevent centralization of control (and centralization of taxation), it is strongly recommended that the DID Names specification adopt the following policies:</p>
+<ol>
+<li>
+<p><strong>Only DID method specifications may define DID method spaces.</strong> This naturally limits the number of DID method spaces and simplifies architecture by telling DID resolvers what method to use to resolve a DID name.</p>
+</li>
+<li>
+<p><strong>Inside DID method spaces, DID names MUST be colon delimited.</strong> This enables lower-level DID namespaces to be delegated using colon delimiters just like DNS namespaces are delegated using dot delimiters. See the examples below.</p>
+</li>
+<li>
+<p><strong>Authority for DID namespaces MUST be delegated using DIDs.</strong> Each DID name MUST map to a DID. The public key for that DID MUST be used to authorize registration of names in the next level namespace.</p>
+</li>
+<li>
+<p><strong>DID method space designers should also design the economics of their DID namespace</strong>, i.e., costs &amp; policies for registrations, renewals, trademark protection, dispute resolution, etc. In this way market forces, not government or industry monopolies, will drive the costs of DID names.</p>
+</li>
+</ol>
+<h1 id="examples">Examples</h1>
+<p>Following are fictitious examples of different DID method spaces and different levels of delegated DID names within them.</p>
+<table>
+  <tr>
+    <td><strong>DID Name</strong></td>
+    <td><strong>Notes</strong></td>
+  </tr>
+  <tr>
+    <td>id:sov:alice</td>
+    <td>Personal name in Sovrin method space</td>
+  </tr>
+  <tr>
+    <td>id:sov:alice:home</td>
+    <td>Delegated namespace</td>
+  </tr>
+  <tr>
+    <td>id:sov:alice:home:oven</td>
+    <td>Delegated namespace (to a device)</td>
+  </tr>
+  <tr>
+    <td>id:sov:microsoft</td>
+    <td>Company name in Sovrin method space</td>
+  </tr>
+  <tr>
+    <td>id:sov:microsoft:seattle</td>
+    <td>Delegated company name</td>
+  </tr>
+  <tr>
+    <td>id:btc:ibm</td>
+    <td>Company name in Bitcoin method space</td>
+  </tr>
+  <tr>
+    <td>id:uport:frank.zappa</td>
+    <td>Personal name in uPort method space</td>
+  </tr>
+  <tr>
+    <td>id:uport:frank.zappa:moon-unit</td>
+    <td>Delegated personal name</td>
+  </tr>
+</table>
+
+<p>Note that the final two examples illustrate that dots and dashes should be valid characters in DID names—only colons are reserved characters for namespace delegation. DID names should also accept Unicode characters after the method space name.</p>
+<h1 id="next-steps">Next Steps</h1>
+<p>If there is sufficient interest, work on drafting a DID Names specification could beging at the Rebooting the Web of Trust #4 conference April 19-21 2017 in Paris and continue the Internet Identity Workshop May 2-4 2017 in Mountain View.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

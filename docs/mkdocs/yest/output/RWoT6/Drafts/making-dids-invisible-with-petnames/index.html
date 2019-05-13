@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Making DIDs invisible: Petnames and their secure user interfaces - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Making DIDs invisible: Petnames and their secure user interfaces", url: "#_top", children: [
+              {title: "Outline", url: "#outline" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="making-dids-invisible-petnames-and-their-secure-user-interfaces">Making DIDs invisible: Petnames and their secure user interfaces</h1>
+<p>By Mark S. Miller, Christopher Lemmer Webber, Zarchary Larson, Kate Sills,
+Eli Yaacoby, and Steve Dekorte.</p>
+<p>If we ever show a DID to a user we have failed.  We should always show
+a human readable name.  DIDs and tor .onion names give decentralized
+and globally unique names, but they are not human readable.  How can
+we build user interfaces that real users might actually use?  In this
+paper we provide an overview of petname systems, a way of mapping
+human readable names to cryptographically secure names, and describe
+changes to two user interface designs that we believe that are
+compatible with intuitive user expectations.  We first discuss the
+smartphone contact list as already approximating petnames to some
+degree and discuss how to augment it with secure introduction.  We
+then walk through several changes to browsers (which may be provided
+natively or as an extension) which add the functionality of a petname
+system.  By utilizing petname systems we are able to collectively
+support individual naming definitions, community curated directories
+of names, as well as exiting naming authorities such as certificate
+authorities and the domain name system, government agencies such as
+trademark offices, and decentralized systems such as namecoin.</p>
+<h2 id="outline">Outline</h2>
+<ul>
+<li>Introduction / abstract</li>
+<li>
+<p>Add examples from twitter</p>
+</li>
+<li>
+<p>Explaination of petnames derived from topic paper</p>
+</li>
+<li>types of names<ul>
+<li>petname: set locally by a user (has to be bidirectional, but
+   not necessarily 1:1 (maybe we go into this more in contact
+   section))</li>
+<li>path names (which are rooted in a petname, and have paths to
+   edge names): a path through a graph to find a name (using a
+   unicode thick black arrow in this paper)</li>
+<li>anchor name: to suggest to the receiver what a good petname
+   for the entity would be and the receiver can act on the suggestion
+   by accepting or accept it with modification</li>
+</ul>
+</li>
+<li>
+<p>Naming hubs</p>
+</li>
+<li>
+<p>Implementation scenarios</p>
+</li>
+<li>
+<p>Contact list</p>
+<ul>
+<li>What it already does right</li>
+<li>
+<p>Bidirectional mapping</p>
+<ul>
+<li>Uses phone numbers as a global namespace without making the
+   numbers be the primary user experience</li>
+<li>The names that it presents that correspond to phone
+   numbers, it has no pretense that the names have global
+   significance... chosen by each human operator according to
+   what's useful to them.</li>
+<li>User interface uses that mapping both in selecting things and in
+   rendering things such as an incoming call or call history</li>
+<li>The rendering is in terms of the live mapping</li>
+</ul>
+</li>
+<li>
+<p>Things to add</p>
+</li>
+<li>Party scenario</li>
+<li>Searching the contact list, type in a friend's name, get results
+     from "your contacts" (petnames) "network contacts" (path names)<ul>
+<li>Sorting petname systems?</li>
+<li>petnames</li>
+<li>two-level path where first step is something you've chosen to use as a naming hub</li>
+<li>call a person who's a friend</li>
+<li>call a friend of a friend</li>
+</ul>
+</li>
+<li>
+<p>Saving a friend of a friend as a new petname</p>
+<ul>
+<li>Save the petname (highlighted text which you can edit)</li>
+<li>Click "share with contacts"</li>
+<li>your edge name for others is immediately highlighted so you can edit</li>
+<li>Previous interactions should also show an updated name
+   (they were previously an accquaintence, you realize you'd
+   like to add them to your primary contacts)</li>
+<li>A footnote to: we've glossed over it in our example, but
+   what should we do about mapping to a composite of values
+   such as email and phone numbers</li>
+</ul>
+</li>
+<li>
+<p>caller ID (anchor name)
+     Someone you don't know wants to come to your party</p>
+<ul>
+<li>How do we visually distinguish between these and path names?
+   We should probably do a "?=&gt;John Doe 1"</li>
+</ul>
+</li>
+<li>a user is called and there's no phone number given,
+     "?=&gt;Unknown/Unnamed Caller Number 1"</li>
+<li>scan a QR code for a business, and "blocknym"</li>
+</ul>
+</li>
+<li>
+<p>Browser</p>
+<ul>
+<li>What it already does right</li>
+<li>they understand the address bar <em>should</em> be a trusted path</li>
+<li>a web page, when over a secure connection, is able to present a link that
+     does express where the web page would like you to think that you would go</li>
+<li>bookmarks, which is the basis of doing petnames</li>
+<li>What it currently does wrong</li>
+<li>
+<p>the web page can confuse the user; the webpage may confuse you by telling
+     you where you may go, but you're reliant on the browser to tell you where
+     you are</p>
+<ul>
+<li>hovers</li>
+<li>the bottom bar can change</li>
+<li>the address bar can change (though less)</li>
+</ul>
+</li>
+<li>
+<p>Things to add</p>
+</li>
+<li>
+<p>no petnames</p>
+</li>
+<li>
+<p>we can repurpose Certificate Authorities + DNS as a particular petname
+   which expresses domains as names</p>
+</li>
+<li>
+<p>you can always have a naming hub that issues confusing names for things,
+   which may make them a bad naming hub.  We aren't avoiding this, but we
+   are giving users other ways to find edge names (which they may compare)
+   and who it is that's issueing edge names (which can be audited
+   and can be competitive)</p>
+</li>
+<li>
+<p>when can you and can't you control the "body" of the interface?
+   yes on a mobile application but not on </p>
+</li>
+<li>
+<p>assumptions: we're assuming that you don't have a soci</p>
+</li>
+<li>
+<p>the top bar shows the name from the petname system</p>
+</li>
+<li>
+<p>footnote: why we didn't do the bottom bar and the hover (you
+   can't take control from the web page about where you will go)</p>
+</li>
+<li>
+<p>You must copy around the URL and <em>NOT</em> the petname.</p>
+</li>
+<li>footnote: bookmark should by default add a petname for the whole url but may
+   expose an option to give a petname to the whole prefix</li>
+</ul>
+</li>
+<li>
+<p>Conclusion</p>
+</li>
+<li>
+<p>Glossary "Within this document, these words mean..."</p>
+</li>
+<li>
+<p>Extended reading</p>
+</li>
+<li>Petname markup language</li>
+<li>Petmail</li>
+<li>SPKI/SDSI??</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

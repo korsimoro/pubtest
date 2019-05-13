@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Smarm: Requirements for a smart-signatures Scheme - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Smarm: Requirements for a smart-signatures Scheme", url: "#_top", children: [
+              {title: "Overview", url: "#overview" },
+              {title: "Essentials", url: "#essentials" },
+              {title: "Up for consideration", url: "#up-for-consideration" },
+              {title: "Implementation milestones", url: "#implementation-milestones" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="smarm-requirements-for-a-smart-signatures-scheme">Smarm: Requirements for a smart-signatures Scheme</h1>
+<p>By Christopher Lemmer Webber and Christopher Allen</p>
+<h2 id="overview">Overview</h2>
+<p><a href="https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/draft-documents/smarter-signatures.md">Smart signatures</a>
+are desirable, but how to implement them?
+We need a language that is powerful and flexible enough to meet our
+needs while safe and bounded to run while remaining simple enough
+to feasibly implement.</p>
+<p><a href="https://en.wikipedia.org/wiki/Scheme_programming_language">Scheme</a>
+is a turing-complete language with a (at least stated) fondness for
+minimalism.
+Unfortunately Scheme on its own is neither "safe" nor (necessarily)
+deterministic.
+Thankfully we can get the properties we want through:</p>
+<ul>
+<li>Making object capabilities a core part of the language.
+    Specifically, <a href="http://mumble.net/~jar/pubs/secureos/secureos.html">Jonathan Rees' "W7 security kernel"</a>
+    demonstrates that a pure lexically scoped environment <em>is itself</em>
+    an appropritate substrate for object capabilities.</li>
+<li>Restricting space and time precisely in a way that is
+    deterministic and reproducible.</li>
+<li>Removing sources of external side effects.</li>
+</ul>
+<p>Thus the name "Smarm" is indeed quite smarmy, as Smarm is not a new
+language, but a configuration of existing language ideas, most of them
+relatively (for the world of computer programming) old, repurposed for
+new problem domains.
+(We will need to specify exactly what the primitives of the language
+are, as well as their associated costs... and perhaps that's where
+"Smarm" is a good name for this dialect of a dialect of Lisp.)</p>
+<p>What follows is a listing of requirements and notes to make this
+language possible.</p>
+<h2 id="essentials">Essentials</h2>
+<ul>
+<li>Smart-signatures (smart contracts) supporting metalanguage
+    means evaluation of a program as predicate.
+    Any "state" should be passed in as arguments to the program.</li>
+<li>Loosely based on <a href="http://www.schemers.org/Documents/Standards/R5RS/">r5rs</a>, with some changes:<ul>
+<li>NO call/cc (undelimited continuations) as those break capabilities</li>
+<li>But delimited continuations are great, if we can get those in,
+    awesome.  Some analysis on how delimited continuations affect
+    capabilities, and the extent to which they are useful
+    (or overkill) in the described system should be explored.</li>
+<li>Will we support writing hygenic macros within the language?
+    Some constructs supplied to the base environment will be
+    written within hygenic macros, but whether a user of the
+    language can feasibly use syntax-rules / syntax-case and
+    friends is up for debate.
+    Passing macros between modules in something like W7 which
+    fundamentally (?) is a run-time system may turn out to be
+    difficult.</li>
+<li><a href="https://srfi.schemers.org/srfi-71/srfi-71.html">SRFI-71</a> let/let*/letrec.  r5rs already specifies multiple value
+    return (a great feature!) but utilizing them via call-by-values
+    is painful.</li>
+</ul>
+</li>
+<li>Uses restricted base environment + lexical scope to implement
+    <a href="http://mumble.net/~jar/pubs/secureos/secureos.html">Jonathan Rees' security kernel based on lambda calculus</a>
+    (See also <a href="https://wingolog.org/archives/2011/03/19/bart-and-lisa-hacker-edition">Andy Wingo's blogpost on the subject</a>)</li>
+<li>Must also be constrained in both space and time<ul>
+<li>space: Execution is done within a limited memory environment
+    (can this be done consistently without having to assign our own
+    costs / implementing our own garbage collector?)</li>
+<li>time: Implementations may need to "count" execution steps and
+    halt a program that runs for too many steps.</li>
+</ul>
+</li>
+<li>execution environment<ul>
+<li>compiles to native code for production, with appropriate obfuscation
+    to prevent side channel attacks</li>
+<li>however "development environment" can be more loose for fast
+    "live hacking" (have a mutable toplevel, etc)</li>
+<li>Many lisps have long supported both interpreted and compiled
+    code so we don't need to "make a choice"</li>
+</ul>
+</li>
+<li>ISO-8859-1 strings only (sorry! unicode strings would require
+    adding a whole lot of tooling to the language).
+    (Possibly we could call these "bytestrings" and leave open
+    the possibility of unicode strings for later?
+    Beware the lessons of Python 2 -&gt; Python 3!)</li>
+<li>Source code can be normalized to
+    <a href="http://people.csail.mit.edu/rivest/Sexp.txt">canonical s-expressions</a>.
+    The "display hints" feature could be used for type annotations,
+    though this could also be done by tagging list structures
+    (both are supported in <a href="https://gitlab.com/dustyweb/guile-csexps">guile-csexps</a>
+    for instance).</li>
+<li>Some particular core types and procedures will need to be supplied
+    for smart signatures support (linked data slice &amp; dice, signature
+    verification, and???).
+    These could be part of the "base language", though this opens up
+    a debate of just how large the base system should be and where
+    modules (or even simply supplying utilities as arguments to the
+    program) fit in.</li>
+</ul>
+<h2 id="up-for-consideration">Up for consideration</h2>
+<ul>
+<li>Type annotations?
+    These are not necessarily "necessary", as our language is already
+    appropriately constrained.
+    Adding type annotations may even complexify implementation
+    significantly.
+    Nonetheless, there are a couple of options to explore:<ul>
+<li><a href="http://docs.racket-lang.org/hackett/guide.html">Hackett</a></li>
+<li><a href="https://docs.racket-lang.org/ts-guide/">Typed Racket</a></li>
+</ul>
+</li>
+<li>Do we want to support any record types?
+    (Property lists can always be used, though it may be desirable to
+    have a better type structure for the sake of a type system.)
+    However, it is possible to construct new types that even fit
+    nicely into the object capability model using a combination of
+    vectors and <code>seals</code> from
+    <a href="http://mumble.net/~jar/pubs/secureos/secureos.html">W7</a>.</li>
+<li>It may be desirable to use <a href="https://www.gnu.org/software/guile/manual/html_node/Compiler-Tower.html">Guile's compiler tower</a> for the initial
+    implementation.  While production code MUST NOT run in the Guile
+    virtual machine, Guile's compiler tower supports switching out
+    different layers, including different outputs (for example, you can
+    run Javascript OR scheme at the top and export to the virtual machine
+    bytecode OR <a href="https://lists.gnu.org/archive/html/guile-user/2017-08/msg00070.html">even Javascript at the bottom</a> (WIP)).  This could allow
+    for a "fast to iterate" development environment for users using
+    something like Emacs + Geiser (or whatever your equivalent editor is)
+    while exporting to native code or even something like WebAssembly.
+    However, the output of the native code verison MUST be able to run
+    <em>without</em> Guile's language environment.</li>
+<li>It would be possible to add a module system that can actually import
+    other nodes from the blockchain to execute them.  This would then
+    allow the blockchain itself to become a library of code.</li>
+<li>In the United States and mostly-internationally, "All Rights
+    Reserved" is the default copyright.  We're now talking about adding
+    what's recognized as a fully usable language to a blockchain, which
+    means that if someone were to push code to the blockchain that
+    others evaluated and claimed "Oh, you're running my code, now you
+    need a license" this is possibly a valid legal form of attack against
+    blockchain participants who are automatically verifying the integrity
+    of smart signatures.  An equitable estoppel defense may work, though
+    it would be better to encode into the blockchain somehow that some
+    licensing choice has been made.  Perhaps Wikipedia is a good example
+    of the largest collaborative commons; using a copyleft license that
+    is used by all parties by default could result in "solidifying" the
+    structure into a legally enforceable/protected commons.  (Other
+    routes for blockchains that would prefer more permissive/lax
+    licenses may include encoding the expected de-facto license into
+    the genesis block.)</li>
+</ul>
+<h2 id="implementation-milestones">Implementation milestones</h2>
+<ul>
+<li>A toy implementation has been written making use of
+    <a href="https://www.gnu.org/software/guile/manual/html_node/Sandboxed-Evaluation.html">Guile's sandboxed evaluation</a>
+    facilities (public git repository coming soon after some cleanup).
+    This works, but:<ul>
+<li>Restrictions on space and time are not deterministic.</li>
+<li>We would still want native compilation with obfuscation to
+    prevent side-channel attacks.</li>
+</ul>
+</li>
+<li>Real implementation has a number of different paths, but suggested:
+    Implement on Guile's compiler tower with bottom layer first targeting
+    VM then targeting native code generation.</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

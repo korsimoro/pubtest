@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Technology Demos - RWoT DIR Launchpad</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Technology Demos", url: "#_top", children: [
+              {title: "DIF Universal Resolver (Markus)", url: "#dif-universal-resolver-markus" },
+              {title: "Practical Usage of DID (Cedric)", url: "#practical-usage-of-did-cedric" },
+              {title: "The OrgBook (John)", url: "#the-orgbook-john" },
+              {title: "Capturing Ratings Interviews (Kulpreet)", url: "#capturing-ratings-interviews-kulpreet" },
+              {title: "Javascript DID Resolver (Christian)", url: "#javascript-did-resolver-christian" },
+              {title: "Evernym's VCX: Verifiable Credentials Exchange (Drummond)", url: "#evernyms-vcx-verifiable-credentials-exchange-drummond" },
+              {title: "Veres One (Manu)", url: "#veres-one-manu" },
+              {title: "BTCR (Chris &amp; Kim)", url: "#btcr-chris-kim" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="technology-demos">Technology Demos</h1>
+<h2 id="dif-universal-resolver-markus">DIF Universal Resolver (Markus)</h2>
+<p>DIDs are become more mature; resolver takes you from the DID to the
+DID Document.</p>
+<p>Graphical interface: type a DID and it gets resolved!</p>
+<p>Written in Java</p>
+<p>Each DID method works a little different, and the Resolver has drivers
+that work for them. Drivers can work internally in different ways.</p>
+<p>The tool supports service selection (such as looking for a "homepage" service)</p>
+<h3 id="an-application-of-the-universal-resolver">An Application of the Universal Resolver</h3>
+<p>Adding DID-based authentication to TheOrgBook</p>
+<p>Uses service-to-service APIs: only allow API requests from certain DIDs
+   * Which requires a Signing DID Auth Proxy &amp; Verifying DID Auth Proxy</p>
+<h2 id="practical-usage-of-did-cedric">Practical Usage of DID (Cedric)</h2>
+<p>ixo Protocol manages projects &amp; their implacts.</p>
+<ul>
+<li>Project</li>
+<li>Claims</li>
+<li>Evaluation</li>
+</ul>
+<p>A user with a self-sovereign project creates a project, then another
+user makes a request to submit claims, which the project owner can
+authorize.</p>
+<ul>
+<li>Uses capabilities</li>
+</ul>
+<p>Uses Metamask as credential provider</p>
+<ul>
+<li>An Ethereum wallet is used for the DID</li>
+<li>Takes data and adds signature</li>
+</ul>
+<p>Then users on mobile applications can make claims, which are also signed.</p>
+<p>https://github.com/ixofoundation
+http://ixo.network</p>
+<h2 id="the-orgbook-john">The OrgBook (John)</h2>
+<p>Province of British Columbia</p>
+<p>Solving problems for business people, by creating</p>
+<p><em>Verifiable Claims</em></p>
+<p>The OrgBook is a <em>Holder</em> in the middle, which stores Verifiable
+Credentials about businesses.</p>
+<ul>
+<li>Business registry and permits &amp; licenses</li>
+</ul>
+<p>Can search by name and look up permits &amp; other credentials related to company</p>
+<ul>
+<li>Can "Verify Credential" to see proof of credential</li>
+</ul>
+<p>Public value thanks to transparency, but it's available by API to any
+one else who uses the service</p>
+<ul>
+<li>Can be used to look up suppliers</li>
+<li>Can offer recipes necessary to start up a specific type of business</li>
+</ul>
+<p>Uses zero-knowledge proofs to verify existence of some permits</p>
+<h2 id="capturing-ratings-interviews-kulpreet">Capturing Ratings Interviews (Kulpreet)</h2>
+<p>A use case for DIDs: Chlu</p>
+<p>Decentralized, verifiable ratings for vendors selling services and
+products on marketplaces.</p>
+<p>They should be publically accessible and shared with a certain marketplace</p>
+<ul>
+<li>Can't hide any ratings or reviews: it's all or nothing</li>
+</ul>
+<p>Verification requires signatures by reviewer and marketplace and vendor</p>
+<p>Gets by problems of replication of IPFS by pinning a copy immediately</p>
+<p>Next Step: move to DID spec, solve problems with IPFS as a passive
+store, integrate with btcd.</p>
+<h2 id="javascript-did-resolver-christian">Javascript DID Resolver (Christian)</h2>
+<p>Similar to Markus': a tool for resolving a DID to a DID Document</p>
+<ul>
+<li>We want different implementations in different languages</li>
+</ul>
+<p>Has a simple "resolve" function</p>
+<p>You register methods with resolver, and then you can resolve them</p>
+<h2 id="evernyms-vcx-verifiable-credentials-exchange-drummond">Evernym's VCX: Verifiable Credentials Exchange (Drummond)</h2>
+<p>Show: Issuing a Verifiable Credential &amp; Using It</p>
+<ol>
+<li>Demo makes a connection between person &amp; company</li>
+<li>Company offers a verifiable credential to person</li>
+<li>Person gets verifiable credential offer on phone</li>
+<li>Person chooses to accept it</li>
+<li>Company then turns offer into credential</li>
+<li>Person can then use selective disclosure of attributes on credential</li>
+</ol>
+<p>(This completes the issuance of the claim.)</p>
+<p>Now person can use it:</p>
+<ol>
+<li>Second company makes a connection to person</li>
+<li>Second company requests proof of credential from person</li>
+<li>Person now receives request of proof</li>
+<li>Person sends back proof fulled in with information</li>
+<li>Second company gets proof from person </li>
+</ol>
+<p>A lot of this credentials exchange will be automated</p>
+<h2 id="veres-one-manu">Veres One (Manu)</h2>
+<p>A globally interoperable blockchain for identity, fit-for-purpose</p>
+<ul>
+<li>non-speculative, sustainable, low-cost</li>
+<li>fast: 209 DID ops/sec, ~$1 for DID creation, 15-30 second consensus time</li>
+<li>global</li>
+<li>pure, capability-based system</li>
+</ul>
+<p>What can you do with a DID leger, using the DID client?</p>
+<ul>
+<li>Create a DID</li>
+<li>Register it on a ledger</li>
+<li>Retrieve it from ledger</li>
+<li>Add or Rotate Keys</li>
+</ul>
+<p>Accelerators are used to fast-create DIDs instead of taking 6-9
+proof-of-work hours to create DID.</p>
+<h2 id="btcr-chris-kim">BTCR (Chris &amp; Kim)</h2>
+<p>A Bitcoin DID </p>
+<p>A descriptor encrypts Bitcoin height and index</p>
+<p>As long as it's a standard P2PKH and there's still coins, it can be
+used as a BTCR DID</p>
+<p>You revoke it just by spending the coins!</p>
+<p>Use the OP_RETURN to give additional information, like additional
+keys, and point to the new tip</p>
+<h3 id="btcr-tx-conversion-playground">BTCR TX Conversion Playground</h3>
+<p>Can convert a BTCR txref to a txid or a blockheight and position
+Or convert back from txid</p>
+<p>Can take DID document from transaction, merge in OP_RETURN information
+(really: information pointed to by OP_RETURN), and create a composite
+DID documentation.</p>
+<p>A SatoshiAuditTrail gives additional information like fees and amount
+of money on the tip that sorts of creates a reputation(!) for the DID</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

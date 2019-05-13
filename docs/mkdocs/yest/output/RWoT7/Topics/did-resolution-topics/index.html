@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Did resolution topics - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DID Resolution Topics", url: "#_top", children: [
+              {title: "Resolver Architecture", url: "#resolver-architecture" },
+              {title: "Input / Output", url: "#input-output" },
+              {title: "HTTP Binding", url: "#http-binding" },
+              {title: "Resolution Logic", url: "#resolution-logic" },
+              {title: "Non-DID Identifiers", url: "#non-did-identifiers" },
+              {title: "DID Revocation", url: "#did-revocation" },
+              {title: "DID Document Versioning", url: "#did-document-versioning" },
+              {title: "Caching", url: "#caching" },
+              {title: "Other Topics?", url: "#other-topics" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="did-resolution-topics">DID Resolution Topics</h1>
+<p>Markus Sabadello, Danube Tech (https://danubetech.com), Vienna, 20th September 2018</p>
+<p>We know that DID Resolution is the process of obtaining the DID Document associated with a DID. Sounds simple, but what are some of the deeper questions and topics to be considered here?</p>
+<p>These topics should be addressed in a future <a href="https://w3c-ccg.github.io/did-resolution/">DID Resolution</a> specification. Some of the topics will be important for <a href="https://github.com/WebOfTrustInfo/rwot7/blob/master/topics-and-advance-readings/diddoc-conventions-for-interoperability.md">DID Document Interoperability</a>.</p>
+<h2 id="resolver-architecture">Resolver Architecture</h2>
+<p>Most DID Resolution implementations envision an architecture where a common base component invokes a set of "drivers" or "plugins" or "modules" to implement method-specific functionality, e.g. see the DIF <a href="https://github.com/decentralized-identity/universal-resolver">Universal Resolver</a>, Digital Bazaar's <a href="https://github.com/digitalbazaar/did-client">did-client</a>, or the uPort <a href="https://github.com/uport-project/did-resolver">JavaScript DID Resolver</a>. We envision such "DID Resolver" tools to become as central to SSI infrastructure as DNS is for the web today.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>There are different ways how an application or service can use a DID Resolver (e.g. as a natively linked library, or via an HTTP API).</li>
+<li>There are different ways how a DID Resolver can access a target system (e.g. direct access to a blockchain full node, access using a light client, or access via an intermediary blockchain explorer API).</li>
+<li>These different deployment scenarios have trust implications. Ideally an application or service should be as "close" to a DID Resolver as possible, and the DID Resolver should be as "close" to the target systems as possible, in order to minimize intermediaries and attack surfaces.</li>
+<li>A common topic is DID method governance, i.e. which DID methods should a DID Resolver support, and how should this question be governed (see <a href="https://github.com/w3c-ccg/did-resolution/issues/6">here</a>).</li>
+</ul>
+<h2 id="input-output">Input / Output</h2>
+<p>We can think of DID Resolution as a function with the DID as input and DID Document as output. It may make sense however to have additional input parameters and additional output data of the DID Resolution process.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>There could be input parameters that specify which part of a DID Document is needed, instead of the entire DID Document. For example, a client may only need a specific <code>publicKey</code> object (specified either by <code>id</code> or by <code>type</code>). Or a client may only need a specific <code>service</code> object (specified by <code>type</code>).</li>
+<li>There could be an input parameter that specifies a minimum level of trust required for the DID Resolution process (e.g. should the DID Resolver have access to its own blockchain full node, or is it also acceptable to use a light client, or an intermediary blockchain explorer API).</li>
+<li>There could be an input parameter that specifies whether cached results are acceptable, or whether a full DID Resolution process should be performed.</li>
+<li>Input parameters could be "passed through" to the driver, this could help to optimize the DID Resolution process (e.g. in the case of the <code>btcr</code> DID method, if only the main on-chain <code>publicKey</code> object is needed, it may not be necessary to retrieve the off-chain DID Document).</li>
+<li>There could be additional output data generic to the DID Resolver (e.g. duration of the DID Resolution process, or which driver was used).</li>
+<li>There could be additional output data specific to the DID method (e.g. a state proof in the case of the <code>sov</code> DID method).</li>
+<li>Such additional output data could either be nested inside the DID Document, or held by a separate data format outside the DID Document.</li>
+</ul>
+<h2 id="http-binding">HTTP Binding</h2>
+<p>Even though an application or service should ideally use a "built-in" (natively linked) DID Resolver, we also envision an HTTP Binding for DID Resolution functionality.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>A DID Resolution request could be modeled as a simple HTTP GET operation, e.g. <code>curl -X GET https://uniresolver.io/1.0/identifiers/did:sov:WRfXPg8dantKVubE3HX8pw</code>, which returns a DID Document.</li>
+<li>We would specify ways how additional input parameters and additional output data are modeled in the HTTP Binding of DID Resolution, e.g. using URI query parameters.</li>
+</ul>
+<h2 id="resolution-logic">Resolution Logic</h2>
+<p>Most DID Resolution logic is method-specific and happens in the drivers, but there are also some topics to consider that apply to DID Resolution in general.</p>
+<ul>
+<li>For the DID Document, we consider the DID to be the "Base IRI" in JSON-LD, which allows us to use relative IRIs in the DID Document (see <a href="https://github.com/w3c-ccg/did-resolution/issues/9">here</a> and <a href="https://github.com/w3c-ccg/did-spec/issues/97">here</a>).</li>
+<li>Probably we should require a DID Resolver to validate DID Documents, i.e. only return DID Documents that conform to the specification.</li>
+<li>It has been proposed that the <code>serviceEndpoint</code> URL could itself be a DID, in which case a second (child?) DID Resolution process would be initiated (see <a href="https://github.com/w3c-ccg/did-resolution/issues/7">here</a>). This logic could be controlled by additional input parameters, and it could return additional output data.</li>
+</ul>
+<h2 id="non-did-identifiers">Non-DID Identifiers</h2>
+<p>While most attention right now is focused on DIDs, there are also many other kinds of identifiers, some of which can and some of which can not be considered decentralized (see <a href="https://github.com/w3c-ccg/did-resolution/issues/8">here</a>). We can discuss whether DID Resolution and resolution of non-DID identifiers should be handled by the same kind of tool, or whether implementations should keep those separate.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>Linked local names (petnames) could potentially point to DIDs (see <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/linked-local-names.md">here</a>).</li>
+<li>Cryptographic identifiers (CIDs, cryptonyms) seem to be useful in some cases and resemble DIDs in some ways (see <a href="https://github.com/w3c-ccg/did-spec/pull/55">here</a>).</li>
+<li>DID Names have been suggested as decentralized, human-friendly identifiers (see <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/topics-and-advance-readings/did-names.md">here</a>). </li>
+<li>Domain names can point to DIDs using DNS records (see <a href="https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/">here</a>].</li>
+<li>HTTP URLs can point to DIDs using HTTP headers, HTML tags, or WebFinger (see <a href="https://tools.ietf.org/html/rfc7033">here</a>).</li>
+<li>To prove control of a non-DID identifier such as a domain name, the DID could have a "backreference" to that non-DID identifier.</li>
+</ul>
+<h2 id="did-revocation">DID Revocation</h2>
+<p>The DID spec says that all DID methods MUST specify how a DID can be revoked on the target system.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>When resolving a revoked DID, the result could either be the same as for a DID that has never existed, or the result could be a DID Document with a special revocation flag or timestamp (see <a href="https://github.com/w3c-ccg/did-resolution/issues/5">here</a>).</li>
+</ul>
+<h2 id="did-document-versioning">DID Document Versioning</h2>
+<p>The DID spec says that all DID methods MUST specify how a DID can be updated on the target system.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>There could be additional input parameters to the DID Resolution process that allow clients to obtain earlier versions of a DID Document.</li>
+<li>When resolving a DID, the DID Document could contain a version number or timestamp of the last update.</li>
+<li>Note that while all DID methods MUST support updates, there is no requirement for DID methods to keep all previous DID Document versions, so this may be a method-specific feature.</li>
+</ul>
+<h2 id="caching">Caching</h2>
+<p>During the DID Resolution process, caching may occur in various ways.</p>
+<p><strong>Topics:</strong></p>
+<ul>
+<li>A DID Resolver may maintain a generic cache of DID Documents.</li>
+<li>Individual drivers may maintain caches of method-specific data.</li>
+<li>Caching behavior could be controlled by configuration of the DID Resolver, by additional input parameters of the DID Resolution process, or by contents of the DID Document (e.g. a "time-to-live" field), or by a combination of these options.</li>
+</ul>
+<h2 id="other-topics">Other Topics?</h2>
+<p>Additional topics/issues related to DID Resolution can be raised <a href="https://github.com/w3c-ccg/did-resolution">here</a>.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

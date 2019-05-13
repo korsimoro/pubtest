@@ -1,0 +1,64 @@
+- City: San Francisco
+  Continent: North America
+  Dates: Nov 3-4, 2015
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot1-sf/tree/master/final-documents
+  Label: rwot1
+  Season: November
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot1-sf
+- City: San Francisco
+  Continent: North America
+  Dates: May 21-22, 2016
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot2-id2020/tree/master/final-documents
+  Label: rwot2
+  Season: May
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot2-id2020
+- City: San Francisco
+  Continent: North America
+  Dates: Oct 19-21, 2016
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot3-sf/tree/master/final-documents
+  Label: rwot3
+  Season: October
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot3-sf
+- City: Paris
+  Continent: Europe
+  Dates: Apr 19-21, 2017
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot4-paris/tree/master/final-documents
+  Label: rwot4
+  Season: April
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot4-paris
+- City: Boston
+  Continent: North America
+  Dates: Oct 3-5, 2017
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot5-boston/tree/master/final-documents
+  Label: rwot5
+  Season: October
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot5-boston
+- City: Santa Barbara
+  Continent: North America
+  Dates: Mar 6-8, 2018
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot6-santabarbara/tree/master/final-documents
+  Label: rwot6
+  Season: March
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot6-santabarbara
+- City: Toronto
+  Continent: North America
+  Dates: Sep 26-28, 2018
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot7-toronto/tree/master/final-documents
+  Label: rwot7
+  Season: September
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot7-toronto
+- City: Barcelona
+  Continent: Europe
+  Dates: Mar 1 - 3, 2019
+  Final Papers Url: https://github.com/WebOfTrustInfo/rwot8-barcelona/tree/master/final-documents
+  Label: rwot8
+  Season: March
+  Type: Conference Event
+  Url: https://github.com/WebOfTrustInfo/rwot8-barcelona

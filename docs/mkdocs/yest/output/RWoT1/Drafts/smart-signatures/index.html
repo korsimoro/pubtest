@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Smart Signatures - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Smart Signatures", url: "#_top", children: [
+              {title: "by Christopher Allen, Greg Maxwell, Peter Todd, Ryan Shea, Pieter Wuille, Joseph Bonneau, Joseph Poon, and Tyler Close", url: "#by-christopher-allen-greg-maxwell-peter-todd-ryan-shea-pieter-wuille-joseph-bonneau-joseph-poon-and-tyler-close" },
+              {title: "Abstract", url: "#abstract" },
+              {title: "Background", url: "#background" },
+              {title: "Proposal", url: "#proposal" },
+              {title: "Use Cases", url: "#use-cases" },
+              {title: "Implementation Status", url: "#implementation-status" },
+              {title: "Open Questions", url: "#open-questions" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="smart-signatures">Smart Signatures</h1>
+<h4 id="by-christopher-allen-greg-maxwell-peter-todd-ryan-shea-pieter-wuille-joseph-bonneau-joseph-poon-and-tyler-close"><em>by Christopher Allen, Greg Maxwell, Peter Todd, Ryan Shea, Pieter Wuille, Joseph Bonneau, Joseph Poon, and Tyler Close</em></h4>
+<h2 id="abstract">Abstract</h2>
+<p>Traditional cryptographic signature systems are based on strictly-defined authentication and authorization mechanisms that assume a single private key can be used to produce a given signature and that a single public key can be used to verify it. Given the evident limitations of this design, we propose an alternative with more powerful capabities, based on the ability to explicitly outline and fully program conditions for verification. These conditions would then be used to determine when a signature or set of signatures can be considered valid.</p>
+<p>Our inspiration for this authorization system is the bitcoin scripting language, where the authorization to spend funds is explicitly defined within a script, rather than being implicitly defined through the reference to an authorized public key. The largest benefit of explicit specification of authorization conditions is that the system is fully extensible, so new operations can be defined at any time, with the only limitation being the set of operations that the authorization interpreters understand.</p>
+<h2 id="background">Background</h2>
+<h3 id="traditional-message-signing-and-verification">Traditional Message Signing and Verification</h3>
+<p>In traditional message signing systems, one generates two mathematically-linked keys, a public key and a private key, where the public key can be derived from the private key, but the reverse derivation cannot be performed.</p>
+<p>To produce a signature for a given message, a signature generation function takes as inputs a private key and the message to be signed. A reader can verify the signature with a known public key, which is linked to that unknown private key. This is done by a signature verification function that uses the public key, the signature, and the signed message as inputs.</p>
+<p>Traditional signature systems are very powerful on their own, as one can verify a signature without being able to produce it. However, these longstanding cryptographic systems are also limited in scope.</p>
+<h3 id="bitcoin-scripting">Bitcoin Scripting</h3>
+<p>Bitcoin contains a fairly advanced authorization system. Every transaction in bitcoin has a set of recipients, where each of the recipients is actually a script that outlines the conditions under which the coins can be spent at a future date. These scripts are the equivalent of challenges. Anyone who can meet the conditions outlined by the script is granted access to spend the funds.</p>
+<p>These scripts can be very powerful and support various levels of complexity:</p>
+<ol>
+<li>Scripts can require signatures that correspond to a given hash of an unknown public key. This is a traditional signature, referred to in bitcoin as a "pay-to-pubkey-hash" script.</li>
+<li>Scripts can require a set of signatures to be provided that correspond to K out of N specified public keys. This is known as a multi-signature script.</li>
+<li>Scripts can keep their actual redemption conditions secret and simply provide a hash of those conditions. At a later date, a redeemer can reveal the redemption conditions along with the signatures that allow it to meet those conditions — simultaneously providing the conditions and meeting them. If the conditions are met <em>and</em> the hash of the conditions matches the hash provided in the script, authorization is granted.</li>
+</ol>
+<p>The following examples shows a standard bitcoin script:</p>
+<pre><code>OP_DUP OP_HASH160 &lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</code></pre>
+
+<p>Here, authorization would be granted if a user could provide a smart signature that contains a standard signature and a public key that together could be used as input for a bitcoin script-compatible verification function and that together produce a "true" output.</p>
+<h2 id="proposal">Proposal</h2>
+<h3 id="bitcoins-scripting-outside-of-the-blockchain">Bitcoin’s Scripting Outside of the Blockchain</h3>
+<p>Bitcoin's smart authorization mechanism can be used in other contexts. A wide variety of resources, from API endpoints to assets on a blockchain, can be protected by an authorization system where: (i) each resource links to script-encoded conditions for access; and (ii) each authorization request links to information intended to meet those conditions. Such a system would be a <em>smart signature</em> system.</p>
+<h3 id="smart-verification">Smart Verification</h3>
+<p>A smart signature system could begin with the standard bitcoin script referenced above:</p>
+<pre><code>OP_DUP OP_HASH160 &lt;pubKeyHash&gt; OP_EQUALVERIFY OP_CHECKSIG
+</code></pre>
+
+<p>This script would be embedded inside a smart certificate that is used outside of the blockchain context. When provided with a signature, certificate validation code would verify the authenticity of the script, as follows:</p>
+<ol>
+<li>The user's signature is pushed onto the stack, producing <code>[SIG1]</code></li>
+<li>The user's public key is pushed onto the stack, producing <code>[SIG1][PUB1]</code></li>
+<li>The user's public key is duplicated (<code>OP_DUP</code>) on the stack, producing <code>[SIG1][PUB1][PUB2]</code></li>
+<li>The top public key on the stack is replaced by a hash of itself (<code>OP_HASH160</code>), producing <code>[SIG1][PUB1][PUBHASH1]</code></li>
+<li>The smart certificate's public key hash is pushed onto the stack, producing <code>[SIG1][PUB1][PUBHASH1][PUBHASH2]</code></li>
+<li>The public key hashes from the user and the smart certificate are checked for equality and then popped off the stack (<code>OP_EQUALVERIFY)</code>, producing <code>[SIG1][PUB1]</code></li>
+<li>The user's signature is checked against the user's public key (<code>OP_CHECKSIG</code>), and if it is valid, both items are popped off the stack and replaced by "true", producing <code>[true]</code></li>
+<li>The certificate is validated</li>
+</ol>
+<p>This process demonstrates the simplest sort of smart certificate, which is valid if its signature is valid. Basically it's the same as a self-signed certificate, except the rules for its validity are <em>inside</em> the certificate.</p>
+<p>More complex scripts could replicate CA-style infrastructures, web-of-trust approaches, or use multisig scripts to create certain  kinds of smart contracts. Examples of some of these results are included in the use cases, below.</p>
+<h3 id="implications">Implications</h3>
+<p>Embedding the script inside the certificate ensures that the same method is used to evaluate it on all devices. Refactoring certificate policies into scripts that are executed and specifying a standard-tested virtual machine that executes those scripts may help avoid many of the common errors in certificate policy code in various apps and services.</p>
+<p>The script inside a certificate can be inspected and evaluated. Like bitcoin today, some standard scripts may emerge that are trusted at a higher level than arbitrary written scripts.</p>
+<h2 id="use-cases">Use Cases</h2>
+<p>At minimum smart signatures should support existing trust models, including self-signed certificates, CA-style certificates, and PGP-style key validation. In addition, they need to demonstrate flexibility for uses cases such as:</p>
+<h3 id="short-term-delegation">Short-term Delegation</h3>
+<ul>
+<li>Bob has a key for website authentication, but is going on vacation. He wants website sysadmin Alice to be able to sign on his behalf while he's gone. Alice should be able to get into Bob's servers for a week, but things should revert to normal when Bob returns.</li>
+<li>Carol has a very secure key for signing her email. She wants to give her phone the temporary ability to sign emails with that key for the next week.</li>
+</ul>
+<h3 id="limited-delegation">Limited Delegation</h3>
+<ul>
+<li>Dan, Dana, Erin, Frances, and Frank are in charge of the development branch of a software project. Project leader Alice wants to give them a key that lets them release development versions of the project without allowing them to release stable versions.</li>
+</ul>
+<h3 id="unbundling-delegation">Unbundling Delegation</h3>
+<ul>
+<li>Carol uses a revocation service. She wants to give them the ability to revoke her key or her previously signed certificates without letting them authenticate keys.</li>
+</ul>
+<h3 id="complex-delegation">Complex Delegation</h3>
+<ul>
+<li>CFO Augustus wants to delegate authority to a department to issue a set amount of new bonds, but no more than the set amount, and with an interest rate within certain specifications.</li>
+<li>When Dan, Dana, Erin, Frances, and Frank release a development release, 3-of-5 of them need to sign the release. Further, Dan has a hardware token and wants to sign with 2-of-2 keys, where one key is stored on his hardware token and one is stored on his desktop computer.</li>
+</ul>
+<h2 id="implementation-status">Implementation Status</h2>
+<p>At this point, self-validating certificates only exist as a rough "on the napkin" proposal: neither a specification nor a proof-of-concept has been created. The next step may be to create a proof-of-concept prototype before focusing too much on a detailed specification.</p>
+<h3 id="implementation-concepts">Implementation Concepts</h3>
+<p>Some possible implementation concepts:</p>
+<ul>
+<li><strong>Schnorr Signatures &amp; Script2</strong> – Many of the more complex signature delegations that we wish to offer (in particular Tree Signatures) require implementation of Schnorr Signatures, which bitcoin's script language does not currently offer. Blockstream offers a <a href="https://github.com/bitcoin/secp256k1">new library</a> to support Schnorr under curve secp256k1 and is working on Script2, an upgrade of bitcoin's script, to support it.</li>
+<li><strong>Merkelized Abstract Syntax Tree (MAST)</strong> - MAST is a cryptographically committed version of an abstract syntax tree that naturally maps to Lisp-like syntax and semantics. MAST-based <a href="https://blockstream.com/2015/08/24/treesignatures/">Tree Signatures</a> allow for multisig scripts with sophisticated AND/OR operations, which can be supported using bitcoin's script language by adding a single op-code: <code>OP_CAT</code>.</li>
+<li><strong>Pruning</strong> - Unexecuted branches of the MAST can be pruned away and replaced by hashes. The verifier knows that the code was executed correctly while code not executed isn’t relevant. This improves privacy.</li>
+<li><strong>Delegation via signed code</strong> - To delegate control to another party, sign a secondary MAST that implements additional checks, such as a secondary public key and have the master MAST execute that code if the signature passes.</li>
+<li><strong>Upgrades</strong> - We can add an operation that looks like a <code>no-op</code>. By definition this means "There are rules here that I don't know how to enforce"; systems have to treat that as a failure. Then we can add meaning to that operand in an upgrade. Once a supermajority is updated to enforces the rules, everyone sees the new op and can validate the script.</li>
+</ul>
+<h2 id="open-questions">Open Questions</h2>
+<ul>
+<li><strong>Static Context &amp; Run Context</strong> - In order to perform a number of use cases, the virtual machine may need to provide a context to a script and some way to parse that context. In the above example the <code>[SIG1][PUB1]</code> was provided to the script; in bitcoin, this would come  from the output script of the previous transaction, but smart signatures don't have a parallel construct. Other examples abound: a certificate authority-like script needs to know which domain a child script is approving access to (an internal static context), which domain is actually being accessed (an external static context), and even the content of a web page itself (a run context), and then it must compare these values. What context is required? What additional script operands may be needed to parse and evaluate context given the limitations of a single Forth-like stack?</li>
+<li><strong>Asynchronous Oracles</strong> - A number of use cases may require connecting to an third-party oracle to evaluate certain conditions such as a proof-of-existence as of a certain date, proof-of-uniqueness, specific financial information, or revocation status. It could be that these oracles are pre-fetched and added to the script's context before execution. If so, how does a script tell the virtual machine what to pre-fetch? It could be that certain oracles are distributed on DHT or blockchain and thus are always static. In any case, any asynchrony has security implications including the possibility of denial of service. How do we minimize these risks?</li>
+<li><strong>Revocation</strong> - There was some discussion by the team about how to do revocation. Revocation is not as simple as a failed authentication; revoking a key is distinct from all other signature operations as it implies a desire for proof of non-revocation. It could be that revocation scripts need to be separate and distinct from a validation script. Possibly a proof-of-publication oracle can support this by providing a signature attesting to the fact that a specific revocation does not exist as of some timestamp. Finally, we could only use short-lived keys and not rely on revocation at all.</li>
+<li><strong>Hierarchical Deterministic Keys</strong> - A number of use cases (in particular short-lived keys) may require scripts to evaluate validity of HD keys. Can we do this securely in script? What additional operands may be required?</li>
+<li><strong>Choice of Language</strong> - The team has focused on a variant of bitcoin's Forth-like scripting language. The advantage here is that we can leverage the security reviews and understanding of a widely deployed existing system. However, at some point if we add enough features to the language that are unique to smart signatures, the benefits of being derived from bitcoin's script become less valuable. Other language approaches may offer superior features without compromising security, or offer superior tools. This team agrees that a simplified language should be a requirement, but where to draw the line is unclear.</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

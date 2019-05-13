@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A Primer on Self-Sovereign Identity - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "A Primer on Self-Sovereign Identity", url: "#_top", children: [
+              {title: "By Christopher Allen &amp; Shannon Appelcline", url: "#by-christopher-allen-shannon-appelcline" },
+              {title: "A Self-Sovereign Definition", url: "#a-self-sovereign-definition" },
+              {title: "Ten Principles", url: "#ten-principles" },
+              {title: "Self-Sovereign Identity Systems", url: "#self-sovereign-identity-systems" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="a-primer-on-self-sovereign-identity">A Primer on Self-Sovereign Identity</h1>
+<h4 id="by-christopher-allen-shannon-appelcline">By Christopher Allen &amp; Shannon Appelcline</h4>
+<p>Joe Andrieu's <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/functional-identity-primer.md">Primer on Functional Identity</a> offers a descriptive definition of identity. Quite simply, Andrieu says, "Identity is how we keep track of people and things and, in turn, how they keep track of us." It's an astute description that cuts through the confusion of what an identity database should or shouldn't encompass by instead suggesting that models need only include what's required for persistent identification.</p>
+<p>However, the content design of an identity system is only half the battle. There are also questions of jurisdiction, management, and oversight. In other words, once you have an identity system, who runs it, and who are they beholden to? That's where <em>self-sovereign identity</em> enters the picture, as an orthogonal way to look at the question of identity systems.</p>
+<h2 id="a-self-sovereign-definition">A Self-Sovereign Definition</h2>
+<blockquote>
+<p>Self-sovereign identity is centered on a person, free from dependence on any corporation, organization, or nation-state.</p>
+</blockquote>
+<p>This core definition of self-sovereign identity is a simple one, affirming that identity belongs to an individual person and cannot be taken from them. </p>
+<p>However, that flies in the face of how identity systems are administered in the modern world. The constraints that currently exist don't match the <em>natural</em> definition of identity, which says that we are ourselves. They don't match the <em>functional</em> definition of identity, which says we are who we're known to be. They instead make us identity serfs, bound to the custodians of our crucial identity records. With social security cards, passports, and driver licenses, the US and state governments control our fundamental rights of existence. Other governments act similarly. </p>
+<p>In recent years, there has been some hope of emancipation. UN Sustainable Development Goal 16.9 requires that "By 2030, [we] provide legal identity for all, including birth registration". It's not the first time the UN has spoken out for human identity rights. The question is: can we leverage that support into the creation of truly <em>self-sovereign</em> identities?</p>
+<p>The danger is that we instead repeat past mistakes; that's unfortunately what we've seen so far on the next frontier of identity, the internet. There, internet corporations like Facebook constrain our ability to project our identity online; they can terminate our ability to interact with our identity circles at a moment's notice and may even be able to deauthenticate our access to linked remote sites. Like nation-states, these internet corporations are dangerously centralized, creating a single point of failure for digital identities. </p>
+<p>And so the future echoes the past, with corporations taking over the centralized roles of nation-states, and the losers are still the people themselves. Even with an understanding of the problems of state-sovereign identity, even with the support of the UN, we have not yet had the ability to change. It demonstrates why we need to radically rethink our concepts of identity, to redefine them, so that we don't end up right back where we started. And we need to do so quickly, because the internet's ideas of identity are coalescing <em>now</em>.</p>
+<h2 id="ten-principles">Ten Principles</h2>
+<p><a href="https://www.coindesk.com/path-self-sovereign-identity/">The Path to Self-Sovereign Identity</a> was first detailed in April, 2016. Since, the concept has received widespread adoption. However, it's at an early stage of development. Though we know the fundamentals of what a self-sovereign identity aspires to be, we're still discussing the specifics of how to get there.</p>
+<p>The original article on self-sovereign identity included a list of ten self-sovereign principles. They were intended as a starting point for discussion. Some may indeed by critical, but others may be extraneous complications that should be pruned away.</p>
+<p>In brief, these ten potential principles are:</p>
+<pre><code>  1. **Existence.** Users must have an independent existence. 
+  2. **Control.** Users must control their identities. 
+  3. **Access.** Users must have access to their own data.
+  4. **Transparency.** Systems and algorithms must be transparent.
+  5. **Persistence.** Identities must be long-lived.
+  6. **Portability.** Information and services about identity must be transportable.
+  7. **Interoperability.** Identities should be as widely usable as possible.
+  8. **Consent.** Users must agree to the use of their identity. 
+  9. **Minimalization.** Disclosure of claims must be minimized. 
+  10. **Protection.** The rights of users must be protected.
+</code></pre>
+<p>Further discussion of these principles is available in <a href="https://www.coindesk.com/path-self-sovereign-identity/">the original article</a>. More recently, Natalie Smolenski wrote about the specific issues of "control" in <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/owned-vs-unowned-claims-and-ssi.md">Owned vs. Unowned Claims and Self-Sovereign Identity</a>.</p>
+<h2 id="self-sovereign-identity-systems">Self-Sovereign Identity Systems</h2>
+<p>These definitions and principles describe the philosophy of self-sovereign identity, and they also lay out the technical requirements needed to build such systems. The first three principles are the most important bases of a technical implementation: when we say that users must have existence, and that they must have access and control over their identity, we imagine an identity system where the user is king. He is his identity's root and its executor. </p>
+<p>Put that together with the sixth principle, on portability, and you have an identity system that creates an identity as a discrete unit, with specific access, and with the ability to package it up and bring it to a different identity service. Thus, identity is no longer locked to an organization, a corporation, or a nation-state; instead it resides with the user, who can temporarily home it where he sees fit.</p>
+<p>Any self-sovereign identity needs to begin with a trusted root, and that's the focus of the first major implementation of self-sovereign identity: the decentralized identity, or DID, which is now a <a href="https://w3c-ccg.github.io/did-spec/">W3C draft</a>. The <a href="../did-primer/">DID Primer</a> contains extensive information on DIDs and other related specifications; in short, DIDs provide a methodology for proving control over a key, which can be used to prove identity. Blockchains are the basis of many DID methodologies. </p>
+<p>Self-sovereign identity also require that these free-floating entities be able to make claims about each other; it's how people "keep track of each other", the basis of functional identity. This is the heart of another major project related to self-sovereign identity, the Verifiable Claims initiative, which includes a <a href="https://www.w3.org/2017/vc/WG/">W3C working group</a>. Manu Sporny has written about it in <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/verifiable-claims-primer.md">A Primer on Verifiable Claims</a>.</p>
+<p>Doubtless, there will be other technical solutions for self-sovereign identity in the future, as the philosophy behind these identities is still evolving.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

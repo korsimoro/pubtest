@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Blockcerts -- where we are, and what's next - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Blockcerts -- where we are, and what's next", url: "#_top", children: [
+          ]},
+          {title: "About Blockcerts", url: "#about-blockcerts", children: [
+          ]},
+          {title: "Reasons for Success", url: "#reasons-for-success", children: [
+          ]},
+          {title: "Obstacles we faced", url: "#obstacles-we-faced", children: [
+          ]},
+          {title: "Current Challenges", url: "#current-challenges", children: [
+              {title: "Remove centralization introduced by hosted Issuer Profiles", url: "#remove-centralization-introduced-by-hosted-issuer-profiles" },
+              {title: "Remove centralization introduced by hosted revocation lists", url: "#remove-centralization-introduced-by-hosted-revocation-lists" },
+              {title: "Handle recipient key lifecycle in a first-class way", url: "#handle-recipient-key-lifecycle-in-a-first-class-way" },
+              {title: "Increase flexibility of schema across different use cases -- any privacy/security for sensitive claims", url: "#increase-flexibility-of-schema-across-different-use-cases-any-privacysecurity-for-sensitive-claims" },
+          ]},
+          {title: "Roadmap", url: "#roadmap", children: [
+              {title: "Open Badges / Verifiable Credentials Alignment", url: "#open-badges-verifiable-credentials-alignment" },
+              {title: "Verifiable Displays (now Resource Integrity Proofs)", url: "#verifiable-displays-now-resource-integrity-proofs" },
+              {title: "DIDs", url: "#dids" },
+              {title: "Revocation", url: "#revocation" },
+              {title: "Blockcerts Governance", url: "#blockcerts-governance" },
+          ]},
+          {title: "Additional goals", url: "#additional-goals", children: [
+              {title: "Scaleable distributed timestamps", url: "#scaleable-distributed-timestamps" },
+              {title: "Privacy and security", url: "#privacy-and-security" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="blockcerts-where-we-are-and-whats-next">Blockcerts -- where we are, and what's next</h1>
+<p>Authors: Kim Hamilton Duffy, Anthony Ronning, Lucas Parker, and Peter Scott</p>
+<p>Table of Contents:
+- <a href="#blockcerts----where-we-are--and-what-s-next">Blockcerts -- where we are, and what's next</a>
+- <a href="#about-blockcerts">About Blockcerts</a>
+- <a href="#reasons-for-success">Reasons for Success</a>
+- <a href="#obstacles-we-faced">Obstacles we faced</a>
+- <a href="#current-challenges">Current Challenges</a>
+  * <a href="#remove-centralization-introduced-by-hosted-issuer-profiles">Remove centralization introduced by hosted Issuer Profiles</a>
+  * <a href="#remove-centralization-introduced-by-hosted-revocation-lists">Remove centralization introduced by hosted revocation lists</a>
+  * <a href="#handle-recipient-key-lifecycle-in-a-first-class-way">Handle recipient key lifecycle in a first-class way</a>
+  * <a href="#increase-flexibility-of-schema-across-different-use-cases----any-privacy-security-for-sensitive-claims">Increase flexibility of schema across different use cases -- any privacy/security for sensitive claims</a>
+- <a href="#roadmap">Roadmap</a>
+  * <a href="#open-badges---verifiable-credentials-alignment">Open Badges / Verifiable Credentials Alignment</a>
+  * <a href="#verifiable-displays--now-resource-integrity-proofs-">Verifiable Displays (now Resource Integrity Proofs)</a>
+  * <a href="#dids">DIDs</a>
+  * <a href="#revocation">Revocation</a>
+  * <a href="#blockcerts-governance">Blockcerts Governance</a>
+- <a href="#additional-goals">Additional goals</a>
+  * <a href="#scaleable-distributed-timestamps">Scaleable distributed timestamps</a>
+  * <a href="#privacy-and-security">Privacy and security</a></p>
+<p><small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small></p>
+<h1 id="about-blockcerts">About Blockcerts</h1>
+<p>Blockcerts is an open standard and <a href="https://github.com/blockchain-certificates">set of open source libraries</a> for creating, issuing, viewing, and verifying blockchain-anchored credentials. In addition to commercial deployment by Learning Machine, it's used by hundreds of independent implementers (per github metrics and community discussion) and has a <a href="https://community.blockcerts.org/">thriving discussion forum for implementers and researchers</a>.</p>
+<p>Blockcerts originated as an informal extension of Open Badges v1, and subsequently was reworked into a <a href="https://github.com/IMSGlobal/cert-schema">proper extension of Open Badges v2, the schema of which is hosted by IMS Global</a>.</p>
+<h1 id="reasons-for-success">Reasons for Success</h1>
+<p>Blockcerts benefited heavily from the start by its adherence to open standards, release (and ease of use) of open source libraries, and focus on delivering a viable ecosystem for Educational and Occupational Claims. </p>
+<p>Key factors in its success include:</p>
+<ul>
+<li>Entirely open source and open standards-based</li>
+<li>Blockchain-agnostic, with current implementations on Bitcoin and Ethereum blockchains</li>
+<li>Credentials are recipient-owned and long-lived</li>
+<li>Free for recipients and verifiers due to ability to rely on blockchain APIs (with fallback and checking multiple providers for availability and avoiding centralization/trust on specific providers)</li>
+<li>Easy for recipients to receive and share credentials<ul>
+<li>Open source, free iphone and android Blockcerts wallet</li>
+<li>Wallet contains HD key generation, easing key management for users</li>
+</ul>
+</li>
+<li>Ability to adapt verification to higher-stakes verifying node deployments</li>
+</ul>
+<h1 id="obstacles-we-faced">Obstacles we faced</h1>
+<p>As we started developing Blockcerts, we realized there was a vibrant Self-Sovereign Identity community thinking more broadly (and over a long period of time) about the hard problems we were facing. These problems were being discussed -- and solutions being developed -- in forums like the Internet Identity Workshop, Rebooting Web of Trust, and the W3C Credentials Community Group.</p>
+<p>It was tremendously helpful finding these communities and their work, but we were very focused on shipping libraries enabling the primitives of recipient-owned credentials and ran into barriers resulting from the newness of standards and approaches. Some of these standards were in earliest phases of development, while others deferred tricky problems encountered in real-world deployments such as revocation. </p>
+<blockquote>
+<p>Note that in some cases, versioning allows use of a standard under development, but this is not always possible pre-release, where the standards are changing greatly</p>
+</blockquote>
+<p>The approach we used was two-fold:
+- Favoring use of a released open standard over something that was in its infancy (and likely to change). For Blockcerts, Open Badges V2 was the clear choice, its real world deployments meant many corner-cases had been thought through.
+- In areas where we want improvement (generally, around further reducing centralization points compromising recipient ownersip), contribute to interoperable standards in the Self-Sovereign Identity communities.</p>
+<p>This has led to many productive collaborations with the Open Badges and Self-Sovereign Identity communities (who have very similar goals), allowed us to benefit from the experience of the communities, and allowed us to contribute back via prototypes, standards development, and more.</p>
+<h1 id="current-challenges">Current Challenges</h1>
+<p>Our preference for comformance to released open standards necessitated compromises, resulting in undesirable centralization points.</p>
+<p>Our highest priorities include addressing these limitations via these measures.</p>
+<h2 id="remove-centralization-introduced-by-hosted-issuer-profiles">Remove centralization introduced by hosted Issuer Profiles</h2>
+<p>The current approach to establishing issuer authenticity relies on Open Badges V2 Issuer Profile, typically implemented by a web-hosted list of current and expired keys. This is a centralization point that has implications for availability and even longevity.</p>
+<blockquote>
+<p>This limitation can be addressed by a new type of Decentralized Identifier (DID), which will be used in the next major version of Blockcerts.</p>
+</blockquote>
+<h2 id="remove-centralization-introduced-by-hosted-revocation-lists">Remove centralization introduced by hosted revocation lists</h2>
+<p>The current approach to revocation relies on Open Badges V2 hosted revocation list. This is similarly a centralization point with the same availability, longevity risks.</p>
+<blockquote>
+<p>Through engagements with the Blockcerts community, we've protoptyped decentralized approaches that are being refined for inclusion in the standard.</p>
+</blockquote>
+<h2 id="handle-recipient-key-lifecycle-in-a-first-class-way">Handle recipient key lifecycle in a first-class way</h2>
+<p>While issuer key rotation is supported via the Issuer Profile schema (enabling lists of valid keys with timestamp ranges), there is no standard means supporting recipient key rotation, a threat to longevity. The only option at this point is for recipients to request the issuer to re-issue the credential.</p>
+<blockquote>
+<p>DIDs will also allow replacing public keys embedded in Credentials with these new identifiers, which will be a huge benefit to recipients' ability to prove ownership of the credentials over their lifetime.</p>
+</blockquote>
+<h2 id="increase-flexibility-of-schema-across-different-use-cases-any-privacysecurity-for-sensitive-claims">Increase flexibility of schema across different use cases -- any privacy/security for sensitive claims</h2>
+<p>Finally, the success of Blockcerts has introduced us with a good problem, which is that people want to use Blockcerts in an increasing number of scenarios. In some of these (e.g. transcripts) there is a different schema entirely that should be used. Continuing with the example of transcripts, these contain more sensitive data that should not be hosted and publicly available (as is the assumption in badges).</p>
+<blockquote>
+<p>Through Open Badges and Verifiable Credentials alignment, we ensure interoperability with both critical standards. Furthermore, the Verifiable Credentials data model has a rich spectrum of privacy and security concerns, enabling an alignment framework</p>
+</blockquote>
+<h1 id="roadmap">Roadmap</h1>
+<p>The general theme of our roadmap is enabling a more flexible range of credentials and privacy enhancing measures. Fortunately these are primarily achieved by alignment with Verifiable Credentials and the Decentralized Identifer specification.</p>
+<h2 id="open-badges-verifiable-credentials-alignment">Open Badges / Verifiable Credentials Alignment</h2>
+<p>A critical foundational step is alignment of <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/final-documents/open-badges-are-verifiable-credentials.pdf">Open Badges are Verifiable Credentials</a>. This step combines the flexible structure of Verifiable Credentials with the widespread adoption / vibrant ecosystem of Open Badges.</p>
+<p>More significantly, the Verifiable Credentials specification is intended for a range of credentials, and factors in a range of privacy and security concerns applicable for low-to-high stakes credentials. </p>
+<h2 id="verifiable-displays-now-resource-integrity-proofs">Verifiable Displays (now Resource Integrity Proofs)</h2>
+<p>If all credentials being issued are identical in structure and vocabulary, it is possible to assume a common set of fields in a display. However, when these vary, social exploits are possible. </p>
+<p>The question is: even if the credential content verifies, how do you know the display of the credential you are seeing (e.g. HTML page, PDF, etc) matches the content (e.g. JSON file) without inspecting the raw content. </p>
+<p>This is a problem that's less relevant in machine-to-machine credential verification, but highly relevant for credentialing systems that bridge legacy systems, i.e. where a human is expected to view a credential.</p>
+<p>The verifier and viewer must be able to know that the display they are seeing matches what was intended by the issuer and has not been tampered with.</p>
+<p>A general solution for this is proposed in <a href="https://github.com/WebOfTrustInfo/rwot7/blob/master/final-documents/resource-integrity-proofs.pdf">Resource Integrity Proofs</a></p>
+<h2 id="dids">DIDs</h2>
+<p>Moving to Decentralized Identifiers removes the issuer profile as a single-point-of-failure. It improves longevity (enabling even life-long recipient ownership) by promoting key lifecycle to a first-class notion. I.e. any viable system must factor in the fact that cryptopgrahic keys should be rotated as a best practice, and should factor in key loss.</p>
+<p><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/final-documents/open-badges-are-verifiable-credentials.pdf">Open Badges are Verifiable Credentials</a> also outlines how DIDs will appear in the new Blockcerts schema.</p>
+<h2 id="revocation">Revocation</h2>
+<p>Removing the revocation lists as a centralization point is another big priority. This is not just an availability concerns, but also lacks auditability, meaning the issuer can change it as will. (I.e. at least if the transaction were on-chain, one would have history of the suspected malicious behavior).</p>
+<p>Our <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/final-documents/blockcerts-revocation.md">prototype of contract-based revocation is described here</a>. We can continue developing similar approaches, and investigate others.</p>
+<blockquote>
+<p>While an IPNS revocation list would address the centralization problem, there are practical concerns we need to explore. (1) IPNS requires regular republishing of the mapping and (2) it's not clear if auditability of revocation list changes is enabled</p>
+</blockquote>
+<h2 id="blockcerts-governance">Blockcerts Governance</h2>
+<p>Perhaps our highest priority is setting up an independent foundation to steward Blockcerts. While it's an open standard and open source, it's widely perceived as a codebase of Learning Machine. We do have plenty of contributors and deployments, but the perception of being tied to a single company is understandably a concern.</p>
+<h1 id="additional-goals">Additional goals</h1>
+<h2 id="scaleable-distributed-timestamps">Scaleable distributed timestamps</h2>
+<p>Currently Blockcerts uses the blockchain transaction (associated with a credential) to determine both of these items during verification:
+1. timestamp (proof of existence at a certain time)
+2. issuer signing key</p>
+<p>For future versions, we propose using a timestamping service (like Open Timestamps) for #1 and a separate issuer signature for #2. The flow could look like this:
+1. issuer uses Open Timestamps to obtain an ots proof of the content; appends proof
+2. issuer signs payload; appends proof</p>
+<p>This has an added benefit that the second operation does not need to be on-chain, resulting in a more flexible/scaleable approach.</p>
+<blockquote>
+<p>TODO: A sketch of a Open Timestamps LD signature was developed woth Peter Todd at Decentralized Web summit (details to come).
+TODO: Work out the chained signature samples.</p>
+</blockquote>
+<h2 id="privacy-and-security">Privacy and security</h2>
+<p>At the macro-level, privacy and security wins are enabled through alignment with the Verifiable Credentials data model. This includes not only a thorough consideration of the spectrum of concerns and scenarios, but is associated with standards enabling increased privacy. That means it is easier adapt to higher stakes scenarios in this interoperable framework.</p>
+<p>Some specific items include, increasing in order of complexity:
+- Break assumption of credential hosting, inherited from Open Badges conventions
+- Improving non-correlatability through use of nonces
+- Enabling data minimization and selective disclosure as standards emerge, promote best practices for different scenarios.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

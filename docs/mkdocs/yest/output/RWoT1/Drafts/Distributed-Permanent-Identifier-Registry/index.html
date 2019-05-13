@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Distributed Permanent Identifier Registry - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Distributed Permanent Identifier Registry", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Terms", url: "#terms" },
+              {title: "Registration of Mappings", url: "#registration-of-mappings" },
+              {title: "Constraints", url: "#constraints" },
+              {title: "Individual Verification", url: "#individual-verification" },
+              {title: "Global Federated Consensus", url: "#global-federated-consensus" },
+              {title: "Proof Requirements", url: "#proof-requirements" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="distributed-permanent-identifier-registry">Distributed Permanent Identifier Registry</h1>
+<p>by Juan Benet, Christopher Allen, Noah Thorp, Harlan T Wood, Markus Sabadello, Drummond Reed, Duke Dorje</p>
+<p><strong>STATUS: UNFINISHED FIRST DRAFT</strong></p>
+<h2 id="introduction">Introduction</h2>
+<p>Today we trust people's root keys.  What if the root key is compromised? What if there is an algorithmic break and all keys become easily crackable overnight? We should be able to keep some global identifier which we bind to root keys (or some other useful value).</p>
+<p>Instead of using a public key as an identifier, we use a Token (for example, a UUID, or a strongly random string).  The Token can be mapped to various attributes, endpoints, etc.  A range of recovery mechanisms are required for various scenarios in which the Token needs to be recovered (eg from an attacker). To update the value (e.g. public key) a new value can be registered through multiple widely trusted parties: eg EFF, state institution, my neighbor.</p>
+<p>Each node in the network has its own copy of the dictionary, with whatever identifiers it cares about, or syncs from parties it trusts.</p>
+<p>Some nodes may have greater trust (such as the EFF, Swiss government, Google, a best friend, etc). Increasing the cost of updating the registry increases the cost of attacking the mappings in the network.</p>
+<p>Nodes in the network update their Registry. Each node assembles its own view of mappings in the network. A node recognizes Mappings in the Distributed Registry for Mappings that are below the Threshold of Conflict. Over time the widely trusted nodes in the network may change. </p>
+<h2 id="terms">Terms</h2>
+<ul>
+<li>Token (T): a permanent identifier (eg UUID) which can be rebound to a Value (V) over time.</li>
+<li>Value (V): a value -- such as a public key (or a hash of one), bounded in size.</li>
+<li>Size of Value: an upper bound on the size of a Value, upgradeable network parameter.</li>
+<li>Mapping (M): a record establishing a mapping T-&gt;V.</li>
+<li>Node: a process maintaining a set of mappings called a Distributed Registry</li>
+<li>Update Protocols: use-case specific protocols to update a mapping</li>
+<li>Distributed Registry - a list of mappings gathered from multiple nodes that are determined to be below the protocols Threshold of Conflict. </li>
+<li>Registry - a table of Mappings stored on a Node and updated based on its trust in other nodes</li>
+<li>Threshold of Conflict - a protocol that defines network consensus of which mappings should be included in a node's Distributed Registry.</li>
+</ul>
+<h2 id="registration-of-mappings">Registration of Mappings</h2>
+<p>Can an attacker discover a Token registration and then propagate a Token faster than a good actor?</p>
+<ol>
+<li>A registrant makes an initial claim of a Token and Value Mapping to a node. A node may have requirements for registration including format of the Token (e.g. length). A registrant may choose a Token name that is likely to be probabilistically unique when registered (e.g. a UUID).</li>
+<li>The node broadcasts the provisional claim Mapping to the network</li>
+<li>If the the Mapping has not been broadcast by other nodes which it trusts then the node marks the mapping as claimed.</li>
+</ol>
+<h2 id="constraints">Constraints</h2>
+<ul>
+<li>peer-to-peer network with no gated entry (anyone can participate)</li>
+<li>maintain a network global set of mappings T -&gt; V</li>
+<li>Tokens (T) MUST be uuids (probability bound on accidental collision)</li>
+<li>mapping MUST be mutable</li>
+<li>nodes learn about mapping mutations through peer-to-peer comm (a sync)</li>
+<li>mapping updates MUST be able to happen over different protocols[0]</li>
+<li>a fraction of honest nodes exists who (would) verify mappings through expensive protocols</li>
+<li>but there is a higher-level federated consensus around names -- to be useful, a mapping MUST be widely accepted</li>
+</ul>
+<p><strong>Why mapping MUST be able to happen over different protocols</strong></p>
+<p>A range of “Sync Protocols” can which have different security and liveness properties, i.e. protocols range in cost, so can have syncs which are lively and cheap (e.g. a blockchain) which may lower security guarantees than others which are much more expensive (government id physical visit with biometric checks).</p>
+<h2 id="individual-verification">Individual Verification</h2>
+<p>Nodes are individually responsible for verifying that a certain Token Update is valid, and this is (purposely) left up individual nodes to define. For example, one class of nodes could be government agencies with a (physically expensive) custom protocol for updating a mapping. </p>
+<p>It MUST be possible for every node in the network to connect to every single other node and individually verify a mapping update -- through whatever means the verifier finds acceptable. For example, a Government Authority might associate a Token with a specific citizen and ONLY allow updates by that citizen through a special-purpose protocol (updates could require physical visit, etc).</p>
+<h2 id="global-federated-consensus">Global Federated Consensus</h2>
+<p>In a sense, what we require is a registry driven by a global federated consensus...</p>
+<h2 id="proof-requirements">Proof Requirements</h2>
+<ul>
+<li>want to prove disagreement propagates quickly (lower bound on number of expensive syncs) 
+  (i.e. if a few nodes periodically run expensive syncs, attacks (disagreement) can be surfaced quickly)</li>
+<li>want to prove most nodes can store few mappings (resolving through the network)</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

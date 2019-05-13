@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Selective Disclosure of Identity with Hierarchical Deterministic Keys and JSON Web Tokens - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Selective Disclosure of Identity with Hierarchical Deterministic Keys and JSON Web Tokens", url: "#_top", children: [
+              {title: "Signed Identity Tokens", url: "#signed-identity-tokens" },
+              {title: "Hierarchical Deterministic Key Derivation", url: "#hierarchical-deterministic-key-derivation" },
+              {title: "Identity Resolution", url: "#identity-resolution" },
+              {title: "Interesting Implications", url: "#interesting-implications" },
+              {title: "Resources", url: "#resources" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="selective-disclosure-of-identity-with-hierarchical-deterministic-keys-and-json-web-tokens">Selective Disclosure of Identity with Hierarchical Deterministic Keys and JSON Web Tokens</h1>
+<p><em>by Ryan Shea <a href="https://twitter.com/ryaneshea">@ryaneshea</a> \&lt;ryan@onename.com></em></p>
+<p>Identity information can be packaged together, as it is with traditional forms of identification like passports and driver's licenses, or it can be fragmented and selectively disclosed.</p>
+<p>Identity fragmentation and selective disclosure has huge benefits for privacy. If a service only requires a singly piece of information on a user, like a liquor site that needs to know if a user is of age, the service can ask the user to present a statement of age that has been self-attested AND has been attested to by a party that the service trusts, whether that be a DMV, a corporation or an individual. This allows the person to prove he/she is of age without revealing his/her identity.</p>
+<h3 id="signed-identity-tokens">Signed Identity Tokens</h3>
+<p>With <a href="https://github.com/blockstack/blockchain-id/wiki/Profile-Schema-v3">v3 of the Blockchain ID schema</a>, <a href="https://github.com/blockstack/blockchain-id-js/blob/master/docs/profile.md">user profile information</a> is split up into individual signed statements that are expressed as JSON Web Tokens and packed up in a <a href="https://github.com/blockstack/blockchain-id-js/blob/master/docs/token-file.md">"token file"</a>. The tokens are each individually signed with different keys, so that each identity statement has a different issuing cryptographic identity. Then, to reconstruct the profile, the user presents all of the tokens and presents proof that he/she signed those tokens.</p>
+<h3 id="hierarchical-deterministic-key-derivation">Hierarchical Deterministic Key Derivation</h3>
+<p>The way we do this is have each Blockchain ID username registered be tied to a hierarchical deterministic public key. Then, for each token presented, the derivation path (aka the chain path which is expressed as a hash) is provided that leads from the parent HD public key to the descendant HD public key (via unhardened key derivation) that has an accompanying public key that matches the issuer. Each derivation path has a very high amount of entropy, ensuring that the descendants cannot be discovered via brute force derivations from the master key. The chain path is required.</p>
+<h3 id="identity-resolution">Identity Resolution</h3>
+<p>A name is securely linked to a zone file in Blockstore. The hash of the zone file is stored in the OP_RETURN field of the update transction, and the data itself is stored in the DHT. The zone file contains instructions for the client to resolve the user's token file, which contains tokens that can be combined to reconstruct the user's profile. Individual tokens can be encrypted or omitted from the main file in order to make sure they are not associated with the user's central identity.</p>
+<h3 id="interesting-implications">Interesting Implications</h3>
+<ul>
+<li>individual identity statements can be presented by an anonymous user, then the user can later identify oneself by simply presenting a hash</li>
+<li>the "double spend" problem of identity proofs is solved whereby users cannot share their keys that have been verified to be "over 21" because sharing an unhardened descendant key of a master public key means that the master public key will be shared as well</li>
+</ul>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="http://jwt.io/">JSON Web Tokens</a></li>
+<li><a href="https://github.com/blockstack/blockchain-id/wiki/Profile-Schema-v3">Blockchain ID Profile Schema v3</a></li>
+<li><a href="https://github.com/blockstack/blockchain-id-js/blob/master/docs/profile.md">Reconstructed Profile Example</a></li>
+<li><a href="https://github.com/blockstack/blockchain-id-js/blob/master/docs/token-file.md">Profile Token File Example</a></li>
+<li><a href="https://github.com/blockstack/blockchain-id-js/blob/master/docs/zone-file.md">Zone File Example</a></li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

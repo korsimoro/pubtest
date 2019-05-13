@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Certificate chains for DID-based self-sovereign identities - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Certificate chains for DID-based self-sovereign identities", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Certificate chains anchored in DIDs", url: "#certificate-chains-anchored-in-dids" },
+              {title: "Related work", url: "#related-work" },
+              {title: "Questions", url: "#questions" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="certificate-chains-for-did-based-self-sovereign-identities">Certificate chains for DID-based self-sovereign identities</h1>
+<p>This note discusses the ability to take existing certificate authority based systems and anchor them in DIDs, in order to have a self-sovereign identity that forms a root of trust. The user can have devices be sub-CAs, and use different keys for different services. We may be able to leverage existing technologies for this.</p>
+<h2 id="introduction">Introduction</h2>
+<p>One design element in self-sovereign identity which is becoming common is the idea of <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-implementer-draft-10.pdf">decentralized identifiers</a> (DIDs). The ideas is to have an identifier, called a DID, which maps to a descriptor object (DDO) which contains a public key. This mapping can be done in a decentralized way using a blockchain, but other ways could be used as well. The point is that if the root of trust exists in a blockchain, this forms a <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">decentralized PKI</a> (or DPKI). A service interacting with a user would verify a signed message by looking up the DID of the user, mapping this DID to a corresponding key and verifying that the key matches the key that signed the message.</p>
+<p>In a certificate authority based identity system the root of trust is a root key held by a <em>certificate authority</em> (CA). The CA signs certificates containing the keys of sub-CAs which in turn signs keys used by end-users. Thus a service interacting with an end-user can receive a signed message, check the public key that signed the message and follow the certificate chain back to the root CA. </p>
+<h2 id="certificate-chains-anchored-in-dids">Certificate chains anchored in DIDs</h2>
+<p>Suppose the users DID resolves to a DDO with a single master/root key. This could be a key stored securely in something like a yubikey, smart card or the secure enclave of a mobile device. </p>
+<p>The user may want to have several devices with which she would like to interact with several services.</p>
+<p>One way to achieve this is to set up a system where the user acts as their own root CA, the users devices are provisioned as sub-CAs, and each service gets its own key signed by the sub-CA. This way the user only needs to use their root key occasionally, and their day-to-day use could be via other devices.</p>
+<p>If the user wants to use the same identity on a service from two different devices she can do this by revealing to the service the certificate chains leading back to their main DID, and request that the two keys from the two devices are treated as the same identity. This leads to some loss of privacy, but it may be possible to prove the existence of these certificate chains in a zero-knowledge way.</p>
+<p>If the user loses a device she can issue a revocation certificate for that device that could be associated with the DDO until the certificate expires.</p>
+<p>If the user loses her master key and obtains a new one through for instance delegated recovery, she would need to reprovision her devices with the new master key, and reenroll in services with certificates generated by the new device sub-CAs. To reenroll the devices again the user would need to go through a step where they send the old certificate chain as well as the new certificate chain to the service to allow the service to update.</p>
+<h2 id="related-work">Related work</h2>
+<p>The <a href="https://sovrin.org">Sovrin</a> project has done much work in thinking about the privacy aspects of decentralized identity, especially how to protect against correlation between services. This involves using new keys for each interaction, described in the documents <a href="https://www.sovrin.org/The%20Technical%20Foundations%20of%20Sovrin.pdf">The Technical foundations of Sovrin</a> and <a href="https://www.sovrin.org/How%20Sovrin%20Works.pdf">How Sovrin works</a>.</p>
+<p><a href="https://blockstack.org">Blockstack</a> uses a scheme of generating child keys of a master key in order to obtain different keys to use with different services. More info in <a href="https://github.com/blockstack/blockstack-keychains-js">this repository</a>.  </p>
+<p>In the Swedish identity system <a href="https://www.bankid.com/en/">BankId</a>, a hardware token device (for instance <a href="https://www.seb.lt/eng/private/online-banking/digipass">digipass</a> at SEB ) is given to the user by their bank. This hardware token device is then used as a root of trust to enroll keys generated by a mobile app (Known as "<a href="https://youtu.be/OnIW6srrAKk">Mobile BankId</a>"). This mobile app is then used for day-to-day banking activities and interactions with government services.</p>
+<h2 id="questions">Questions</h2>
+<ul>
+<li>Is this a good way to gain privacy by using different keys for different services (in unlinkable fashion)? Or are privacy benefits negated by the need to reveal certificate chains when enrolling a new device to interact with a service? Can zero-knowledge proofs be used, as <a href="https://sovrin.org">Sovrin</a> is doing?</li>
+<li>Is using certificate chains a good way to handle key management of multiple devices and/or multiple services, or is it better to just list all the relevant keys in a flat structure in the DDO?</li>
+<li>Should there be one root key/root of trust per user, or should each device have its own root of trust, anchored in the DID?</li>
+<li>If using certificate chains, how much of current software packages, data models and best practices can be reused? Do we gain anything by the reuse, or is it better to start fresh with new models?</li>
+<li>Can a method like this be used to introduce hierarchies of keys, ranked by the security of the device that holds them, so that an ephemeral key in the browser has a lower security rank than a key generated on a smart card or secure enclave?</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

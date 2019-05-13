@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Design Considerations for Decentralized Reputation Systems - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Design Considerations for Decentralized Reputation Systems", url: "#_top", children: [
+              {title: "Authors", url: "#authors" },
+              {title: "Abstract", url: "#abstract" },
+              {title: "Previous Work", url: "#previous-work" },
+              {title: "1. Context Dependence", url: "#1-context-dependence" },
+              {title: "2. Participation", url: "#2-participation" },
+              {title: "3. Consent", url: "#3-consent" },
+              {title: "4. Confidentiality", url: "#4-confidentiality" },
+              {title: "5. Value Generation", url: "#5-value-generation" },
+              {title: "6. Performance", url: "#6-performance" },
+              {title: "7. Sustainability", url: "#7-sustainability" },
+              {title: "8. Claim Life-cycle", url: "#8-claim-life-cycle" },
+              {title: "9. Resilience", url: "#9-resilience" },
+              {title: "10. Legal", url: "#10-legal" },
+              {title: "Conclusion", url: "#conclusion" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="design-considerations-for-decentralized-reputation-systems">Design Considerations for Decentralized Reputation Systems</h1>
+<h3 id="authors">Authors</h3>
+<p>Lead:</p>
+<ul>
+<li>Angus Champion de Crespigny ­– anguschampion@gmail.com</li>
+</ul>
+<p>Contributors:</p>
+<ul>
+<li>
+<p>Dmitry Khovratovich – khovratovich@gmail.com</p>
+</li>
+<li>
+<p>Florent Blondeau – florent.blondeau@nameshield.net</p>
+</li>
+<li>
+<p>Klara Sok – klarasok@gmail.com</p>
+</li>
+<li>
+<p>Philippe Honigman – philh@ftopia.com</p>
+</li>
+<li>
+<p>Nikolaos Alexopoulos – alexopoulos@tk.tu-darmstadt.de</p>
+</li>
+<li>
+<p>Fabien Petitcolas – fabienpe@outlook.com</p>
+</li>
+<li>
+<p>Shaun Conway – shaun@consent.global</p>
+</li>
+</ul>
+<h2 id="abstract">Abstract</h2>
+<p>Reputation systems provide an effective way to build a web of trust on
+the Internet. They consider the history of interactions between peers to
+establish a measure for a reputation that can itself be used to support
+a trust decision. Decentralised reputations systems (DRS) rely on a
+decentralised computer architecture and a distributed ledger to store
+and maintain reputation information, so that no single entity has
+control over that information.</p>
+<p>While there have been numerous analyses of how reputation may be used,
+there has to date been no systematic definition of the various aspects
+that should be considered when a reputation system is being designed. By
+defining these design considerations, we can come to a consensus about
+what is and is not important in a system. We can discuss the different
+ways in which they can be built and we can conduct further research and
+analysis into specific factors in a structured way.</p>
+<p>We identified ten design considerations for all decentralized
+reputations should address. These are:</p>
+<ol>
+<li>
+<p><strong>Context</strong>: What is the reputation value applicable to? What can be
+    understood about an entity by seeing their reputation value(s)?</p>
+</li>
+<li>
+<p><strong>Participation</strong>: How is participation defined? Who can and can’t
+    participate? Who can and can’t have a reputation value assigned?</p>
+</li>
+<li>
+<p><strong>User consent</strong>: Is consent required by a user to issue claims or a
+    reputation value against the user? Is consent required to reveal
+    claims or a reputation value of a user?</p>
+</li>
+<li>
+<p><strong>Confidentiality</strong>: To meet consent requirements, how is data that
+    calculates a reputation value kept private? Can it be derived?</p>
+</li>
+<li>
+<p><strong>Value generation</strong>: How is the reputation value calculated or
+    generated? How are claims contributing to the reputation value
+    normalized?</p>
+</li>
+<li>
+<p><strong>Performance</strong>: How does the system manage the performance and
+    behavior of the users? How does it manage the performance of the
+    network for speed, reliability, and data integrity? How do users
+    have confidence in this?</p>
+</li>
+<li>
+<p><strong>Sustainability</strong>: How does the system stay relevant over time?</p>
+</li>
+<li>
+<p><strong>Claim lifecycle</strong>: How are claims valued over time? Can they be
+    revoked and under what conditions?</p>
+</li>
+<li>
+<p><strong>Resilience</strong>: How does the system protect against attacks that
+    reduce the integrity of the reputation value?</p>
+</li>
+<li>
+<p><strong>Legal</strong>: What is the legal environment in which the system sits?
+    Are there potential violations of ‘natural’ law?</p>
+</li>
+</ol>
+<p>The rest of this paper will further define these considerations and
+populate each with examples and considerations for their design. We will
+continue to develop and refine to establish language standards for
+discussing reputation systems.</p>
+<p>We have not defined what is and isn’t required for each consideration,
+as particular implementations may have differing reasons for each.
+However, we anticipate that best practices for these considerations will
+be topics for future analysis.</p>
+<h2 id="previous-work">Previous Work</h2>
+<p>Resnick et al.[^1] detail three high-level properties that reputations
+systems require and highlight challenges related to the capture
+(difficulty of enticing users to provide feedback; eliciting negative
+feedback; and ensuring honest reports), distribution (problems with name
+changes of users; and the lack of portability between different systems)
+and aggregation of feedback.</p>
+<p>Kumar et al.[^2] look at design considerations that are specific to
+establishing the reputation of computer nodes in a peer-to-peer network.</p>
+<p>Koutrouli et al.[^3] look at the basic element and design issues of
+reputation-based trust models in peer-to-peer systems, so that each peer
+can make autonomous trust decisions based on other peers’ reputations.</p>
+<h2 id="1-context-dependence">1. Context Dependence</h2>
+<p><em><strong>Definition:</strong> The formal set of hypotheses used to define the value
+scale of reputation statements in the system and the scope to which the
+reputation value applies.</em></p>
+<p>Every reputation system should clearly define the context to which a
+reputation applies. For example, a high reputation on StackOverflow may
+correlate with someone being a strong developer, but the reputation
+context in fact is more aligned with quickly providing useful
+information; a person’s ability to architect a project or to make design
+trade-offs in time-limited projects, which may be considered valuable
+traits for a developer, may not align with this.</p>
+<p>In a decentralized reputation system, care should be taken when defining
+rules that determine the context of use for reputation claims. Designers
+should pay attention to implicit rules that could be unclear to users.
+For example, a 4-out-of-5-star rating is considered excellent on some
+platforms but poor on others.</p>
+<p>To improve on the precision of the specific value to be measured,
+granularity may be increased, but traded off for usability. When you
+want a user to be more precise in the reputation value he gives to
+others, you can as a designer make him be more precise by increasing the
+granularity of the fields he fills. You don’t ask for a single five-star
+rating anymore, but instead split the response into different categories
+for which the user can give a rating independently. Systems with more
+granularity will be less usable by users, but may be able to provide
+more information with a proper analysis.</p>
+<p>Different contexts can exist in the same reputation system or in
+different ones. Reputation system operators could be tempted to merge
+numerical values from different contexts, either in the same system or
+in different systems, but matching between contexts should be made with
+explicit rules that are carefully targeted at this precise matching.
+This creates a new context, with its own rules and guides of conduct.</p>
+<h2 id="2-participation">2. Participation</h2>
+<p><em><strong>Definition:</strong> The rules by which entities can determine whether or
+not they will partake or be considered by the network or by which the
+network determines the participation of entities.</em></p>
+<p>The network should clearly lay out the rationale and implementation of
+two aspects of participation:</p>
+<p><em>1. Who is allowed to join the network?</em></p>
+<p>Membership in the network may bring with it different capabilities, so
+this may not be a binary decision. One member may be a passive member
+with little rights beyond viewing traffic on the system, while another
+may be able to submit claims as they reach a higher level of membership.
+The rules for each role, the purposes of each role, and how they will be
+enforced should be clearly defined.</p>
+<p><em>2. Who is allowed to have a reputation assigned to them by the
+network?</em></p>
+<p>This question is closely related to context: who is eligible to have a
+reputation in this system? Clear rules need to define who can receive a
+reputation and to balance such requirements against entities’ rights to
+privacy. Note that this only defines which entities can have a
+reputation linked to them: it is separate from whether or not that
+entity chooses to reveal that reputation.</p>
+<h2 id="3-consent">3. Consent</h2>
+<p><em><strong>Definition:</strong> the rules by which entities accept claims against them
+or allow the viewing of claims or reputation values.</em></p>
+<p>Once an entity is participating in a network, a system design needs to
+consider to what extent the entity has control over the claims made
+against them and the reputation information that is associated with
+them. Consent considerations fall into a few categories. Not all of
+these requirements will be necessarily be present in any system.</p>
+<ul>
+<li>
+<p><strong>Consent to reveal</strong>: to what extent can an entity who has received
+    a reputation value reveal in whole, reveal in part, or decline to
+    reveal their reputation value?</p>
+</li>
+<li>
+<p><strong>Consent to inbound claims</strong>: does an entity have the right to
+    accept in whole, accept in part, or reject in whole a claim made
+    against them?</p>
+</li>
+<li>
+<p><strong>Consent to outbound claims</strong>: can an entity define who can see a
+    claim that they have submitted against another entity or any
+    information related to that claim?</p>
+</li>
+<li>
+<p><strong>Right to be forgotten</strong>: can the recipient of a reputation value
+    delete or hide that reputation? A legal base for the right to be
+    forgotten is given by Article 12 of the Directive 95/46/EC of the
+    European Union<a href="[*http://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX:31995L0046*](http://eur-lex.europa.eu/legal-content/en/ALL/?uri=CELEX:31995L0046)">^4</a>. It provides for the “erasure or blocking of
+    data processing”. In the context of DRS, the right to be forgotten
+    may involve the full deletion of all data used for computing the
+    reputation value, or a restriction to aggregate such data, or a
+    restriction to associate such data with the related emitting or
+    receiving individual.</p>
+</li>
+</ul>
+<h2 id="4-confidentiality">4. Confidentiality</h2>
+<p><em><strong>Definition:</strong> How to ensure that no data is leaked and that other
+considerations are not violated by derivation of metadata or analysis.</em></p>
+<p>While an entity may choose their level of participation, choose what
+claims are made against them, and choose to whom their reputation is
+revealed through considerations of “Participation” and “Consent”, the
+system needs to be designed so that the method of achieving each of
+these attributes is secure and does not leak information nor even data
+that enables information to be derived.</p>
+<p>This information falls into a number of categories, for a case where
+Alice is sending a claim against Bob.</p>
+<h3 id="privacy-of-sender-alice">Privacy of Sender (“Alice”)</h3>
+<p>This may include:</p>
+<ul>
+<li>
+<p><strong>Sender Unlinkability.</strong> Alice limits the set who knows she vouched
+    for Bob.</p>
+</li>
+<li>
+<p><strong>Connections Unlinkability.</strong> Alice prohibits exposure of the fact
+    that her two connections were endorsed by the same person.</p>
+</li>
+<li>
+<p><strong>Uncountability.</strong> Alice limits knowledge of how many claims she
+    issued over any period of time.</p>
+</li>
+<li>
+<p><strong>Grade Privacy.</strong> Alice prohibits exposure of her submitted claim
+    not only by itself (through Consent) but as a whole through which it
+    could be derived, for example the most popular, average, or
+    empty values.</p>
+</li>
+<li>
+<p><strong>Context Privacy.</strong> Alice prohibits exposure of the context she
+    endorses not only individually (through Consent) but as a whole, for
+    example the most popular context or unused contexts.</p>
+</li>
+<li>
+<p><strong>Time Privacy.</strong> Alice prohibits exposure of the time when she
+    sends claims not only individually (through Consent) but as a whole,
+    for example the most active time, passive time, etc.</p>
+</li>
+<li>
+<p><strong>Revocation Privacy.</strong> Alice prohibits exposure of
+    revocation-specific data: connections with revoked endorsements,
+    without revoked endorsements, validity time, etc.</p>
+</li>
+</ul>
+<h3 id="privacy-of-recipient-bob">Privacy of Recipient (Bob)</h3>
+<p>This includes:</p>
+<ul>
+<li>
+<p><strong>Sender Unlinkability.</strong> Bob limits the set who knows Alice sent a
+    claim against him.</p>
+</li>
+<li>
+<p><strong>Connections Unlinkability.</strong> Bob prohibits exposure of the fact
+    that his two connections endorsed the same person (Bob).</p>
+</li>
+<li>
+<p><strong>Uncountability.</strong> Bob limits knowledge of how many endorsements he
+    received over any period of time.</p>
+</li>
+<li>
+<p><strong>Grade Privacy.</strong> Bob prohibits learning of his claim values not
+    only individually (through Consent) but as a whole, for example the
+    most popular claim, average claim, empty claim.</p>
+</li>
+<li>
+<p><strong>Context Privacy.</strong> Bob prohibits learning of the context in which
+    a claim was submitted, not only individually (through Consent) but
+    as a whole, for example the most popular context, unused context.</p>
+</li>
+<li>
+<p><strong>Time Privacy.</strong> Bob prohibits exposure of the time when he
+    received claims, not only individually (through Consent) but as a
+    whole, for example the most active years and months or inactive
+    years and months.</p>
+</li>
+</ul>
+<h3 id="group-privacy">Group Privacy</h3>
+<p>This includes:</p>
+<ul>
+<li><strong>Group Unlinkability.</strong> Groups whose members endorse each other
+    much more often than others (classmates, colleagues) may not be
+    detected by design.</li>
+</ul>
+<p>The above definitions are examples. However, each design should balance
+the need for metadata that may assist in analysis and identification of
+bad actors against the potential for network attack.</p>
+<h2 id="5-value-generation">5. Value Generation</h2>
+<p><em><strong>Definition:</strong> the process to establish the reputation value of an
+entity on the reputation network based on the required inputs.</em></p>
+<p>The value-generation process is the ultimate utility of a DRS, and
+consequently requires significant design and protections to ensure it
+accurately represents the context it has been defined to evaluate. The
+value may not necessarily be numeric.</p>
+<p>Various factors that may need to be defined in the generation of such a
+value include:</p>
+<ol>
+<li>
+<p>Value factors – What are the factors that contribute to the overall
+    value?</p>
+</li>
+<li>
+<p>Initialization of information – Do the factors need initialization?
+    Are there default values? Do all need to be included?</p>
+</li>
+<li>
+<p>Aggregation and transformation – What process brings these factors
+    to the ultimate value? This may include sums, convolutions, or more
+    complex transformations.</p>
+</li>
+<li>
+<p>Claim threshold – Are there a minimum number of claims that need to
+    be submitted against an entity before a value can be generated?</p>
+</li>
+<li>
+<p>Context – What assumptions are being made about the factors? Do they
+    align with the context?</p>
+</li>
+<li>
+<p>Ranking/normalization – Are some factors or claims worth more than
+    others?</p>
+</li>
+<li>
+<p>Timeliness – Do some factors carry less weight due to time elapsed
+    since they were set or defined?</p>
+</li>
+<li>
+<p>Behavioral – Does a reputation value change depending on how it has
+    been used or an entity’s behavior?</p>
+</li>
+</ol>
+<h2 id="6-performance">6. Performance</h2>
+<p><em><strong>Definition:</strong> how to ensure the network and its participants perform
+as expected.</em></p>
+<p>System performance is a key aspect to consider, as perceived reputation
+as conveyed by any reputation score is intimately linked to the
+legitimacy of the system producing reputation artefacts (scores,
+ranking, color, category, etc.). While legitimacy is a function of much
+more than pure performance, we focus here strictly on performance.</p>
+<p>Performance of decentralized reputation networks can be considered to
+fall into two categories:</p>
+<ol>
+<li>
+<p>System performance as an aggregation of individual
+    node performances.</p>
+</li>
+<li>
+<p>System performance as a function of architectural design choices, or
+    at the network level.</p>
+</li>
+</ol>
+<h3 id="node-performance">Node Performance</h3>
+<p>The requirements for nodes on a DRS should be clearly defined to ensure
+that they can contribute effectively to the network, in addition to
+enabling the rapid identification of errors or bad actors the and
+mitigation of flow on effects.</p>
+<p>Some <strong>key factors of performance</strong> of connected nodes are:</p>
+<ul>
+<li>
+<p>Availability</p>
+</li>
+<li>
+<p>Reliability</p>
+</li>
+<li>
+<p>External and internal consistency</p>
+</li>
+<li>
+<p>Capabilities</p>
+</li>
+<li>
+<p>Identification of bad actors, who through corruption, collusion,
+    gaming, or otherwise are maliciously altering the intended utility
+    of the network</p>
+</li>
+</ul>
+<p>Node performance can be <strong>measured by</strong>:</p>
+<ul>
+<li>
+<p>Liveliness (availability)</p>
+</li>
+<li>
+<p>Error rates (reliability)</p>
+</li>
+<li>
+<p>Distribution functions (consistency)</p>
+</li>
+<li>
+<p>Corrections (capabilities)</p>
+</li>
+</ul>
+<p>Measurable node performance can in turn be leveraged in order to improve
+the performance of the whole system, through incentivizing good
+performance via monetary and non-monetary means, and/or punishment of
+bad performance via monetary and non-monetary means, up to exclusion
+from the network.</p>
+<h3 id="network-performance">Network performance</h3>
+<p>An effective distributed network is scalable, with maximum uptime, and
+coordinates communication between nodes in a rapid, efficient manner.
+Network performance can be <strong>monitored using different indicators</strong>,
+such as:</p>
+<ul>
+<li>
+<p>Number of active nodes</p>
+</li>
+<li>
+<p>Node activity</p>
+</li>
+<li>
+<p>Node failure rate</p>
+</li>
+</ul>
+<p><strong>Network power and topology</strong> may also need to be defined in advance,
+depending on the needs of the network.</p>
+<ul>
+<li>
+<p>Is there a minimum number of nodes needed to effectively function?</p>
+</li>
+<li>
+<p>What is the consensus mechanism? Are its speed and mechanics
+    suitable for the context of the system?</p>
+</li>
+<li>
+<p>What is the degree of decentralization inherent in the system? How
+    might clusters of nodes impact the performance of the reputation
+    network?</p>
+</li>
+</ul>
+<p>Built-in rules regarding <strong>responsiveness of the network</strong> will likely
+be required, and these should be defined in correlation with the defined
+performance considerations.</p>
+<h2 id="7-sustainability">7. Sustainability</h2>
+<p><em><strong>Definition:</strong> The system’s ability to evolve and remain accurate over
+time.</em></p>
+<p>Being distributed and self-governing, a DRS will consequently be
+difficult to modify on a regular basis. As a result, designing the
+system to be consistent and valuable over time will likely require
+considerable design.</p>
+<p>It is likely that peers of the network themselves, rather than a central
+authority, will define and enforce the shared ethics and desires of the
+user population, however the ethics and desires to be enforced would
+need to be incorporated into the system’s design from the start. Such a
+design may allow for nodes or entities on the network to signal for such
+changes when required, or may construct incentives in such a way that
+the market naturally corrects any diversions with time.</p>
+<p>These desires and ethics may include any aspect of any one of the design
+considerations.</p>
+<h2 id="8-claim-life-cycle">8. Claim Life-cycle</h2>
+<p><em><strong>Definition:</strong> how to manage claims made on the network and the
+impacts they may have over time.</em></p>
+<p>The network should define the conditions whereby claims that contribute
+to a reputation score are considered applicable or not applicable to the
+score over time.</p>
+<p>These conditions may include:</p>
+<ul>
+<li>
+<p>Time to live – Alice may submit a claim that Bob is up to date with
+    his rent payments, with a time to live of one month.</p>
+</li>
+<li>
+<p>Decay – Alice may submit a claim that Bob is untrustworthy. Over
+    time Bob may change his behavior, so the claim loses its value
+    gradually over time.</p>
+</li>
+<li>
+<p>Validity.</p>
+</li>
+<li>
+<p>Dispute resolution/adjudication.</p>
+</li>
+</ul>
+<h2 id="9-resilience">9. Resilience</h2>
+<p><em><strong>Definition:</strong> The ability of the system to tolerate malicious
+behaviour.</em></p>
+<p>Reputation systems need to be resilient to attacks to be of any use in
+the real world. Attacks against reputation systems in general aim at
+distorting the utility of the network — that is, the reputation of a set
+of participants. Some attacks are well studied in literature and we
+refer to them as “traditional” attacks on reputation systems.
+Decentralization, while alleviating the need for a single point of
+failure (SPOF) raises additional concerns, documented below:</p>
+<p><strong>Traditional attacks on reputation systems:</strong></p>
+<ul>
+<li>
+<p>Self-Promoting – Raise reputation of one’s self through false
+    feedback, which can be facilitated via a Sybil attack</p>
+</li>
+<li>
+<p>Whitewashing – Leave the system and re-enter with a new “name” if
+    reputation is low</p>
+</li>
+<li>
+<p>Slandering (Bad-mouthing) – Lower the reputation of a competitor via
+    false feedback</p>
+</li>
+<li>
+<p>Ballot stuffing[^5] – Collusion between the recipient and sender of
+    the reputation claim</p>
+</li>
+<li>
+<p>Mixed (orchestrated, byzantine) – combination of the above</p>
+</li>
+<li>
+<p>Denial of Service (DoS)</p>
+</li>
+<li>
+<p>Censorship</p>
+</li>
+<li>
+<p>Single Point of Failure (SPoF)</p>
+</li>
+</ul>
+<p>These attacks have been documented and analyzed in several academic
+papers[^6]^,^[^7]^,^[^8].</p>
+<p><strong>Special concerns for decentralized systems:</strong></p>
+<ul>
+<li>
+<p>Codebase development and maintenance – Code on the nodes does not
+    need to be uniform but the interfaces must match</p>
+</li>
+<li>
+<p>Information withholding – A recipient of reputation only discloses
+    partial information about himself</p>
+</li>
+<li>
+<p>Stale information – A recipient of information discloses outdated
+    information</p>
+</li>
+</ul>
+<p>The choice of defenses is interdependent with design decisions of other
+sections. For example, the participation mechanism is very important to
+the mitigation of Sybil attacks that in turn facilitate many of the
+traditional attacks mentioned above.</p>
+<p>Blockchain constructs can mitigate some of the attacks outlined above.
+For some other attacks, additional measures are necessary. For example,
+many designs do not implement negative reputation, as this is
+notoriously difficult to secure. Others rely on a limited endorsement
+budget or tie an endorsement to a financial transaction.</p>
+<p>Ultimately, there may be an inherent Security and Privacy trade-off. For
+example, when Alice assesses the reputation of Bob, she may wish to
+learn as much information as possible in order to avoid attacks.</p>
+<h2 id="10-legal">10. Legal</h2>
+<p><em><strong>Definition:</strong> the legal environment in which the network may
+operate.</em></p>
+<p>All technology fits within some form of society, and society has a
+strong interest in preventing attacks upon a person’s identity and
+reputation. It also seeks to redress them while maintaining the ability
+for people to express their opinion. Consequently, it is wise to
+consider any state-bound or natural law when implementing a DRS to
+ensure there is limited exposure for the participants and the creators
+in such a network.</p>
+<p>For example, reputation is the respect or esteem which a person (the
+trustee) enjoys in Society or what people (the trustors) think of
+him/her. An important element in the protection of reputation is the
+wrong of defamation. Designers of DRS should therefore bear in mind some
+of the remedies that law generally provides for defamation. Aside from
+compensatory damages there are also motions to identify the defamatory
+party. injunctions to prevent further publication of defamatory
+information.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The authors believe that the above ten design considerations can be used
+as a framework to design and implement effective decentralized
+reputation systems. While the decisions for each consideration have been
+left open in this paper, each can be analyzed further to establish
+industry best practices to set a benchmark for a human-driven future web
+of trust.</p>
+<p>[^1]: Paul Resnick, Richard Zeckhauser, Eric Friedman, and Ko Kuwabara,
+    ‘Reputation systems’, <em>Communications of the ACM</em>, vol. 43, no. 12,
+    pp. 45–48, 2000.</p>
+<p>[^2]: Sandeep Kumar, Chander Diwaker, and Amit Chaudhary, ‘Reputation
+    System in Peer-To-Peer Network: Design and Classification’, <em>Journal
+    of Global Research in Computer Science</em>, vol. 2, no. 8, pp. 1–3,
+    2011.</p>
+<p>[^3]: Eleni Koutrouli and Aphrodite Tsalgatidou, ‘Reputation-based trust
+    systems for P2P applications: design issues and comparison
+    framework’, in <em>International Conference on Trust, Privacy and
+    Security in Digital Business</em>, 2006, pp. 152–161.</p>
+<p>[^5]: C Dellarocas, "<a href="https://doi.org/10.1145/352871.352889"><em>Immunizing online reputation reporting systems
+    against unfair ratings and discriminatory
+    behavior</em></a>", EC'00,
+    Proceedings of the 2nd ACM conference on Electronic commerce</p>
+<p>[^6]: Hoffman, K., Zage, D. and Nita-Rotaru, C., 2009. A survey of
+    attack and defense techniques for reputation systems. <em>ACM Computing
+    Surveys (CSUR)</em>, <em>42</em>(1), p.1.</p>
+<p>[^7]: Jøsang, A., Ismail, R. and Boyd, C., 2007. A survey of trust and
+    reputation systems for online service provision. <em>Decision support
+    systems</em>, <em>43</em>(2), pp.618-644.</p>
+<p>[^8]: Koutrouli, E. and Tsalgatidou, A., 2012. Taxonomy of attacks and
+    defense mechanisms in P2P reputation systems—Lessons for reputation
+    system designers. <em>Computer Science Review</em>, <em>6</em>(2), pp.47-70.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

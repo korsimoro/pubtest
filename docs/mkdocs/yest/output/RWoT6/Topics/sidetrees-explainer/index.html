@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Sidetree Asset Protocol - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Sidetree Asset Protocol", url: "#_top", children: [
+              {title: "System Overview", url: "#system-overview" },
+              {title: "Sidetree Asset Operations", url: "#sidetree-asset-operations" },
+              {title: "Sidetree Asset Processing Rules", url: "#sidetree-asset-processing-rules" },
+              {title: "Implementation Pseudo Code", url: "#implementation-pseudo-code" },
+          ]},
+          {title: "Open Questions", url: "#open-questions", children: [
+              {title: "DDoS Mitigation", url: "#ddos-mitigation" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="sidetree-asset-protocol">Sidetree Asset Protocol</h1>
+<p>Using blockchains for anchoring and tracking unique, non-transferable, digital assets is a useful primitive, but the current strategies for doing so suffer from severely limited transactional performance constraints. Sidetree Assets is a Layer 2 protocol for anchoring and tracking assets across blockchains. Sidetree Assets support a variety of DPKI operations. Sidetree Assets, and nodes that implement the protocol, are not another blockchain, and do not require a consensus layer, they run atop any existing blockchain that supports the ability to embed a small amount of data in a transaction.</p>
+<h2 id="system-overview">System Overview</h2>
+<p>To generate the global state of Sidetree Assets in accordance with the protocol, a compute node observes implementation-included blockchains to watching for transactions embedded with Sidetree Asset payloads, then applies protocol rules to process them. A valid Sidetree Asset transaction is marked in a recognizable way, and includes the root hash of a Sidetree Asset structure (a Merkle Tree of hashes that correspond to Sidetree Asset object operations).</p>
+<p>Both the Sidetree's full Merkle Tree and source data for its leaves are stored in an open, decentralized, content addressable, highly-replicated storage system that anyone can run to provide redundancy of Sidetree Asset source data.</p>
+<p>The protocol relies on the ordered nature of blockchain transactions, signed pointers to previous operations, and embedded Merkle proofs to derive a deterministic lineage of Asset operations as they progress through their lifecycle - this is called a Sidetree Asset Trail.</p>
+<h2 id="sidetree-asset-operations">Sidetree Asset Operations</h2>
+<p>Sidetree Assets are a form of <a href="https://w3c-ccg.github.io/did-spec/">Decentralized Identifier</a> (DID) that manifest through blockchain-anchoring DID Document objects (and subsequent deltas) that represent the existence and state of assets. Each update to an asset includes its full operational lineage (creation, update, recovery, etc.) across a blockchain's linear history. Ownership of an Asset is linked to possession of keys specified within the Asset object itself.</p>
+<p>The following is a simplified pseudo code example of a Sidetree Asset's JSON text, to help explain the content and functional elements:</p>
+<pre><code class="javascript">[
+  {
+    sig: OWNER_SIG_DELTA_0, // Initial creation of DID
+    delta: { RFC_6902_JSON_PATCH },
+    recovery: RECOVERY_JSON_DESCRIPTORS
+  },
+  {
+    sig: OWNER_SIG_DELTA_1, // Previous update of DID
+    proof: PROOF_OF_DELTA_0,
+    delta: { RFC_6902_JSON_PATCH },
+    recovery: RECOVERY_JSON_DESCRIPTORS
+  },
+  {
+    sig: OWNER_SIG_DELTA_2, // Latest update of DID
+    proof: PROOF_OF_DELTA_1,
+    delta: { RFC_6902_JSON_PATCH },
+    recovery: RECOVERY_JSON_DESCRIPTORS
+  }
+
+]
+</code></pre>
+
+<p>System diagram showing op sig links that form a Sidetree Asset Trail:</p>
+<blockquote>
+<p>NOTE: This graphic is out-of-date, and does not match the description of the explainer. TODO: Update graphic.</p>
+</blockquote>
+<p><img alt="Sidetree Asset Trail diagram" src="https://i.imgur.com/RbwM1nj.png" /></p>
+<h3 id="creation-of-a-sidetree-asset">Creation of a Sidetree Asset</h3>
+<p>Creation of an Asset is accomplished via the following set of procedures:</p>
+<ol>
+<li>Generate a JSON-encoded array that includes one member: an object with a <code>delta</code> property that describes the initial state of a <a href="https://w3c-ccg.github.io/did-spec/#self-managed-did-document">DID Document</a>, in the delta format specified by <a href="http://tools.ietf.org/html/rfc6902">RFC 6902</a>.</li>
+<li>Add a <code>sig</code> property to the object that is the signature of the initial delta, generated with the owning keys specified in the delta.</li>
+<li>Hash the Sidetree Asset object and embed it in a Merkle Tree with other Sidetree Asset operations.</li>
+<li>Create a transaction on the blockchain with the Merkle root embedded within it and mark the transaction to indicate it contains a Sidetree.</li>
+<li>Store the Merkle tree source and all Asset objects in the decentralized storage system.</li>
+<li>OPTIONAL: You may choose to include a <code>recovery</code> property in the DID Document, the value of which is an array of recovery descriptor objects.</li>
+</ol>
+<pre><code class="javascript">[
+  {
+    sig: OWNER_SIG_DELTA_0, // Initial creation of DID
+    delta: { RFC_6902_JSON_PATCH },
+    recovery: RECOVERY_JSON_DESCRIPTORS
+  }
+]
+</code></pre>
+
+<blockquote>
+<p>NOTE: Because every operation beyond initial creation contains pointers and delta state proofs that link previous operations together, only the latest revision of the object must be retained in the decentralized storage layer.</p>
+<p>NOTE: Proof of Asset ownership plus a subset of uses should be possible (because regardless of block inclusion, the owner is verifiable via included key references), but the Asset remains in a pending state until it is confirmed in a block.</p>
+</blockquote>
+<h3 id="asset-id">Asset ID</h3>
+<p>Each Sidetree Asset has an emergent ID, which is composed of the the following combination of values: <code>MERKLE_ROOT</code> + <code>Unicode EN DASH (U+2013)</code> + <code>SIDETREE_ASSET_HASH</code>
+  - Example: <code>did:xcid:1xms56ng0646faf3f43fa33f4faw4ds3-3bv3232k23937m7ds3133f4faw4f43f</code></p>
+<h3 id="updating-a-sidetree-asset">Updating a Sidetree Asset</h3>
+<p>To update an Asset, use the following procedures:</p>
+<ol>
+<li>Create a new Asset operation object to append to the Asset's JSON array</li>
+<li>Add a <code>delta</code> property to the operation object with the value being an object that includes any changes to the DID Document, encoded in the format specified by <a href="http://tools.ietf.org/html/rfc6902">RFC 6902</a></li>
+<li>Add a <code>sig</code> property to the operation object that is the signature of the initial delta, generated with the owning keys specified in the delta.</li>
+<li>Add a <code>proof</code> property to the operation object with the value being the Merkle Proof that validates the last operation and its inclusion in the blockchain.</li>
+</ol>
+<h2 id="sidetree-asset-processing-rules">Sidetree Asset Processing Rules</h2>
+<p>Assets are processed by protocol-enforcing compute nodes that observes the chain and apply the protocol rules to transactions marked as bearing Sidetree Assets. When a transaction is found, the node follows this procedural rule set</p>
+<h4 id="walking-the-chain">Walking the Chain</h4>
+<p><strong>1</strong>. Secure a copy of the target blockchain and listen for incoming transactions</p>
+<p><strong>2</strong>. Starting at the genesis entry of the blockchain, begin processing the included transactions in order, from earliest to latest.</p>
+<h4 id="inspecting-a-transaction">Inspecting a Transaction</h4>
+<p><strong>3</strong>. For each transaction, inspect the property known to bear the marking of a Sidetree Asset. If the transaction is marked as a Sidetree Asset, continue, if unmarked, move to the next transaction.</p>
+<p><strong>4</strong>. Locate the Sidetree Asset's Merkle Root within the transaction.</p>
+<h4 id="processing-the-sidetree">Processing the Sidetree</h4>
+<p><strong>5</strong>. Fetch the Sidetree's Merkle Tree from the decentralized storage system.</p>
+<p><strong>6</strong>. Fetch each of the Merkle Tree's leaf objects from the decentralized storage system. If a leaf object is not found in the decentralized storage system, skip and proceed with the next leaf.</p>
+<h4 id="evaluating-a-leaf">Evaluating a Leaf</h4>
+<p><em><strong>If the asset contains just one operation:</strong></em></p>
+<p><strong>7</strong>. The object shall be treated as a new Asset registration.</p>
+<p><strong>8</strong>. Ensure that the entry is signed with the owner's specified key material. If valid, proceed, if invalid, discard the leaf and proceed to the next.</p>
+<p><strong>9</strong>. Generate a state object using the procedural rules in the "Processing Asset Operations" section below, and store the resulting state in cache.</p>
+<p><strong>10</strong>. Pin the asset leaf for retention in the decentralized storage medium.</p>
+<p><em><strong>If the asset contains multiple operations:</strong></em></p>
+<p><strong>7</strong>. Retrieve the last Asset state from cache.</p>
+<p><strong>8</strong>. Evaluate the incoming Asset entry to determine if it is a fork, and if the fork supersedes the previously recognized Asset state:</p>
+<p>1) Begin comparing hashes of current asset state operations against the incoming asset update's operations at index 0.
+  2) If during iteration and comparison of operation hash equality an operation index is found to be divergent from the current Asset state, the incoming Asset represents a fork. Halt iteration and proceed to handle the incoming update as a fork.
+  3) The forking operation is valid if it:
+      - Includes a valid <code>proof</code> that establishes linkage to the last known good operation's Merkle Root.
+      - Is signed by keys that were known-valid in the operation index preceding the fork index <strong>OR</strong> the incoming fork operation contains a valid <code>recovery</code> of the asset. (to assess an operation for recovery, see the section "Evaluating Recovery Attempts")
+  4) If the fork is invalid, discard the leaf and proceed to the next. </p>
+<p><strong>9</strong>. Attempt to update the Asset's state (see "Processing Asset Updates" for rules):</p>
+<ul>
+<li>
+<p>If the incoming Asset entry is a valid, superseding fork:</p>
+<p>attempt to update the cached Asset's state from the index of the fork's occurrence. If all fork operations are valid and processed without error or violation of protocol rules, save the resulting asset state to cache, if the fork evaluation fails, discard the leaf and proceed to the next. </p>
+</li>
+<li>
+<p>If the incoming Asset entry is a non-conflicting update:</p>
+<p>Attempt to update the current Asset state from the the first new operation of the incoming Asset entry. If all new update operations are valid and processed without error or violation of protocol rules, save the resulting asset state to cache, if the fork evaluation fails, discard the leaf and proceed to the next.</p>
+</li>
+</ul>
+<h4 id="processing-asset-updates">Processing Asset Updates</h4>
+<blockquote>
+<p><strong>NOTE: the following section must be modified to reflect other updates</strong></p>
+</blockquote>
+<p>In order to update an Asset's state with that of an incoming Asset entry, various values and objects must be examined or assembled to validate and merge incoming operations. The following the a series of steps to perform to correctly process, merge, and cache the state of an Asset:</p>
+<h5 id="if-processing-from-0-index-the-initial-asset-registration-operation-of-the-asset-object">If processing from 0 index (the initial Asset registration operation) of the Asset object:</h5>
+<p><strong>1</strong>. Create and hold an object in memory that will be retained to store the current state of the Asset.</p>
+<p><strong>2</strong>. Store the Asset ID in the cache object. The Asset ID is a combination of the Asset's genesis operation Merkle Root and the hash of the Asset object itself, as described in the <a href="#asset-id">Asset ID</a> section.</p>
+<p><strong>3</strong>. Use the <code>delta</code> value of the Asset to create the initial state of the DID Document via the procedure described in <a href="http://tools.ietf.org/html/rfc6902">RFC 6902</a>. Store the compiled DID Document in the cache object. If the delta is not present, abort the process and discard as an invalid DID.</p>
+<p><strong>4</strong>. Verify that the <code>sig</code> value is a signature from one of the keys in the compiled DID Document.</p>
+<p><strong>5</strong>. If the <code>recovery</code> field is present in the Asset, store any recovery descriptor objects it contains as an array in the cache object.</p>
+<p><strong>6</strong>. Store the source of the Asset in the cache object.</p>
+<h5 id="if-processing-any-operation-beyond-index-0">If processing any operation beyond index 0:</h5>
+<p><strong>1</strong>. Validate that the object's proof field is present, and its value is a proof that links to the last operation's transaction root.</p>
+<p><strong>2</strong>. If the field <code>recover</code> is present on the Asset, the operation is initiating a recovery of the Asset. Process the value of the <code>recover</code> field in accordance with the recovery process defined by the matching <code>recovery</code> descriptor. If the recovery attempt is validated against the matching recovery descriptor, proceed. If there is no matching descriptor, or the recovery attempt is found to be invalid, abort, discard the entry, and revert state to last known good.</p>
+<p><strong>3</strong>. If no recovery was attempted, validate the Asset operation <code>sig</code> with one of the keys present in the DID Document compiled from the Asset's current state. If a recovery was performed, skip step this and proceed.</p>
+<p><strong>4</strong>. Use the <code>delta</code> present to update the compiled DID Document object being held in cache.</p>
+<p><strong>5</strong>. If the <code>recovery</code> field is present in the Asset, store any recovery descriptor objects it contains as an array in the cache object.</p>
+<p><strong>6</strong>. Store the source of the new Asset source in the cache object.</p>
+<h2 id="implementation-pseudo-code">Implementation Pseudo Code</h2>
+<pre><code class="javascript">function getRootHash(txn){
+  // Inspect txn, and if it is a Sidetree-bearing asset, process the tree 
+}
+async function getTreeData(rootHash) {
+  // Fetch tree source data from decentralized storage, return array of leaves.
+  // If not found warn: &quot;Processing Warning: tree not found&quot;
+};
+async function getLeafData(leafHash) {
+  // Fetch and return asset source data from decentralized storage.
+  // If not found warn: &quot;Processing Warning: asset not found&quot;
+};
+async function getAssetState(id){ ... };
+async function validateOpSig(op) { ... };
+async function validateOpProof(index, asset) { ... };
+async function validateFork(state, update, forkIndex) { ... }
+async function updateState(state, update, startIndex) { ... }
+function mergeDiff(doc, diff) { ... };
+function generateOpHash(op){ ... }
+
+
+async function processTransaction(txn){
+  var rootHash = getRootHash(txn);
+  if (rootHash) {
+    var leaves = await getTreeData(rootHash);
+    leaves.forEach(async (leafHash) =&gt; {
+      await processLeaf(rootHash, leafHash);
+    });
+  }
+}
+
+  async function processLeaf(rootHash, leafHash) {
+    var asset = await getLeafData(leafHash);
+    if (!asset || !Array.isArray(asset) || !asset.length) {
+      throw new Error('Protocol Violation: asset is malformed');
+    }
+    if (asset.length === 1) {
+      return await processGenesisOp(rootHash, leafHash, asset);
+    }
+    else {
+      return await processUpdate(asset);
+    }
+  }
+
+  async function processGenesisOp (rootHash, leafHash, asset){
+    var id = rootHash + '-' + leafHash;
+    var state = await getAssetState(id);
+    if (state === null) {
+      var genesis = asset[0];
+      if (!await validateOpSig(genesis)) {
+        throw new Error('Protocol Violation: operation signature is invalid');
+      }
+      return await setAssetState(id, {
+        id: id,
+        src: asset,
+        doc: mergeDiff({}, genesis.delta),      
+        recovery: genesis.recovery || []
+      });
+    }
+  }
+
+  async function processUpdate (update){
+    var id = update[1].proof.id;
+    var state = await getAssetState(id);
+    var forkIndex;
+    var forked = state.src.some((op, i) =&gt; {
+      if (op.proof.leafHash !== generateOpHash(update[i])) {
+        forkIndex = i;
+        return true;
+      }
+    });
+    if (forked){
+      if (await validateFork(state, update)) {
+        return await updateState(state, update, forkIndex);
+      }
+    }
+    else if (update.length &gt; state.src.length) {
+      return await updateState(state, update, update.length);
+    }
+    else throw new Error('Protocol Violation: update discarded, duplicate detected');
+  }
+</code></pre>
+
+<h1 id="open-questions">Open Questions</h1>
+<p>As an early WIP, this protocol may require further additions and modifications as it is developed and implemented. This is the list of topics, ideas, and discussions that have been considered, but not yet included in the proposed spec.</p>
+<h2 id="ddos-mitigation">DDoS Mitigation</h2>
+<p>Given the protocol was designed to enable unique asset rooting and DPKI operations to be performed at 'unfair' volumes with unit costs that are 'unfairly' cheap, the single most credible issue for the system would be DDoS vectors.</p>
+<p>What does DDoS mean in this context? Because asset IDs and subsequent operations in the system are represented via embedded tree structures where the trees can be arbitrarily large, it is possible for protocol adherent nodes to create and broadcast transactions to the underlying blockchain that embed massive sidetrees composed of leaves that are not intended for any other purpose than to force other observing nodes to process their asset operations in accordance with the protocol.</p>
+<p>The critical questions are: can observing nodes 'outrun' bad actors who may seek to clog the system with transactions bearing spurious sidetrees meant to degraded system-wide performance? Can an attacker generate spurious trees of asset ops faster than observing nodes can fetch those tree/leaf/source data and process the operations? Without actually running a simulation yet, it's important to consider what mitigations can be put in place to assure that, assuming an issue exists, it can be overcome.</p>
+<p>At a certain point, the attacker would be required to overwhelm the underlying chain itself, which has its own in-built organic price-defense, but it's possible that the Layer 2 nodes can be overcome before that begins to impact the attacker.</p>
+<h3 id="mitigation-ideas">Mitigation Ideas</h3>
+<h5 id="max-tree-depth">Max Tree Depth</h5>
+<p>A very basic idea is to simply limit the depth of a protocol-adherent sidetree. The protocol could specify that sidetrees that exceed a maximum depth are discarded, which would limit the ability of all participants to drop massive trees on the system. At its core, this mitigation strategy forces the attacker to deal with the organic economic pressure exerted by the underlying chain's transactional unit cost.</p>
+<blockquote>
+<p>NOTE: large block expansion of the underlying chain generally creates a Tragedy of the Commons spam condition on the chain itself, which negatively impacts this entire class of DDoS protection for all L2 systems. Large block expansion may exclude networks from being a viable substrate for sidetree assets, if this mitigation strategy was selected for use.</p>
+</blockquote>
+<h5 id="leaf-level-proof-of-work">Leaf-level Proof-of-Work</h5>
+<p>Add a requirement to the protocol that each leaf be required to show a specified or algorithmically computed level of proof-of-work for nodes to recognize the leaf as a valid submission.</p>
+<p>By requiring the leaf hash submitted in a sidetree to being with N level of leading 0s, it may be possible to degrade the ability of bad actors to effectively spam the system with useless sidetrees with massive numbers of ops. The user-level outcome would be that someone using the system to do an update of their human identity's DID would hash the update object with an included nonce on their local device until it satisfied the requisite work requirement, then have it included in a sidetree. Nodes would discard any leaves that did not meet the require work level.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

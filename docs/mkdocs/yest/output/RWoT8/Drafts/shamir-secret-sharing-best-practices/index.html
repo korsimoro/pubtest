@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Shamir secret sharing best practices - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Shamir Secret Sharing Best Practices", url: "#_top", children: [
+          ]},
+          {title: "Abstract", url: "#abstract", children: [
+              {title: "Why it is Hard!", url: "#why-it-is-hard" },
+              {title: "Choice of Finite Field", url: "#choice-of-finite-field" },
+              {title: "Multi-level Shamir secret sharing", url: "#multi-level-shamir-secret-sharing" },
+              {title: "How to avoid a corrupted or malicious share on restoration", url: "#how-to-avoid-a-corrupted-or-malicious-share-on-restoration" },
+              {title: "X doesn't need to be private?", url: "#x-doesnt-need-to-be-private" },
+              {title: "Deterministic Nonce?", url: "#deterministic-nonce" },
+              {title: "Session secret", url: "#session-secret" },
+          ]},
+          {title: "Unsolved problems or Alternatives to Shamir", url: "#unsolved-problems-or-alternatives-to-shamir", children: [
+              {title: "All shares are equal", url: "#all-shares-are-equal" },
+              {title: "When should you be using multisig instead?", url: "#when-should-you-be-using-multisig-instead" },
+              {title: "You shouldn't use Shamir if you need to Verify shares", url: "#you-shouldnt-use-shamir-if-you-need-to-verify-shares" },
+          ]},
+          {title: "Appendixes", url: "#appendixes", children: [
+              {title: "#1 Implementing on Constrained or Trusted Execution Environments", url: "#1-implementing-on-constrained-or-trusted-execution-environments" },
+          ]},
+          {title: "References", url: "#references", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>(This is a backup of https://docs.google.com/document/d/1erTs0ybf02JbCznw25DYOEDfhIwP4TL53QAZydrzWmQ/edit#heading=h.kj7jvx553t23 but master will be officially moved here closer to final draft).</p>
+<h2 id="shamir-secret-sharing-best-practices">Shamir Secret Sharing Best Practices</h2>
+<h2 id="abstract">Abstract</h2>
+<p>A number of companies and open source projects in the cryptocurrency and decentralized identity field make use of long-lived master secrets, stored in digital wallets, the loss of which can mean large losses of money or irrevocable lost of digital identity. Issues with management the master secrets, and the private keys deterministically generated from them, often pose barriers to the adoption of new decentralised technologies.</p>
+<p>One of the most common practices is the use of Shamir Secret Sharing (SSS), a cryptographic technique of splitting key is considered information-theoretically secure. That is, any combination of shares less than the necessary threshold convey absolutely no information about the secret. Unfortunately, Shamir Secret Sharing has a history of being naively implemented which has in the past resulted in  a number of serious vulnerabilities.</p>
+<p>To quote Bitcoin Core Developer Greg Maxwell:</p>
+<pre><code>_ &quot;I think Shamir Secret Sharing (and a number of other things, RNGs for example), suffer from a property where they are just complex enough that people are excited to implement them often for little good reason, and then they are complex enough (or have few enough reasons to invest significant time) they implement them poorly.&quot;_
+</code></pre>
+
+<p>This document, and accompanying source code library and example code, are intended as a guide to best practices for implementing Shamir Secret Sharing for cryptographic secrets (as opposed to low-entropy secrets such as passwords).</p>
+<h3 id="why-it-is-hard">Why it is Hard!</h3>
+<p>(talk about why you should not do crypto, why humility is required, but if you really are going to do so, you better know about X, X, X)</p>
+<h3 id="choice-of-finite-field">Choice of Finite Field</h3>
+<p>We currently recommend It is recommended that GF(256) be used as the underlying finite field for the coefficients of the polynomial used in Shamir's secret sharing scheme and that the scheme be applied separately to each byte of the shared secret. The advantage of using GF(256) is that the field arithmetic is easy to implement in any programming language and many implementations are already available since this field is used in the AES cipher. The fact that it is byte oriented makes it easy to work with.</p>
+<p>The disadvantage of using a field of prime order GF(<em>p</em>), where log<sub>2</sub> <em>p</em> is approximately the length of the secret in bits, is that it requires support for multi-precision arithmetic. Many programming languages, such as C/C++, do not support multi-precision arithmetic out of the box. Implementations would also need to store information about the prime number that should be used for each admissible length of the secret or they would need to generate the prime number deterministically on the fly.</p>
+<p>The disadvantage of using GF(2<sup><em>m</em></sup>), where <em>m</em> is the length of the secret in bits, is that it requires a more complicated implementation than GF(256). This is in part due to the multi-precision nature of the arithmetic and in part due to the fact that implementations would need to store an (e.g. lexicographically minimal) irreducible polynomial of degree <em>m</em> for each admissible value of <em>m</em> or they would need to be able to determine this polynomial on the fly.</p>
+<p>We note that for sharing of cryptographic secrets, it is potentially valuable to use a prime field GF(p) where p is the group order of a secure elliptic curve. The curves secp256k1 and the prime-order Ristretto curve of curve25519-dalek are of particular interest due to the availability of Bulletproofs-based zero-knowledge proof systems which can be used to create an efficient verifiable Shamir secret sharing system. More research is required however to demonstrate this capability.</p>
+<p>TODO:</p>
+<p>Advantages of using the finite field from secp256k1 of order <em>p</em> = 2<sup>256</sup> − 2<sup>32</sup> − 2<sup>9</sup> − 2<sup>8</sup> − 2<sup>7</sup> − 2<sup>6</sup> − 2<sup>4</sup> − 1.</p>
+<p>Using bulletproofs:</p>
+<ul>
+<li>Describe use cases.</li>
+<li>Describe attack models.</li>
+</ul>
+<h3 id="multi-level-shamir-secret-sharing">Multi-level Shamir secret sharing</h3>
+<p>Ideally an implementation of social key recovery should balancing numerous competing goals:</p>
+<ul>
+<li>Key recovery should require approval of many individuals so as to minimize potential for theft or deliberate key compromise by a small malicious subset of users.</li>
+<li>Key recovery should require the smallest acceptable threshold so as to prevent loss of funds from destroyed/lost/inaccessible shares.</li>
+<li>Key recovery requiring interaction with too many individuals is undesirable, as each interaction must involve re-authentication at the inconvenience of all involved.</li>
+<li>Social trust is not uniformly distributed among different social circles, such as friends, business acquaintances, and family. Individuals may be fungible within a certain circle of trust, but not more broadly. A "family member" is not the same as a "business partner."</li>
+</ul>
+<p>For example, Alice might want a minimum of three people to sign off on a key recovery attempt, with individuals chosen among her friends, family, and close business partners. More than 3 would be inconvenient and risk loss of funds, while any combination of less than 3 individuals would not be trustworthy. However some combinations of 3 individuals drawn from this entire set would not be reliable: she wouldn't want her 3 business partners alone having control over her funds, as they may act maliciously in their shared business interests and not for her.</p>
+<p>One solution for Alice is to require 3 individuals for social key recovery, but also require that these three individuals include <em>at least</em> one friend and one family member.</p>
+<p>This can be accomplished by constructing a three-way linear key split, or a 3-of-3 secret share to generate shares X, Y, and Z. X is given to family members, Y is given to friends, and Z is further split using 3-of-N Shamir secret sharing, with unique shares given to each family member, friend, and trusted business partner. Thus each family member knows X and one share of Z, each friend knows Y and one share of Z, and business partners only know their share of Z. As the original key is constructed as X+Y+Z, all three must be reconstructed, which requires the assistance of at least one family member, at least one friend, and a total of three individuals drawn from all three sets.</p>
+<p>We suggest calling these separate groups of individuals "circles," and we suggest designing a social key recovery system where users are allowed to specify participation thresholds for the recovery of the key split associated with each circle (3 "friends" are required, 2 "business partners", etc.), and then also specify which circle thresholds are required in disjunctive normal form, e.g. "Friends AND Family" OR "Family AND Coworkers". internally this is translated into a set of linear key splits and/or Shamir secret shares that are encrypted and transmitted to each participant.</p>
+<p>TODO:</p>
+<ul>
+<li>Advantages and disadvantages of using more than one level?</li>
+<li>Are two levels (aka "circles scheme") sufficient?</li>
+<li>Advantages and disadvantages of using Shamir secret sharing only at level two and plain addition of shares (<em>n</em>-of-<em>n</em> scheme) at level one as opposed to using Shamir secret sharing at both levels.</li>
+<li>In judging the advantages and disadvantages consider the consequences for:</li>
+<li>The format of the shares.</li>
+<li>The user interface.</li>
+<li>The complexity of the implementation.</li>
+</ul>
+<h3 id="how-to-avoid-a-corrupted-or-malicious-share-on-restoration">How to avoid a corrupted or malicious share on restoration</h3>
+<p>Sign shares with original key? Who is bad/malicious?</p>
+<h3 id="x-doesnt-need-to-be-private">X doesn't need to be private?</h3>
+<h3 id="deterministic-nonce">Deterministic Nonce?</h3>
+<p>Bad random source, security breaks, but </p>
+<p>Ideally 2 sources</p>
+<p>Uniform random secrets are easier to share, but be careful of low-entropy secrets (say bip38)</p>
+<h3 id="session-secret">Session secret</h3>
+<h2 id="unsolved-problems-or-alternatives-to-shamir">Unsolved problems or Alternatives to Shamir</h2>
+<h3 id="all-shares-are-equal">All shares are equal</h3>
+<p>An interesting limitation of threshold schemes, like Shamir's scheme is the fact that "all shares are equal". That is, every share contains to a <em>t</em>'th of the information to reconstruct the secret. It is currently undecided whether there is an option for allowing scenarios like</p>
+<ul>
+<li>One share has 75% of reconstruction power; and</li>
+<li>Ten shares each have 5% of reconstruction power.</li>
+</ul>
+<p>I.e. you would always need the "large" share, and at least 5 of the "small" shares.</p>
+<p>The only method to implement these kinds of scenarios is by giving a shareholder multiple shares. For example, in the scenario described in the previous paragraph, we would generate 25 different shares, with a recombination threshold of 20. However, in this scenario one shareholder has to keep 15 different shares, which may be quite a lot of data; so much that it may be impractical to write them down.</p>
+<h3 id="when-should-you-be-using-multisig-instead">When should you be using multisig instead?</h3>
+<h3 id="you-shouldnt-use-shamir-if-you-need-to-verify-shares">You shouldn't use Shamir if you need to Verify shares</h3>
+<p>If you feel you need to verify your received share, you probably have a <em>multi-sig</em> use case.</p>
+<h2 id="appendixes">Appendixes</h2>
+<h3 id="1-implementing-on-constrained-or-trusted-execution-environments">#1 Implementing on Constrained or Trusted Execution Environments</h3>
+<p>A commercial example with trusted execution environment (TEE) has been integrated on HTC EXODUS phone.</p>
+<p>TEE is as an isolated execution environment inside a processor. Code, data, and UI in TEE is guaranteed confidentiality and integrity. HTC Exodus phone, keep your own key in the TEE. It breaks, encrypts and shares your recovery phrase to your trusted contacts, they can help you recover your key when your phone is lost.</p>
+<ul>
+<li>
+<ul>
+<li>User scenario:</li>
+<li>Cryptocurrency wallet user on Exodus phone, can backup/restore seeds by highest security level. </li>
+</ul>
+</li>
+<li>Support Social Key Recovery(SKR) to your private seeds.</li>
+<li>Shamir Secret Sharing algorithm was implemented in TEE HW enclave(ZION) to support SKR with best security consideration.</li>
+<li>Open source code plan:<ul>
+<li>Target 2nd quarter 2019.</li>
+</ul>
+</li>
+<li>ZION TEE HW enclave:</li>
+</ul>
+<p>[RWOT8-Social0.png]</p>
+<pre><code>*   Social Key Recovery:
+</code></pre>
+
+<p>​ [RWOT8-Social1.png]</p>
+<h2 id="references">References</h2>
+<p>Shamir, Adi (1979). "How to share a secret". Communications of the ACM. 22 (11): 612–613. doi:10.1145/359168.359176. https://cs.jhu.edu/~sdoshi/crypto/papers/shamirturing.pdf</p>
+<p>Beimel A. (2011) Secret-Sharing Schemes: A Survey. In: Chee Y.M. et al. (eds) Coding and Cryptology. IWCC 2011. Lecture Notes in Computer Science, vol 6639. Springer, Berlin, Heidelberg https://www.cs.bgu.ac.il/~beimel/Papers/Survey.pdf</p>
+<p>Rait, Seth (2016). "Shamir Secret Sharing and Threshold Cryptography" https://sethrait.com/Shamir-Secret-Sharing-and-Threshold-Cryptography</p>
+<p>Dautrich J.L., Ravishankar C.V. (2012) "Security Limitations of Using Secret Sharing for Data Outsourcing. In: Cuppens-Boulahia" N., Cuppens F., Garcia-Alfaro J. (eds) Data and Applications Security and Privacy XXVI. DBSec 2012. Lecture Notes in Computer Science, vol 7371. Springer, Berlin, Heidelberg http://www.cs.ucr.edu/~ravi/Papers/DBConf/secret_sharing.pdf)</p>
+<p>Komargodski I., Naor M., Yogev E. (2016) How to Share a Secret, Infinitely. In: Hirt M., Smith A. (eds) Theory of Cryptography. TCC 2016. Lecture Notes in Computer Science, vol 9986. Springer, Berlin, Heidelberg https://eprint.iacr.org/2016/194.pdf</p>
+<p>Coron JS., Prouff E., Roche T. (2013) On the Use of Shamir's Secret Sharing against Side-Channel Analysis. In: Mangard S. (eds) Smart Card Research and Advanced Applications. CARDIS 2012. Lecture Notes in Computer Science, vol 7771. Springer, Berlin, Heidelberg https://www.ssi.gouv.fr/uploads/IMG/pdf/aesshamir_Coron_Prouff_Roche.pdf</p>
+<p>Blakley, G.R. (1979). "Safeguarding Cryptographic Keys". Managing Requirements Knowledge, International Workshop on (AFIPS). 48: 313–317. doi:10.1109-/AFIPS.1979.98. https://pdfs.semanticscholar.org/32d2/1ccc21a807627fcb21ea829d1acdab23be12.pdf</p>
+<p>Feldman, Paul (1987) "A practical scheme for non-interactive Verifiable Secret Sharing" Proceedings of the 28th Annual Symposium on Foundations of Computer Science https://www.cs.umd.edu/~gasarch/TOPICS/secretsharing/feldmanVSS.pdf</p>
+<p>Harn, e, Changlu L (2009). "Detection and identification of cheaters in (t, n) secret sharing scheme" Des. Codes Cryptography 52, 1 (July 2009), 15-24. DOI=10.1007/s10623-008-9265-8 http://dx.doi.org/10.1007/s10623-008-9265-8</p>
+<p>Schoenmakers, Berry (1999) "A Simple Publicly Verifiable Secret Sharing Scheme and its Application to Electronic Voting" Advances in Cryptology-CRYPTO'99, volume 1666 of Lecture Notes in Computer Science, pages 148-164, Berlin, 1999. Springer-Verlag. https://www.win.tue.nl/~berry/papers/crypto99.pdf</p>
+<p>Rusnak, P, et. al (2018) "SLIP-0039 : Shamir's Secret-Sharing for Mnemonic Codes" Satoshi Labs Github. https://github.com/satoshilabs/slips/blob/master/slip-0039.md</p>
+<p>Stack Exchange (2016) "Why is Shamir Secret Sharing not secure against active adversaries out-of-the-box?" Stack Exchange https://crypto.stackexchange.com/questions/41994/why-is-shamir-secret-sharing-not-secure-against-active-adversaries-out-of-the-bo</p>
+<hr />
+<p>Beimel, Amos (2011). "Secret-Sharing Schemes: A Survey" <a href="http://www.cs.bgu.ac.il/~beimel/Papers/Survey.pdf">http://www.cs.bgu.ac.il/~beimel/Papers/Survey.pdf</a></p>
+<p>Blakley, G.R. (1979). "Safeguarding Cryptographic Keys". Managing Requirements Knowledge, International Workshop on (AFIPS). 48: 313–317. doi:10.1109-/AFIPS.1979.98.</p>
+<p>Feldman, Paul (1987) "A practical scheme for non-interactive Verifiable Secret Sharing" Proceedings of the 28th Annual Symposium on Foundations of Computer Science</p>
+<p>Harn, L. &amp; Lin, C. Detection and identification of cheaters in (t, n) secret sharing scheme, Des. Codes Cryptogr. (2009) 52: 15. <a href="https://link.springer.com/article/10.1007/s10623-008-9265-8">https://link.springer.com/article/10.1007/s10623-008-9265-8</a></p>
+<p>Schneier, Bruce (2010) - DNSSEC Root Key held by 7 parties worldwide <a href="https://www.schneier.com/blog/archives/2010/07/dnssec_root_key.html">https://www.schneier.com/blog/archives/2010/07/dnssec_root_key.html</a></p>
+<p>Schoenmakers, Berry (1999) "A Simple Publicly Verifiable Secret Sharing Scheme and its Application to Electronic Voting" Advances in Cryptology-CRYPTO'99, volume 1666 of Lecture Notes in Computer Science, pages 148-164, Berlin, 1999. Springer-Verlag.</p>
+<p>Zenroom, a virtual machine for fast cryptographic operations on elliptic curves, <a href="https://zenroom.dyne.org/">https://zenroom.dyne.org/</a></p>
+<p>HTC EXODUS SKR, a smartphone device with build-in Shamir Secret Sharing into Trusted Execution Environment. Which support the web 3.0 to turn that around by empowering users to own their own data. The EXODUS 1 is the first native web 3.0 mobile device. This same architecture also secures your crypto assets. <a href="https://www.htcexodus.com/eu/zion/">https://www.htcexodus.com/eu/zion/</a></p>
+<p>https://tools.ietf.org/html/draft-mcgrew-tss-03</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

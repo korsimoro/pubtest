@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>How SSI Will Survive Capitalism - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "How SSI Will Survive Capitalism", url: "#_top", children: [
+          ]},
+          {title: "Abstract", url: "#abstract", children: [
+          ]},
+          {title: "Introduction", url: "#introduction", children: [
+          ]},
+          {title: "SWOT Analysis", url: "#swot-analysis", children: [
+              {title: "Strengths of SSI", url: "#strengths-of-ssi" },
+              {title: "Weaknesses of SSI", url: "#weaknesses-of-ssi" },
+              {title: "Opportunities of SSI", url: "#opportunities-of-ssi" },
+              {title: "Threats of SSI", url: "#threats-of-ssi" },
+          ]},
+          {title: "SWOT Result Interpretation: \"Barriers, Pathways and the Third Rail\"", url: "#swot-result-interpretation-barriers-pathways-and-the-third-rail", children: [
+              {title: "Barriers", url: "#barriers" },
+              {title: "Pathway Choices", url: "#pathway-choices" },
+              {title: "The Third Rail", url: "#the-third-rail" },
+          ]},
+          {title: "The Health Care Example", url: "#the-health-care-example", children: [
+          ]},
+          {title: "Conclusion", url: "#conclusion", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="how-ssi-will-survive-capitalism">How SSI Will Survive Capitalism</h1>
+<p>Adrian Gropper, Michael Shea, Martin Riedel</p>
+<p><strong><a href="#abstract">Abstract</a> 1</strong></p>
+<p><strong><a href="#introduction">Introduction</a> 2</strong></p>
+<p><strong><a href="#swot-analysis">SWOT Analysis</a> 2</strong></p>
+<blockquote>
+<p><a href="#strengths-of-ssi">Strengths of SSI</a> 2</p>
+<p><a href="#weaknesses-of-ssi">Weaknesses</a> 3</p>
+<p><a href="#opportunities-of-ssi">Opportunities</a> 3</p>
+<p><a href="#threats-of-ssi">Threats</a> 4</p>
+</blockquote>
+<p><strong><a href="#swot-result-interpretation---barriers-pathways-and-the-third-rail">Barriers, Pathways and the Third Rail ("The hard way
+out?")</a>
+4</strong></p>
+<blockquote>
+<p><a href="#barriers">Barriers</a> 5</p>
+<p><a href="#pathway-choices">Pathway Choices</a> 5</p>
+<p><a href="#desired-end-state">Desired End State</a> 5</p>
+<p><a href="#community-driven-wallet-reference-implementation">Community-driven Wallet reference
+implementation</a> 5</p>
+<p><a href="#aaas-first">AaaS First</a> 5</p>
+<p><a href="#the-third-rail">The Third Rail</a> 6</p>
+</blockquote>
+<p><strong><a href="#the-health-care-example">The Health Care Example</a> 6</strong></p>
+<p><strong><a href="#conclusion">Conclusion</a> 7</strong></p>
+<h1 id="abstract">Abstract</h1>
+<p>The Self-Sovereign Identity (SSI) community has described several
+groundbreaking properties that arise from the adoption of its
+principles. Governance, as in business and financing structure, is
+arguably the most challenging of these properties, <a href="https://www.youtube.com/watch?v=8IcU9w9STAo">captured
+succinctly</a> by
+Shoshana Zuboff as: "Who decides? Who decides who decides?" However,
+even though the technology has matured greatly over recent years,
+bootstrapping an SSI product within the existing capitalistic market
+environment is complicated and has not been achieved at scale within any
+functional domain. </p>
+<p>A <a href="https://github.com/WebOfTrustInfo/rwot6-santabarbara/blob/master/final-documents/sustainable-commons.md">RWOT6
+paper</a>
+explored the challenges to a sustainable commons. In this paper, we
+apply the SWOT framework (Strengths, Weaknesses, Opportunities, and
+Threats) to identify potential paths to adoption. For example, what are
+the general implications of introducing a credential holder into
+existing issuer/verifier relationships? Our analysis leads to
+cooperative (in the legal sense) governance with focus on the holder
+(the wallet) as the key innovation, since issuers and verifiers already
+exist. The healthcare industry is used as an example.</p>
+<h1 id="introduction">Introduction</h1>
+<p>Over the past twenty years there have been a consistent wish that
+individuals would be able to control their personal information in a
+manner equivalent to the pre-internet age. There have been multiple
+"turns of the wheel" (OAuth, SAML) of technological standards that have attempted
+to enable this. Self-Sovereign Identity (SSI) is the latest attempt to
+do so. In each of the previous attempts, the technology and work
+that was supposed to strengthen the position of the individual was
+subverted and the result is the current situation of strong corporate
+players (Google, Facebook) leveraging convenience to further mine
+behavioral data on individuals.</p>
+<p>There can be no argument that there is a ground swell around SSI
+currently; the real unknown is whether SSI will maintain its current
+trajectory of empowering the individual to regain control of their
+information. However there are still real challenges ahead around
+enabling adoption and countering attempts to hijack the sector and
+direct it in some unforeseen manner. This paper provides a strategic
+analysis (SWOT) of the SSI community and sector to reveal where we
+believe the threats may appear and to identify the best path to adoption.</p>
+<h1 id="swot-analysis">SWOT Analysis</h1>
+<p>This paper applies the SWOT Analysis, a strategic planning technique
+that can help an individual or an organization in determining Strengths,
+Weaknesses, Opportunities, and Threats ("SWOT") to identify possible
+paths to adoption around Self-Sovereign Identity concepts. SWOT analysis
+may be used in any decision-making situation when a desired end-state
+(objective) is known. It should take into account internal and external
+factors that contribute to achieving or failing to achieve a given end
+result. The results of the SWOT Analysis can inform about possible
+measures or counter-measures in order to support or prevent certain
+anticipated factors.</p>
+<h2 id="strengths-of-ssi">Strengths of SSI</h2>
+<ul>
+<li>
+<p>Avoids an enterprise sale: adoption can be decentralized, one
+doctor, one patient at a time. Separating the SSI strategy in this way avoids having to create both supply &amp; demand (bootstrapping
+cost, typical in a platform)</p>
+</li>
+<li>
+<p>Ease of implementing Privacy by Default</p>
+</li>
+<li>
+<p>Transparency is controlled by principals (doctors, patients) not by
+intermediaries</p>
+</li>
+<li>
+<p>Non-sectoral: the same personal agent creates opportunities across
+industries/sectors</p>
+</li>
+<li>
+<p>No corporate data aggregation</p>
+</li>
+<li>
+<p>Builds on top of object capabilities and delegation framework</p>
+</li>
+<li>
+<p>An Identity-layered Internet allows for the development of new
+business models in a privacy-preserving way without expensive
+platform intermediaries (decentralized Uber, decentralized eBay,
+decentralized AirBnB).</p>
+</li>
+</ul>
+<h2 id="weaknesses-of-ssi">Weaknesses of SSI</h2>
+<ul>
+<li>
+<p>A barrier or friction point in adoption is created by introducing the holder into an incumbent verifier-issuer
+relationship.</p>
+</li>
+<li>
+<p>Lack of upfront financing due to lack of platform leverage (chicken
+&amp; egg problem)</p>
+</li>
+<li>
+<p>Risk of increasing transaction costs</p>
+</li>
+<li>
+<p>Every technology can be used for good or bad and in many instances
+the first 'commercial' successes are for illicit purposes; quacks
+and fraudsters, are going to rise, creaing the potential for social media
+hysteria and significant shifting of market perception.</p>
+</li>
+<li>
+<p>Correlation of agent endpoint (we need tunnels, Tor, ...)</p>
+</li>
+<li>
+<p>Cellphones, as a secure element, are not inherently SSI</p>
+</li>
+<li>
+<p>Walled garden App Stores are not inherently SSI</p>
+</li>
+</ul>
+<h2 id="opportunities-of-ssi">Opportunities of SSI</h2>
+<ul>
+<li>
+<p>The value (cost) of data brokers/intermediaries can be redistributed to
+the principals (issuer, subject/holder, verifier)</p>
+</li>
+<li>
+<p>Decentralization of policy making promotes diversity and resilience</p>
+</li>
+<li>
+<p>Competition for governance</p>
+</li>
+<li>
+<p>Authorization agent improves data quality: elimination of rekeying,
+provenance implicit, streaming, query, single of point of
+monitoring, policies stay private</p>
+</li>
+<li>
+<p>Use of Zero-knowledge proofs for reputation, nullification (e.g.,
+vote only once), data minimization</p>
+</li>
+<li>
+<p>Globalization of medicine where the patient selects the jurisdiction of
+physician; decentralization of reputation and issuance (e.g.,
+guilds vs states)</p>
+</li>
+<li>
+<p>AI cost is 80% data and data cleansing, 10% data science and
+technology, 10% verification/validation (elimination/reduction of
+data brokers does not remove/limit AI)</p>
+</li>
+<li>
+<p>Decentralization of AI to reflect SSI principles through Self-Sovereign AI-enhanced agents based on federated machine learning.
+Federated machine learning means that one AI can teach another AI
+without actually sharing the training data itself.
+Human-in-the-loop AI is another example of Self-Sovereign AI.</p>
+</li>
+<li>
+<p>Standardized data governance labeling
+(<a href="http://bit.ly/PPR-IGL">http://bit.ly/PPR-IGL</a>),
+<em>Quinn Grundy et al. - Data sharing practices of medicines related
+apps and the mobile ecosystem: traffic, content, and network
+analysis, BMJ2019</em>)</p>
+</li>
+<li>
+<p>Agent capability improves with greater API standardization within
+the market (API effectively defines the data model. Semantic
+compatibility makes the agent more reliable.)</p>
+</li>
+</ul>
+<h2 id="threats-of-ssi">Threats of SSI</h2>
+<ul>
+<li>
+<p>Data brokers and intermediaries will fight to keep their current
+roles.</p>
+</li>
+<li>
+<p>Platform mentality and political power of platform, through the
+vehicle of regulatory capture, can delay effective standards and
+raise regulatory barriers.</p>
+</li>
+<li>
+<p>Need for standards, and lead times for standards.</p>
+</li>
+<li>
+<p>Market inertia: data brokers are here and built into the value
+chain.</p>
+</li>
+<li>
+<p>May require governmental action (antitrust for oligopolies/monopolies,
+human rights of access and privacy)</p>
+</li>
+<li>
+<p>Requiring change by multiple stakeholder categories (issuer, holder,
+verifier) magnifies barriers.</p>
+</li>
+<li>
+<p>Existence of government regulation (NIST-regulated trust framework
+models), where stakeholders may be willing to change but
+regulatory inertia causes delay.</p>
+</li>
+<li>
+<p>Data brokers are very large businesses, like icebergs, 90% hidden.</p>
+</li>
+<li>
+<p>Crypto wallets that are not SSI get integrated natively into iOS and
+Android.</p>
+</li>
+<li>
+<p>Agents as a Service (AaaS) (Microsoft, Amazon, Google, Telco's,
+ISPs)</p>
+</li>
+<li>
+<p>Intel SGX favors platforms and centralization</p>
+</li>
+<li>
+<p>Elimination of data brokers requires an alternative for all of a
+particular data broker's roles. Solutions may be required in as
+many as six use cases (reputation, matchmaker, transaction
+convenience, data brokerage, mapping data for a common ontology,
+and record retention)</p>
+</li>
+<li>
+<p>Lack of business knowledge for tech-first SSI industry participants</p>
+</li>
+<li>
+<p>Collusion or Regulatory Capture: direction is taken over by a
+limited number of private corporations that organize in "community
+groups", that do not truly represent commons or effectively create
+a barrier to entry.</p>
+</li>
+</ul>
+<h1 id="swot-result-interpretation-barriers-pathways-and-the-third-rail">SWOT Result Interpretation: "Barriers, Pathways and the Third Rail"</h1>
+<p>With the identified factors of the SWOT analysis we are able to deduce
+further implications around the adoption of SSI. Specifically, we want to
+point out possible barriers, pathways, and distractions that may arise.</p>
+<h2 id="barriers">Barriers</h2>
+<ul>
+<li>
+<p>Want to bootstrap use without single entity dominance.</p>
+</li>
+<li>
+<p>Non-traditional economic model; SSI model has by definition no
+equity upfront. All value is created in the Commons.</p>
+</li>
+<li>
+<p>A Commons does generate enough equity for traditional finance models.</p>
+</li>
+<li>
+<p>Platform tokens have security regulatory risk.</p>
+</li>
+<li>
+<p>Surveillance capitalism has very low friction.</p>
+</li>
+<li>
+<p>Cultural norms (China) resistant to full agency (want backdoors).</p>
+</li>
+<li>
+<p>India (Aadhaar) wants to centralize and maintain control of
+identifiers.</p>
+</li>
+</ul>
+<h2 id="pathway-choices">Pathway Choices</h2>
+<h3 id="desired-end-state">Desired End State</h3>
+<p>Open-source standards-based code in a cooperative-based financial
+model, with each co-op on their specific policies while agreeing to allow
+any individual or entity to exit the cooperative, start their own
+cooperative, or operate outside of any cooperative. See <a href="https://www.rochdalepioneersmuseum.coop/about-us/the-rochdale-principles/">Rochdale
+Society</a>
+and seven principles of cooperatives and <a href="https://a16z.com/2019/03/02/cooperatives-cryptonetworks/">Past, Present, Future: From
+Co-ops to
+Cryptonetworks</a>.</p>
+<h3 id="community-driven-wallet-reference-implementation">Community-driven Wallet reference implementation</h3>
+<p>Given the novelty and importance of the introduction of holder
+responsibility, the community should strive towards providing a
+non-commercial wallet implementation to support this process and lower
+the barrier to entry.</p>
+<h3 id="aaas-first">AaaS First</h3>
+<p>Agent as a Service (AaaS) as an intermediate pathway before completely
+moving the responsibility of the agent into the User space (e.g., "access
+recovery via the centralized service, like people are used to"). However,
+these services would need to be tightly regulated and allow a seamless
+transition into a fully self-sovereign internet. Regulation should aim
+at removing them altogether as soon as a critical size has been reached.</p>
+<h2 id="the-third-rail">The Third Rail</h2>
+<ul>
+<li>
+<p>A megamerger of platforms across hosting, telecom, and payment
+creates the universal identity based on transaction surveillance.
+Regulating data use instead of regulating aggregation itself is a
+prescription for disaster.</p>
+</li>
+<li>
+<p>Apple fails at privacy by default; Facebook privacy theater wins.</p>
+</li>
+<li>
+<p>Private telecom uses 5G to eliminate the opportunity for personal
+firewalls as agents. Alternatives, such as mesh networks and free
+community broadband, are not actively pursued. (Need regulatory
+measures to give control to the owner of 5G-enabled equipment,
+e.g. keys, triple-blind, etc.)</p>
+</li>
+<li>
+<p>Our children join corporate America with blind respect for authority
+and platforms. The SSI infrastructure need for diverse
+holders/subjects is seen as a risk.</p>
+</li>
+<li>
+<p>Private authority does not have the ability to deter bad behavior
+the same way that government can, but government is weak compared
+to private sector.</p>
+</li>
+</ul>
+<h1 id="the-health-care-example">The Health Care Example</h1>
+<p>Healthcare (the industry) is large and more about personal data than
+most markets. Health care (the value transaction) is prone to
+decentralization because the principals, patients, and licensed
+practitioners are able to transact independent of any institution and
+in some cases independent of any particular jurisdiction. This kind of
+decentralization is reminiscent of public blockchains.</p>
+<p>SSI, in this example, applies to the licensed practitioner as well as
+the patient. Each of them is a holder. The practitioner holds
+credentials issued by testing institutions and benefits from appropriate
+reputation mechanisms tied to their identity. The patient holds health
+records, including notes, diagnoses, and prescriptions, issued by the
+licensed practitioners. These two rather different holder technologies
+must interact with each other independently of institutional issuers and
+verifiers.</p>
+<p>The healthcare industry is dominated by data broker intermediaries that
+aggregate practitioner licenses and reputation on one side and aggregate
+patient health records on the other. We call them hospitals. Under what
+circumstances would the hospital support the introduction of SSI holders
+on behalf of either the practitioners or the patients?</p>
+<p>Competitive pressure will force hospitals to accept SSI, effectively
+driving them out of the data brokerage business if they wish to remain
+in the principal business of operating ERs, surgery suites, and other
+health care services. But for that to happen the data brokerage function
+of hospitals will need to shift to an SSI model that respects a
+diversity of standards-based holders. What institutions will organize
+the tech and support systems to provide holders to the practitioners and
+patients?</p>
+<p>Patient and physician cooperatives could provide governance and support
+for SSI holders without need for a proprietary business model or private
+equity. Alternative structures for support of SSI holders could be
+government (as a public commons) or a not-for-profit collaboration by
+interested principals such as pharmaceutical and device manufacturers.
+Strategic support could also come from employers and other players that
+stand to benefit from reducing the cost of data brokerage in healthcare.
+Another possibility for support of SSI would be a new class of data
+brokers built around a fiduciary relationship with the subjects. These
+Agent as a Service models will pick and choose among the SSI principles
+and standards and possibly focus on healthcare to the exclusion of other
+markets in order to develop brand and platform economics with private
+equity support.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Adoption of SSI is dominated by the challenge to the data brokers and
+intermediaries that would be replaced by holder technology. Even if some
+data brokers are able to pivot to Agent as a Service during a transition
+to SSI, the highly redundant and hidden data aggregation business would
+be decimated. SSI can overcome these incumbents while staying true to
+its principles by developing and supporting holder technology through a
+cooperative model. Cooperatives can focus on the needs of issuers and
+verifiers in specific markets while at the same time adopting and
+supporting standards that will allow holders to operate seamlessly
+across diverse markets. Transitional states on the path to decentralized
+SSI could include holder services with a more or less fiduciary
+relationship to the subject. In the long-run, self-sovereign identity
+and individual agency require both Free software and standards with
+support through cooperative governance.</p>
+<p>The disintermediation and destruction of current data broker business
+models provide very strong economic incentive to hijack and subvert the
+goals of the SSI community. This is something that community must be
+constantly aware of and be prepared to counter.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

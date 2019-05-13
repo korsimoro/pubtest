@@ -9,17 +9,66 @@
 # Quickstart
 
 ```
-git clone git@github.com:korsimoro/pubtest --recursive
-cd pubtest
-./toolkit/setup.sh
-. ./toolkit/activate.sh
-cd docs
-runjekyll serve
+git clone --branch documentation git@github.com:korsimoro/pubtest --recursive
+./pubtest/docs-toolkit/enter.sh
+pd serve
 ```
+# Key Directories
+
+  - docs         # this is the user facing element, which is built from data
+  - docs-data    # this is the data, managed by the toolkit
+  - docs-toolkit # this contains glue code for doing amazing things
+
+
+## docs
+
+This is the web site source code - it is a jekyll environment using the
+minimal-mistakes theme working in coordination with mkdocs, which is used
+to index document pools.
+
+## docs/mkdocs/<site>/{src,output,mkdocs.yml}
+
+This directory pattern defines sub-sites which are focused around a single
+mkdocs build.  Typically the files in src are generated from the data.
+
+## docs-data/.sqlite
+
+These are sqlite databases used to construct much of the data.
+
+This contains of the following structure
+
+      /[db-name]
+        database.sqlite
+        [query].sql
+where the database.sqlite file a sqlite database.
+This can come from any source and
+- can be managed using standard SQL utilities
+- can be generated as a snapshot from googlesheets
+  or other CSV data via ```sqlitebiter```
+- can be pulled by scraping websites via ```sqlitebiter```
+
+## docs-data/.submodules
+
+These are other git repositories we use as sources of data
+
+## docs-toolkit/.kbash and docs-toolkit/kbash
+
+This is the ```pd``` shell environment useful for developing local content
+
+## docs-toolkit/docutil
+
+This is a python program which works with apis and the local filesystem
+
+## docs-toolkit/sqlite
+
+
+## \_data/[db-name]\/\_[query].yml
+
+
 
 # Purpose
 
-The purpose of this repository is to develop a publication technology for the
+The purpose of this repository is to develop a publication technology for IIW,
 RWoT and other identity-tech community data with the following properties:
 
 ## [Repository Based](#repository-based)
@@ -40,6 +89,7 @@ RWoT and other identity-tech community data with the following properties:
   - support moderated, timely publication, backed by an editorial actor
 
 ## machine processable rich data
+  - capture ontology in json-ld
   - normalize tabular data as sqlite files
   - use sql queries to generate reports
   - use graphql queries to generate reports
@@ -137,38 +187,6 @@ DIDs should be mappable to "git repository states" in a very decentralized manne
 
 
 
-# Key Directories
-
-## docs/assets/mkdocs
-
-These are the markdown source files for mkdocs.
-
-## docs/mkdocs
-
-This is what gets served vi ```/pubtest/mkdocs```
-
-## \_data/sqlite
-
-This contains of the following structure
-
-      /[db-name]
-        database.sqlite
-        [query].sql
-where the database.sqlite file a sqlite database.
-This can come from any source and
-- can be managed using standard SQL utilities
-- can be generated as a snapshot from googlesheets
-  or other CSV data via ```sqlitebiter```
-- can be pulled by scraping websites via ```sqlitebiter```
-
-## \_data/[db-name]\_[query].yml
-
-This will
-
-# Toolkit
-- [```tool```](#tool)
-- [```sqlitebiter```](#sqlitebiter)
-- [```mkdocs```](#mkdocs)
 
 ## ```tool```
 

@@ -1,0 +1,106 @@
+_source_info_:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - source_id
+    - - Index
+      - false
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - dir_name
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - base_name
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - format_name
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - dst_table
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - size
+    - - Index
+      - false
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - mtime
+    - - Index
+      - false
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

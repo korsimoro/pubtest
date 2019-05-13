@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>4 dayonesummary - RWoT DIR Launchpad</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Day One Summary", url: "#_top", children: [
+              {title: "1a. A FRAMEWORK FOR SMART SIGNATURES", url: "#1a-a-framework-for-smart-signatures" },
+              {title: "2a. DPKI: IDENTIFIERS", url: "#2a-dpki-identifiers" },
+              {title: "2b. DPKI: SECURITY", url: "#2b-dpki-security" },
+              {title: "3. WHAT DO WE MEAN BY TRUST?", url: "#3-what-do-we-mean-by-trust" },
+              {title: "4. QUICK SPEC FOR KEYS MISUSED ON THE BLOCK CHAIN", url: "#4-quick-spec-for-keys-misused-on-the-block-chain" },
+              {title: "5. SYBIL-RESILIENT REPUTATION AGGREGATION", url: "#5-sybil-resilient-reputation-aggregation" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="day-one-summary">Day One Summary</h1>
+<p>(unedited notes of interim report outs by #RebootingWebOfTrust teams)</p>
+<h3 id="1a-a-framework-for-smart-signatures">1a. A FRAMEWORK FOR SMART SIGNATURES</h3>
+<p>Bitcoin has extended idea of a signature for smart contracting and other ideas. So how can it be extended?</p>
+<p>It can be used for the delegation of keys, with signature that limits their use through programmatic rules</p>
+<p>Came up with specific uses
+- Delegating access to server
+- Delegating a limited key to certain devices
+- Creating conditions on software releases
+- Defining user-specific revocation</p>
+<h3 id="2a-dpki-identifiers">2a. DPKI: IDENTIFIERS</h3>
+<p>Identity should be an immutable key
+Multiple methods of discovery
+Identity stored in a registry
+- Creates multiple sorts of keys</p>
+<h3 id="2b-dpki-security">2b. DPKI: SECURITY</h3>
+<p>Want an SIF. Security Internet, Finally.
+Minimum number of techniques to create maximum amount of security</p>
+<p>Two techniques
+- Thin Clients
+- Convergence + Block Chains</p>
+<p>How many doors do you have to knock on to compromise a system? A metric for decentralization.</p>
+<p>2c. DPKI: PRIVATE KEYS</p>
+<p>Any system of DPKI must manage private keys for users in a way that's semi-automatic yet secure</p>
+<p>Methodology:
+- Break up key into shards on multiple devices</p>
+<h3 id="3-what-do-we-mean-by-trust">3. WHAT DO WE MEAN BY TRUST?</h3>
+<ul>
+<li>
+<p>The PGP term Web of Trust is overloaded</p>
+</li>
+<li>
+<p>Classic PGP is just Decentralized Key Validation</p>
+</li>
+<li>
+<p>We need a new term or to redefine Web of Trust</p>
+</li>
+<li>
+<p>Rename or Reclaim?</p>
+</li>
+</ul>
+<h2 id="4-quick-spec-for-keys-misused-on-the-block-chain">4. QUICK SPEC FOR KEYS MISUSED ON THE BLOCK CHAIN</h2>
+<h2 id="5-sybil-resilient-reputation-aggregation">5. SYBIL-RESILIENT REPUTATION AGGREGATION</h2>
+<p>Use Case:
+- Decentralized commerce platform
+- Sybils can transact with each other to build up reputation
+- Can't stop Sybil creation, but can it make it more costly and make users more transparent to see validity</p>
+<p>Sybil-Resilient:
+Consumers can detect "bad" behavior
+- Best we have current is user reviews, but they're taken avantage of
+- Need something better</p>
+<p>System would bounce back when there's a Sybil attack</p>
+<p>Reputation Aggregation:
+- How we aggregate events is important to allow users to detect bad behavior</p>
+<p>Result:
+- Let users route themselves to actors who behave in ways that causes them to trust</p>
+<h3 id="6-satisfying-the-real-world-web-of-trust-use-cases">6. SATISFYING THE REAL WORLD: WEB OF TRUST USE CASES</h3>
+<p>Three themes
+- Selective Disclosure
+  - Ex) Proving age without showing rest of info
+- People who don't have identity
+  - Ex) Refugee
+  - Ex) Someone with pieces of an identity (e.g., victim of domestic violence who has shed part of identity)
+- Augumenting different identities
+  - Ex) If don't have enough ID for a bank account, how do you get to bigger stuff?</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

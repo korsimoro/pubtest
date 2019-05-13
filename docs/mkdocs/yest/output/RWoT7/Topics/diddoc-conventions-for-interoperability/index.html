@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>DIDDoc Conventions for Interoperability - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DIDDoc Conventions for Interoperability", url: "#_top", children: [
+              {title: "DIDDoc Usage by DID Method Communities", url: "#diddoc-usage-by-did-method-communities" },
+              {title: "Microledgers", url: "#microledgers" },
+          ]},
+          {title: "DIDDoc Conventions", url: "#diddoc-conventions", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="diddoc-conventions-for-interoperability">DIDDoc Conventions for Interoperability</h1>
+<p><strong><em>A Survey of DID Usage and Interoperability</em></strong></p>
+<p>by Stephen Curran (<strong><em>BC Gov and C3I</em></strong>), Olena Mitovska (<strong><em>Ontario Gov</em></strong>)  and collaborators</p>
+<p>The <a href="https://w3c-ccg.github.io/did-spec/">Decentralized Identifier Specification</a> is moving along the standards path and we are seeing the availability of DID Methods (including <a href="https://github.com/decentralized-identity">resolvers</a>) that implement the specification. As hinted at in the <a href="../did-primer/">DID Primer</a>, DIDs are being used for a variety of purposes, including enabling a Verifiable Credentials infrastructure.</p>
+<p>It has been the experience of the BC and Ontario Governments that as we have built out an initial version of the Verifiable Organizations Network ([VON]) using the Hyperledger Indy project that there is a lot that is not said in the DID Specification about how the use of DIDs will be interoperable. Our goal is to be able to recommend to our citizens and businesses Self Sovereign Identity (SSI) components that are both interoperable with what the Governments of BC and Ontario use and that meets expected privacy and security goals aligned with the <a href="https://diacc.ca/pan-canadian-trust-framework/">Pan-Canadian Trust Framework</a>. A crucial first step in accomplishing that interoperablility is aligning the conventions being used in DIDs and DID Documents (DIDDocs) across DID Method ecosystems.</p>
+<p>The purpose of this paper is twofold - a pre-conference survey of progress made to this point on DIDDoc usage by each DID Method community, and then an attempt at RWoT to "compare and contrast" the different approaches to see what can be learned across the wider community and what alignment can be defined at this time that might lead to interoperability.</p>
+<h2 id="diddoc-usage-by-did-method-communities">DIDDoc Usage by DID Method Communities</h2>
+<p>The first task, done ideally before RWoT7, is to collect from those building DID Methods and associated ecosystems an outline of how they are using the elements of a DIDDoc. For example, if two arbitrary Identities that are using software developed by different vendors have exchanged DIDs, and one wishes to send the other a secure, privacy-preserving message, what parts of the Receiver's DIDDoc are used and how? More generally, a DIDDoc from an Identity has a series of entries (keys, authorizations, service endpoints). What are the purposes of those entries and how does the user of a DIDDoc know the purpose and expected use of those entries?</p>
+<p>Ideally, a representative from each DID Method community will document (or at least come to RWoT7 ready to speak about) the progress made so far in the usage of DIDs, particularly focused on conventions that enable multi-vendor interoperability. For example, the Hyperledger Indy Agent to Agent Working Group has a (currently pending) <a href="https://github.com/hyperledger/indy-hipe/blob/efba4bc0de42fd194a8d6af8864bcd96e6826f58/text/diddoc-conventions/README.md">Proposed Enhancement</a> that defines some preliminary expectations that one Identity can have about a DIDDoc received from another Identity. Having an equivalent type of document from each DID Method community would provide a number of perspectives on the planned uses for DIDs.</p>
+<h2 id="microledgers">Microledgers</h2>
+<p>Related and ideally included in the survey is the idea of a microledger between identities - DIDs and DIDDocs created by one identity and shared only with the identity(ies) with which the DID will be used. If different DID Method communities are planning on using microledgers, it will be useful for interoperability to discuss how the DIDDoc is intended to be managed on a microledger across the communities and to look for shared approaches.</p>
+<h1 id="diddoc-conventions">DIDDoc Conventions</h1>
+<p>During RWoT, the focus of the group will be on inventorying the concepts, aligning those that are common, and formalizing DIDDoc Conventions that are shared and those that are unique to specific communities. Coming out of the conference we'd like to see a published paper that outlines the conventions - a versioned document that evolves as the various implementations mature based on the different DID Methods. The paper will be a starting point for learning about the DIDDoc Conventions to implement and to provide guidelines for adding interoperable, DIDDoc-based concepts within each community.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

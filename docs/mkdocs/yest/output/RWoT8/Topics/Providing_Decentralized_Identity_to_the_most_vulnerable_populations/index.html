@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Providing Decentralized Identity to the most vulnerable populations - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Providing Decentralized Identity to the most vulnerable populations", url: "#_top", children: [
+              {title: "Draft: Rebooting Web of Trust VIII Topic Paper", url: "#draft-rebooting-web-of-trust-viii-topic-paper" },
+              {title: "Authors", url: "#authors" },
+              {title: "Problem", url: "#problem" },
+              {title: "Idea", url: "#idea" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="providing-decentralized-identity-to-the-most-vulnerable-populations">Providing Decentralized Identity to the most vulnerable populations</h1>
+<h2 id="draft-rebooting-web-of-trust-viii-topic-paper">Draft: Rebooting Web of Trust VIII Topic Paper</h2>
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Jeremi Joslin <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#101;&#114;&#101;&#109;&#105;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;">&#106;&#101;&#114;&#101;&#109;&#105;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;</a></li>
+<li>Greg Martel  - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#103;&#114;&#101;&#103;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;">&#103;&#114;&#101;&#103;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;</a></li>
+<li>Hailey Park - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#97;&#105;&#108;&#101;&#121;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;">&#104;&#97;&#105;&#108;&#101;&#121;&#64;&#105;&#100;&#112;&#97;&#115;&#115;&#46;&#111;&#114;&#103;</a></li>
+</ul>
+<h2 id="problem">Problem</h2>
+<p>Decentralized identity solution has been mainly designed for the developed world and most implementation requires the need for expensive devices such as smartphones. However, by 2021, it is estimated that only 40% of the world’s population will own one. In contrast, there are one billion invisible people without an identity and a large majority still remains under the poverty line. Without a verifiable identity, one-seventh of the global population lacks the rights to access essential services such as Citizenship, Education, Justice, Health Care, Banking and Insurance.  </p>
+<p>Moreover, in order to provide humanitarian aid to this population biometric is commonly captured to identify individuals. Although, from our experience, digital identity and biometric verification is often achieved by using a centralized identity management system which increases privacy concerns and requires an internet connection. </p>
+<h2 id="idea">Idea</h2>
+<p>This is the reason why we are proposing a smart card based solution that leverages on W3C standards of Decentralized Identifiers and Verifiable Credentials. The card will be used to sign transaction and securely store the private keys and Verifiable Credentials.</p>
+<h3 id="access-management">Access Management</h3>
+<p>One of the drawbacks of using a smart card is the lack of a user interface on the card, making it more difficult to selectively protect access to features and credentials stored on the card.
+The following are authentication mechanism that could be used for our smart card:
+- PIN code: one of the most common authentication methods in developed countries. However, based on our experiences, it was not considered as the preferred solutions due to low literacy and numeracy levels in some of the remote areas.
+- Biometrics match-on-card: eliminates the need for a central database by both storing and matching fingerprint, iris and face biometrics data directly on a smartcard. 
+- Cryptography: authenticate the Point of Services.
+- Time Delay: can be used to differentiated between a simple tap, multi-tap or long-tap of the card.</p>
+<p>Through the use and combination of these authentication processes, two possible solutions could be implemented:
+Use of trusted devices like in the case of the credit card network where the user trust the terminal shows them the amount being deducted from the card and executes the action. This can be achieved by using cryptography and having the terminal authenticate to the card. The main advantage of this would be making it easier for the user to interact with the card, but to access their own data, they need to use a certified terminal. 
+Use of a combination of authentication processes such as multiple PIN codes, fingerprint match or a delay to unlock access to different information. The advantage of this solution is that the user has increased control over their data as any device can be used to access it, but things such as keeping track of multiple PIN codes might be inconvenient for some.</p>
+<p>These methods are not exclusive, and can actually be used in conjunction with others depending on how they are used. </p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

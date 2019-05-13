@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>GDPR Self Soverign ID - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "- HIPPA covers health care and mandates that patient data be protected", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>Authors:</p>
+<p>Marta Piekarska (Linux Foundation)</p>
+<p>Michael Lodder (Evernym)</p>
+<p>Zachary Larson (Economic Space Agency)</p>
+<p>Kaliya Young (Identity Woman)</p>
+<p>Abstract</p>
+<p>The General Data Protection Regulation (GDPR) enacted by the European Parliament in 2016 was designed to give users more control and rights over their personal data. Companies and governments will find it increasingly difficult to be GDPR compliant with current industry practices. Once it becomes enforceable in 2018, managing data will be both toxic and expensive. Many precious resources will be required for improving and maintaining the security, privacy, and governance of personal data. Methods for storing less personal data will ease the burden of GDPR compliance. Self-Soverign Identity technologies like shared distributed ledgers  (blockchain technology) combined verified claims may offer an opportunity for enterprises for simpler data management solutions that are GDPR compliant.</p>
+<p>GDPR Requirements</p>
+<p>Existing infrastructure has data processors housing personal data and continually collecting more. A person may not know what is known about them until they petition for it. To do so is often difficult and entities are not required to respond in a timely manner or at all. Entities share the data with others and often do for marketing purposes. This can causes people to receive lots of automated targeted marketing that they largely do not want or understand why they are getting targeted in the first place. A person can call a number to be put on a do not contact list but companies frequently do not honor it. Sometimes data processors have incorrect data that must be fixed and can be difficult for individuals to do and those changes may not be propagated to other entities. Now a person must try to fix the problem with every data processor they know about that has knowledge of said data. GDPR was created to help address these issues.</p>
+<p>Unfortunately for enterprises, there are liabilities that come with storing personal data. When personal data becomes compromised or known, they become targets of government investigations and lawsuits. Smaller entities can go bankrupt when this happens and don&#39;t want to store the data but are forced because they cannot operate otherwise. Company&#39;s compliance with data laws can require costly and time intensive audits, investing in technical and physical security measures, and hiring trained security personnel in order to limit their liability to financial lawsuits and fines and susceptibility to attacks.</p>
+<p>GDPR is composed of articles that outline the rights of individuals and requirements of data processors. The following is a brief summary of rights granted to individuals:</p>
+<ul>
+<li><em>Article 7:</em> The right of consent. The individual must consent to personal data being collected and can rescind that consent at anytime.</li>
+<li><em>Article 12</em>: The right to ask questions about use of personal data and to seek redress if questions are not answered in a clear, concise, timely manner.</li>
+<li><em>Articles 13 &amp; 14</em>: The right to know how personal data is used at the time of collection and the length of time for which it will be stored and contact information for the collecting party.</li>
+<li><em>Article 15</em>: The right to access the personal data that is being processed.</li>
+<li><em>Article 16</em>: The right to have incorrect personal data rectified.</li>
+<li><em>Article 17</em>: The right to have personal data erased when it is no longer necessary for the purposes for which they were collected and there is no legal ground for their maintenance.</li>
+<li><em>Article 18</em>: The right to restrict data processing where the data is inaccurate, its collection unlawful, or its processing no longer required.</li>
+<li><em>Article 19</em>: The data collecting party must inform all additional data processors with whom it shares personal data to cease processing data that has been rectified or erased.</li>
+<li><em>Article 20</em>: The right to receive their personal data in a structured, commonly-used, machine-readable format which they can freely share with other data processors.</li>
+<li><em>Article 21</em>: The right to object to personal data being used to profile or market to them.</li>
+<li><em>Article 22</em>: The right to not be subject to legal outcomes that rely solely on automated data processing.</li>
+<li><em>Article 25:</em> The right to have the minimal amount of data stored as necessary for data processors to do their work.</li>
+<li><em>Article 77:</em> The right to file a complaint against non-compliant data processors</li>
+<li><em>Article 80:</em> The right to have a legal representative for actions against data processors</li>
+</ul>
+<p>The following is a brief summary of obligations for data processors:</p>
+<ul>
+<li><em>Article 24:</em> Must be able to demonstrate all processing and handling is in compliance.</li>
+<li><em>Article 28:</em> Must notify data owners when data will be shared with other processors.</li>
+<li><em>Article 29:</em> Must only process authorized data.</li>
+<li><em>Article 30:</em> Must maintain a record of all data processing activity. The record must include who processed it, what was processed, where it was processed or transferred, when it will be erased, and the security measures in place when it was done.</li>
+<li><em>Article 32:</em> Must protect the data using pseudonymization and encryption. They must ensure those measures are tested regularly and they can recover in the event of failures.</li>
+<li><em>Article 33:</em> Must notify data owners and other data processors in the event of a breach within 72 hours of first having become aware of the breach.</li>
+<li><em>Article 37:</em> Must appoint a data protection officer</li>
+<li><em>Article 50:</em> The transfer of data must only happen to countries deemed as having adequate data protection laws</li>
+<li><em>Article 59:</em> Must submit an annual report to the GDPR Board</li>
+</ul>
+<p>The legal language translates directly into the technical requirements. Without a solid, cryptographically ensured solution, penalties for organizations in breach of GDPR can be fined up to 4% of annual global turnover or €20 Million (whichever is greater). This is the maximum fine that can be imposed for the most serious infringements e.g. not having sufficient customer consent to process data or violating the core of Privacy by Design concepts. There is a tiered approach to fines e.g. a company can be fined 2% for not having their records in order (article 28), not notifying the supervising authority and data subject about a breach or not conducting impact assessment. It is important to note that these rules apply to both controllers and processors -- &#39;clouds&#39; will not be exempt from GDPR enforcement.</p>
+<p>Technical Requirements</p>
+<p>GDPR mandates in order to ensure a complete solution that protects the user, or data object, and restrict the enterprises, otherwise known as data owners can be summarized in the following points.  (where are these from??)</p>
+<ul>
+<li><em>Availability</em>: The user should always have access to their data, no matter if it is stored locally or remotely. The data should be protected from leakages or attacks as that stands against availability.</li>
+<li>
+<p><em>Completeness:</em> Any event and data should be recorded.</p>
+</li>
+<li>
+<p><em>Confidentiality</em>: Only parties involved in the exchange of data should be able to see details of that transaction.</p>
+</li>
+<li><em>Correctness:</em> There should be an assurance of accuracy of data recorded.</li>
+<li>_Immutability:_There should be no possibility of changing historical logs.</li>
+<li><em>Integrity</em> <strong>:</strong> The content of the data store should be protected from malicious or unintentional changes.</li>
+<li><em>Interoperability</em>: Users should be able to combine data coming from various sources.</li>
+<li><em>Non-repudiation</em> <strong>:</strong> Interaction with any data should not be deniable in later point in time.</li>
+<li><em>Rectification &amp; Erasure:</em> Users must be able to change or erase of her personal data. She must also be able to make corrections of erroneous data.</li>
+<li><em>Traceability:</em>        Any occurrence of processing data must be traceable and linkable to previous occurrences of processing of that data.</li>
+</ul>
+<p>GDPR is the standard proposed by European Parliament to protect European citizens and return control over private data to the users. However, the legislators in other parts of the world recognize that same need for data control.</p>
+<p>Self-Sovereign Identity</p>
+<p>There is a movement that grew out of the user-centric identity efforts to support the individual being at the core of controlling their own digital identity. The community is focused on how various sophisticated cryptography and shared distributed ledgers allow for this to actually happen.</p>
+<p>A number of different people have written about the principles of identity. Kim Cameron collaborated with a whole community on the development of his &quot;Laws of Identity&quot; <a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html%23dfref-2020">20</a>, Both Phil Windley <a href="http://www.windley.com/archives/2010/09/pdx_principles.shtml">23</a> and Kaliya Young <a href="https://identitywoman.net/vision-principles-for-the-personal-data-ecosystem/">24</a> put forward principles  for the Personal Data Ecosystem in 2010. The more recently developed Respect Network policy <a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html%23dfref-2121">21</a> and W3C Verifiable Claims Task Force FAQ <a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html%23dfref-2222">22</a> offer additional perspectives on digital identity.  Much of this work was incubated in the  community surrounding the Internet Identity Workshop <a href="http://www.internetidentityworkshop.com">25</a>.</p>
+<p>Chris Allen wrote the below list of principles for Self-Sovereign Identity <a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html.">26</a></p>
+<p>These principles attempt to ensure the user control that&#39;s at the heart of self-sovereign identity. However, they also recognize that identity can be a double-edged sword — usable for both beneficial and maleficent purposes. Thus, an identity system must balance transparency, fairness, and support of the commons with protection for the individual.</p>
+<ol>
+<li><strong>Existence.</strong> <em>Users must have an independent existence.</em> Any self-sovereign identity is ultimately based on the ineffable &quot;I&quot; that&#39;s at the heart of identity. It can never exist wholly in digital form. This must be the kernel of self that is upheld and supported. A self-sovereign identity simply makes public and accessible some limited aspects of the &quot;I&quot; that already exists.</li>
+<li><strong>Control.</strong> <em>Users must control their identities.</em> Subject to well-understood and secure algorithms that ensure the continued validity of an identity and its claims, the user is the ultimate authority on their identity. They should always be able to refer to it, update it, or even hide it. They must be able to choose celebrity or privacy as they prefer. This doesn&#39;t mean that a user controls all of the claims on their identity: other users may make claims about a user, but they should not be central to the identity itself.</li>
+<li><strong>Access.</strong> <em>Users must have access to their own data.</em> A user must always be able to easily retrieve all the claims and other data within his identity. There must be no hidden data and no gatekeepers. This does not mean that a user can necessarily modify all the claims associated with his identity, but it does mean they should be aware of them. It also does not mean that users have equal access to others&#39; data, only to their own.</li>
+<li><strong>Transparency</strong>. <em>Systems and algorithms must be transparent.</em> The systems used to administer and operate a network of identities must be open, both in how they function and in how they are managed and updated. The algorithms should be free, open-source, well-known, and as independent as possible of any particular architecture; anyone should be able to examine how they work.</li>
+<li><strong>Persistence.</strong> <em>Identities must be long-lived.</em> Preferably, identities should last forever, or at least for as long as the user wishes. Though private keys might need to be rotated and data might need to be changed, the identity remains. In the fast-moving world of the Internet, this goal may not be entirely reasonable, so at the least identities should last until they&#39;ve been outdated by newer identity systems. This must not contradict a &quot;right to be forgotten&quot;; a user should be able to dispose of an identity if he wishes and claims should be modified or removed as appropriate over time. To do this requires a firm separation between an identity and its claims: they can&#39;t be tied forever.</li>
+<li><strong>Portability.</strong> <em>Information and services about identity must be transportable.</em> Identities must not be held by a singular third-party entity, even if it&#39;s a trusted entity that is expected to work in the best interest of the user. The problem is that entities can disappear — and on the Internet, most eventually do. Regimes may change, users may move to different jurisdictions. Transportable identities ensure that the user remains in control of his identity no matter what, and can also improve an identity&#39;s persistence over time.</li>
+<li><strong>Interoperability.</strong> _Identities should be as widely usable as possible._Identities are of little value if they only work in limited niches. The goal of a 21st-century digital identity system is to make identity information widely available, crossing international boundaries to create global identities, without losing user control. Thanks to persistence and autonomy these widely available identities can then become continually available.</li>
+<li><strong>Consent.</strong> <em>Users must agree to the use of their identity.</em> Any identity system is built around sharing that identity and its claims, and an interoperable system increases the amount of sharing that occurs. However, sharing of data must only occur with the consent of the user. Though other users such as an employer, a credit bureau, or a friend might present claims, the user must still offer consent for them to become valid. Note that this consent might not be interactive, but it must still be deliberate and well-understood.</li>
+<li><strong>Minimalization.</strong> <em>Disclosure of claims must be minimized.</em> When data is disclosed, that disclosure should involve the minimum amount of data necessary to accomplish the task at hand. For example, if only a minimum age is called for, then the exact age should not be disclosed, and if only an age is requested, then the more precise date of birth should not be disclosed. This principle can be supported with selective disclosure, range proofs, and other zero-knowledge techniques, but non-correlatibility is still a very hard (perhaps impossible) task; the best we can do is to use minimalization to support privacy as best as possible.</li>
+<li><strong>Protection.</strong> <em>The rights of users must be protected.</em> When there is a conflict between the needs of the identity network and the rights of individual users, then the network should err on the side of preserving the freedoms and rights of the individuals over the needs of the network. To ensure this, identity authentication must occur through independent algorithms that are censorship-resistant and force-resilient and that are run in a decentralized manner.</li>
+</ol>
+<p>Technical  Approaches to Self-Sovereign Identity</p>
+<p>Here we talk about various approaches to solving digital identity with blockchain. Not saying they are perfect. Just analyzing them to pull together the best solutions in the next chapter.</p>
+<p>The comunity of developers around DIDs</p>
+<p>DID Code Bases/Projects</p>
+<p>Hyperledger Indy Project</p>
+<p>Digital Estonia &lt;- this is not block chain.</p>
+<p>Verifiable Claims</p>
+<p>Blockchain Solution to GDPR</p>
+<p>Here we talk about how blockchain will help GDPR</p>
+<p>How Self Sovereign Technologies address GDPR Requirements</p>
+<table>
+<thead>
+<tr>
+<th>GDPR Requirement</th>
+<th>Solution</th>
+<th>Self Sovereign Principle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Availability: The user should always have access to their data, no matter if it is stored locally or remotely. The data should be protected from leakages or attacks as that stands against availability.</td>
+<td>The user should always be able to view the current information</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <em>Completeness:</em> Any event and data should be recorded.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>Confidentiality</em>: Only parties involved in the exchange of data should be able to see details of that transaction.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Consent</td>
+<td>By simply revealing information that is stored in a private digital wallet and recording that transaction user proves his consent</td>
+<td></td>
+</tr>
+<tr>
+<td><em>Correctness:</em> There should be an assurance of accuracy of data</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Data minimization</td>
+<td>Zero Knowledge Proofs, Selective disclosure, Verifiable Claims, ZKSnarks, CL-Signatures</td>
+<td></td>
+</tr>
+<tr>
+<td>_Immutability:_There should be no possibility of changing historical logs.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>Integrity</em> <strong>:</strong> The content of the data store should be protected from malicious or unintentional changes.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>Interoperability</em>: Users should be able to combine data coming from various sources.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transparency</td>
+<td>Basic property of blockchain transaction</td>
+<td></td>
+</tr>
+<tr>
+<td>Data protection Design by Default</td>
+<td>Encryption and Data minimization</td>
+<td></td>
+</tr>
+<tr>
+<td>Data portability and interoperability</td>
+<td>The data is held by the user and created by attestations, not by companies. The secure storage can hold any kind of data</td>
+<td></td>
+</tr>
+<tr>
+<td>Right to erasure</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- --User stores the real &quot;data&quot;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- --When he wants the &quot;meta&quot; data to be erased the request can be put on a blockchain and verified</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- --The company has then to ack it which means strong accountability in time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pseudonymization</td>
+<td>Value is addressable through DID</td>
+<td></td>
+</tr>
+<tr>
+<td><em>Non-repudiation</em> <strong>:</strong> Interaction with any data should not be deniable in later point in time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>Rectification &amp; Erasure:</em> Users must be able to change or erase of her personal data. She must also be able to make corrections of erroneous data.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Remediation but no rewrite of logs</td>
+<td>Hash is stored on the ledger - user can correct his data and put new version of it and the hash will reflect it</td>
+<td></td>
+</tr>
+<tr>
+<td><em>Traceability:</em>        Any occurrence of processing data must be traceable and linkable to previous occurrences of processing of that data.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Data Minimization &amp; Selective Disclosure<pre><code>Articles Addressed:
+</code></pre>
+</li>
+</ol>
+<p>1.
+  1. Capability Security and the Principle of Least Authority (POLA)
+    1.  The Principle of Least Authority (POLA) recommends that you grant each program only the authority it needs to do its job [<a href="http://srl.cs.jhu.edu/pubs/SRL2003-03.pdf">Paradigm Regained: Abstraction Mechanisms for Access Control</a>].</p>
+<ol>
+<li>Non-Repudiation</li>
+<li>Cryptographic Digital Signatures</li>
+</ol>
+<p>Recommendation Services</p>
+<p>We don&#39;t know what to do in case of amazon wanting to recommend me my favorite books. Cause they need to aggregate. Is that the case of consent recorded on their ledger with my ability to revoke and request to delete?</p>
+<p>Need for Terminology</p>
+<p>Self sovereign vs 4p vs something better</p>
+<p><strong>KY- I am not sure this section makes sense  - I think this should JUST focus on GDPR and self soverign Identiyt.</strong></p>
+<p>GDPR correspondence to US Privacy Regulations and Privacy Shield.</p>
+<p>GDPR at the present time only governs the European Union (EU) and any entity who is processing data to and from the EU. Countries that do not meet the GDPR requirements are not legally allowed to process the data associated with the EU. In general the EU does not list the United States (US) as one of the countries that meets this requirement.</p>
+<p>The US Regulatory Landscape is confusing. The United States  FIPPS</p>
+<p>There is an array of legislation that covers specific industries.</p>
+<h2 id="-hippa-covers-health-care-and-mandates-that-patient-data-be-protected">- HIPPA covers health care and mandates that patient data be protected</h2>
+<p>NIST 800-63-3, on the other hand, is an internal guideline published to help with evaluation of digital identity. It consists of three elements: Identity Assurance Level,</p>
+<p>Privacy Shield was designed to create a program whereby participating companies are deemed as having adequate protection, and therefore facilitate the transfer of information. Privacy Shield is an agreement between the EU and US allowing for the transfer of personal data from the EU to US. Privacy Shield allows US companies, or EU companies working with US companies to meet this requirement of the GDPR. Privacy Shield is a crucial mechanism under which data can be shared between companies in the US and EU, or companies who have data centers in the US. It is expected however, that with time it will get reworked and tightened.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

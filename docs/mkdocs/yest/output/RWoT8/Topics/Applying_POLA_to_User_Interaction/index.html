@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Applying the Principle of Least Authority to User Interaction - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Applying the Principle of Least Authority to User Interaction", url: "#_top", children: [
+              {title: "Rich Sharing on the Web", url: "#rich-sharing-on-the-web" },
+              {title: "The Powerbox Pattern", url: "#the-powerbox-pattern" },
+              {title: "Guidelines for Secure Interaction design", url: "#guidelines-for-secure-interaction-design" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="applying-the-principle-of-least-authority-to-user-interaction">Applying the Principle of Least Authority to User Interaction</h1>
+<p>by Bill Tulloh</p>
+<p>Object capabilities (ocaps) are increasingly recognized as an important tool for achieving the goals of self-sovereign identity. Many of the principles of self-sovereign identity, such as minimization and protection, can best be achieved through the disciplined pursuit of the principle of least authority that ocaps enable. This paper examines how POLA can be extended to better protect users when exercising their self-sovereign identity.</p>
+<h2 id="rich-sharing-on-the-web">Rich Sharing on the Web</h2>
+<p>Perhaps most visibly, ocaps minimize the degree to which systems must rely on identity for access control, by replacing frequent identity checks with bearer instruments representing authority. Ocaps replace <a href="http://www.hpl.hp.com/techreports/2009/HPL-2009-30">identity-based access with authorization-based access.</a> </p>
+<p>As Marc Stiegler has argued, the choice of access control model has important implications for support for secure cooperation. He identifies six key features, enabled by ocaps, that support <a href="http://www.hpl.hp.com/techreports/2009/HPL-2009-169.pdf">rich sharing.</a>: dynnamic, attenuated, chained, cross domain, composable, and accountable. Together, these features ensure that people can share naturally with least authority. For example. chained, the ability to delegate authority, ensures that agents have enough authority, while attenuation, the ability to grant reduced authority, ensures that agents have least authority. </p>
+<p>Alan Karp illustrates this with the <a href="https://alanhkarp.com/publications/Access-Control-for-IoT.pdf">following example:</a> “In an emergency, Marc asked me to park his car in my garage. I couldn’t do it, so I asked my neighbor to do it for me and told her to get the garage key from my son.”
+1. Dynamic. It’s an emergency, so there’s no time to find an administrator to change permissions.
+2. Attenuated. Marc did not have to give me all of his permissions, just the car keys.
+3. Chained. I could pass Marc’s car keys to my neighbor, further attenuating with just the valet key. 
+4. Composable. My neighbor combines one permission she got from me, the car key, with one she got from my son, the garage key, to complete the task.
+5. Cross-domain. There are three families involved, each with its own policies, yet there is no need to communicate policies to another domain. In this example, I didn’t need to ask Marc to change his policy to grant my neighbor permission to drive his car.
+6. Accountable. If Marc finds a new scratch on his car, he knows to ask me to pay for the repair, it’s up to me to collect from my neighbor.</p>
+<p>Rich sharing demonstrates how the applyinng the principle of least authority enables us to cooperate with those with whom we have only limited trust. POLA enables secure cooperation across trust boundaries. </p>
+<h2 id="the-powerbox-pattern">The Powerbox Pattern</h2>
+<p>Ocaps can also play an important role in the control, access, and protection of user identities. For example, ocaps, by providing confinement of authority, helps <a href="https://www.youtube.com/watch?v=pig-sIS8_Wc">stop exfiltration</a> of users' data by malicious code. Moreover, as we build identity wallets and user agents, we must be ensure both a high level of security and usability. Ocaps help achieve high security by applying fine-grained POLA to <a href="https://www.youtube.com/watch?v=wQHjITxQX0g&amp;t=0s&amp;index=20&amp;list=PLKr-mvz8uvUgybLg53lgXSeLOp4BiwvB2">reduce the attack surface.</a> Such fine-grained division of authority may at first glance appear as a usability nightmare. Yet, much interesting work has been done showing that this need not be the case. Ocaps combine designation with authority, which enables user acts of designation - needed anyway - to also control the division of authority. </p>
+<p>The use of ocaps for secure interaction was pioneered during the early 2000sin the work of Mark Miller and Marc Stiegler on <a href="http://www.combex.com/papers/darpa-report/html/">CapDesk and the DarpaBrowser.</a> A major design goal was to put the user, not their applications, in charge. An important step in this direction, was to the invention of <a href="http://www.hpl.hp.com/techreports/2006/HPL-2006-116.html">the PowerBox pattern.</a> The CapDesk Powerbox was a software module that mediates the granting of authorities to a capability confined application from the user. Individuals necessarily hold many authorities, but there is no need for their applications to do so as well. The Powerbox manages the users authorities and safely allocates them as needed to applications, thus applying the prinicple of least authority. </p>
+<h2 id="guidelines-for-secure-interaction-design">Guidelines for Secure Interaction design</h2>
+<p>Ka-Ping Yee, building on the CapDesk work, identified a set of ten <a href="http://people.cs.vt.edu/~kafura/cs6204/Readings/Usability/AliigningSecurityUsability.pdf">guidelines for secure interaction design.</a> Guidelines well supported by ocap architectures.</p>
+<p>General principles
+* Path of least resistance. The most natural way to do a task should also be the safest.
+* Appropriate boundaries. The interface should draw distinctions among objects and actions along boundaries that matter to the user.</p>
+<p>Maintaining the Actor-Ability State
+* Explicit authorization. A User’s authority should only be granted to another actor through an explicit user action understood to imply granting.
+* Visibility. The interface should let the user easily review any active authority relationships that could affect security decisions.
+* Revocability. The interface should let users easily revoke authority that the user has granted, whenever revocation is possible.
+* Expected ability. The interface should not give the user the impression of having authority that the user does not actually have.</p>
+<p>Communicating with the users
+* Trusted path. The user’s communication channel to any entity that manipulates authority on the user’s behalf must be unspoofable and free of corruption.
+* Identifiability. The interface should ensure that identical objects or actions appear different.
+* Expressiveness. The interface should provide enough expressive power to let users easily express security policies that fit their goals.
+* Clarity. The effect of any authority-manipulating user action should be clearly apparent to the user before the action take effect.</p>
+<p>While applying ocaps to secure interaction desgin remains a work in progress, we believe that much can be gained from exending the principle of least authority to the user.  </p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

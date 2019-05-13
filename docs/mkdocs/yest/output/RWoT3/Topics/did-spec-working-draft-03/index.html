@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>DID (Decentralized Identifier) Specification - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DID (Decentralized Identifier) Specification", url: "#_top", children: [
+          ]},
+          {title: "1. Introduction", url: "#1-introduction", children: [
+          ]},
+          {title: "2. Purpose of this Specification", url: "#2-purpose-of-this-specification", children: [
+          ]},
+          {title: "2. Terminology and Acronyms", url: "#2-terminology-and-acronyms", children: [
+          ]},
+          {title: "3. Design Goals &amp; Principles", url: "#3-design-goals-principles", children: [
+              {title: "3.1. Decentralization", url: "#31-decentralization" },
+              {title: "3.2. Self-Sovereignty", url: "#32-self-sovereignty" },
+              {title: "3.3. Privacy", url: "#33-privacy" },
+              {title: "3.4. Security", url: "#34-security" },
+              {title: "3.5. Cryptography", url: "#35-cryptography" },
+              {title: "3.6. Discoverability", url: "#36-discoverability" },
+              {title: "3.7. Interoperability", url: "#37-interoperability" },
+              {title: "3.8. Portability", url: "#38-portability" },
+              {title: "3.9. Simplicity", url: "#39-simplicity" },
+              {title: "3.10. Extensibility", url: "#310-extensibility" },
+          ]},
+          {title: "4. DIDs (Decentralized Identifiers)", url: "#4-dids-decentralized-identifiers", children: [
+              {title: "4.1. The Generic DID Scheme", url: "#41-the-generic-did-scheme" },
+              {title: "4.2. Specific DID Schemes", url: "#42-specific-did-schemes" },
+              {title: "4.3 DID Fragments", url: "#43-did-fragments" },
+              {title: "4.4 DID Normalization", url: "#44-did-normalization" },
+              {title: "4.5 DID Persistence", url: "#45-did-persistence" },
+              {title: "4.6. Aliases", url: "#46-aliases" },
+          ]},
+          {title: "5. DDOs (DID Descriptor Objects)", url: "#5-ddos-did-descriptor-objects", children: [
+              {title: "5.1. Context (Required)", url: "#51-context-required" },
+              {title: "5.2. Primary DID (Required)", url: "#52-primary-did-required" },
+              {title: "5.3. Equivalent DIDs (Optional)", url: "#53-equivalent-dids-optional" },
+              {title: "5.4. Proof of Ownership (Optional)", url: "#54-proof-of-ownership-optional" },
+              {title: "5.5. Proof of Control (Optional)", url: "#55-proof-of-control-optional" },
+              {title: "5.6. Proof of Publication (Optional)", url: "#56-proof-of-publication-optional" },
+              {title: "5.7. Service Endpoint References (Optional)", url: "#57-service-endpoint-references-optional" },
+              {title: "5.8. Identity Type (Optional)", url: "#58-identity-type-optional" },
+              {title: "5.9. Creator (Optional Unless No Proof of Ownership)", url: "#59-creator-optional-unless-no-proof-of-ownership" },
+              {title: "5.10. Created (Optional)", url: "#510-created-optional" },
+              {title: "5.11. Updated (Optional)", url: "#511-updated-optional" },
+              {title: "5.12. Signature (Required)", url: "#512-signature-required" },
+          ]},
+          {title: "6. DID Operations", url: "#6-did-operations", children: [
+              {title: "6.1. Create", url: "#61-create" },
+              {title: "6.2. Read/Verify", url: "#62-readverify" },
+              {title: "6.3. Update", url: "#63-update" },
+              {title: "6.4. Delete/Revoke", url: "#64-deleterevoke" },
+          ]},
+          {title: "7. References", url: "#7-references", children: [
+          ]},
+          {title: "Appendix A: The Sovrin DID Method", url: "#appendix-a-the-sovrin-did-method", children: [
+              {title: "A.1. The Sovrin DID Scheme", url: "#a1-the-sovrin-did-scheme" },
+              {title: "A.2. Verification Keys", url: "#a2-verification-keys" },
+              {title: "A.3. Sovrin DID Operations", url: "#a3-sovrin-did-operations" },
+          ]},
+          {title: "Appendix B: Example DDO", url: "#appendix-b-example-ddo", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="did-decentralized-identifier-specification">DID (Decentralized Identifier) Specification</h1>
+<p><strong>STATUS: Working Draft 03, 17 October 2016</strong></p>
+<p><strong>Editors:</strong>     Drummond Reed, Les Chasen</p>
+<p><strong>Contributors:</strong>    Christopher Allen, Manu Sporny, David Longley, Jason Law, Daniel Hardman, Markus Sabadello</p>
+<p><em>Note: Work on this specification has been funded in part by the United States Department of Homeland Security's Science and Technology Directorate under contract HSHQDC-16-R00012-H-SB2016-1-002. The content of this specification does not necessarily reflect the position or the policy of the U.S. Government and no official endorsement should be inferred.</em></p>
+<p><em>Terms in</em> <strong>bold</strong> <em>are defined in the Terminology section.</em></p>
+<p><strong>Table of Contents</strong></p>
+<p>[[TOC]]</p>
+<h1 id="1-introduction">1. Introduction</h1>
+<p>Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity management</a> systems are based on centralized authorities such as corporate <a href="https://en.wikipedia.org/wiki/Directory_service">directory services</a>, <a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authorities</a>, or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">domain name registries</a>. From the standpoint of cryptographic trust verification, each of these centralized authorities serves as its own <a href="https://en.wikipedia.org/wiki/Trust_anchor">root of trust</a>. To make identity management work across these systems requires implementing <a href="https://en.wikipedia.org/wiki/Federated_identity">federated identity management</a>.</p>
+<p>The emergence of <strong>distributed ledger technology</strong> (DLT), sometimes referred to as <strong>blockchain</strong> technology, provides the opportunity to implement fully <strong>decentralized identity management</strong> (DIDM). In DIDM, all participants with identities (called <strong>identity owners</strong>) share a common root of trust in the form of a globally distributed ledger (or a decentralized P2P network that provides similar capabilities). </p>
+<p>In a DIDM architecture, each identity owner can be identified on a ledger with a <a href="https://en.wikipedia.org/wiki/Attribute%E2%80%93value_pair">key-value pair</a>. The index key is a <strong>decentralized identifier</strong> (DID) and the value is its associated <strong>DID description object</strong> (DDO). Together these form a <strong>DID record</strong>. Each DID record is cryptographically secured by private keys under the identity owner’s control. Following the dictums of <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>, each identity owner may have as many DID records as necessary to respect the identity owner’s desired separation of identities, personas, and contexts.</p>
+<p>This architecture not only eliminates dependence on centralized registries for identifiers, but also on centralized certificate authorities for key management as is typical of hierarchical <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public key infrastructure</a>). Instead each identity owner serves as its own root authority via its own DID record(s) on the shared ledger—an architecture called a <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI (decentralized PKI)</a>.</p>
+<h1 id="2-purpose-of-this-specification">2. Purpose of this Specification</h1>
+<p>The purpose of this specification is to define the two logical components of DID records—DIDs and DDOs—in a manner capable of being implemented on any DLT or decentralized network capable of accepting DID records. It is out of scope for this specification to define the precise method by which DID records shall be implemented on any particular DLT or decentralized network—that is the job of a separate <strong>DID method specification</strong>.</p>
+<p>Conceptually, the relationship of this specification and a DID method specification is similar to the relationship of the IETF generic URI specification (<a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>) and a specific <a href="http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">URI scheme  specification</a> (such as the http: and https: schemes specified in <a href="http://www.iana.org/go/rfc7230">RFC 7230</a>). It is also similar to the relationship of the IETF generic URN specification (<a href="https://www.ietf.org/rfc/rfc2141.txt">RFC 2141</a>) and a specific URN namespace definition (such as the UUID URN namespace defined in <a href="https://tools.ietf.org/html/rfc4122">RFC 4122</a>). The key difference is that a DID method specification, in addition to specifying a specific DID scheme, must also specify the methods for reading, writing, and revoking DID records on the DLT or decentralized network for which it is written.</p>
+<p>This specification defines the requirements of a conformant DID method specification. The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>.</p>
+<h1 id="2-terminology-and-acronyms">2. Terminology and Acronyms</h1>
+<p><strong>Alias.</strong> A hash of a conventional globally unique identifier based on traditional registry services, such as a mobile telephone number, an email address, or a URI (<a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifier</a>). Aliases are a type of <strong>NCID</strong> used for <strong>DID</strong> discovery. See section 4.6.</p>
+<p><strong>Blockchain.</strong> A specific type of <strong>distributed ledger technology</strong> (DLT) that stores ledger entries in blocks for efficiency. Because this type of DLT was introduced by <a href="https://en.wikipedia.org/wiki/Bitcoin">Bitcoin</a>, the term "blockchain" is sometimes used to refer specifically to the Bitcoin ledger.</p>
+<p><strong>CID.</strong> Acronym for <strong>cryptographic identifier</strong>.</p>
+<p><strong>Cryptographic identifier (CID).</strong> A <strong>DID</strong> with specific cryptographic properties as defined by a <strong>DID method specification</strong>. A CID has an associated private key or signing key that can be used to verify ownership of the CID.</p>
+<p><strong>Cryptonym.</strong> Another name for a <strong>CID</strong>.</p>
+<p><strong>Decentralized identifier (DID).</strong> A globally unique identifier that does not require a centralized registration authority. The generic format of a DID is defined in this specification. A specific <strong>DID scheme</strong> is defined in a <strong>DID method specification</strong>. A DID may be either a <strong>cryptographic identifier</strong> (CID), a <strong>non-cryptographic identifier</strong> (NCID), or an <strong>alias</strong>. </p>
+<p><strong>Decentralized identity management (DIDM).</strong> <a href="https://en.wikipedia.org/wiki/Identity_management">Identity management</a> based on decentralized identifiers that do not require centralized authorities such as those required by <a href="https://en.wikipedia.org/wiki/X.500">X.500 directory services</a>, the <a href="https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System</a>, national ID systems, etc.</p>
+<p><strong>DDO.</strong> Acronym for <strong>DID descriptor object</strong>. </p>
+<p><strong>DID.</strong> Acronym for <strong>decentralized identifier</strong>. </p>
+<p><strong>DID descriptor object (DDO).</strong> A JSON data structure containing metadata describing an identity owner, including the cryptographic key material required for the identity owner to prove ownership and control of the <strong>DID record</strong>. A DDO may also contain other <a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a> describing the identity owner.</p>
+<p><strong>DID method.</strong> A definition of how a specific <strong>DID scheme</strong> can be implemented on specific DLT or other decentralized network, including the precise method(s) by which DIDs and DDOs can be read, written, and revoked.</p>
+<p><strong>DID method specification.</strong> The specification for a specific <strong>DID scheme</strong> and <strong>DID method</strong> that is conformant with the requirements of this specification.</p>
+<p><strong>DID record.</strong> The combination of a <strong>DID</strong> and a <strong>DDO</strong> that forms the "root identity record" for an identity. From the standpoint of <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims-based identity</a>, a DID record is the “genesis claim” for an identity.</p>
+<p><strong>DID scheme.</strong> The formal syntax of a DID identifier. The generic DID scheme is defined in this  specification. A specific DID scheme that works with a specific <strong>DID method</strong> is defined in a <strong>DID method specification</strong>.</p>
+<p><strong>DIDM.</strong> Acronym for <strong>decentralized identity management</strong>.</p>
+<p><strong>Distributed ledger technology (DLT).</strong> A <a href="https://en.wikipedia.org/wiki/Distributed_database">distributed database</a> in which the various nodes use a <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus protocol</a> to maintain a shared ledger in which each transaction is cryptographically signed and chained to the previous transaction. See also <strong>blockchain</strong>.</p>
+<p><strong>DLT.</strong> Acronym for <strong>distributed ledger technology</strong>. </p>
+<p><strong>Identity owner.</strong> The person, organization, or thing whose identity is represented by a <strong>DID record</strong>. (Note: this specification avoids the term "user" since an identity owner is not always an individual person.) Note that the identity owner may not be the director controller of the DID record; for example a parent may control the DID record(s) for a young child, but the child is the identity owner.</p>
+<p><strong>Identity record.</strong> Another name for a <strong>DID record</strong>.</p>
+<p><strong>JSON-LD (JSON Linked Data).</strong> A method of encoding <a href="https://en.wikipedia.org/wiki/Linked_data">Linked Data</a> using JSON. JSON-LD enables object properties in a JSON document to be linked to concepts in an <strong>RDF</strong> <a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>.</p>
+<p><strong>Ledger.</strong> In the context of this specification, a shared database of transactions maintained via <strong>distributed ledger technology</strong>.</p>
+<p><strong>NCID.</strong> Acronym for <strong>non-cryptographic identifier</strong>.</p>
+<p><strong>Non-cryptographic identifier (NCID).</strong> A <strong>DID</strong> that does not have any cryptographic properties. An NCID does not have an associated private key or signing key. A <strong>UUID</strong> is an example of an NCID.</p>
+<p><strong>RDF.</strong> Acronym for Resource Description Framework—a semantic graph model defined by the <a href="https://www.w3.org/2011/rdf-wg/">W3C RDF Working Group</a>.</p>
+<p><strong>Relying party (RP).</strong> The entity accepting a digital identity asserted by an identity owner.</p>
+<p><strong>RP.</strong> Acronym for <strong>relying party</strong>. </p>
+<p><strong>Service endpoint.</strong> A network address at which a service operates on behalf of an identity owner. Examples of specific DIDM services include discovery services, authentication services, authorization services, interaction services, etc. A <strong>DIDM</strong> service endpoint may also be provided by a generalized data interchange protocol such as <strong>XDI</strong>.</p>
+<p><strong>UUID.</strong> Universally Unique Identifier as specified by <a href="https://www.ietf.org/rfc/rfc4122.txt">RFC 4122</a>.</p>
+<p><strong>URI (Uniform Resource Identifier).</strong> The standard identifier in Web architecture defined by IETF <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.</p>
+<p><strong>URN (Uniform Resource Name).</strong> A URI intended to serve as a persistent, location-independent identifier of a resource, i.e, an identifier that will always represent the same resource (ideally forever).</p>
+<p><strong>XDI.</strong> Acronym for Extensible Data Interchange (also XRI Data Interchange)—a semantic graph format and semantic data interchange protocol defined by the <a href="https://www.oasis-open.org/committees/xdi/">OASIS XDI Technical Committee</a>.</p>
+<h1 id="3-design-goals-principles">3. Design Goals &amp; Principles</h1>
+<p>This section summarizes the design goals and principles of DID architecture.</p>
+<h2 id="31-decentralization">3.1. Decentralization</h2>
+<p>DID architecture should eliminate the requirement for centralized authorities or single points of failure in identity management, including the registration of globally unique identifiers, public verification keys, service endpoints, and other metadata.</p>
+<h2 id="32-self-sovereignty">3.2. Self-Sovereignty</h2>
+<p>DID architecture should give identity owners the power to directly own and control their own digital identities without the need to rely on external authorities.</p>
+<h2 id="33-privacy">3.3. Privacy</h2>
+<p>DID architecture should enable identity owners to control the privacy of their digital identities, including selective disclosure of attributes or other identity data.</p>
+<h2 id="34-security">3.4. Security</h2>
+<p>DID architecture should provide sufficient security for relying parties to rely on DID records to their required level of assurance.</p>
+<h2 id="35-cryptography">3.5. Cryptography</h2>
+<p>DID architecture should enable an identity owner to provide cryptographic proof of ownership and proof of access control rights.</p>
+<h2 id="36-discoverability">3.6. Discoverability</h2>
+<p>DID architecture should make it possible for entities to discover DID records for other entities to learn more about or interact with those entities.</p>
+<h2 id="37-interoperability">3.7. Interoperability</h2>
+<p>DID architecture should use interoperable standards so DIDs and DID records can be used with the maximum number of existing systems.</p>
+<h2 id="38-portability">3.8. Portability</h2>
+<p>DID architecture should be system-independent and enable identity owners to use their digital identities with any system that supports DIDs and DIDM.</p>
+<h2 id="39-simplicity">3.9. Simplicity</h2>
+<p>To meet these design goals, DID architecture should be (to paraphrase Albert Einstein) "as simple as possible but no simpler".</p>
+<h2 id="310-extensibility">3.10. Extensibility</h2>
+<p>When possible, DID architecture should enable extensibility provided it does not hinder interoperability, portability or simplicity.</p>
+<h1 id="4-dids-decentralized-identifiers">4. DIDs (Decentralized Identifiers)</h1>
+<p>The foundation of DID architecture is the concept of the decentralized identifier. This concept is not new; the structure of <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUIDs</a> (Universally Unique IDentifiers) was first developed in the 1980s and later became a standard feature of the Open Software Foundation’s <a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>. UUIDs achieve global uniqueness without a centralized registry service by using an algorithm that generates 128-bit values with sufficient entropy that the chance of collision are infinitesimally small. UUIDs are formally a URN (Uniform Resource Name) namespace specified in <a href="https://tools.ietf.org/html/rfc4122">IETF RFC 4122</a>.</p>
+<p>However the UUID URN specification does not provide:</p>
+<ol>
+<li>
+<p>A standard mechanism for proving control and ownership of a UUID, or </p>
+</li>
+<li>
+<p>A standard method for resolving the UUID to discover more about or interact with the resource it identifies. </p>
+</li>
+</ol>
+<p>This is the motivation for DIDs: a new type of decentralized URN that can have one or both of these additional properties. The abstract syntax of a DID is specified by the generic DID scheme defined in section 4.1. The concrete syntax of a specific DID scheme is defined in a DID method specification. A specific DID scheme MAY define up to three types of DIDs:</p>
+<ol>
+<li>
+<p><strong>CIDs</strong> (cryptographic identifiers) are encodings, hashes, or other derivations of public keys or verification keys that have specific cryptographic properties.</p>
+</li>
+<li>
+<p><strong>NCIDs</strong> (non-cryptographic identifiers) do not have any cryptographic properties (a UUID is an example of an NCID).</p>
+</li>
+<li>
+<p><strong>Aliases</strong> are a subtype of NCIDs created from a hash of a conventional unique identifier, such as a mobile telephone number, email address, URI, etc.</p>
+</li>
+</ol>
+<p>Note that each of these DID types can serve as an index key (not to be confused with a cryptographic key) to a corresponding value, which is the DDO. A DID method specification MAY specify how the same DDO may be located by multiple DID index keys, i.e., multiple CIDs, NCIDs, or aliases.</p>
+<h2 id="41-the-generic-did-scheme">4.1. The Generic DID Scheme</h2>
+<p>The generic DID scheme is a URI scheme conformant with <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>. Due to the limited character set, it also an IRI scheme conformant with <a href="https://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a>. Following is an ABNF definition using the ABNF syntax defined in <a href="https://tools.ietf.org/html/rfc5234">RFC 5234</a>.</p>
+<pre><code>did                = &quot;did:&quot; method &quot;:&quot; specific-idstring [ &quot;#&quot; fragment ]
+specific-idstring  = idstring *( &quot;:&quot; idstring )
+method             = 1*idchar
+idstring           = 1*idchar
+idchar             = ALPHA / DIGIT / &quot;.&quot; / &quot;-&quot;
+</code></pre>
+
+<p>See section 4.3 for the balance of the ABNF rules defining DID fragments.</p>
+<h2 id="42-specific-did-schemes">4.2. Specific DID Schemes</h2>
+<p>A DID method specification MUST define exactly one specific DID scheme identified by exactly one method name (the method rule in section 4.1). Since DIDs are intended for decentralized identity infrastructure, it is NOT RECOMMENDED to establish a registry of unique DID method names. Rather the uniqueness of DID method names should be established via human consensus, i.e., a specific DID scheme MUST use a method name that is unique among all DID method names known to the specification authors at the time of publication. </p>
+<p>Since the method name is part of the DID, it SHOULD be as short as practical. A method name of four characters or less is RECOMMENDED. The method name MAY reflect the name of the DLT or decentralized network to which the DID method specification applies.</p>
+<p>If needed, a specific DID scheme MAY define multiple specific ID formats (the specific-idstring rule in section 4.1). It is RECOMMENDED that a specific DID scheme define as few specific ID formats as possible.</p>
+<h2 id="43-did-fragments">4.3 DID Fragments</h2>
+<p>A DID—the decentralized identifier that uniquely represents an identity owner—is the entire identifier defined in the ABNF in section 4.1 WITHOUT the fragment identifier. The fragment identifier MUST NOT be considered part of the DID. The DID fragment identifier (the fragment rule in section 4.1) MUST be used only as a pointer into the DDO to identify a unique cryptographic key or other component of the DDO.</p>
+<p>Following are the ABNF rules for a DID fragment identifier.</p>
+<pre><code>fragment      = *( pchar / &quot;/&quot; / &quot;?&quot; )
+pchar         = unreserved / pct-encoded / sub-delims / &quot;:&quot; / &quot;@&quot;
+unreserved    = ALPHA / DIGIT / &quot;-&quot; / &quot;.&quot; / &quot;_&quot; / &quot;~&quot;
+pct-encoded   = &quot;%&quot; HEXDIG HEXDIG
+sub-delims    = &quot;!&quot; / &quot;$&quot; / &quot;&amp;&quot; / &quot;'&quot; / &quot;(&quot; / &quot;)&quot;
+                 / &quot;*&quot; / &quot;+&quot; / &quot;,&quot; / &quot;;&quot; / &quot;=&quot;
+</code></pre>
+
+<p>Note that these rules are identical to the fragment rules in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, i.e., a DID fragment is identical to a URI fragment.</p>
+<p>A specific DID scheme MAY specify ABNF rules for DID fragments that are more restrictive than the rules in this section.</p>
+<h2 id="44-did-normalization">4.4 DID Normalization</h2>
+<p>For the broadest interoperability, DID normalization should be as simple and universal as possible. Therefore:</p>
+<ol>
+<li>
+<p>DIDs MUST be case insensitive</p>
+</li>
+<li>
+<p>DIDs SHOULD be normalized to lowercase.</p>
+</li>
+</ol>
+<p>If a specific DID scheme supports DID fragments, DID fragment normalization MUST be specified by the DID method specification.</p>
+<h2 id="45-did-persistence">4.5 DID Persistence</h2>
+<p>Ideally a DID would be a completely abstract decentralized dentifier (like a UUID) that can be bound to multiple underlying DLTs or decentralized networks over time, thus maintaining its persistence independent of any particular ledger or network. However because by definition a ledger- and network-independent DID can be registered on any number of ledgers or networks, it introduces extremely hard identity ownership and <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types#SOA">start-of-authority</a> (SOA) problems. It also greatly increases implementation complexity for clients.</p>
+<p>To avoid these issues, it is RECOMMENDED that DID method specifications only produce DIDs and DID methods bound to strong, stable ledgers or networks capable of making the highest level of commitment to persistence of the DID and DID method over time.</p>
+<p>It is also RECOMMENDED to establish verifiable equivalence statements between DID records representing the same identity owner on multiple ledgers or networks. Such equivalence statements can produce the practical equivalent of a single persistent abstract DID. DID equivalence statements are addressed in section 5.2.</p>
+<h2 id="46-aliases">4.6. Aliases</h2>
+<p>DIDs achieve global uniqueness without the need for a central registration authority. However, as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko’s Triangle</a> illustrates, this comes at the cost of human memorability. In some use cases, it is desirable to be able to discover the DID record for an identity owner from a conventional address for the owner, such as a mobile telephone number, an email address, a Twitter handle, a URI, etc.</p>
+<p>An <strong>alias</strong> is a DID created from a hash of a conventional address. If a specific DID scheme supports aliases, the DID method specification MUST specify: a) the target identifier scheme, b) the normalization algorithm, and c) the hashing algorithm required to produce the alias. Also, because the conventional address is registered with a centralized registration authority, an identity owner MUST prove ownership of an alias prior to registration. The governance rules for this requirement MUST be specified in the DID method specification.</p>
+<p>Aliases represent a tradeoff between convenience and privacy. When a DID record is indexed by one or more aliases, it enables discovery by parties who know the conventional address. Because it is a hash, it does not reveal the conventional address directly, however this is relatively weak privacy protection because an alias can be easily discovered via dictionary attacks. Therefore it is RECOMMENDED that if a DID method specification supports aliases:</p>
+<ol>
+<li>
+<p>An alias only be used to index a DID record with the permission of the identity owner.</p>
+</li>
+<li>
+<p>Lookups on an alias should be subject to access controls that meet the identity owner’s privacy requirements.</p>
+</li>
+<li>
+<p>Alternately, an additional password or passkey should be combined with the conventional address prior to hashing to allow the identity owner to control who can generate the alias and thus use it to discover the associated DID.</p>
+</li>
+</ol>
+<h1 id="5-ddos-did-descriptor-objects">5. DDOs (DID Descriptor Objects)</h1>
+<p>If a DID is the index key in a <a href="https://en.wikipedia.org/wiki/Attribute%E2%80%93value_pair">key-value pair</a>, the DDO is the value to which the index key points. A fundamental goal of this specification is to define DIDs and DDOs such that a DID will always returns a valid DDO regardless of the underlying DLT or decentralized network for which the DID method is defined. This enables the same layer of interoperable root identity objects to operate across all DLTs and decentralized networks that support DIDs.</p>
+<p>For enable this interoperability, a DDO is specified as a single JSON object conforming to <a href="https://tools.ietf.org/html/rfc7159">RFC 7159</a>. For purposes of this version of the DID specification, the format of this JSON object is specified in <a href="http://json-ld.org/">JSON-LD</a>, a format for mapping JSON data into the RDF semantic graph model as defined by the <a href="https://www.w3.org/TR/json-ld/">W3C JSON-LD 1.0 specification</a>. Future versions of this specification MAY specify other semantic graph formats for a DDO such as JXD (JSON XDI Data), a serialization format for the XDI graph model as defined by the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">OASIS XDI Core 1.0 specification</a>.</p>
+<p>The following sections define the members of this JSON object, including whether these members are required or optional.</p>
+<h2 id="51-context-required">5.1. Context (Required)</h2>
+<p>JSON objects in JSON-LD format must include a JSON-LD context statement. The rules for this statement are:</p>
+<ol>
+<li>
+<p>A DDO MUST have exactly one top-level context statement.</p>
+</li>
+<li>
+<p>This statement MUST be the first line in the JSON object. (This is not strictly necessary under JSON-LD but is required for DDOs.)</p>
+</li>
+<li>
+<p>The key for this member MUST be @context.</p>
+</li>
+<li>
+<p>The value of this key MUST be the URL specified in the example below.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;@context&quot;: &quot;[TODO-specify-canonical-URL-for-JSON-LD-DDOs]&quot;
+}
+</code></pre>
+
+<h2 id="52-primary-did-required">5.2. Primary DID (Required)</h2>
+<p>This primary DID is the primary index key for the DDO. The rules for a primary DID are:</p>
+<ol>
+<li>
+<p>A DDO MUST have exactly one member representing the primary DID.</p>
+</li>
+<li>
+<p>The key for this member MUST be id.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid DID according to a specific DID scheme as defined in section 4.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;id&quot;: &quot;did:sov:21tDAKCERh95uGgKbJNHYp&quot;
+}
+</code></pre>
+
+<h2 id="53-equivalent-dids-optional">5.3. Equivalent DIDs (Optional)</h2>
+<p>An equivalent DID is an additional index key for the DDO. Under the RDF OWL graph model, this is a DID that has <a href="https://www.w3.org/TR/owl-ref/#sameAs-def">an owl:sameAs relationship</a> with the primary DID. Under the XDI graph model, it is an XDI address that has <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml#idp140693356323016">an XDI $is identity equivalence relationship</a> with the primary DID.</p>
+<p>The rules for equivalent identifiers are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing an array of equivalent DIDs.</p>
+</li>
+<li>
+<p>The key for this member MUST be equiv-id.</p>
+</li>
+<li>
+<p>The value of this key MUST be an array.</p>
+</li>
+<li>
+<p>The values in this array MUST be valid DIDs according as defined in section 4.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;equiv-id&quot;: [
+        &quot;did:sov:33ad7beb1abc4a26b89246&quot;,
+        &quot;did:sov:f336a645f5a941b7ab8oac&quot;
+    ]
+}
+</code></pre>
+
+<p>[OPEN ISSUE: Should equivalent DIDs be limited to DIDs that use the same method as the primary DID—and thus must registered in the same DLT or network? If not, how do we define the relationship of an equivalent DID to a DID proved with Proof of Publication member per section 5.6?]</p>
+<h2 id="54-proof-of-ownership-optional">5.4. Proof of Ownership (Optional)</h2>
+<p>Proof of Ownership is the mechanism by which an identity owner can cryptographically prove ownership of a DID. This is indicated by publication of a public key or verification key. Note that Proof of Ownership is separate from Proof of Control because an identity owner may wish to enable other entities to update the DDO (for example, to assist with key recovery) without enabling them to prove ownership (and thereby be able to impersonate the identity owner).</p>
+<p>The rules for Proof of Ownership are:</p>
+<ol>
+<li>
+<p>A DDO MUST have exactly one member for providing Proof of Ownership. [OPEN ISSUE: should this be singular or muttiple—see below.]</p>
+</li>
+<li>
+<p>The key for this member MUST be "verkey". [OPEN ISSUE: should this be “pubkey” or “public-key”?]</p>
+</li>
+<li>
+<p>The value of this key MUST be a public key or verification key as defined by the DID method specification for the primary DID.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;verkey&quot;: &quot;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCABMC&quot;
+}
+</code></pre>
+
+<p>[OPEN ISSUE: Should a DDO allow multiple verkeys for Proof of Ownership? If so, is the method for referencing a specific verkey based on using a DID fragment? See an example at <a href="https://authorization.io/dids/did:0768f21b-5371-4726-b784-17707bc8deca">https://authorization.io/dids/did:0768f21b-5371-4726-b784-17707bc8deca</a>. Note that this example actually uses a path and not a fragment.]</p>
+<p>[OPEN ISSUE: Should each DID method specification be able to define its own verkey or public key expression format(s)?]</p>
+<p>[OPEN ISSUE: Do we need to distinguish between Proof of Ownership and Proof of Possession?]</p>
+<h2 id="55-proof-of-control-optional">5.5. Proof of Control (Optional)</h2>
+<p>Proof of Control is the mechanism by which an identity owner can give itself or other entities permission to update the DDO (for example to assist with key recovery) without being able to prove ownership. Like Proof of Ownership, Proof Of Control is indicated by publication of one or more public keys or verkeys.</p>
+<p>To give identity owners maximum flexibility for key recovery, Proof of Control SHOULD support both multiple keys and <a href="https://en.wikipedia.org/wiki/Multisignature">multisignatures</a>. </p>
+<p>The rules for Proof of Control using multiple keys are:</p>
+<ol>
+<li>
+<p>A DDO MUST have exactly member representing an array of public keys or verkeys for providing Proof of Control.</p>
+</li>
+<li>
+<p>The key for this member MUST be control.</p>
+</li>
+<li>
+<p>The value of this key MUST be an array.</p>
+</li>
+<li>
+<p>The values in this array MUST be either:</p>
+<ol>
+<li>
+<p>The string "self".</p>
+</li>
+<li>
+<p>A public key or verification key as defined by the DID method specification for the primary DID.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>If one of the values of this array is "self", then any key in the verkey member specified in section 5.4 MUST be considered valid for Proof of Control.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;control&quot;: [
+        &quot;self&quot;,
+        &quot;did:sov:bsAdB81oHKaCmLTsgajtp9AoAHE9ei4&quot;,
+        &quot;did:sov:21tDAKCERh95uGgKbJNHYpE8WEogrsf&quot;
+    ]
+}
+</code></pre>
+
+<p>[OPEN ISSUE: Do we define an optional threshold of signatures required if there are multiple keys listed?]</p>
+<p>[OPEN ISSUE: How do we want to define multisig?]</p>
+<h2 id="56-proof-of-publication-optional">5.6. Proof of Publication (Optional)</h2>
+<p>Proof of Publication is the mechanism by which an identity owner can prove that it also owns one or more DIDs that use other DID methods (and thus may be registered on other DLTs or decentralized networks). Proving equivalence across DLTs is a powerful way to maintain persistence of an identity independent of an underlying DLT or network.</p>
+<p>[OPEN ISSUE: How should a DDO show proof of publication of equivalent DIDs on other blockchains?]</p>
+<h2 id="57-service-endpoint-references-optional">5.7. Service Endpoint References (Optional)</h2>
+<p>After publication of cryptographic key material, the other primary purpose of DID records is to enable discovery of service endpoints for the identity owner. A service endpoint may represent any type of service the identity owner wishes to advertise, including DIDM services for further discovery, authentication, authorization, or interaction.</p>
+<p>The rules for service endpoints are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing service endpoints.</p>
+</li>
+<li>
+<p>The key for this member MUST be "service".</p>
+</li>
+<li>
+<p>The value of this key MUST be a nested JSON object.</p>
+</li>
+<li>
+<p>In this nested JSON object, each member MUST have a key representing the name of a service established in the JSON-LD context map.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid IRI conforming to <a href="https://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a> that represents the service endpoint.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;service&quot;: {
+        &quot;openid&quot;: &quot;https://openid.example.com/456&quot;,
+        &quot;xdi&quot;: &quot;https://xdi.example.com/123&quot;
+    }
+}
+</code></pre>
+
+<h2 id="58-identity-type-optional">5.8. Identity Type (Optional)</h2>
+<p>An identity type is a semantic assertion about the type of resource an identity owner represents (i.e., a person, an organization, a type of thing). </p>
+<p>The rules for an identity type are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing an identity type.</p>
+</li>
+<li>
+<p>The key for this member MUST be type.</p>
+</li>
+<li>
+<p>The value of this key MUST be either:</p>
+<ol>
+<li>
+<p>A valid IRI conforming to <a href="https://www.ietf.org/rfc/rfc3987.txt">RFC 3987</a> that represents identity type.</p>
+</li>
+<li>
+<p>A valid XDI address conforming to <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/xdi-core-v1.0.html">XDI Core 1.0</a> that represents the identity type.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;type&quot;: &quot;http://schema.org/Person&quot;
+}
+</code></pre>
+
+<h2 id="59-creator-optional-unless-no-proof-of-ownership">5.9. Creator (Optional Unless No Proof of Ownership)</h2>
+<p>In certain cases, one identity owner (called the creator) may provision an identity record for another identity owner who is not in a position to hold or control the necessary cryptographic keys (such as a parent creating an identity record for a young child). In this case, there are no verkeys to represent the ultimate identity owner. So the DDO needs to express the identity of the creator.</p>
+<p>The rules for a creator are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing a creator.</p>
+</li>
+<li>
+<p>The key for this member MUST be creator.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid DID as defined in section 4.</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;creator&quot;: &quot;did:sov:21tDAKCERh95uGgKbJNHYpE8WEogrsf&quot;
+}
+</code></pre>
+
+<h2 id="510-created-optional">5.10. Created (Optional)</h2>
+<p>Standard metadata for identity records includes a timestamp of the original creation. The rules for including a creation timestamp are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing a creation timestamp.</p>
+</li>
+<li>
+<p>The key for this member MUST be created.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid XML datetime value as defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>.</p>
+</li>
+<li>
+<p>This datetime value MUST be normalized to UTC 00:00 as indicated by the trailing "Z".</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;created&quot;: &quot;2002-10-10T17:00:00Z&quot;
+}
+</code></pre>
+
+<p>[OPEN ISSUE: Is a "created" timestamp RECOMMENDED?]</p>
+<h2 id="511-updated-optional">5.11. Updated (Optional)</h2>
+<p>Standard metadata for identity records includes a timestamp of the most recent change. The rules for including a updated timestamp are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing an updated timestamp.</p>
+</li>
+<li>
+<p>The key for this member MUST be updated.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid XML datetime value as defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>.</p>
+</li>
+<li>
+<p>This datetime value MUST be normalized to UTC 00:00 as indicated by the trailing "Z".</p>
+</li>
+</ol>
+<p>Example:</p>
+<pre><code>{
+    &quot;updated&quot;: &quot;2016-10-17T02:41:00Z&quot;
+}
+</code></pre>
+
+<p>[OPEN ISSUE: Is an "updated" timestamp RECOMMENDED?]</p>
+<h2 id="512-signature-required">5.12. Signature (Required)</h2>
+<p>The signature is cryptographic proof of the validity of the DDO according to either:</p>
+<ol>
+<li>
+<p>The verkey of the identity owner as defined in section 5.4, or if not present:</p>
+</li>
+<li>
+<p>The verkey of the DID creator as defined in section 5.9.</p>
+</li>
+</ol>
+<p>The rules for a signature are:</p>
+<ol>
+<li>
+<p>A DDO MUST have zero or one member representing a signature.</p>
+</li>
+<li>
+<p>The key for this member MUST be signature.</p>
+</li>
+<li>
+<p>The value of this key MUST be a valid JSON-LD signature as defined by [OPEN ISSUE: need current reference]</p>
+</li>
+</ol>
+<p>[OPEN ISSUE: Need to specify any additional rules for applying an JSON-LD signature.]</p>
+<p>Example:</p>
+<pre><code>{
+    &quot;signature&quot;: {
+        &quot;type&quot;: &quot;LinkedDataSignature2015&quot;,
+        &quot;created&quot;: &quot;2016-02-08T16:02:20Z&quot;,
+        &quot;creator&quot;: &quot;did:76d0cdb7-9c75-4be5-8e5a-e2d7a35ce907/keys/1&quot;,
+        &quot;signatureValue&quot;: &quot;QNB13Y7Q9oLlDLL6AHyL31OE5fLji9DwJSA8qnv81oRaKonij8m+Jv4XdiEYvJ97iRlzKU/92/0LafSL5JftEgl960DLcbqMFxOtbAmFOIMa7eDcrgTL5ytXeYCYKLjHQG3s8a3UKDKRuEK54qK1G5hGKGoLgAVa6xgcDLjW7M19PEJV/c3HpGA7Eez6VFMoTt4yESjZvOXC97xN3KpshOx2HT/btgUbo0XjA1Oi0QHdgrLcUsQGt6w23RjeSToalrsA1G69OFeN2OiQrz9Jb4561hvKLSyWObwRmS6n5Vgr5xkvUm6MONRq0Vg33kXevoVM64KTBkISul61tzjn4w==&quot;
+    }
+}
+</code></pre>
+
+<h1 id="6-did-operations">6. DID Operations</h1>
+<p>To enable the full functionality of DIDs and DDOs on a particular DLT or decentralized network (called the <em>target system</em>), a DID method specification MUST specify how each of the following <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations is performed by a client. Each operation MUST be specified to the level of detail necessary to build and test interoperable client implementations with the target system.</p>
+<p>Note that, due to the specified contents of DDOs, these operations can effectively be used to perform all the operations required of a CKMS (cryptographic key management system), e.g.:</p>
+<ul>
+<li>
+<p>Key registration</p>
+</li>
+<li>
+<p>Key replacement</p>
+</li>
+<li>
+<p>Key rotation</p>
+</li>
+<li>
+<p>Key recovery</p>
+</li>
+<li>
+<p>Key expiration</p>
+</li>
+</ul>
+<h2 id="61-create">6.1. Create</h2>
+<p>The DID method specification MUST specify how a client creates a DID record—the combination of a DID and its associated DDO—on the target system, including all cryptographic operations necessary to establish proof of ownership.</p>
+<h2 id="62-readverify">6.2. Read/Verify</h2>
+<p>The DID method specification MUST specify how a client uses a DID to request a DDO from the target system, including how the client can verify the authenticity of the DDO.</p>
+<h2 id="63-update">6.3. Update</h2>
+<p>The DID method specification MUST specify how a client can update a DID record on the target system, including all cryptographic operations necessary to establish proof of control.</p>
+<h2 id="64-deleterevoke">6.4. Delete/Revoke</h2>
+<p>Although a core feature of distributed ledgers is immutability, the DID method specification MUST specify how a client can revoke a DID record on the target system, including all cryptographic operations necessary to establish proof of control.</p>
+<h1 id="7-references">7. References</h1>
+<p>[RFC-KEYWORDS] Key words for use in RFCs to Indicate Requirement Levels. IETF RFC 2119. <a href="https://www.ietf.org/rfc/rfc2119.txt">https://www.ietf.org/rfc/rfc2119.txt</a> </p>
+<p>[ABNF] Augmented BNF for Syntax Specifications: ABNF. IETF RFC 5234. <a href="https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a> </p>
+<p>[SBIR-TOPIC] Applicability of Blockchain Technology to Privacy Respecting Identity Management. U.S Department of Homeland Security Small Business Innovation Research Grant. <a href="https://www.sbir.gov/sbirsearch/detail/867797">https://www.sbir.gov/sbirsearch/detail/867797</a> </p>
+<p>[SBIR-SUBMISSION] Respect Network submission for DHS SBIR topic on the Applicability of Blockchain Technology to Privacy Respecting Identity Management. Respect-Network-HSHQDC-16-R00012-H-SB2016-1-002</p>
+<p>[URI] Uniform Resource Identifiers. IETF RFC 3986. <a href="https://www.ietf.org/rfc/rfc3986.txt">https://www.ietf.org/rfc/rfc3986.txt</a> </p>
+<p>[IRI] Internationalized Resource Identifiers. IETF RFC 3987. <a href="https://www.ietf.org/rfc/rfc3987.txt">https://www.ietf.org/rfc/rfc3987.txt</a> </p>
+<p>[UUID] A Universally Unique IDentifier (UUID) URN Namespace. IETF RFC 4122. <a href="https://www.ietf.org/rfc/rfc4122.txt">https://www.ietf.org/rfc/rfc4122.txt</a> </p>
+<p>[JSON] The JavaScript Object Notation (JSON) Data Interchange Format <a href="https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a> </p>
+<p>[JSON-LD] JSON-LD 1.0. <a href="http://www.w3.org/TR/json-ld/">http://www.w3.org/TR/json-ld/</a> </p>
+<p>[VCTF] W3C Verifiable Claims Task Force. <a href="http://opencreds.org/specs/source/claims-data-model/#expressing-entity-credentials-in-json">http://opencreds.org/specs/source/claims-data-model/#expressing-entity-credentials-in-json</a></p>
+<p>[XDI-CORE] OASIS  XDI Core 1.0 Specification Working Draft 01  <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml</a> </p>
+<p>[XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation. <a href="https://www.w3.org/TR/xmlschema11-2/">https://www.w3.org/TR/xmlschema11-2/</a> </p>
+<h1 id="appendix-a-the-sovrin-did-method">Appendix A: The Sovrin DID Method</h1>
+<p>Sovrin is a public permissioned ledger for self-sovereign identity governed by the global non-profit <a href="http://www.sovrin.org/">Sovrin Foundation</a>. This appendix is the beginning of the DID method specification for the Sovrin DID method.</p>
+<h2 id="a1-the-sovrin-did-scheme">A.1. The Sovrin DID Scheme</h2>
+<p>The Sovrin DID scheme is defined by the following ABNF:</p>
+<pre><code>sovrin-did    = &quot;did:sov:&quot; idstring
+idstring      = 22*22char
+char          = ALPHA / DIGIT
+</code></pre>
+
+<p>This means all Sovrin DIDs are exactly 22 characters representing a <a href="https://en.bitcoin.it/wiki/Base58Check_encoding">base58Check encoding</a> of the first 16 bytes of a 256 bit <a href="https://ed25519.cr.yp.to/">Ed25519</a> verification key (the public portion of the key pair).</p>
+<h2 id="a2-verification-keys">A.2. Verification Keys</h2>
+<p>It is impossible to tell from a Sovrin DID alone whether it is a CID or NCID. Rather the associated DDO MUST be checked to determine one of three options for the associated verification key (<strong>verkey</strong>).</p>
+<ol>
+<li>
+<p><strong>Empty.</strong> In this case, the DDO does not contain a verkey, and the DID is an NCID. In this case, the creator of the Sovrin identity record (called a trust anchor) controls the identifier, and no independent proof-of-existence is possible until the DDO is updated to contain either an Abbreviated or Full verkey.</p>
+</li>
+<li>
+<p><strong>Abbreviated.</strong> In this case, the DDO contains a verkey starting with a tilde '~' followed by 22 characters. The tilde indicates that the DID itself represents the first 16 bytes of the verkey, and the string following the tilde represent the second 16 bytes of the verkey, both using <a href="https://en.wikipedia.org/wiki/Base58">base58 encoding</a> with the Bitcoin alphabet.</p>
+</li>
+<li>
+<p><strong>Full.</strong> In this case, the DDO contains a full 44 character verkey, representing a <a href="https://en.wikipedia.org/wiki/Base58">base58 encoding</a> of all 32 bytes of a <a href="https://ed25519.cr.yp.to/">Ed25519</a> verification key.</p>
+</li>
+</ol>
+<p>Note that an abbreviated verkey has one security benefit when it is first created: there is a provable binding between the DID and the DDO at the time of registration. However this could also be accomplished by having the Sovrin client signing a nonce, or by some other cryptographic handshake defined by a DID method specification.</p>
+<p>In any case, a Sovrin client MUST NOT ever rely on an abbreviated key by itself. The client MUST always check with the Sovrin ledger to ensure that the client has the most current DDO associated with a Sovrin DID.</p>
+<h2 id="a3-sovrin-did-operations">A.3. Sovrin DID Operations</h2>
+<h3 id="a31-create">A.3.1. Create</h3>
+<p>[TODO]</p>
+<h3 id="a32-readverify">A.3.2. Read/Verify</h3>
+<p>[TODO]</p>
+<h3 id="a33-update">A.3.3. Update</h3>
+<p>[TODO]</p>
+<h3 id="a34-deleterevoke">A.3.4. Delete/Revoke</h3>
+<p>[TODO]</p>
+<h1 id="appendix-b-example-ddo">Appendix B: Example DDO</h1>
+<p>This is an example DDO conformant with this specification. The DIDs in this example are defined by the Sovrin DID method in Appendix A.</p>
+<pre><code>{
+    &quot;@context&quot;: &quot;https://example.org/did/v1&quot;,
+    &quot;id&quot;: &quot;did:sov:21tDAKCERh95uGgKbJNHYp&quot;,
+    &quot;equiv-id&quot;: [
+        &quot;did:sov:33ad7beb1abc4a26b89246&quot;,
+        &quot;did:sov:f336a645f5a941b7ab8oac&quot;
+    ],
+    &quot;verkey&quot;: &quot;MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCABMC&quot;,
+    &quot;control&quot;: [
+        &quot;self&quot;,
+        &quot;did:sov:bsAdB81oHKaCmLTsgajtp9AoAHE9ei4&quot;,
+        &quot;did:sov:21tDAKCERh95uGgKbJNHYpE8WEogrsf&quot;
+    ],
+    &quot;service&quot;: {
+        &quot;openid&quot;: &quot;https://openid.example.com/456&quot;,
+        &quot;xdi&quot;: &quot;https://xdi.example.com/123&quot;
+    },
+    &quot;type&quot;: &quot;http://schema.org/Person&quot;,
+    &quot;creator&quot;: &quot;did:sov:21tDAKCERh95uGgKbJNHYpE8WEogrsf&quot;,
+    &quot;created&quot;: &quot;2002-10-10T17:00:00Z&quot;,
+    &quot;updated&quot;: &quot;2016-10-17T02:41:00Z&quot;,
+    &quot;signature&quot;: {
+        &quot;type&quot;: &quot;LinkedDataSignature2015&quot;,
+        &quot;created&quot;: &quot;2016-02-08T16:02:20Z&quot;,
+        &quot;Creator&quot;: &quot;did:sov:21tDAKCERh95uGgKbJNHYpE8WEogrsf/keys/1&quot;,
+        &quot;signatureValue&quot;: &quot;IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s=&quot;
+    }
+}
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

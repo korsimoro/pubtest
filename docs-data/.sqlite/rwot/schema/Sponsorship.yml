@@ -1,0 +1,46 @@
+Sponsorship:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - From
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - To
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Type
+    - - Index
+      - false
+    - - Type
+      - TEXT
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

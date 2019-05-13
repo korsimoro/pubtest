@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Web of Trust with Blockchain IDs - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Web of Trust with Blockchain IDs", url: "#_top", children: [
+              {title: "Examples of Identity Statements", url: "#examples-of-identity-statements" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="web-of-trust-with-blockchain-ids">Web of Trust with Blockchain IDs</h1>
+<p><em>by Ryan Shea <a href="https://twitter.com/ryaneshea">@ryaneshea</a> \&lt;ryan@onename.com></em></p>
+<p>Signed statements with a clearly defined schema can be used to have people and companies refer to one another and make attestations about their identities and their relationships.</p>
+<p>PGP's web of trust uses a form of this, but it is fairly primitive and lacks widely accepted standards.</p>
+<p>Blockchain ID identity statements can be used for a form of web of trust.</p>
+<p>All parties involved in the statement, including the issuer and the subject of the statement can locally cache the statements and present them to others as needed.</p>
+<p>Statements can be revoked using updating one's zone file on Blockstore and appending a hash of the statement to a list of revoked statements.</p>
+<h3 id="examples-of-identity-statements">Examples of Identity Statements</h3>
+<h4 id="relationships-to-other-people">Relationships to Other People</h4>
+<pre><code class="json">{
+    &quot;header&quot;: {
+        &quot;typ&quot;: &quot;JWT&quot;,
+        &quot;alg&quot;: &quot;ES256&quot;
+    },
+    &quot;payload&quot;: {
+        &quot;claim&quot;: {
+            &quot;knows&quot;: [
+                {
+                    &quot;@type&quot;: &quot;Person&quot;,
+                    &quot;id&quot;: &quot;muneeb.id&quot;
+                }
+            ]
+        },
+        &quot;subject&quot;: {
+            &quot;@type&quot;: &quot;Person&quot;,
+            &quot;publicKey&quot;: &quot;032ecde4397fa473f1ce482cea6235eb0c20b3ce4c010a669034422800bbcd491d&quot;
+        },
+        &quot;issuer&quot;: {
+            &quot;@type&quot;: &quot;Person&quot;,
+            &quot;publicKey&quot;: &quot;032ecde4397fa473f1ce482cea6235eb0c20b3ce4c010a669034422800bbcd491d&quot;
+        }
+    },
+    &quot;signature&quot;: &quot;snFhetKhj3uwoVDXXKk5w7wxVpkeTBFjhE-J0s9zkqM9-ZcG7oD1_hi7fBXiLdvgwgbqQJ9VvbYQfTukaiedaQ&quot;
+}
+</code></pre>
+
+<h4 id="employment-by-an-organization">Employment by an Organization</h4>
+<pre><code class="json">{
+    &quot;header&quot;: {
+        &quot;typ&quot;: &quot;JWT&quot;,
+        &quot;alg&quot;: &quot;ES256&quot;
+    },
+    &quot;payload&quot;: {
+        &quot;claim&quot;: {
+            &quot;worksFor&quot;: [
+                {
+                    &quot;@type&quot;: &quot;Organization&quot;,
+                    &quot;id&quot;: &quot;onename.id&quot;
+                }
+            ]
+        },
+        &quot;subject&quot;: {
+            &quot;@type&quot;: &quot;Person&quot;,
+            &quot;publicKey&quot;: &quot;02f6a64a75c4094889c181ff9e4b59a79c770523890dacebb025755900bedb768b&quot;
+        },
+        &quot;issuer&quot;: {
+            &quot;@type&quot;: &quot;Person&quot;,
+            &quot;publicKey&quot;: &quot;02f6a64a75c4094889c181ff9e4b59a79c770523890dacebb025755900bedb768b&quot;
+        }
+    },
+    &quot;signature&quot;: &quot;Ygif2h6hw2JjOJ2WTQhgwCkpvq1xngpBWYLiyvuX88HQPJjEtSAxGtWfaxPQK8u5TAVV7GSJ96kMBX38HR3WXA&quot;
+}
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

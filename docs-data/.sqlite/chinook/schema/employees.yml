@@ -1,0 +1,226 @@
+employees:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - EmployeeId
+    - - Index
+      - true
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - PRI
+    - - Default
+      - ''
+    - - Extra
+      - AUTOINCREMENT
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - LastName
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(20)
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - FirstName
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(20)
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Title
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(30)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - ReportsTo
+    - - Index
+      - true
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - BirthDate
+    - - Index
+      - false
+    - - Type
+      - DATETIME
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - HireDate
+    - - Index
+      - false
+    - - Type
+      - DATETIME
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Address
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(70)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - City
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - State
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Country
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(40)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - PostalCode
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(10)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Phone
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(24)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Fax
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(24)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - Email
+    - - Index
+      - false
+    - - Type
+      - NVARCHAR(60)
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Aligning Signature Formats - RWoT DIR Launchpad</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Aligning Signature Formats", url: "#_top", children: [
+              {title: "JOSE JWS and Linked Data Signatures", url: "#jose-jws-and-linked-data-signatures" },
+              {title: "Koblitz Curve and Linked Data Signatures", url: "#koblitz-curve-and-linked-data-signatures" },
+              {title: "Next Steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="aligning-signature-formats">Aligning Signature Formats</h1>
+<p>by Manu Sporny, Christopher Allen, Jason Law, and Ryan Shea</p>
+<p>As the Verifiable Claims work proceeds, it is important to ensure that all
+of the signature formats that are used by Verifiable Claims continue to
+follow a coherent design approach. Recent discussions at IETF 98 and WWW2017
+have resulted in a breakthrough related to the design approach and
+standardization timeline related to Linked Data Signatures. The Rebooting
+Web of Trust community should discuss how their use of the signature
+formats in Verifiable Claims could benefit from the design changes outlined
+in the rest of this paper.</p>
+<h2 id="jose-jws-and-linked-data-signatures">JOSE JWS and Linked Data Signatures</h2>
+<p>One of the reasons that Linked Data Signatures, which are used by Verifiable
+Claims, did not initially reuse the JSON Web Signing (JWS) specification was
+due to a variety of issues outlined in Analysis of JWS and Linked Data
+Signatures[1]. We met with Mike Jones and John Bradly,
+who were the core designers for JWS, at IETF 98 and worked together to align
+the needs of Verifiable Claims and Linked Data Signatures with what the JOSE
+stack is capable of providing. In doing so, we found a way that Linked Data
+Signatures can re-use JWS to achieve its goals by using a profile of
+JSON Web Signatures.</p>
+<p>This new approach has the advantage of almost entirely aligning the
+Linked Data Signatures specification and the RSA Signature Suite with the
+JOSE stack, thus making standardizing the approach far less contentious than
+the previous approach.</p>
+<h2 id="koblitz-curve-and-linked-data-signatures">Koblitz Curve and Linked Data Signatures</h2>
+<p>The Koblitz Signature Suite is not capable of re-using the JOSE work because
+JWS does not support Koblitz curve signatures. A deep analysis by the
+Crypto Forum Research Group does not exist for the secp256k1 curve. The
+signature suite can continue to use the current approach listed in the
+specification, but we may want to use this opportunity to discuss how the
+secp256k1 analysis could progress at the IETF's CRFG.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>We desire to discuss this approach with other organizations that rely on
+digital signatures for their products and determine if this new approach is
+acceptable to those organizations.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+playlist_track:
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - PlaylistId
+    - - Index
+      - false
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - TrackId
+    - - Index
+      - true
+    - - Type
+      - INTEGER
+    - - 'Null'
+      - 'NO'
+    - - Key
+      - ''
+    - - Default
+      - ''
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - CONSTRAINT
+    - - Index
+      - true
+    - - Type
+      - '[PK_PlaylistTrack]'
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - PRI
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''
+- !!python/object/apply:collections.OrderedDict
+  - - - Field
+      - TrackId
+    - - Index
+      - true
+    - - Type
+      - )
+    - - 'Null'
+      - 'YES'
+    - - Key
+      - ''
+    - - Default
+      - 'NULL'
+    - - Extra
+      - ''

@@ -1,30 +1,25 @@
 ---
 layout: home
-author_profile: true
+author_profile: false
 permalink: /
+sidebar:
+  - title: "DID"
+#    text: "Quick links about DIDs"
+    nav: "did"
+  - title: "POT"
+#    text: "People, Organizations, and Things"
+    nav: "pot"
+  - title: Events
+    nav: "events"
+
 ---
-
-<ul><li><a href="pubtest/testing/">/testing/</a></li>
-
-<h5>Commit check: index.html - AAJ - JC</h5>
-
-<p>
-	Site Data
-	<pre>{{ site.data }}</pre>
-	<pre>{{ site.data.toml['id-toml']['blockchain-id'] }}</pre>
-</p>
-
-<h2>Items</h2>
 <ul>
-{% for x in site.data.toml['id-toml']['blockchain-id'] %}
-	<li>
-		<p>{{ x[0] }}
-		</p>
-		<ul>
-			<li>{{ x[1].Description }}</li>
- 			<li>{{ x[1].Link}}</li>
-			<li>{{ x[1].Tags}}</li>
-		</ul>
-	</li>
-{% endfor %}
+  <li><a href="./mkdocs/poc/output">Mkdocs Proof Of Concept</a></li>
+  <li><a href="./mkdocs/rwot/output">Mkdocs RWOT</a></li>
+  <li><a href="./static/">Example Static Sites</a></li>
+  <li><a href="./_pages/git/commithistory/">Testing Git History</a></li>
+  <li><a href="./test/">Test 1</a></li>
+  <li><a href="./test2/">Test 2</a></li>
+  <li><a href="./test3/">Test 3</a></li>
+  <li><a href="./test4/">Test 4</a></li>
 </ul>

@@ -22,7 +22,7 @@ run() {
   report_progress "step1" "Logging to $LOG"
   pd build mkdocs >$LOG
 
-  pd docutil run db-query
+  pd install-data
 
   # now serve the jekyll docs and incorporate the updated mkdocs
   pd jekyll serve

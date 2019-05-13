@@ -1,22 +1,39 @@
+# did info links
+did:
+  - title: "Method Registry"
+    url: /_pages/did/method-registry
+  - title: "Internet Reference"
+    url: /_pages/did/internet-reference
+  - title: "Assessment"
+    url: /_pages/did/assessment
+
+pot:
+  - title: "People"
+    url: /_pages/pot/people
+  - title: "Organizations"
+    url: /_pages/pot/organizations
+  - title: "Things"
+    url: _pages/pot/things
+
+events:
+  - title: "IIW"
+    url: /iiw/
+  - title: "RWOT"
+    url: /rwot/
+  - title: "MyData"
+    url: /mydata/
+  - title: "Events"
+    url: /events/
+
 # main links
 main:
   - title: "DID"
-    url: /did
-  - title: "People"
-    url: /people/
-  - title: "Organizations"
-    url: /organizations/
-  - title: "Timeline"
-    url: /timeline/
-  - title: "MD-POC"
-    url: /mkdocs/poc/output/
-  - title: "MD-YEST"
-    url: /mkdocs/yest/output/
-  - title: "Static"
-    url: /static/
-  - title: "Sample Posts"
-    url: /year-archive/
-  - title: "Sample Collections"
-    url: /collection-archive/
-  - title: "Sitemap"
-    url: /sitemap/
+    url: /_pages/did/
+  - title: "POT"
+    url: /_pages/pot/
+  - title: "Events"
+    url: /_pages/events/
+  - title: "History"
+    url: /_pages/history/
+  - title: "Code"
+    url: /_pages/code/

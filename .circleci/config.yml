@@ -43,7 +43,8 @@ jobs:
 
       - run:
           name: install dependencies
-          command: ~/repo/docs-toolkit/kbash/shell.sh |
+          command: |
+            . ~/repo/docs-toolkit/kbash/activate.sh
             pd setup docutil
             pd setup mkdocs
             pd setup jekyll

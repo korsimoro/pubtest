@@ -19,7 +19,6 @@ setup(
         'python-slugify',
         'sqlitebiter',
         'sqlitestructure',
-        'sqliteschema',
         'simplesqlite',
         'pytablewriter',
         'tabledata',

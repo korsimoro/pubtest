@@ -29,6 +29,7 @@ run() {
   rm -rf $TARGET
   mkdir -p $TARGET
 
+  pd copy-yest
   pd docutil run db-query
   pd docutil run db-schema
   pd docutil run db-digest

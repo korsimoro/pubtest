@@ -17,12 +17,8 @@ run() {
   # make sure we abort on any errors
   set -e
 
-  # build the mkdocs portion
-  local LOG=$MKDOCS_KBASH_LOGS/serve-build.txt
-  report_progress "step1" "Logging to $LOG"
-  pd build mkdocs >$LOG
-
-  pd install-data
+  # build everything
+  pd build-all
 
   # now serve the jekyll docs and incorporate the updated mkdocs
   pd jekyll serve

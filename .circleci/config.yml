@@ -4,6 +4,65 @@
 #
 version: 2
 jobs:
+  test-build:
+    docker:
+      # specify the version you desire here
+      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
+      - image: circleci/python:3.6.1
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # We can attach specific commits of other repositories and include them
+      # in our documentation.  This can be used as much, or as little, as
+      # desired - it's just another PoC
+      # debug the infrastructure required to do it.
+      - run:
+          name: bring submodules down
+          command: |
+            git submodule update --init
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: copy repository README to mkdocs PoC
+          command: |
+            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
+
+      - run:
+          name: install dependencies
+          command: ~/repo/docs-toolkit/kbash/shell.sh |
+            pd setup docutil
+            pd setup mkdocs
+            pd setup jekyll
+            pd build-all
+
+      - save_cache:
+          paths:
+            - ./docs-toolkit/docutil/venv
+          key: v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
+
+      #- run:
+      #    name: generate commit logs
+      #    command: |
+      #      . ~/repo/docs-toolkit/docutil/venv/bin/activate
+      #      for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
+      #      	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
+      #      	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
+      #      done
+
   build-and-deploy:
     docker:
       # specify the version you desire here
@@ -105,64 +164,6 @@ jobs:
       #- store_artifacts:
       #    path: test-reports
       #    destination: test-reports
-  test-build:
-    docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-
-      # We can attach specific commits of other repositories and include them
-      # in our documentation.  This can be used as much, or as little, as
-      # desired - it's just another PoC
-      # debug the infrastructure required to do it.
-      - run:
-          name: bring submodules down
-          command: |
-            git submodule update --init
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run:
-          name: copy repository README to mkdocs PoC
-          command: |
-            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
-
-      - run:
-          name: install dependencies
-          command: ~/repo/docs-toolkit/kbash/shell.sh |
-            pd setup docutil
-            pd setup mkdocs
-            pd setup jekyll
-            pd build-all
-
-      - save_cache:
-          paths:
-            - ./docs-toolkit/docutil/venv
-          key: v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-
-      #- run:
-      #    name: generate commit logs
-      #    command: |
-      #      . ~/repo/docs-toolkit/docutil/venv/bin/activate
-      #      for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
-      #      	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
-      #      	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
-      #      done
 
 workflows:
   version: 2

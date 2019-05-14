@@ -100,7 +100,7 @@ workflows:
       - update-data:
           filters:
             branches:
-              only: data-*
+              only: /data-.*/
               
       - build-and-deploy-preview:
           filters:

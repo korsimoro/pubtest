@@ -52,8 +52,7 @@ jobs:
           command: |
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
-            ls -al /home/circleci/repo/docs-toolkit/docutil
-            /usr/bin/python3 -m venv /home/circleci/repo/docs-toolkit/docutil/venv
+            sudo apt-get install -y python3-venv
             cat ~/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
             cat ~/repo/docs-toolkit/mkdocs/setup-logs/*

@@ -1,0 +1,17 @@
+---
+layout: archive
+---
+<h5> Commit Check: _layouts/home.html - AAG </h5>
+
+{{ content }}
+
+<h1>Post List</h1>
+<hr />
+
+<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+
+{% for post in paginator.posts %}
+  {% include archive-single.html %}
+{% endfor %}
+
+{% include paginator.html %}

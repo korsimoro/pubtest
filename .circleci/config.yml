@@ -53,24 +53,23 @@ jobs:
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
             sudo apt-get install -y python3-venv
+            pd setup docutil
             cat ~/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
             cat ~/repo/docs-toolkit/mkdocs/setup-logs/*
             pd setup jekyll
             cat ~/repo/docs-toolkit/jekyll/setup-logs/*
             pd build-all
-            if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
-              git config user.email "eric@korsimoro.com"
-              git config user.name "CircleCI Build"
-              cd ~/repo
-              mv docs docs-tmp
-              git checkout master
-              git rm -rf docs
-              mv docs-tmp docs
-              git add docs
-              git commit -m "publishing docs" docs
-              git push origin master
-            fi
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            mv docs docs-tmp
+            git checkout master
+            git rm -rf docs
+            mv docs-tmp docs
+            git add docs
+            git commit -m "publishing docs" docs
+            git push origin master
 
   update-data:
     docker:

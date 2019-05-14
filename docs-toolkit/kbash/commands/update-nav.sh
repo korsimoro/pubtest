@@ -11,9 +11,6 @@ EOF
 }
 run() {
 
-  TARGET="$PD/../docs/_data"
-  SOURCE="$PD/../docs-data"
-
-  pd install-data-file navigation.yml
+  pd jekyll install-data-file navigation.yml
 
 }

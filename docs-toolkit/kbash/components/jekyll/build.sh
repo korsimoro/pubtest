@@ -9,6 +9,8 @@ EOF
 export -f build_environment_pd_jekyll_help
 
 build_environment_pd_jekyll() {
-  echo "Component[jekyll]:build"
+  activate_environment_pd_jekyll
+  cd $JEKYLL_SRC
+  pd bundle exec jekyll build --trace --verbose
 }
 export -f build_environment_pd_jekyll

@@ -4,204 +4,133 @@
 #
 version: 2
 jobs:
-  test-build:
+  build-and-deploy-preview:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.6.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
     working_directory: ~/repo
-
     steps:
       - checkout
-
-      # We can attach specific commits of other repositories and include them
-      # in our documentation.  This can be used as much, or as little, as
-      # desired - it's just another PoC
-      # debug the infrastructure required to do it.
       - run:
-          name: bring submodules down
+          name: build all
           command: |
             git submodule update --init
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run:
-          name: copy repository README to mkdocs PoC
-          command: |
-            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
-
-      - run:
-          name: install dependencies
-          command: |
             . ~/repo/docs-toolkit/kbash/activate.sh
             pd setup docutil
             cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
+            cat /home/circleci/repo/docs-toolkit/mkdocs/setup-logs/*
+            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
             pd build-all
 
-      - save_cache:
-          paths:
-            - ./docs-toolkit/docutil/venv
-          key: v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-
-      #- run:
-      #    name: generate commit logs
-      #    command: |
-      #      . ~/repo/docs-toolkit/docutil/venv/bin/activate
-      #      for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
-      #      	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
-      #      	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
-      #      done
-
       - run:
           name: push data to master and trigger jekyll build phase
           command: |
-            if [ "${CIRCLE_BRANCH}" == "kbash" ]; then
+            if [ "${CIRCLE_BRANCH}" == "testit" ]; then
               git config user.email "eric@korsimoro.com"
               git config user.name "CircleCI Build"
-              echo "First Status"
-              git status
-              echo "Adding all"
-              git add .
+              cd ~/repo
+              git rm -rf docs/preview
+              mkdir -p docs/preview
+              cd docs
+              tar -cf - * | tar -C preview -xf -
+              git add preview
               echo "Committing"
               git commit -a -m "Publishing Update From CircleCI"
-              rm -rf ~/repo/docs-data/.submodules
-              echo "Second Status"
-              git status
-              echo "Go back to master and blow away repo contents"
-              git checkout master
-              git rm -rf ~/repo/docs
-              git commit -a -m "clearing docs to receive easy merge"
-              echo "Pull built documentation forward"
-              git merge -X theirs kbash -m "Merging Documentation"
-              echo "Trigger deployment by pushing to master"
               git push origin master
               echo "Cleanup"
-              git checkout kbash
+              git checkout testit
             fi
 
-      #- store_artifacts:
   build-and-deploy:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
+      - image: circleci/ruby:latest
     working_directory: ~/repo
-
     steps:
       - checkout
-
-      # We can attach specific commits of other repositories and include them
-      # in our documentation.  This can be used as much, or as little, as
-      # desired - it's just another PoC
-      # debug the infrastructure required to do it.
       - run:
-          name: bring submodules down
+          name: build and deploy site from documentation branch
           command: |
             git submodule update --init
+            . ~/repo/docs-toolkit/kbash/activate.sh
+            gem install bundler
+            sudo apt-get install -y python3-venv python3-pip
+            sudo pip3 install wheel
+            pd setup docutil
+            cat ~/repo/docs-toolkit/docutil/setup-logs/*
+            pd setup mkdocs
+            cat ~/repo/docs-toolkit/mkdocs/setup-logs/*
+            pd setup jekyll
+            cat ~/repo/docs-toolkit/jekyll/setup-logs/*
+            echo "Building all"
+            pd build-all
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            mv docs docs-tmp
+            git checkout master
+            git rm -rf docs
+            mv docs-tmp docs
+            git add docs
+            git commit -m "publishing docs" docs
+            git push origin master
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+  update-data:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/repo
+    steps:
+      - checkout
       - run:
-          name: copy repository README to mkdocs PoC
+          name: update data
           command: |
-            cp ~/repo/README.md ~/repo/docs-toolkit/mkdocs/docs/details.md
+            git submodule update --init
+            . ~/repo/docs-toolkit/kbash/activate.sh
+            pd setup docutil
+            cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
+            pd build-data
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            git add .
+            git commit -m "updating docs"
+            git push origin "${CIRCLE_BRANCH}"
 
+  preview-site:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/repo
+    steps:
+      - checkout
       - run:
-          name: install dependencies
+          name: update data
           command: |
-            python3 -m venv ~/repo/docs-toolkit/docutil/venv
-            . ~/repo/docs-toolkit/docutil/venv/bin/activate
-            cd docs-toolkit/docutil
-            pip install .
-
-      - save_cache:
-          paths:
-            - ./toolkit/python/venv
-          key: v1-dependencies-{{ checksum "./docs-toolkit/docutil/local-requirements.txt" }}
-
-      - run:
-          name: install latest tool
-          command: |
-            . ~/repo/docs-toolkit/docutil/venv/bin/activate
-            cd docs-toolkit/docutil
-            echo docutil --dir ~/repo db-to-yaml
-
-      - run:
-          name: generate commit logs
-          command: |
-            . ~/repo/docs-toolkit/docutil/venv/bin/activate
-            for x in rwot8-barcelona rwot7-toronto rwot6-santabarbara rwot5-boston; do
-            	mkdir -p ~/repo/docs/_data/submodules/WebOfTrustInfo/$x
-            	tool --dir ~/repo gitlog --org WebOfTrustInfo --repo $x > ~/repo/docs/_data/submodules/WebOfTrustInfo/$x/commitlog.json
-            done
-
-      - run:
-          name: run mkdocs
-          command: |
-
-            . ~/repo/docs-toolkit/mkdocs/venv/bin/activate
-            cd ~/repo/docs-toolkit/mkdocs
-            mkdocs build
-
-      - run:
-          name: push data to master and trigger jekyll build phase
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
-              git config user.email "eric@korsimoro.com"
-              git config user.name "CircleCI Build"
-              echo "First Status"
-              git status
-              echo "Adding all"
-              git add .
-              echo "Committing"
-              git commit -a -m "Publishing Update From CircleCI"
-              echo "Second Status"
-              git status
-              echo "Go back to master"
-              git checkout master
-              echo "Pull built documentation forward"
-              git merge -X theirs documentation -m "Merging Documentation"
-              echo "Trigger deployment"
-              git push origin master
-              echo "Cleanup"
-              git checkout documentation
-            fi
-
-      #- store_artifacts:
-      #    path: test-reports
-      #    destination: test-reports
+            git submodule update --init
+            . ~/repo/docs-toolkit/kbash/activate.sh
+            pd setup docutil
+            cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
+            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
+            pd build-data
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            git add .
+            git commit -m "updating docs"
+            git push origin "${CIRCLE_BRANCH}"
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - test-build:
+      - update-data:
           filters:
             branches:
-              only: kbash
+              only: /data-.*/
+              
+      - build-and-deploy-preview:
+          filters:
+            branches:
+              only: testit
+
       - build-and-deploy:
           filters:
             branches:

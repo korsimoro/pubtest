@@ -78,11 +78,12 @@ jobs:
               git commit -a -m "Publishing Update From CircleCI"
               echo "Second Status"
               git status
-              echo "Go back to master"
+              echo "Go back to master and blow away repo contents"
               git checkout master
+              rm -rf ~/repo/docs
               echo "Pull built documentation forward"
               git merge -X theirs documentation -m "Merging Documentation"
-              echo "Trigger deployment"
+              echo "Trigger deployment by pushing to master"
               git push origin master
               echo "Cleanup"
               git checkout kbash

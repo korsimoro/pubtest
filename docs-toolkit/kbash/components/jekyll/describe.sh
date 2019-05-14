@@ -3,7 +3,7 @@
 
 export JEKYLL_BASE=$PD/jekyll
 export JEKYLL_LOG=$JEKYLL_BASE/setup-logs
-export JEKYLL_SRC=$PD/../docs-src
+export JEKYLL_SRC=$JEKYLL_BASE/src
 
 oneline_description_of_pd_jekyll() {
   echo "Support for running Jekyll Locally"

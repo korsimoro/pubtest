@@ -20,6 +20,6 @@ run() {
   # set up the jekyll environment and make it executable, then run the
   # local dev server
   pd activate jekyll
-  cd $PD/../docs-src
+  cd $JEKYLL_SRC
   pd bundle exec jekyll serve
 }

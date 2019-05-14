@@ -2,7 +2,7 @@
 
 
 export MKDOCS_BASE=$PD/mkdocs
-export MKDOCS_PROJECTS=$PD/../docs-src/mkdocs
+export MKDOCS_PROJECTS=$MKDOCS_BASE/sites
 
 export MKDOCS_PYTHON_VERSION=v3.6.2
 export MKDOCS_VENV=$MKDOCS_BASE/venv

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>No Secure Protocol = No Sovereign Identity - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "No Secure Protocol = No Sovereign Identity", url: "#_top", children: [
+              {title: "Decentralized Identities Require A Secure Protocol", url: "#decentralized-identities-require-a-secure-protocol" },
+              {title: "\"But Greg, we don't need a protocol, just a great implementation!\"", url: "#but-greg-we-dont-need-a-protocol-just-a-great-implementation" },
+              {title: "So What Kind Of Secure Protocol Do We Need?", url: "#so-what-kind-of-secure-protocol-do-we-need" },
+              {title: "DPKI? Sounds cool! So what's next for DPKI?", url: "#dpki-sounds-cool-so-whats-next-for-dpki" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="no-secure-protocol-no-sovereign-identity">No Secure Protocol = No Sovereign Identity</h1>
+<p><em>Submitted by <a href="https://twitter.com/taoeffect">Greg Slepak</a></em></p>
+<p>Since this event relates in many ways to Christopher Allen's concept of a <a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html">Self-Sovereign Identity</a> (SSI, not to be confused with <a href="https://en.wikipedia.org/wiki/Supplemental_Security_Income">SSI</a> or <a href="http://nginx.org/en/docs/http/ngx_http_ssi_module.html">SSI</a>), I will make various references to it throughout, particularly to the <strong>Ten Principles of Self-Sovereign Identity</strong>.</p>
+<h3 id="decentralized-identities-require-a-secure-protocol">Decentralized Identities Require A Secure Protocol</h3>
+<p>The second principle of an SSI, says Allen, is <strong>Control</strong>:</p>
+<blockquote>
+<p>Users must control their identities. Subject to well-understood and secure algorithms that ensure the continued validity of an identity and its claims, the user is the ultimate authority on their identity. They should always be able to refer to it, update it, or even hide it. They must be able to choose celebrity or privacy as they prefer. This doesn’t mean that a user controls all of the claims on their identity: other users may make claims about a user, but they should not be central to the identity itself.</p>
+</blockquote>
+<p>It is clear that without security we cannot have an SSI, for there can be no control without security.</p>
+<p>However, "well-understood and secure algorithms" <em>are necessary but insufficient</em> to provide the sort of security that is necessary for SSI. Yes, you do need secure algorithms to keep identities from getting hacked, <strong>but without a <em>secure protocol</em> we cannot have an SSI in the first place.</strong></p>
+<p>After all, HTTPS/X.509 have "secure algorithms", but their lack of a secure protocol for mapping identifiers to data prevents us from using them to create Self-Sovereign Identities.</p>
+<h3 id="but-greg-we-dont-need-a-protocol-just-a-great-implementation">"But Greg, we don't <em>need</em> a protocol, just a great <em>implementation!"</em></h3>
+<p>We definitely need a protocol. There are many great folks working on great implementations, but no matter how great those implementations are we can never have truly Self-Sovereign Identities without a secure, decentralized protocol.</p>
+<p>Furthermore, it bears special emphasis to point out precisely <em>what kind</em> of decentralized protocol that is needed for SSI.</p>
+<p>For example, one could say that the wonderful folks at Blockstack have devised a secure decentralized protocol, however I believe it is insufficient on its own to serve as the protocol that's needed for SSI. Specifically, there are the following concerns:</p>
+<ul>
+<li>Blockstack's protocol does not seem to be completely decentralized, as Blockstack appears to have complete control when it comes to making changes to it.</li>
+<li>Blockstack's protocol appears entirely focused on the workings of a single implementation of the general concept of a blockchain (Bitcoin).</li>
+<li>This specific implementation (Bitcoin), could at any point fail to serve as a long-lived host platform for SSI for a large variety of reasons. Similarly, the specific implementation of Blockstack could also fail.</li>
+</ul>
+<p>These concerns put into serious question whether the system is capable of supporting SSI Principles 2 (Control), 3 (Access), 5 (Persistence), 6 (Portability), 7 (Interoperability), 10 (Protection), and possibly others.</p>
+<p>That is not to pick on Blockstack, as these same concerns would apply to <em>any</em> blockchain-specific software or protocol.</p>
+<h3 id="so-what-kind-of-secure-protocol-do-we-need">So What Kind Of Secure Protocol Do We Need?</h3>
+<p>At the previous <a href="http://www.weboftrust.info/event-2015-sf">Rebooting the Web-of-Trust Design Shop</a> we produced a paper describing the high-level design of a <strong>DPKI</strong>, or a <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">Decentralized Public Key Infrastructure</a>, to tackle this exact problem.</p>
+<p>DPKI describes the foundations for an Internet protocol that can use <em>any</em> decentralized public datastore to store and retrieve identities using <em>the most secure method possible</em> for each decentralized datastore.</p>
+<p>We focus on blockchains specifically because unlike other decentralized datastores (such as DHTs by themselves), only blockchains are known to provide reasonable assurance of <strong>Persistence</strong> (SSI Principle #5) in a decentralized manner.</p>
+<h3 id="dpki-sounds-cool-so-whats-next-for-dpki">DPKI? Sounds cool! So what's next for DPKI?</h3>
+<p>At this event we would like to, at the very least, publish an updated and polished version of the DPKI paper.</p>
+<p>Our goals are:</p>
+<ul>
+<li>Ask for peer review and fix any errata or other issues.</li>
+<li>LaTeX-ify the thing to give it that "proper computer science paper" feel. :)</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

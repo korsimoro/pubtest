@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Knowing when your identity has been compromised - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Knowing When Your Digital Identity Has Been Compromised", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="knowing-when-your-digital-identity-has-been-compromised">Knowing When Your Digital Identity Has Been Compromised</h1>
+<p>by Justin Newton @justinwnewton <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#117;&#115;&#116;&#105;&#110;&#64;&#110;&#101;&#116;&#107;&#105;&#46;&#99;&#111;&#109;">&#106;&#117;&#115;&#116;&#105;&#110;&#64;&#110;&#101;&#116;&#107;&#105;&#46;&#99;&#111;&#109;</a></p>
+<p>When using Web of Trust systems, it is critical to:</p>
+<ol>
+<li>
+<p>Ensure that you know who you can trust as "introducers"</p>
+</li>
+<li>
+<p>Ensure that your identity and reputation are not being falsely used to create trust of others.</p>
+</li>
+</ol>
+<p>In order for the system to work effectively it is thus important that keys that can no longer be trusted are quickly identified and invalidated.  Additionally, it is important to users to know if their keys have been compromised so they can take action to secure or reclaim their identity.  How to manage key compromise after it is detected is covered in other papers, and will not be a topic here.</p>
+<p>One of the challenges with PGP is the difficulty in knowing if your key has been compromised.  Frequently the only way one knows if their key has been stolen is through ad hoc reporting, or as a result of research into another breach of the computer holding the key(s).  We must do better.</p>
+<p>One idea to support this is for key registries such as keybase or others to have a field for a callback URL that gets called when a key belonging to a given individual is used.  When software receives a signed message (such as a login, or introduction) it checks Keybase or similar service to see if the key is registered.  if so, it looks for a callback URL related to the key including a time and date stamp of when the signature was received, as well as the hash of the public key of the recipient.  In this way a user could validate that each use was authentic, in the same way we use apps to real time track credit card transactions to detect if they have been compromised.</p>
+<p>This solution has a number of challenges which would need to be overcome:</p>
+<ol>
+<li>
+<p>The mapping of a key to a callback URL has its own privacy implications that need to be considered.</p>
+</li>
+<li>
+<p>The server which collects this data may potentially store the data in a way that makes it a centralized point of attack to reveal user behaviors.</p>
+</li>
+<li>
+<p>It is possible/likely that the hacker also has access to the notification service.</p>
+</li>
+<li>
+<p>This would be a new standard that required broad adoption, and the privacy concerns listed above may limit that adoption</p>
+</li>
+</ol>
+<p>An important part of managing keys controlling identity is ensuring those keys are not being mis-used.  Current systems are inadequate to our current needs, and there seems to be little to no ongoing work in this area.  </p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

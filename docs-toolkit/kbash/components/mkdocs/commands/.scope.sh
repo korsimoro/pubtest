@@ -12,3 +12,7 @@ pd mkdocs commands
 EOF
 `\n\n"
 }
+
+#if [ -z "$MKDOCS_PROJECT" ]; then
+#  error "pd mkdocs commands require MKDOCS_PROJECT, did you activate the env?"
+#fi

@@ -21,6 +21,8 @@ copy_dir() {
 }
 
 run() {
+  report_heading "Processing RWOT projects in $MKDOCS_PROJECTS"
+
   TOPICS="$MKDOCS_PROJECTS/rwot-topics"
   PAPERS="$MKDOCS_PROJECTS/rwot-papers"
   SOURCE="$PD/data/.submodules/WebOfTrustInfo"
@@ -71,6 +73,7 @@ run() {
   cd $TOPICS/src
   report_progress "copy-rwot" "Copy final src $TOPICS/src"
   tar -cf - * | tar -C ../docs -xf -
+  cd $PAPERS/src
   report_progress "copy-rwot" "Copy final src $PAPERS/src"
   tar -cf - * | tar -C ../docs -xf -
 

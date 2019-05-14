@@ -86,17 +86,12 @@ jobs:
             cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
             cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
             pd build-data
-
-            if [ "${CIRCLE_BRANCH}" == "data-*" ]; then
-              git config user.email "eric@korsimoro.com"
-              git config user.name "CircleCI Build"
-              cd ~/repo
-              git add docs-data docs-src
-              git commit -m "updating docs"
-              git push origin "${CIRCLE_BRANCH}"
-            fi
-
-
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            git add docs-data docs-src
+            git commit -m "updating docs"
+            git push origin "${CIRCLE_BRANCH}"
 
 workflows:
   version: 2

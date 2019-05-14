@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Reputation proofs - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Reputation proofs", url: "#_top", children: [
+              {title: "Reputation privacy requirements", url: "#reputation-privacy-requirements" },
+              {title: "Reputation proofs", url: "#reputation-proofs_1" },
+              {title: "Future work", url: "#future-work" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="reputation-proofs">Reputation proofs</h1>
+<p>by Dmitry Khovratovich (Evernym, Inc.)</p>
+<p>Reputation is a well known concept historically applied to humans, organizations, and goods. 
+The Internet made possible to make a reputational statement by anyone on almost every object in the web,
+ from people (Linkedin) to hotels (TripAdvisor).</p>
+<p>Whereas it is tempting to implement reputation on top of any identity system, a number of issues arise. 
+The privacy problem is a major one: I may not want to disclose my recommendations in public, nor I want to show everyone who endorsed me, unless in private.</p>
+<p>In this article we explore possible ways to create and present proofs of reputation, 
+which provide limited and owner-controlled information about reputation. We restrict to human beings 
+only as we are primarily concerned with linkage between reputation and identity. First we identify 
+some properties of reputation that are relevant to our study.</p>
+<ul>
+<li>Source and destination. A reputation grade is given by one identity (reputer) to another one (reputee).</li>
+<li>Value. Grades can be positive or negative, though some systems prohibit negative grades (e.g. Facebook). It can also be 0-1 (vouched or not) or more precise, with a range of possible grades issued by the reputer. </li>
+<li>Aggregation. The grades are either aggregated into a single reputation value or considered separately.</li>
+<li>Transitivity. The reputation may be a mere combination of grades given by reputers, or having this sum weighted accordingly to the current reputation of reputers.</li>
+<li>Context. Grade is given to a certain skill or property of the identity.</li>
+<li>Timing. Grades are accompanied with timestamps or not.</li>
+<li>Fading. Timestamps are taken into account when counting the aggregate value or not.</li>
+</ul>
+<h2 id="reputation-privacy-requirements">Reputation privacy requirements</h2>
+<p>Given the reputation properties, the following privacy requirements may arise:</p>
+<ul>
+<li>Confidentiality of sources. Alice does not reveal who endorsed her.</li>
+<li>Confidentiality of reputees. Alice does not reveal whom she recommended.</li>
+<li>Grade secrecy. Bob reveals who endorsed him but does not disclose the grades.</li>
+<li>Timing secrecy. Bob hides when exactly he was endorsed by Alice.</li>
+<li>Context secrecy. Carol hides what she was endorsed for by Bob.</li>
+</ul>
+<h2 id="reputation-proofs_1">Reputation proofs</h2>
+<p>Given these requirements we envision the following proofs to be valuable to the users.</p>
+<h3 id="examples">Examples</h3>
+<ol>
+<li>Bob proves that he has been recommended as a cooker by at least 10 people.</li>
+<li>Alice proves that she has been recommended as a software developer in the last 6 months.</li>
+<li>Carol proves that the weighted aggregated reputation over the last 6 months is at least 100.</li>
+</ol>
+<p>All the examples are zero-knowledge proofs in the sense that nothing more than truthness of a statement
+ is revealed during the proof presentation to the verifier (and thus to an external observer).</p>
+<h3 id="proof-format">Proof format</h3>
+<p>We suggest the following approach to create proof schemas. A proof schema should include the 
+following details to encompass the examples above:</p>
+<ul>
+<li>Proof subject, i.e. the identity whose reputation is in the statement. Can be a DID or another identificator.</li>
+<li>Proof predicate, i.e. a logical statement about the reputation of the user, his connections, and their grades, that can be evaluated.</li>
+</ul>
+<p>Certain mathematical techniques admit quite powerful predicate proofs, but they are usually limited 
+to a conjunction of simple arithmetic statements. To support more advanced predicates, we propose a two-layer tree format, where</p>
+<ul>
+<li>The first layer is the root;</li>
+<li>The second layer consists of leaves;</li>
+<li>Every leaf is a function of (grade, timestamp, context, source, destination);</li>
+<li>The root contains a boolean function of the leaf functions.</li>
+</ul>
+<p>A pair (subject, predicate, signature_of_A) certifies that A knows an injective mapping from the set of 
+all grades given to or by the proof subject  -- to the leaves of the tree such that the root function returns TRUE.</p>
+<h3 id="proof-construction">Proof construction</h3>
+<p>Various techniques have been proposed over the last 20 years to create a reputation accumulation system with some privacy support. 
+These include:</p>
+<ul>
+<li>Trusted servers of the organization that collects reputation data and publishes some proofs. Example: Linkedin.</li>
+<li>Trusted third-party organization that collects the reputation grades and publishes proofs at  user consent.</li>
+<li>Multiple-issuer system where each issuer is able to produce reputation proofs of himself or other users, and these proofs can be 
+made unlinkable.</li>
+<li>Decentralized system where reputation is similar to coin supply, and privacy is provided by 
+mechanisms similar to that in cryptocurrencies.</li>
+</ul>
+<h2 id="future-work">Future work</h2>
+<p>We are looking for feedback from RWoT attendees on the following topics:</p>
+<ul>
+<li>New and more sophisticated examples of reputation proofs;</li>
+<li>Comments on schema format;</li>
+<li>Competing proposals from other organizations.</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

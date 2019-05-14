@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>More control for Identity Holders - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "More control for Identity Holders", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Who knows something about me?", url: "#who-knows-something-about-me" },
+              {title: "Polices and data retention", url: "#polices-and-data-retention" },
+              {title: "Right to erasure (\u2018right to be forgotten\u2019)", url: "#right-to-erasure-right-to-be-forgotten" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="more-control-for-identity-holders">More control for Identity Holders</h1>
+<p>By <a href="Ismenia.Galvao@ing.com">Ismenia Galvao</a> and <a href="Arturo.Manzaneda.Tudela@ing.com">Arturo Manzaneda</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>One of the main goals of Self Sovereign Identity (SSI) is to give more control and
+power to individuals and organizations with regards to their digital data.
+The European Union seems to be aligned with the same way of thinking; proof of it  is
+the <a href="https://gdpr-info.eu/">General Data Protection Regulation (GDPR)</a>. This regulation aims to
+give control to citizens and residents over their personal data and to simplify the
+regulatory environment for international businesses by a unified european regulation.</p>
+<p>Last year our innovation department at ING released a <a href="https://www.slideshare.net/TommyKoens/matching-identity-management-solutions-to-selfsovereign-identity-principles/1">paper comparing decentralized
+Identity Frameworks</a>. As a bank, and specially a bank which believes in the future of
+Blockchain and Distributed ledger technologies, Identity is a key control point for
+enabling any related solutions. As a result of the comparison we decided to have a
+deeper look at <a href="https://www.hyperledger.org/projects/hyperledger-indy">Hyperledger Indy</a>, by developing a proof of concept.</p>
+<p>The purpose of this document is to describe some topics (some related to GDPR) which
+are not fully covered by Indy nor by SSI Standards; and start a discussion, hopefully
+continued during the RWOT7 workshop. We believe there is a need to enforce and
+standardize even more the interaction flows and data formats, not only for being
+GDPR-compliant but also for the interest of all identity holders.</p>
+<h2 id="who-knows-something-about-me">Who knows something about me?</h2>
+<p>When people ask me about the benefits of using the application that we are currently
+building, I always explain that the main focus is to give more control to people to
+better manage their personal data or identity in the digital world.</p>
+<p><strong>What do you mean by giving more control?</strong></p>
+<p><strong>- All users can be: Issuers, Verifiers and Identity Holders</strong></p>
+<p>Nowadays, the way we share our identity to companies is always in one direction, us
+to them. Our browser has a list of trusted certificate authorities (CA), and that's
+the only check we do on our side. Usually the process is a sign up form with a checkbox
+to accept some long terms and conditions (which nobody reads). After that we have an
+account, username and password to access.</p>
+<p>With decentralized identity all users including companies can act as Issuers, Verifiers
+or Identity Holders. This means that we will also be able to request proofs to companies
+before sharing our information with them. For example, asking for a quality certificate
+of the security of their data centers.</p>
+<p><strong>- Selective disclosure of attributes</strong></p>
+<p>Users can generate multiple proofs from their credentials. They can combine attributes
+from different issuers, which can be fully revealed, kept in secret (only proving that
+you have a passport, signed by the Dutch Government) or semi-revealed using a
+cryptographic technique known as Zero-Knowledge Proofs (prove you are 18+ but not
+disclosing your birth date).</p>
+<p><strong>- What, when and with who did we share information</strong></p>
+<p>Some months ago, when GDPR became active, all EU citizens received lots of emails
+requesting consent and allowing people to opt-out, or be forgotten. This emails
+surprised most of us; Why does this company has personal information about me? When
+did I share something? What do they know exactly about me?</p>
+<p>This lack of knowledge makes us all feel less in control. One key benefit from our
+application and Self Sovereign Identity is the possibility of recording all our
+interactions. This will allow users to keep track of all the information/proofs they
+shared, when and with who.</p>
+<p>Unfortunately, as of today, this is not implemented by Hyperledger Indy. Although, it
+is technically possible, the implementation of this feature relies on the hands of
+developers.</p>
+<blockquote>
+<p><strong>Should the <a href="https://github.com/WebOfTrustInfo/self-sovereign-identity/blob/master/self-sovereign-identity-principles.md">Self Sovereign Identity Principles</a> include or refer to the
+capacity of the identity holder to keep track of <em>what</em> they share <em>with who</em>
+and <em>when</em>?</strong></p>
+</blockquote>
+<h2 id="polices-and-data-retention">Polices and data retention</h2>
+<blockquote>
+<p><em><a href="https://github.com/WebOfTrustInfo/self-sovereign-identity/blob/master/self-sovereign-identity-principles.md">Self Sovereign Identity Principles</a> - Consent</em>
+<br/>
+<br/>
+Users must agree to the use of their identity. Any identity
+system is built around sharing that identity and its claims, and an
+interoperable system increases the amount of sharing that occurs.
+However, sharing of data must only occur with the consent of the user.
+Though other users such as an employer, a credit bureau, or a friend
+might present claims, the user must still offer consent for them to
+become valid. Note that this consent might not be interactive, but it
+must still be deliberate and well-understood.</p>
+</blockquote>
+<p><strong>What do I need to know before agreeing on sharing my identity (consent)?</strong></p>
+<p>The Identity Holder should be able to get all needed information related
+to the use of his/her data before sharing it. Any user should be able to
+clearly and on a quick view respond to the following questions:</p>
+<ul>
+<li>Why do the verifier needs the requested proofs or data attributes?</li>
+<li>How is it going to be used?</li>
+<li>Who would have access to it?</li>
+<li>How long do they need to be kept (legal requirements for data retention, if any)</li>
+<li>Maybe even how secure is the organization? CIA rating? Data center certificates?</li>
+<li>How sensible are the requested attributes?[1]</li>
+</ul>
+<p>We believe the standardization of the data format for such agreements or policies,
+specially the data retention is critical to ensure interoperability and to
+give more control to the identity holders. If there is no standard in the format,
+we will probably continue with long and unreadable terms and conditions documents.</p>
+<p>[1]Some identity attributes are more sensible than others, specially the unique
+identifiable ones like your passport number or social security number.</p>
+<h2 id="right-to-erasure-right-to-be-forgotten">Right to erasure (‘right to be forgotten’)</h2>
+<p>The right to erasure is one of the most complicated topics included in the
+<a href="https://gdpr-info.eu/art-17-gdpr/">GDPR Article 17</a>. The first time this topic was discussed was in 2006 and 12 years
+after there is still not a clear solution on how to handle it. Removing digital data
+is hard, specially with search engines keeping track of almost all published information
+on the Internet.</p>
+<p>Self Sovereign Identity can allow users to keep track of what, with who and when data
+is shared. With this in place, we can easily implement a communication process to
+request erasure. During this process the identity holder needs to collect two proofs:
+Proof of Request and Proof of Erasure. Both proofs can be shared with regulators, so they
+can audit companies and penalize them if the data was not properly deleted. The first one
+would allow to prove the intent of the request and the second one the confirmation of erasure.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.slideshare.net/TommyKoens/matching-identity-management-solutions-to-selfsovereign-identity-principles/1">paper comparing decentralized Identity Frameworks</a> - ING paper comparing different SSI frameworks</li>
+<li><a href="https://www.hyperledger.org/projects/hyperledger-indy">Hyperledger Indy</a> - Distributed ledger, purpose-built for decentralized identity</li>
+<li><a href="https://github.com/WebOfTrustInfo/self-sovereign-identity/blob/master/self-sovereign-identity-principles.md">Self Sovereign Identity Principles</a> - 10 principles describing SSI</li>
+<li><a href="https://gdpr-info.eu/">General Data Protection Regulation (GDPR)</a> - Website with GDPR document divided by sections</li>
+<li><a href="https://gdpr-info.eu/art-17-gdpr/">GDPR Article 17</a> - Right to erasure (‘right to be forgotten’)</li>
+</ul>
+<hr />
+<blockquote>
+<p><em>"Ipsa scientia potestas est" ('knowledge itself is power')</em> <br>
+Francis Bacon, Meditationes Sacrae (1597)</p>
+</blockquote>
+<!-- Links -->
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

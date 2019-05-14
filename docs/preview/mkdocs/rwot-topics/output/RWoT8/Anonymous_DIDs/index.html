@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Staying Anonymous With DIDs - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Staying Anonymous With DIDs", url: "#_top", children: [
+              {title: "Author", url: "#author" },
+              {title: "Abstract", url: "#abstract" },
+              {title: "The Problem", url: "#the-problem" },
+              {title: "How can this be solved", url: "#how-can-this-be-solved" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="staying-anonymous-with-dids">Staying Anonymous With DIDs</h1>
+<h2 id="author">Author</h2>
+<p>David Stark david.stark@securekey.com</p>
+<h2 id="abstract">Abstract</h2>
+<p>This paper looks at the ways the different parties in a sharing transaction may wish to stay anonymous.
+In a simple sharing transaction there are three parties involved:
+- Requestor - The party who is asking for some information
+- User - The party who the information is being requested from
+- Trusted Data Provider - A party who the requestor will trust to provide data for the user</p>
+<p>If the user is providing non identifiable information (such as age) they may not want to be tracked by the requestor, for example they do not want the requestor to be able to see they visited them on previous occasions.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>If a user provides the same DID (associated to a verifiable claim, for example) to multiple parties  – or even the same party multiple times  – those parties, if colluding, could track an individual user's activity. For instance if a user needs to prove they live in a particular country (the claim) to qualify for services at two different companies and provides the same DID associated to the "country of residence" claim to prove their eligibility, those parties requesting the information then (if colluding)  could confirm that it is in fact the same user/individual. The problem is compounded when multiple anonymous claims (from different sources) need to be combined in the same exchange.</p>
+<h2 id="how-can-this-be-solved">How can this be solved</h2>
+<p>If a user needs to issue a claim where they wish to remain anonymous then they can only issue that specific claim once. This would mean that to satisfy a request where the user wishes to stay anonymous then they would need to create a new DID for the purpose of this transaction only and contact thier data provider to provide a new claim for this DID that is not linked in anyway (at least visible to anyone except the data provider and the user) to the users existing DID or claims. Associated issuers, holders and verifiers would need to treat the 'transaction specific' DIDs and claims appropriately by enforcing audience, permissions, and expiry.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

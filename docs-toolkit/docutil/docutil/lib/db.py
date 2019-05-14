@@ -1,4 +1,4 @@
-from . import docs_dir,data_dir,value_of
+from . import data_dir,value_of
 from simplesqlite import SimpleSQLite
 import os
 import sqliteschema

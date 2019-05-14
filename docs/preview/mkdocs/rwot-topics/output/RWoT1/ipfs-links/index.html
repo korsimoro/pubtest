@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>IPFS - The Permanent Web - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "IPFS - The Permanent Web", url: "#_top", children: [
+              {title: "Summary", url: "#summary" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="ipfs-the-permanent-web">IPFS - The Permanent Web</h1>
+<p>The InterPlanetary File System (IPFS) is a new hypermedia distribution protocol, addressed by content and identities. IPFS enables the creation of completely distributed applications. It aims to make the web faster, safer, and more open.</p>
+<p>IPFS is a peer-to-peer distributed file system that seeks to connect all computing devices with the same system of files. In some ways, IPFS is similar to the Web, but IPFS could be seen as a single BitTorrent swarm, exchanging objects within one Git repository. In other words, IPFS provides a high throughput content-addressed block storage model, with content-addressed hyperlinks. This forms a generalized Merkle DAG, a data structure upon which one can build versioned file systems, blockchains, and even a Permanent Web. IPFS combines a distributed hashtable, an incentivized block exchange, and a self-certifying namespace. IPFS has no single point of failure, and nodes do not need to trust each other.</p>
+<p>For more knowledge on what IPFS is and how it works, see:</p>
+<ul>
+<li>https://ipfs.io</li>
+<li><a href="https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf">IPFS DRAFT 3</a> (outdated, but useful)</li>
+<li><a href="https://www.youtube.com/watch?v=HUVmypx9HGI">Stanford Seminar Talk</a></li>
+<li><a href="https://github.com/ipfs/faq/issues/48#issuecomment-152917088">How Routing and Resolution work in IPFS</a></li>
+<li><a href="https://github.com/ipfs/faq/issues/47">Replication on IPFS - Content Model summary</a></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>IPFS is a protocol:
+- defines a content-addressed file system
+- coordinates content delivery
+- combines Kademlia + BitTorrent + Git</p>
+<p>IPFS is a filesystem:
+- has directories and files
+- mountable filesystem (via FUSE)</p>
+<p>IPFS is a web:
+- can be used to view documents like the web
+- files accessible via HTTP at <code>http://ipfs.io/&lt;path&gt;</code>
+- browsers or extensions can learn to use <code>ipfs://</code> directly
+- hash-addressed content guarantees authenticity</p>
+<p>IPFS is modular:
+- connection layer over any network protocol
+- routing layer
+- uses a routing layer DHT (kademlia/coral)
+- uses a path-based naming service
+- uses bittorrent-inspired block exchange</p>
+<p>IPFS uses crypto:
+- cryptographic-hash content addressing
+- block-level deduplication
+- file integrity + versioning
+- filesystem-level encryption + signing support</p>
+<p>IPFS is p2p:
+- worldwide peer-to-peer file transfers
+- completely decentralized architecture
+- <strong>no</strong> central point of failure</p>
+<p>IPFS is a cdn:
+- add a file to the filesystem locally, and it's now available to the world
+- caching-friendly (content-hash naming)
+- bittorrent-based bandwidth distribution</p>
+<p>IPFS has a name service:
+- IPNS, an SFS inspired name system
+- global namespace based on PKI
+- serves to build trust chains
+- compatible with other NSes
+- can map DNS, .onion, .bit, etc to IPNS</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

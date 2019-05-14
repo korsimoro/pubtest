@@ -15,8 +15,8 @@ copy_dir() {
   DST=$3
 
   mkdir -p $DST
-  rm -rf $DST/$SCOPE
-  cp -r $SRC/$SCOPE $DST/$SCOPE
+  rm -rf $DST
+  cp -r $SRC/$SCOPE $DST
   cp -r $SRC/README.md $DST/index.md
 }
 
@@ -34,6 +34,7 @@ run() {
   local RWOT7="$SOURCE/rwot7-toronto"
   local RWOT8="$SOURCE/rwot8-barcelona"
 
+  report_progress "copy-rwot" "Copy topics and advance readings"
   copy_dir "topics-and-advance-readings" "$RWOT1" $TOPICS/docs/RWoT1
   copy_dir "topics-and-advance-readings" "$RWOT2" $TOPICS/docs/RWoT2
   copy_dir "topics-and-advance-readings" "$RWOT3" $TOPICS/docs/RWoT3
@@ -44,6 +45,7 @@ run() {
   copy_dir "topics-and-advance-readings" "$RWOT8" $TOPICS/docs/RWoT8
   rm -rf $TOPICS/docs/RWoT8/topics-and-advance-readings/The-Untimely-Death-Of-SSI
 
+  report_progress "copy-rwot" "Copy final papers"
   copy_dir "final-documents" "$RWOT1" $PAPERS/docs/RWoT1
   copy_dir "final-documents" "$RWOT2" $PAPERS/docs/RWoT2
   copy_dir "final-documents" "$RWOT3" $PAPERS/docs/RWoT3
@@ -53,15 +55,22 @@ run() {
   copy_dir "final-documents" "$RWOT7" $PAPERS/docs/RWoT7
   copy_dir "final-documents" "$RWOT8" $PAPERS/docs/RWoT8
 
-  for BASE in $TOPICS $PAPERS; do
-    cp $RWOT1/README.md $BASE/docs/rwot1.md
-    cp $RWOT2/README.md $BASE/docs/rwot2.md
-    cp $RWOT3/README.md $BASE/docs/rwot3.md
-    cp $RWOT4/README.md $BASE/docs/rwot4.md
-    cp $RWOT5/README.md $BASE/docs/rwot5.md
-    cp $RWOT6/README.md $BASE/docs/rwot6.md
-    cp $RWOT7/README.md $BASE/docs/rwot7.md
-    cp $RWOT8/README.md $BASE/docs/rwot8.md
-  done
+  #report_progress "copy-rwot" "Copy readme's to about.md files"
+  #for BASE in $TOPICS $PAPERS; do
+  #  cp $RWOT1/README.md $BASE/docs/rwot1.md
+  #  cp $RWOT2/README.md $BASE/docs/rwot2.md
+  #  cp $RWOT3/README.md $BASE/docs/rwot3.md
+  #  cp $RWOT4/README.md $BASE/docs/rwot4.md
+  #  cp $RWOT5/README.md $BASE/docs/rwot5.md
+  #  cp $RWOT6/README.md $BASE/docs/rwot6.md
+  #  cp $RWOT7/README.md $BASE/docs/rwot7.md
+  #  cp $RWOT8/README.md $BASE/docs/rwot8.md
+  #done
+
+  cd $TOPICS/src
+  report_progress "copy-rwot" "Copy final src $TOPICS/src"
+  tar -cf - * | tar -C ../docs -xf -
+  report_progress "copy-rwot" "Copy final src $PAPERS/src"
+  tar -cf - * | tar -C ../docs -xf -
 
 }

@@ -17,13 +17,13 @@ pot:
 
 events:
   - title: "IIW"
-    url: /iiw/
+    url: /_pages/iiw/
   - title: "RWOT"
-    url: /rwot/
+    url: /_pages/rwot/
   - title: "MyData"
-    url: /mydata/
+    url: /_pages/mydata/
   - title: "Events"
-    url: /events/
+    url: /_pages/events/
 
 # main links
 main:
@@ -37,3 +37,13 @@ main:
     url: /_pages/history/
   - title: "Code"
     url: /_pages/code/
+
+rwot:
+  - title: "People"
+    url: /_pages/iiw/
+  - title: "Events"
+    url: /_pages/rwot/
+  - title: "Topic Paper Index"
+    url: /mkdocs/rwot-topics/output
+  - title: "Final Paper Index"
+    url: /mkdocs/rwot-papers/output

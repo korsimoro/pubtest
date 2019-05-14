@@ -1,0 +1,10 @@
+<h2>{{ item.message }}</h2>
+<pre>
+{{ item.committer | jsonify }}
+</pre>
+<pre>
+authored_date:{{ item.authored_date }}
+authored_tz_offset:{{ item.authored_tz_offset }}
+committed_date:{{ item.comitted_date }}
+committer_tz_offset:{{ item.comitter_tz_offset }}
+</pre>

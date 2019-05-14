@@ -1,0 +1,13 @@
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Conference_Event", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Introduction", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Topics_and_Keywords", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Completed_Paper", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Completed_Paper_Person", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Advance_Reading", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Advance_Reading_Person", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Person", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "GitHub", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Organization", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Organization_Person", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Attendance_ignore", "size": "null", "mtime": "null"}
+{"source_id": 1, "dir_name": "null", "base_name": "RWOT", "format_name": "google sheets", "dst_table": "Sponsorship", "size": "null", "mtime": "null"}

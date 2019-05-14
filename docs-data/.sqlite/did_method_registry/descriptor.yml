@@ -1,0 +1,7 @@
+name: W3C CCG DID Method Registry
+dbkey: did_method_registry
+source:
+  type: web
+  url: url
+  input: sqlitebiter
+

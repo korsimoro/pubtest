@@ -1,0 +1,27 @@
+{"Method Name": "did:abt:", "Status": "PROVISIONAL", "DLT or Network": "ABT Network", "Authors": "ArcBlock", "Link": "ABT DID Method"}
+{"Method Name": "did:btcr:", "Status": "PROVISIONAL", "DLT or Network": "Bitcoin", "Authors": "Christopher Allen, Ryan Grant, Kim Hamilton Duffy", "Link": "BTCR DID Method"}
+{"Method Name": "did:stack:", "Status": "PROVISIONAL", "DLT or Network": "Bitcoin", "Authors": "Jude Nelson", "Link": "Blockstack DID Method"}
+{"Method Name": "did:erc725:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "Markus Sabadello, Fabian Vogelsteller, Peter Kolarov", "Link": "erc725 DID Method"}
+{"Method Name": "did:example:", "Status": "PROVISIONAL", "DLT or Network": "DID Specification", "Authors": "W3C Credentials Community Group", "Link": "DID Specification"}
+{"Method Name": "did:ipid:", "Status": "PROVISIONAL", "DLT or Network": "IPFS", "Authors": "TranSendX", "Link": "IPID DID method"}
+{"Method Name": "did:life:", "Status": "PROVISIONAL", "DLT or Network": "RChain", "Authors": "lifeID Foundation", "Link": "lifeID DID Method"}
+{"Method Name": "did:sov:", "Status": "PROVISIONAL", "DLT or Network": "Sovrin", "Authors": "Mike Lodder", "Link": "Sovrin DID Method"}
+{"Method Name": "did:uport:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "uPort", "Link": ""}
+{"Method Name": "did:v1:", "Status": "PROVISIONAL", "DLT or Network": "Veres One", "Authors": "Digital Bazaar", "Link": "Veres One DID Method"}
+{"Method Name": "did:dom:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "Dominode", "Link": ""}
+{"Method Name": "did:ont:", "Status": "PROVISIONAL", "DLT or Network": "Ontology", "Authors": "Ontology Foundation", "Link": "Ontology DID Method"}
+{"Method Name": "did:vvo:", "Status": "PROVISIONAL", "DLT or Network": "Vivvo", "Authors": "Vivvo Application Studios", "Link": "Vivvo DID Method"}
+{"Method Name": "did:icon:", "Status": "PROVISIONAL", "DLT or Network": "ICON", "Authors": "ICON Foundation", "Link": "ICON DID Method"}
+{"Method Name": "did:iwt:", "Status": "PROVISIONAL", "DLT or Network": "InfoWallet", "Authors": "Raonsecure", "Link": "InfoWallet DID Method"}
+{"Method Name": "did:ockam:", "Status": "PROVISIONAL", "DLT or Network": "Ockam", "Authors": "Ockam", "Link": "Ockam DID Method"}
+{"Method Name": "did:ala:", "Status": "PROVISIONAL", "DLT or Network": "Alastria", "Authors": "Alastria National Blockchain Ecosystem", "Link": "Alastria DID Method"}
+{"Method Name": "did:op:", "Status": "PROVISIONAL", "DLT or Network": "Ocean Protocol", "Authors": "Ocean Protocol", "Link": "Ocean Protocol DID Method"}
+{"Method Name": "did:jlinc:", "Status": "PROVISIONAL", "DLT or Network": "JLINC Protocol", "Authors": "Victor Grey", "Link": "JLINC Protocol DID Method"}
+{"Method Name": "did:ion:", "Status": "PROVISIONAL", "DLT or Network": "Bitcoin", "Authors": "Various DIF contributors", "Link": "ION DID Method"}
+{"Method Name": "did:jolo:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "Jolocom", "Link": "Jolocom DID Method"}
+{"Method Name": "did:ethr:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "uPort", "Link": "ETHR DID Method"}
+{"Method Name": "did:bryk:", "Status": "PROVISIONAL", "DLT or Network": "bryk", "Authors": "Marcos Allende, Sandra Murcia, Flavia Munhoso, Ruben Cessa", "Link": "bryk DID Method"}
+{"Method Name": "did:peer:", "Status": "PROVISIONAL", "DLT or Network": "peer", "Authors": "Daniel Hardman", "Link": "peer DID Method"}
+{"Method Name": "did:selfkey:", "Status": "PROVISIONAL", "DLT or Network": "Ethereum", "Authors": "SelfKey", "Link": "SelfKey DID Method"}
+{"Method Name": "did:meta:", "Status": "PROVISIONAL", "DLT or Network": "Metadium", "Authors": "Metadium Foundation", "Link": "Metadium DID Method"}
+{"Method Name": "did:tys:", "Status": "PROVISIONAL", "DLT or Network": "DID Specification", "Authors": "Chainyard", "Link": "TYS DID Method"}

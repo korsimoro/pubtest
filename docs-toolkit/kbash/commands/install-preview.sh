@@ -12,8 +12,12 @@ EOF
 }
 
 run() {
+  FLAVOR=$1
+  if [ -z "$FLAVOR" ]; then
+    error "need a flavor"
+  fi
 
-  rm -rf $PD/../docs/preview
-  mkdir -p $PD/../docs/preview
-  tar -C $PD/jekyll/src/_site -cf - . | tar -C $PD/../docs/preview -xf -
+  rm -rf $PD/../docs/preview/$FLAVOR
+  mkdir -p $PD/../docs/preview/$FLAVOR
+  tar -C $PD/jekyll/src/_site -cf - . | tar -C $PD/../docs/preview/$FLAVOR -xf -
 }

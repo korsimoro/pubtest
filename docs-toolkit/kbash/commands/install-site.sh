@@ -14,5 +14,5 @@ EOF
 run() {
 
   tar -C $PD/jekyll/src/_site -cf - . | tar -C $PD/../docs -xf -
-  pd install-preview
+  #pd install-preview
 }

@@ -30,7 +30,7 @@ run() {
   mkdir -p $TARGET
 
   #report_progress "copying rwot data" ""
-  pd copy-yest
+  pd copy-rwot
 
   #report_progress "mkdocs" "Logging to $LOG"
   pd docutil run db-query

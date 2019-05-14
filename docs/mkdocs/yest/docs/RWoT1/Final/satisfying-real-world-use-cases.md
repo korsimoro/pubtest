@@ -1,1 +1,0 @@
-<iframe src="https://infominer.id/yest/RWoT1/Final/satisfying-real-world-use-cases.pdf" width="100%" height="100%"></iframe>

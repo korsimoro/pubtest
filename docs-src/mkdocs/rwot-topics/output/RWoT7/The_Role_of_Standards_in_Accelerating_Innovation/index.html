@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>The Role of Standards in Accelerating Innovation - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "The Role of Standards in Accelerating Innovation", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="the-role-of-standards-in-accelerating-innovation">The Role of Standards in Accelerating Innovation</h1>
+<p>Use of standards accelerates innovation.  Oxymoron?  Not at all!</p>
+<p>By building upon widely implemented industry standards, innovators are freed to focus on the innovative aspects of their work, letting existing standards do the heavy lifting for the needs of their projects that standards already address.  The potential for use of cryptographic and digital identity standards in decentralized systems illustrates this point.</p>
+<p>Microsoft is deeply engaged with numerous innovators in building decentralized public-key based identity systems prototypes and is excited at the possibilities.  We love what’s happening and the way innovators are coming together to enable new digital identity possibilities.  All of us want these possibilities to achieve their promise as quickly as possible.  Integrating and maintaining interoperability with existing identity management systems – all based on standards – will be key to accelerating this process.</p>
+<p>Standards play a huge role in enabling innovation in decentralized public-key based identity systems.  By using widely adopted industry cryptographic and data representation standards as an agreed framework, innovators in this space can achieve laser focus on the unique value that they’re adding.  Furthermore, use of standards, where applicable, will facilitate faster adoption as decentralized public-key based systems move from prototypes to production systems.</p>
+<p>To make things concrete, we believe that use of the following standards will accelerate innovation when building decentralized identity systems:</p>
+<ul>
+<li>JWK [<a href="https://tools.ietf.org/html/rfc7517">RFC 7517</a>] is a widely deployed representation of cryptographic keys.</li>
+<li>JWS [<a href="https://tools.ietf.org/html/rfc7515">RFC 7515</a>] is a simple, flexible representation of digital signatures.</li>
+<li>JWE [<a href="https://tools.ietf.org/html/rfc7516">RFC 7516</a>] is a no-nonsense JSON-based representation encrypted content.</li>
+<li>JWA [<a href="https://tools.ietf.org/html/rfc7518">RFC 7518</a>] defines an initial set of algorithms for use with all the above.</li>
+<li>JWT [<a href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>] is a simple, powerful, widely deployed representation of claims (including that JWT is often used for representing verified claims).</li>
+<li>CBOR [<a href="https://tools.ietf.org/html/rfc7049">RFC 7049</a>] defines a compact binary data representation, which can be used as an alternative to JSON [<a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>] when size is at a premium.</li>
+<li>COSE [<a href="https://tools.ietf.org/html/rfc8152">RFC 8152</a>] is the CBOR equivalent of JWK, JWS, JWE, and JWA.</li>
+<li>CWT [<a href="https://tools.ietf.org/html/rfc8392">RFC 8392</a>] is the CBOR equivalent of JWT, providing a binary claims representation.</li>
+<li><a href="https://www.w3.org/TR/webauthn/">W3C Web Authentication</a> and <a href="https://fidoalliance.org/specs/fido-v2.0-id-20180227/fido-client-to-authenticator-protocol-v2.0-id-20180227.pdf">FIDO Client to Authenticator Protocol (CTAP)</a> employ the building blocks above for public-key based authentication.</li>
+</ul>
+<p>Great standards not only solve current use cases but enable solving new ones.  The JOSE [RFC 7515-7518] and JWT [RFC 7519] standards and their binary equivalents explicitly enable innovation while still using the standards.  How is this possible?</p>
+<p>While JWA [<a href="https://tools.ietf.org/html/rfc7518">RFC 7518</a>] defined how to a set of commonly-used cryptographic algorithms with JWS, JWE, and JWK, it also established the <a href="https://www.iana.org/assignments/jose/jose.xhtml">IANA JOSE Algorithms registry</a> to enable additional algorithms to be used for new use cases, without having to revise the JOSE standards.  For instance, [<a href="https://tools.ietf.org/html/rfc8037">RFC 8037</a>] defined how to use new elliptic curves with JWS, JWE, and JWK.  Microsoft is currently working with decentralized systems implementers on <a href="https://tools.ietf.org/html/draft-jones-webauthn-secp256k1-00">registering the secp256k1 algorithm</a> for use with JWS and COSE.  And when new cryptographic algorithms are invented, new identifiers can and will be registered for them in the <a href="https://www.iana.org/assignments/jose/jose.xhtml">IANA JOSE Algorithms registry</a>.</p>
+<p>Microsoft is building proof-of-concept decentralized public-key based identity systems using these robust industry standards.  We encourage others to accelerate innovation by doing the same.  We’re excited to see what we’ll achieve together!</p>
+<hr/>
+
+<p>Note:  A verstion of this position statement was posted by <a href="https://twitter.com/Alex_A_Simons">Alex Simons</a>, Microsoft VP of Program Management for Identity, at <a href="https://cloudblogs.microsoft.com/enterprisemobility/2018/08/29/the-role-of-standards-in-accelerating-innovation/">The role of standards in accelerating innovation</a>.</p>
+<p><strong>Author:</strong> Michael B. Jones <a href="https://self-issued.info/">https://self-issued.info/</a>, <a href="https://twitter.com/selfissued">@selfissued</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>RWoT 8 Topic Paper - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "RWoT 8 Topic Paper", url: "#_top", children: [
+              {title: "Authors", url: "#authors" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "The need for a human centered design exploration", url: "#the-need-for-a-human-centered-design-exploration" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="rwot-8-topic-paper">RWoT 8 Topic Paper</h1>
+<h2 id="authors">Authors</h2>
+<p>Bentley Farrington and Bart Suichies</p>
+<h2 id="introduction">Introduction</h2>
+<p>An often misunderstood element of the next generation of credential based digital identity systems is that they are no longer reliant on any single issuer being trustworthy. Rather, they rely the combination of many issuers, and many verifiable claims in order to create a reliable web of trust. As with any network, this ability to establish trust between peers scales exponentially with the relationships inside it.</p>
+<p>This network effect fundamentally shifts the power balance from centralized issuers, or federated identity managers, towards individual ID holders. The trade-off here is 1) the ease of compliance and 2) automation of services across contexts in an ever expanding ecosystem. Bonus-points for systems that cater to (zero knowledge) proofs over the exchange of credentials, which further simplifies the compliance part (and not unimportant - a fundamental human right as privacy), while allowing for next generation services.</p>
+<p>This also fundamentally changes the need for correlation. It's still there, but at the level of individual claims and issuers of those claims, NOT at the level of individuals. In short: I will be able to prove that I am over 18 by sharing proofs of x different issuers. Even if one of these issuers turns out to be not trustworthy, a verifier can still rely on the others that claim the same thing. All without having to have a single identifier cross-linking information across different systems, but merely by combining claims and proofs from different issuers. </p>
+<p>This also changes how we should think about regulation and levels of assurance, which will no longer be tied to single issuance processes, but also to a multi-source verification processes. As verifiers are almost always also issuers, there is a common interest in keeping costs of such systems down, driving the development of open standards to cater to interoperability rather than differentiating on individual levels of assurance. (On a side-note this is similar to the combinatorial power of biometrics - many individual biometrics can have poor performance, but the combination can get you some pretty accurate results.)</p>
+<p>Combined, this leads to systems that are 10x more trustworthy, offer 10x the value, and are likely to be 10x cheaper. As such, it is almost an inevitability they will be the prevailing model for digital society.</p>
+<h2 id="the-need-for-a-human-centered-design-exploration">The need for a human centered design exploration</h2>
+<p>Putting the ID holder at the center of an identity system comes with great opportunity, but also introduces new risks and barriers to adoption. Many of these are non-technical and such, should be explored in multi-disciplanary way. We propose a human centered design approach to tackle some of these issues and help shift the focus to not just the technical feasibility, but also inclusive usability. This is a prerequisite to creating an identity system which combines technical and human trust elements. </p>
+<p>Typical questions to explore play at different abstraction levels:</p>
+<ul>
+<li>How to design a self-sovereign identity system that can be adopted by key players in the identity ecosystem? Should it complement or replace existing systems?</li>
+<li>Does it make sense to have core metaphors for technical concepts to help build trust in these systems?</li>
+<li>How to design a credential exchange for people without ability to access the required technology?</li>
+<li>How will the new artefacts and control-levers of self-sovereign identity manifest themselves?</li>
+<li>How to prevent the unwanted sharing of credentials in a case where there is a power difference between a service provider and a citizen that would like to have access to a service? Is there such a thing as freely given, informed consent?</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

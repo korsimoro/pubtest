@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Querying Bitcoin blockchain for BTCR support - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Querying Bitcoin blockchain for BTCR support", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "BTCR Overview", url: "#btcr-overview" },
+              {title: "Using Block Explorers", url: "#using-block-explorers" },
+              {title: "Community Run Query Endpoint", url: "#community-run-query-endpoint" },
+              {title: "Current and Future Work", url: "#current-and-future-work" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="querying-bitcoin-blockchain-for-btcr-support">Querying Bitcoin blockchain for BTCR support</h1>
+<p>Kulpreet Singh, <a href="mailto:kupreet@opdup.com">kulpreet@opdup.com</a></p>
+<h2 id="abstract">Abstract</h2>
+<p>I describe the progress made during the
+<a href="https://github.com/w3c-ccg/did-hackathon-2018/blob/master/README.md">BTCR hackathon</a>
+towards providing a community service for querying the bitcoin
+blockchain as a means to support clients building BTCR DID resolvers
+using the BTCR DID method.</p>
+<p>BTCR DID method enables bitcoin users to generate DIDs corresponding
+to their bitcoin key pairs. By generating DIDs using bitcoin key pairs
+we can leverage the high level of guarantees provided by the bitcoin
+blockchain against manipulation of published data.</p>
+<p>I provide a brief overview of the BTCR DID resolution method, point to
+the problem of querying third party services and how we provided our
+own community service as part of a hackathon in 2018.</p>
+<h2 id="btcr-overview">BTCR Overview</h2>
+<p><a href="https://w3c-ccg.github.io/did-spec/">Decentralized Identifiers (DIDs)</a>
+are a new type of identifier for verifiable, "self-sovereign" digital
+identity. DIDs are fully under the control of the DID subject,
+independent from any centralized registry, identity provider, or
+certificate authority. The
+<a href="https://github.com/WebOfTrustInfo/rwot6-santabarbara/blob/master/final-documents/btcr-resolver.md">BTCR DID method</a>
+specifies how the transaction output identified above can be used to
+generate a DID Document matching the key pair used to sign that
+transaction.</p>
+<p>BTCR DID method uses a reference to a transaction provided by a user
+who wants to generate a BTCR DID. This reference to a transaction
+includes the type of the network (testnet or mainnet), the height of
+the block that contains the transaction, the index of the transaction
+in the block and finally the index of the output. See
+<a href="https://github.com/veleslavs/bips/blob/c83837536d6629f754ce5a88bbe245e0a615e76e/bip-XXXX-Bech32_Encoded_Transaction_Position_References.mediawiki">Extended TxRef</a>
+for details on how the reference to a transaction can be encoded and
+easily exchanged between humans.</p>
+<p>The BTCR DID method requires that we check if the transaction output
+specified has been spent or not. Depending on the spend status the DID
+method generates a DID pointing to the public key found in the
+transaction output or follows the spends to see if a future
+transaction output can be be found that has not been spent - this
+enables key rotation in the BTCR DID method.</p>
+<p>The challenge facing BTCR DID resolution is the ability to query the
+bitcoin blockchain for any transactions referencing a given
+address. In our case, it is the address in the P2PKH script referenced
+by the user transaction. The bitcoin reference client, bitcoind, does
+not maintain an address history and therefore as a community the BTCR
+developers were dependent on third party block explorers.</p>
+<h2 id="using-block-explorers">Using Block Explorers</h2>
+<p>Third party block explorers run their own databases indexing
+transactions by addresses referenced in those transactions. This
+allowed the BTCR developer community to quickly develop some MVPs and
+demo them to the larger community. However, third party block
+explorers are not a long term solution because of concerns about
+privacy leaks and more immediately the rate limits imposed by them.</p>
+<h2 id="community-run-query-endpoint">Community Run Query Endpoint</h2>
+<p>To get past the problems of of using third part block explorers and
+also to validate potential implementation solutions we deployed a
+<a href="https://github.com/btcsuite/btcd">BTCD</a> instance that provides an
+endpoint to query all transactions referencing and address. We also
+provided a very simple API to query all transactions referencing an
+address.</p>
+<p>The service is built in Go and invokes the BTCD API endpoints. It
+accept TxRefs as inputs and responds with a JSON array of transactions
+referencing the address. For example, the URL
+<a href="https://btcr-service.opdup.com/txref/txtest1:xz35-jzv2-qqs2-9wjt/resolve?spendsOnly=false">https://btcr-service.opdup.com/txref/txtest1:xz35-jzv2-qqs2-9wjt/resolve?spendsOnly=false</a>
+queries the service for TxRef xz35-jzv2-qqs2-9wjt on the testnet
+network and responds with all transactions referencing that address.</p>
+<p>With access to the list of transactions, BTCR developers can continue
+to experiment and further develop the BTCR DID method
+specification. The source code for the service is available on the
+GitHub repo
+<a href="https://github.com/kulpreet/btcr-service">https://github.com/kulpreet/btcr-service</a>. The
+README on the repo describes the various API endpoints and how to
+deploy the service.</p>
+<h2 id="current-and-future-work">Current and Future Work</h2>
+<p>As a proof of concept we are using BTCR Service to build a BTCR
+Android Wallet. The BTCR Android Wallet includes a Java client library
+for the BTCR Service API endpoints. For now, the wallet accepts a
+TxRef and shows the public key that can be used to generate an
+implicit DID. Our plan is to support DID generation using key pairs
+managed by the Android wallet. The wallet source code is available at
+<a href="https://github.com/opdup/btcr-android-wallet">https://github.com/opdup/btcr-android-wallet</a>.</p>
+<p>As the BTCR DID method spec evolves, we also plan to continue adding
+API endpoints that will be helpful to the community.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

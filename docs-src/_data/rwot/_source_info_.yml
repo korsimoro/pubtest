@@ -1,0 +1,91 @@
+- base_name: RWOT
+  dir_name: None
+  dst_table: Conference_Event
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Introduction
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Topics_and_Keywords
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Completed_Paper
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Completed_Paper_Person
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Advance_Reading
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Advance_Reading_Person
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Person
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: GitHub
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Organization
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Organization_Person
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Attendance_ignore
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'
+- base_name: RWOT
+  dir_name: None
+  dst_table: Sponsorship
+  format_name: google sheets
+  mtime: None
+  size: None
+  source_id: '1'

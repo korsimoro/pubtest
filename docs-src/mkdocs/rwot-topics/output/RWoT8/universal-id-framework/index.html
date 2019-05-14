@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Universal id framework - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Universal ID Framework", url: "#_top", children: [
+              {title: "Problem", url: "#problem" },
+              {title: "Key Idea", url: "#key-idea" },
+              {title: "Possible outcomes", url: "#possible-outcomes" },
+              {title: "Relationship with URI", url: "#relationship-with-uri" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="universal-id-framework">Universal ID Framework</h1>
+<p>By Dr. Shigeya Suzuki, Keio University</p>
+<p>Submitted to Rebooting Web of Trust 8</p>
+<p>January 31, 2019, Tokyo Japan</p>
+<h2 id="problem">Problem</h2>
+<p>Suppose we configure an access control list for a server software using some certificate-based client authentication over a secure connection. We need to configure a list of identity references such as the certificate's subjects or issuers. To describe the identity reference with PKI, we use X.500 Distinguished Name style strings.</p>
+<p>Suppose we want to add support for DID in a client authentication server code like the above. We need to modify the access control code of the server to add support for DID resolution. If we have a DID resolver library to implement this, it is not a difficult task. However, if we want broader deployment of DID, we need to develop a better way to add support for DID to help application developers.</p>
+<p>If we look at how to treat identity reference in an application, it is natural to develop a standard abstract data type which may store a different kind of identity references.</p>
+<h2 id="key-idea">Key Idea</h2>
+<p>One of the ways to support references for multiple ID scheme everywhere is developing a general Universal ID Reference scheme, which covers not only the references to DID but also Distinguish Name-based scheme or possibly others.</p>
+<p>It is possible to develop a Universal ID framework consists of standard documents, open source libraries, and other necessary components to help using Universal ID-based system.</p>
+<h2 id="possible-outcomes">Possible outcomes</h2>
+<p>If the Universal ID based framework is ready and the traditional single-framework component is replaced with  mutiple-framework capable component, it will be able to seamlessly support both DID and PKI based trust system.</p>
+<p>This change effectively enables the use of DIDs in various places.</p>
+<h2 id="relationship-with-uri">Relationship with URI</h2>
+<p>Designing Universal ID reference syntax based on URI is natural. However, restrict the syntax of the Universal ID within the URI scheme or relaxing the syntax require detailed use case analysis.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

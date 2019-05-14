@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Dealing with private key loss or compromise in digital identity systems - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Dealing with private key loss or compromise in digital identity systems", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Key revocation and rotation", url: "#key-revocation-and-rotation" },
+              {title: "Key loss", url: "#key-loss" },
+              {title: "Timeouts and dealing with takeover attempts", url: "#timeouts-and-dealing-with-takeover-attempts" },
+              {title: "Questions", url: "#questions" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="dealing-with-private-key-loss-or-compromise-in-digital-identity-systems">Dealing with private key loss or compromise in digital identity systems</h1>
+<p>By Christian Lundkvist <a href="https://twitter.com/chrislundkvist">@ChrisLundkvist</a> \&lt;christian.lundkvist@consensys.net></p>
+<h2 id="introduction">Introduction</h2>
+<p>If an identity is tied to a single persistent private key, then loss
+or compromise of the private key will mean total loss of the
+identity. Since key compromise and/or loss do happen there needs to be
+a way to recover from this in order to have a persistent digital
+identity. See <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/shared_terminology_for_digital_identity_systems.md">here</a> for definitions used.</p>
+<h2 id="key-revocation-and-rotation">Key revocation and rotation</h2>
+<p>If the user of the identity suspects that a key is or may be
+compromised the user can rotate their key by submitting a new key to
+the system, signed by the old key. After this the old key can be
+revoked. An example of how key revocation can work in Ethereum is
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/pki_tools_in_evm_blockchains.md">here</a>.</p>
+<h2 id="key-loss">Key loss</h2>
+<p>To deal with the case where a user completely loses control of the key
+a multisig system can be put in place where the user preemptively
+selects <code>N</code> "delegate" identities that are empowered to allow the key
+of the identity to be changed if <code>N</code> delegates provide their
+signatures. An example of this kind of key reset mechanism is
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/Key-revokation-of-lost-and-stolen-keys.md">here</a>.</p>
+<h2 id="timeouts-and-dealing-with-takeover-attempts">Timeouts and dealing with takeover attempts</h2>
+<p>In the previous <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/Key-revokation-of-lost-and-stolen-keys.md">example</a> of a decentralized key reset
+procedure a timeout was introduced where the original key can stop a
+key rotation from taking place using a timeout. There can be a contest
+period where the old key can stop the key rotation if the key rotation
+was initiated by an attacker that had been able to access the old key.</p>
+<h2 id="questions">Questions</h2>
+<ul>
+<li>What are good timeout procedures to balance ease of key rotation with protection from attackers?</li>
+<li>How to deal with UI/UX challenges of decentralized key recovery procedures?</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

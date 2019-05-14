@@ -9,7 +9,7 @@ EOF
 `\n"
 }
 run() {
-
+  pd activate mkdocs
 
   local LOG=$MKDOCS_KBASH_LOGS/build-mkdocs.txt
   pd activate mkdocs

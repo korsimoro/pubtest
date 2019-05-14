@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Multi-Factor Attribute Trust - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Multi-Factor Attribute Trust", url: "#_top", children: [
+              {title: "By Will Abramson", url: "#by-will-abramson" },
+              {title: "Mechanisms for Judging Trust", url: "#mechanisms-for-judging-trust" },
+              {title: "Closing Thoughts", url: "#closing-thoughts" },
+              {title: "Next Steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="multi-factor-attribute-trust">Multi-Factor Attribute Trust</h1>
+<h3 id="by-will-abramson">By Will Abramson</h3>
+<p>Developing flexible mechanisms for judging the trust of an attribute presentation is going to be essential to driving the network affects needed for widespread adoption of Verifiable Credential based identity networks.</p>
+<p>The question that a verifier needs to answer is why should I trust these attribute presenations?</p>
+<p>I know Sovrin have the concept of <a href="https://sovrin.org/library/sovrin-governance-framework/">Governance Frameworks</a>, which define the rules for actors within a certain identity ecosystem. While I am not aware of the technical implementation of these frameworks, defining trust from a legal, governance point of view makes sense. However, I wonder about the ability of these frameworks ability to provide trust when credentials are used across ecosystems. </p>
+<p>One of the goals of Verifiable Credentials is to empower individuals with their own set of credentials which they can present to any entity they choose to. Enabling them to prove aspects of their identity. For this to work a credential needs to be accepted in as many contexts and by as many different verifiers as possible. </p>
+<p>Within a well defined credential ecosystem it is easy to envision this working through shared knowledge of the trusted issuers' public decentralised identifiers, but how does a verifier from outside this ecosystem without this knowledge trust attributes from these credentials?</p>
+<p>Defining robust methods for gauging the trustworthiness of an attribute presentation will be essential for ensuring these credentials can be used as extensively as we would like. Throughout the rest of this article, I outline potential mechanisms for calculating this trust. </p>
+<h2 id="mechanisms-for-judging-trust">Mechanisms for Judging Trust</h2>
+<h3 id="open-access-to-an-ecosystems-trusted-issuer-dids">Open Access to an Ecosystems Trusted Issuer DIDs</h3>
+<p>This option would seem to be the most obvious. Suppose within an identity network an ecosystem forms for Healthcare in the UK. As part of that formation, they define a framework outlining the types of credentials needed within the ecosystem and the public DIDs trusted to issue them. These DIDs are shared with all members of the ecosystem. For example, all hospitals are trusted issuers of doctor employment credentials and know all the other trusted DIDs able to issue these employment credentials.</p>
+<p>This works within an ecosystem where dissemination of trusted DIDs is easy and could be built into the services used by this ecosystem, but how does a verifier outside this ecosystem check a doctor employment credential was issued by a DID trusted within this health framework? How can they do it in real time? How can they do it without compromising the privacy of the entity presenting the claim?</p>
+<p>One option might be for that ecosystem to host an endpoint allowing queries to check the issuing capabilities of a specific DID. This has its problems though. Who would be in charge of hosting the endpoint? How can you be sure the endpoint has not been compromised? What happens if the endpoint is down? Is this a privacy concern - if every time a credential is verified, the verifier has to hit someone's endpoint?</p>
+<p>A solution to this could be to store these registries on the ledger much the same as revocation registries. These use dynamic accumulators to combine the hashes of all trusted DID's for a certain credential definition. This would provide an open, highly available registry for verifiers to query without the same privacy concerns as an endpoint. The only problem I can see is which entities are capable of dynamically updating the registry. This could be managed through threshold signatures with key sharing defined as part of the Governance Framework.</p>
+<h3 id="public-credentialsattestations">Public Credentials/Attestations</h3>
+<p>A different approach could be to issue credentials on chain to the trusted issuers in a certain ecosystem. Then when verifying a credential presentation by resolving the DID on chain the verifier would also check for a credential to support the DID as a trusted issuer.</p>
+<p>The obvious problem with this is who issued that credential and how can you trust them. Trust could be improved with public credentials issued from top to bottom of a governance framework. These credentials are basically attestations to the trust of a public DID. If all members of an ecosystem attest to the trust of all other members on chain creating a verifiable web of trust for that ecosystem. This would make it much harder for a bad actor to imitate a trusted issuer.</p>
+<p>On reading some of the articles for this RWoT I came across the idea of <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/did-namespace-records.md">DID Namespace records</a>. An interesting read, suggesting creating a web of trust through name spaced DIDs. </p>
+<h3 id="contextual-evidence">Contextual Evidence</h3>
+<p>Providing context could be another mechanism for gauging the trust of an attribute. For example, a verifier receives a credential presentation of an attribute issued by an issuer they have low trust in. The verifier could ask for further corroborating proof of that attribute.  The challenge here would be to enable a prover to provide this proof without giving away any more information about themselves than necessary, following the data minimisation principle.</p>
+<p>An example could be when attesting to work experience in a foreign country, the verifier requests proof that you indeed were in that country for the stated amount of time which the prover can present through proofs of digital passport stamps from that country.</p>
+<h3 id="quantity-of-attesting-entities">Quantity of Attesting Entities</h3>
+<p>The number of different issuers a prover can show attest to the same attribute they are presenting the greater the trust a verifier can place in that attribute. A simple example of this might be attendance at an event. Attestation from 10 different low trust DID's could be as trustworthy as a single attestation from a trusted DID.</p>
+<h3 id="leveraging-time">Leveraging Time</h3>
+<p>Time is an interesting one. I think there are multiple ways to include time into a trustworthiness calculation. The most obvious is how long has the issuing DID been registered on the public ledger. However, I think particularly in low trust environments, if there was some way to leverage the length of time the prover has had a private connection with an issuer or an entity attesting to the credibility of a claim in such a way that the prover could combine this into the presentation then time could be a really useful measure of trust.</p>
+<p>I am not sure exactly how this would work, but it mirrors how we act in the physical world. The longer I know someone the more confident I feel I can attest to their trustworthiness. I believe there must be some way to translate this into the anonymous credential world. </p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>For a verifier, making the decision to trust or reject the attributes presented to them will be critical to their organisation. At the same time, the amount of trust required and the initial trust conditions can vary widely depending on the context of the identity interaction. Mechanisms to allow verifiers to make real-time decisions on whether or not to trust the presentation of attributes presented to them will be important to the development of Self-Sovereign Identity and the network effects that will make it the default approach for digital identity.</p>
+<p>This is an initial attempt to outline ways to judge the trustworthiness of an attestation. I believe a combination of these methods could provide multi-factor trust needed, particularly for individuals from areas of the world without trusted entities capable of bootstrapping a decentralised trusted credential network.</p>
+<p>Finally, these are some questions I am thinking about:</p>
+<ul>
+<li>Are there any other approaches that could be used to assess the trust of an attribute presentation?</li>
+<li>How might these methods be implemented &amp; combined within an agent in such a way to provide a trust score for an attribute?</li>
+<li>How can the initial trust conditions of a verifier be included in these methods to provide an interoperable solution any verifier could use?</li>
+<li>How might we combine trust assumptions gained from context, quantity and time be used to provide high trust credentials to people from areas of the world with low trust organisations?</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>I would like to discuss ongoing work within the community to solve this trust problem. How do people see it working? Other than hard coding in trusted DID issuers how can a developer build applications that verify credential presentations meet the trust requirements of the application in as flexible a way as possible?</p>
+<p>This discussion will be closely tied to the reading posted by Matt Stone and Dan Burnett, who ask the question <a href="https://github.com/WebOfTrustInfo/rwot8-barcelona/blob/master/topics-and-advance-readings/bootstrap_web-of-trust_reliance-lifecycle.md">How do we bootstrap the web of trust in Verifiable Claims</a>.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

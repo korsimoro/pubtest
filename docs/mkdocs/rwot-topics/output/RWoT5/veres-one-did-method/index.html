@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Veres One DID Method Specification - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Veres One DID Method Specification", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "An Example Veres One DID Document", url: "#an-example-veres-one-did-document" },
+              {title: "Collaboration", url: "#collaboration" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="veres-one-did-method-specification">Veres One DID Method Specification</h1>
+<p><strong><em>by Manu Sporny, Dave Longley, and Matt Collier, Digital Bazaar</em></strong></p>
+<h2 id="introduction">Introduction</h2>
+<p>The Veres One Ledger is a permissionless public ledger designed specifically 
+for the creation and management of decentralized identifiers (DIDs). Veres 
+One DIDs are self-sovereign identifiers that may be used by people, 
+organizations, and digital devices to establish an identifier that is 
+under their control. </p>
+<p>Veres One DIDs are useful in ecosystems where one needs to issue, store, and 
+use Verifiable Claims. </p>
+<p>The Veres One DID Method specification has been implemented and a
+testnet is available here:</p>
+<p><a href="https://testnet.veres.one/">Veres One Testnet</a></p>
+<p>There is a video demo of a DID being registered and retrieved from the
+Veres One Testnet here:</p>
+<p><a href="https://www.youtube.com/watch?v=tQzQKZKF93w">Veres One Testnet DID Registration Demo</a></p>
+<p>The current draft of the Veres One DID Method specification is available here:</p>
+<p><a href="https://w3c-ccg.github.io/didm-veres-one/">Veres One DID Method Specification</a></p>
+<h2 id="an-example-veres-one-did-document">An Example Veres One DID Document</h2>
+<p>What follows is a complete DID Document registration event that is sent to the ledger
+including line by line documentation regarding the DID Document registration
+event.</p>
+<pre><code>{
+  // The Web Ledger context is a part of the Web Ledger specification
+  // and provides the core framing for the DID Registration event.
+  "@context": "https://w3id.org/webledger/v1",
+  "type": "WebLedgerEvent",
+  // The type of ledger operation being performed is a "Create"
+  // which creates objects (the DID Document) in the state machine
+  "operation": "Create",
+  // input can be an array of DID Documents in case batch processing
+  // is desired
+  "input": [{
+    // The Veres One context includes the https://w3id.org/did/v1
+    // context and adds Veres One specific vocabulary terms
+    "@context": "https://w3id.org/veres-one/v1",
+    "id": "did:v1:770f2d84-5e62-4caa-af95-111a3205bc84",
+    "authorizationCapability": [{
+      // This authorization capability notes that the DID is capable
+      // of updating the entire DID Document
+      "permission": "UpdateDidDocument",
+      // This is a truly self-sovereign DID in that only the entity
+      // associated with the DID update the DID Document
+      "entity": "did:v1:770f2d84-5e62-4caa-af95-111a3205bc84",
+      // The permitted proof types states that a capability to
+      // update the DID Document will be granted if the submitting
+      // entity provides both an Equihash proof of work (that is 
+      // tuned to the Veres One ledger) and a signature on the 
+      // event. The proof of work provides some protection against 
+      // a DDoS of the ledger while the signature ensures that 
+      // the proper entity is requesting the change.
+      "permittedProofType": [{
+        "proofType": "LinkedDataSignature2015"
+      }, {
+        "proofType": "EquihashProof2017",
+        "equihashParameterAlgorithm": "VeresOne2017"
+      }]
+    }],
+    // There is only one RSA signature-based authentication credential 
+    // that is registered at the time of DID creation
+    "authenticationCredential": [{
+      "id": "did:v1:770f2d84-5e62-4caa-af95-111a3205bc84/keys/1",
+      "type": "CryptographicKey",
+      "owner": "did:v1:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmbDqPu6IKHiiIQ4d0AQ6\r\n
+        PBduDhUUVqyQirvxqsdcNdKgZ2L8whBml/nTyuB4cd+hHrsfMDiHiT5kX2pbZ7Yy\r\n
+        2ctWkGw8e0J94CbwVh2H15gBQBUCjLiGvVIHO2pni693qmre+3Ya2NJ8gGwPLJ7h\r\n
+        TLca2b2dX0y16qu0MT0osUGGEoPsdg6ibD2pxnADS3GNPObHT12GrAuxjYFMHecF\r\n
+        A4hLZ8U+MIcVmHZuokqqbcyJyjOV+kmhFNeTKFP5P5U8HA3Y42/rE1UJp/wyy7Lc\r\n
+        ZAvq0t75ddXKyvYh5dkzxxeeELNKNWVxJ2yvgAr0SatLEPzxJoeYdCyU5N5E22Fj\r\n
+        jQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }]
+  }],
+  // The ledger event itself is secured using an Equihash proof and is
+  // also digitally signed with the RSA private key listed above. This
+  // multi-signature is what is used to grant the capability to create the
+  // DID Document.
+  "signature": [{
+    "type": "EquihashProof2017",
+    "equihashParameterN": 64,
+    "equihashParameterK": 3,
+    "nonce": "AQAAAA==",
+    "proofValue": "AAAaPwABxrIAAFOKAAGo4QAAVW0AAN7cAACXcgABjEI="
+  }, {
+    "type": "LinkedDataSignature2015",
+    "created": "2017-09-30T02:54:31Z",
+    "creator": "did:v1:770f2d84-5e62-4caa-af95-111a3205bc84/keys/1",
+    "signatureValue": "SNMbsPqLnB+hJFhXzS6hcpZnm9cGvSZZg7o26UYnyGYTvKder/S+Xk
+      hNhXisS5385Ljlf5CXTQT5j6qYZtP8ut1Benaae8TMH17txP0CfzHbUMJFnHA1+Nru+e/Pw
+      yPwuQ+VZYlXOB7g/tKVVZsxAYTKCAOJvJMIE+nlHjpB+RsKs9z4ZzVtddntqqAcvbZxV/o7
+      azBFDizeJu/gHVVMncCJ00SRoOzCOZUABRJV/k68bNSAfpELkrdWx8/xvMIF8r+LWhwdKCS
+      iOw4DjSwIK40yD5rOvQn/GlC+unyB8zFe60jCToz/UOJNZBiIYwo+Pwwx28Wqd4Jkb3IeDr
+      /L2Q=="
+  }]
+}
+</code></pre>
+<h2 id="collaboration">Collaboration</h2>
+<p>We would like to collaborate with the other DID Method implementers at 
+Rebooting the Web of Trust to align both the core DID specification as well
+as other DID Method specifications. We are also seeking to partner with
+organizations that would be interested in integrating Veres One DIDs into their
+platform to field test the capabilities of the specifications and technologies.
+We are also interested in developing common technologies that can not only
+access and update the Veres One DID ledger, but other ledgers as well.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

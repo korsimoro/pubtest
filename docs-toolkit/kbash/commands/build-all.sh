@@ -8,7 +8,7 @@ ${BLUE}pd build-all${NC}
 EOF
 `\n"
 }
-}
+
 run() {
   pd build-data
   pd build mkdocs

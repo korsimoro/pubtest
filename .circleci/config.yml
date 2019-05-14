@@ -61,6 +61,7 @@ jobs:
             cat ~/repo/docs-toolkit/mkdocs/setup-logs/*
             pd setup jekyll
             cat ~/repo/docs-toolkit/jekyll/setup-logs/*
+            echo "Building all"
             pd build-all
             git config user.email "eric@korsimoro.com"
             git config user.name "CircleCI Build"

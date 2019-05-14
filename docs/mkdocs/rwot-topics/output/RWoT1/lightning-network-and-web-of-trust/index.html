@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Lightning network and web of trust - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "New Challenges to WoT Key Exchange", url: "#_top", children: [
+          ]},
+          {title: "Questions", url: "#questions", children: [
+          ]},
+          {title: "References", url: "#references", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>Lightning Network and Web of Trust ==================================</p>
+<p>By Joseph Poon <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#115;&#101;&#112;&#104;&#64;&#108;&#105;&#103;&#104;&#116;&#110;&#105;&#110;&#103;&#46;&#110;&#101;&#116;&#119;&#111;&#114;&#107;">&#106;&#111;&#115;&#101;&#112;&#104;&#64;&#108;&#105;&#103;&#104;&#116;&#110;&#105;&#110;&#103;&#46;&#110;&#101;&#116;&#119;&#111;&#114;&#107;</a></p>
+<p>The Bitcoin Lightning Network is a smart contract technology using Bitcoin payment channels which allows for scalable high-volume micropayments without delegating full custody of funds to trusted third parties.</p>
+<p>Bitcoin allows anyone to send value without a trusted depository or custodian. However, due to limitations to block confirmation, transactions require up to one hour. Additionally, individual micropayments below several cents are not worthwhile on the Bitcoin blockchain as the on-blockchain transaction fees are several cents. Lightning Network conducts net settlement of funds between two participants which allows one to conduct an unlimited amount of transactions off-blockchain, but eventually settling the transactions on-chain.</p>
+<p>Funds are placed into a two-party, multisignature "channel" bitcoin address. This channel is represented as an entry on the bitcoin public ledger. In order to spend funds from the channel, both parties must agree on the new balance. The current balance is stored as the most recent transaction signed by both parties, spending from the channel address. To make a payment, both parties sign a new exit transaction spending from the channel address. All old exit transactions are invalidated by doing so.</p>
+<p>The Lightning Network does not require cooperation from the counterparty to exit the channel. Both parties have the option to unilaterally close the channel, ending their relationship. Since all parties have multiple multisignature channels with many diferent users on this network, one can send a payment to any other party across this network.</p>
+<p>By embedding the payment conditional upon knowledge of a secure cryptographic hash, payments can be made across a network of channels without the need for any party to have unilateral custodial ownership of funds. The Lightning Network enables what was previously not possible with trusted financial systems vulnerable to monopolies—without the need for custodial trust and ownership, participation on the network can be dynamic and open for all.</p>
+<p>Applications include pay-per-megabyte internet, machine-initated high-volume programmatic payments, and paying for media (e.g. pay-per-article).</p>
+<h2 id="new-challenges-to-wot-key-exchange">New Challenges to WoT Key Exchange</h2>
+<p>New innovations and development in key exchange and trust systems are becoming increasingly necessary for new developments in decentralized financial systems. Traditionally, financial infrastructure has used hierarchical systems which have been sufficiently functional for a banking model where there are only several trusted counterparties. However, with development in decentralized systems like Bitcoin, it's necessary for individuals to conduct key exchange without central entities.</p>
+<p>The Lightning Network in particular requires direct communication between endpoints. Payments are routed across a network of participants and receipt of funds are proven by knowledge of some preimage with a previously shared hash. As a result, proof-of-payment can only be established with a signed message establishing that knowledge the preimage for hash H is actual payment. This receipt must be signed by the recipient before payment is made if one wishes to be able to proof the purpose of a payment. As this requires digitally signing a document before payment, the participants must have some kind of key exchange to validate that the recipient is who they claim to be.</p>
+<p>These types of payments are direct peer-to-peer payment without trusted custodians, so the trust models are somewhat more complex and may be similar to a web-of-trust type system.</p>
+<p>Incorrect key exchange due to attacks from adversaries results in payment to incorrect parties. Direct, immediate, tangible financial loss can result from improper key exchange. This problem is exacerbated by the need for many parties to send funds to many other parties.</p>
+<p>As a result, systems like the Lightning Network will be in need of key-exchange and discovery which is not only functional for a handful of trusted parties (which are currently somewhat mitigated by cert-pinned identities), but to also be useful for a group of individuals or small merchants to receive payments and prove payments reliably. These types of emerging financial systems may be used other applications of communication and digital identity.</p>
+<h2 id="questions">Questions</h2>
+<ol>
+<li>
+<p>What kinds of identities &amp; indentifiers are ideal for the use case of requiring signed receipts/proof-of-payment? Canonicalization of identity, whether to include hostnames vs. pubkeys as the root identity, UX, etc.</p>
+</li>
+<li>
+<p>What kind of identifier features are necessary? E.g. scriptable revocation of keys</p>
+</li>
+<li>
+<p>Are there any examples or implementations of architectures to use for identity? Are identity documents/certificates preferable over simple pubkeys?</p>
+</li>
+<li>
+<p>It's possible that people will overload these systems for messaging and reputation systems, what are some implications for doing so? How does one make reputation sybil resistant?</p>
+</li>
+<li>
+<p>Historically, users are very bad at maintaining private keys, are there advantages for a WoT based on multiple-signators?</p>
+</li>
+<li>
+<p>Are centralized directories a worthwhile tradeoff? How to minimize trust in a single entity (E.g. namecoin) over models with centralized identifiers (e.g. OpenID)?</p>
+</li>
+<li>
+<p>What would be a secure user experience flow for establishing trust for someone buying a cup of coffee at an independent coffee shop? At an online newspaper?</p>
+</li>
+</ol>
+<h2 id="references">References</h2>
+<p>[1] The Bitcoin Lightning Network paper http://lightning.network/lightning-network-paper.pdf</p>
+<p>[2] Summary http://lightning.network/lightning-network-summary.pdf</p>
+<p>[3] Video https://www.youtube.com/watch?v=8zVzw912wPo</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

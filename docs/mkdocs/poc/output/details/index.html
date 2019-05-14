@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Details - IIW</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">IIW</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="./">Details</a>
+                            </li>
+                            <li >
+                                <a href="..">Home</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="..">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#pubtest-rwot-documentation-poc">PubTest - RWoT Documentation PoC</a></li>
+        <li class="main "><a href="#quickstart">Quickstart</a></li>
+        <li class="main "><a href="#key-directories">Key Directories</a></li>
+            <li><a href="#docs">docs</a></li>
+            <li><a href="#docsmkdocssrcoutputmkdocsyml">docs/mkdocs//{src,output,mkdocs.yml}</a></li>
+            <li><a href="#docs-datasqlite">docs-data/.sqlite</a></li>
+            <li><a href="#docs-datasubmodules">docs-data/.submodules</a></li>
+            <li><a href="#docs-toolkitkbash-and-docs-toolkitkbash">docs-toolkit/.kbash and docs-toolkit/kbash</a></li>
+            <li><a href="#docs-toolkitdocutil">docs-toolkit/docutil</a></li>
+            <li><a href="#docs-toolkitsqlite">docs-toolkit/sqlite</a></li>
+            <li><a href="#95datadb-name95queryyml">_data/[db-name]\/_[query].yml</a></li>
+        <li class="main "><a href="#purpose">Purpose</a></li>
+            <li><a href="#repository-based">Repository Based</a></li>
+            <li><a href="#community-engagement">Community Engagement</a></li>
+            <li><a href="#machine-processable-rich-data">machine processable rich data</a></li>
+            <li><a href="#proof-of-concept-recording-the-exploration-of-mission-support-technologies">Proof of Concept - recording the exploration of mission support technologies</a></li>
+            <li><a href="#explore-the-use-of-git-github">explore the use of git &amp; github</a></li>
+        <li class="main "><a href="#git-configuration">Git Configuration</a></li>
+            <li><a href="#circleci-integration">CircleCI Integration</a></li>
+            <li><a href="#github-pages-integration">GitHub Pages Integration</a></li>
+        <li class="main "><a href="#poc">PoC</a></li>
+            <li><a href="#mkdocs">mkdocs</a></li>
+            <li><a href="#tools-query-system">tool's query system</a></li>
+            <li><a href="#wordpress">wordpress</a></li>
+            <li><a href="#presentation-of-git-commit-logs">presentation of git commit logs</a></li>
+            <li><a href="#tool">tool</a></li>
+            <li><a href="#sqlitebiter">sqlitebiter</a></li>
+            <li><a href="#mkdocs_1">mkdocs</a></li>
+        <li class="main "><a href="#repository-based_1">Repository Based</a></li>
+        <li class="main "><a href="#community-engagement_1">Community Engagement</a></li>
+            <li><a href="#representation-over-direct-democracy">Representation over direct democracy</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="pubtest-rwot-documentation-poc">PubTest - RWoT Documentation PoC</h1>
+<ul>
+<li><a href="#quickstart">Quickstart</a></li>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#git-configuration">Git Configuration</a></li>
+<li><a href="#key-directories">Key Directories</a></li>
+<li><a href="#community-engagement">Community Engagement</a></li>
+</ul>
+<h1 id="quickstart">Quickstart</h1>
+<pre><code>git clone --branch documentation git@github.com:korsimoro/pubtest --recursive
+./pubtest/docs-toolkit/enter.sh
+pd serve
+</code></pre>
+
+<h1 id="key-directories">Key Directories</h1>
+<ul>
+<li>docs         # this is the user facing element, which is built from data</li>
+<li>docs-data    # this is the data, managed by the toolkit</li>
+<li>docs-toolkit # this contains glue code for doing amazing things</li>
+</ul>
+<h2 id="docs">docs</h2>
+<p>This is the web site source code - it is a jekyll environment using the
+minimal-mistakes theme working in coordination with mkdocs, which is used
+to index document pools.</p>
+<h2 id="docsmkdocssrcoutputmkdocsyml">docs/mkdocs/<site>/{src,output,mkdocs.yml}</h2>
+<p>This directory pattern defines sub-sites which are focused around a single
+mkdocs build.  Typically the files in src are generated from the data.</p>
+<h2 id="docs-datasqlite">docs-data/.sqlite</h2>
+<p>These are sqlite databases used to construct much of the data.</p>
+<p>This contains of the following structure</p>
+<pre><code>  /[db-name]
+    database.sqlite
+    [query].sql
+</code></pre>
+<p>where the database.sqlite file a sqlite database.
+This can come from any source and
+- can be managed using standard SQL utilities
+- can be generated as a snapshot from googlesheets
+  or other CSV data via <code>sqlitebiter</code>
+- can be pulled by scraping websites via <code>sqlitebiter</code></p>
+<h2 id="docs-datasubmodules">docs-data/.submodules</h2>
+<p>These are other git repositories we use as sources of data</p>
+<h2 id="docs-toolkitkbash-and-docs-toolkitkbash">docs-toolkit/.kbash and docs-toolkit/kbash</h2>
+<p>This is the <code>pd</code> shell environment useful for developing local content</p>
+<h2 id="docs-toolkitdocutil">docs-toolkit/docutil</h2>
+<p>This is a python program which works with apis and the local filesystem</p>
+<h2 id="docs-toolkitsqlite">docs-toolkit/sqlite</h2>
+<h2 id="95datadb-name95queryyml">_data/[db-name]\/_[query].yml</h2>
+<h1 id="purpose">Purpose</h1>
+<p>The purpose of this repository is to develop a publication technology for IIW,
+RWoT and other identity-tech community data with the following properties:</p>
+<h2 id="repository-based"><a href="#repository-based">Repository Based</a></h2>
+<ul>
+<li>
+<p><em>provenance</em> / <em>git audit trail</em>
+    The git audit trail provides the skeleton for information provenance.</p>
+</li>
+<li>
+<p><em>data integration</em>
+    the contents of the documentation should be derived deterministically
+    from the the contents of the repository.  This allows us to guarantee
+    that the information presented in the web site is bound to the audit
+    trail.</p>
+</li>
+</ul>
+<h2 id="community-engagement"><a href="#community-engagement">Community Engagement</a></h2>
+<ul>
+<li>integrate with external data sources<ul>
+<li>Snapshots of chat and other feed data (calendars, etc.)</li>
+<li>Embedded Visualizers</li>
+<li>Embedded Forms</li>
+</ul>
+</li>
+<li>support moderated, timely publication, backed by an editorial actor</li>
+</ul>
+<h2 id="machine-processable-rich-data">machine processable rich data</h2>
+<ul>
+<li>capture ontology in json-ld</li>
+<li>normalize tabular data as sqlite files</li>
+<li>use sql queries to generate reports</li>
+<li>use graphql queries to generate reports</li>
+<li>use git commit history exploration to generate reports</li>
+<li>expose report data as yml, csv, and json for<ul>
+<li>our own consumption via _data</li>
+<li>reference data promoting distribution of machine readable data to other
+  sites about data and make the results of this analysis readily digestable
+  for publication purposes</li>
+</ul>
+</li>
+</ul>
+<h2 id="proof-of-concept-recording-the-exploration-of-mission-support-technologies">Proof of Concept - recording the exploration of mission support technologies</h2>
+<ul>
+<li>submodules - to access files from other repositories, linked to a specific point in their tracking history, which is available to us for inclusion in documentation</li>
+<li>mkdocs - expected useful for some structured data and ad-hoc data sources</li>
+<li>wordpress - it should be possible to do something with wordpress, but not sure what</li>
+<li>sqlitebiter - helps normalize tabular data around a sqlite format</li>
+<li>tool - our own shim, with whatever data transformation logic we want</li>
+</ul>
+<h2 id="explore-the-use-of-git-github">explore the use of git &amp; github</h2>
+<ul>
+<li>issues tracking to coordinate our work and advance our ideas to completion</li>
+<li>github pages for publication</li>
+<li>circleci integration for CI/CD pipeline</li>
+<li>use of submodules</li>
+<li>use of git commit history in publication</li>
+</ul>
+<h1 id="git-configuration">Git Configuration</h1>
+<ul>
+<li><a href="#CircleCI Integration">CircleCI</a></li>
+<li><a href="#CircleCI Integration">GitHub Pages</a></li>
+<li><a href="#CircleCI Integration">branch: documentation</a></li>
+<li><a href="#CircleCI Integration">branch: master</a></li>
+</ul>
+<h2 id="circleci-integration">CircleCI Integration</h2>
+<ul>
+<li>https://circleci.com/gh/korsimoro/pubtest/tree/documentation</li>
+<li>commits to 'documentation' branch will trigger the workflow in ".circleci/config.yml"</li>
+</ul>
+<p>The <code>.circleci/config.yml</code> file associates a command with a branch name, so we can run different
+commands depending upon updates to any branch.</p>
+<h2 id="github-pages-integration">GitHub Pages Integration</h2>
+<p>publication to 'master' branch will trigger jekyll run and publish the result.
+This is due to serving the repository via github pages.  As a result we get a
+"free, well maintained, powerful" step that will process our 'master' branch,
+and in particular, the 'docs' directory and publish the result for global\
+visibility.</p>
+<h3 id="branch-documentation">branch: documentation</h3>
+<p>the default branch is 'documentation'.</p>
+<p>when documentation is to be released, you should commit to this branch.  That
+will trigger the circle-ci preparation step followed by the github pages
+publication step.</p>
+<h3 id="branch-master">branch: master</h3>
+<p>ideally the 'master' branch will be controlled, and the state of master should
+always match the deployed website.</p>
+<p>This means we want to manage our updates to master as much as possible, and
+refrain, as much as possible, from committing directly to master.</p>
+<p>This effectively makes "releasing the repo" equivalent to "publishing the
+documentation", which is a nice parity to have for any project!</p>
+<h1 id="poc">PoC</h1>
+<p>All of the PoC components can be ignored, but they
+demonstrate the sorts of tools we should consider
+within reach.</p>
+<h2 id="mkdocs">mkdocs</h2>
+<p>everything mentioning mkdocs can be
+safely ignored.  We are leaving it in
+because it is working, and there are documentation
+subsets for which it might be very useful.  It
+does not play any role in the main deployment.</p>
+<p>The mkdoc sandbox is visiable
+at <code>/pubtest/mkdocs/index.html</code> when deployed.</p>
+<h2 id="tools-query-system">tool's query system</h2>
+<p>This has proven useful to me.  It is equivalent to "frozen views" in classic rdbms, but the views are written out as CSV, JSON, and YML and locked to an audit trail via the supporting git repository.</p>
+<h2 id="wordpress">wordpress</h2>
+<p>We could integrate with wordpress</p>
+<h2 id="presentation-of-git-commit-logs">presentation of git commit logs</h2>
+<p>Exposing the <code>chain of provenance</code> of information is of critical importance in the identity-tech universe.</p>
+<p>Since the data is ultimately <em>published</em> from git, via github pages, then it makes sense for the provenance chain to be rooted in the git commit history.  This gives you 'tree-hashes' linked to an audit trail, which can, ultimately be linked to the ecosystem of DIDs and VCs.</p>
+<p>DIDs should be mappable to "git repository states" in a very decentralized manner.  One could even imagine a did:git:* method ;)</p>
+<h2 id="tool"><code>tool</code></h2>
+<pre><code>(venv) pubtest&gt; tool
+Usage: tool [OPTIONS] COMMAND [ARGS]...
+
+  Simple utilities to massage data in the repo.
+
+Options:
+  --dir TEXT  Base Directory (Checkout)
+  --help      Show this message and exit.
+
+Commands:
+  db-schema-table    Dump schema
+  db-schema-to-yaml  Extract schema from sqlite and place as _data.
+  db-to-yaml         Extract data from sqlite and place as _data.
+</code></pre>
+
+<h2 id="sqlitebiter"><code>sqlitebiter</code></h2>
+<pre><code>Usage: sqlitebiter [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --version                       Show the version and exit.
+  -o, --output-path PATH          Output path of the SQLite database file.
+                                  Defaults to 'out.sqlite'.
+  -a, --append                    Append table(s) to existing database.
+  --add-primary-key PRIMARY_KEY_NAME
+                                  Add 'PRIMARY KEY AUTOINCREMENT' column with
+                                  the specified name.
+  --convert-config TEXT           [experimental]
+                                  Configurations for data
+                                  conversion. The option can be used only for
+                                  url subcommand.
+  -i, --index INDEX_ATTR          Comma separated attribute names to create
+                                  indices.
+  --no-type-inference             All of the columns assume as TEXT data type
+                                  in creating tables.
+  --type-hint-header              Use headers suffix as type hints.
+                                  If there
+                                  are type hints, converting columns by
+                                  datatype corresponding with type hints.
+                                  The
+                                  following suffixes can be recognized as type
+                                  hints (case insensitive):
+                                  &quot;text&quot;: TEXT
+                                  datatype.
+                                  &quot;integer&quot;: INTEGER datatype.
+                                  &quot;real&quot;: REAL datatype.
+  --replace-symbol TEXT           Replace symbols in attributes.
+  -v, --verbose
+  --debug                         For debug print.
+  -q, --quiet                     Suppress execution log messages.
+  -h, --help                      Show this message and exit.
+
+Commands:
+  completion  A helper command to setup command completion.
+  configure   Configure the following application settings: (1) Default...
+  file        Convert tabular data within CSV/Excel/HTML/JSON/Jupyter...
+  gs          Convert a spreadsheet in Google Sheets to a SQLite database...
+  url         Scrape tabular data from a URL and convert data to a SQLite...
+</code></pre>
+
+<h2 id="mkdocs_1">mkdocs</h2>
+<pre><code>(venv) pubtest&gt; mkdocs
+Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
+
+  MkDocs - Project documentation with Markdown.
+
+Options:
+  -V, --version  Show the version and exit.
+  -q, --quiet    Silence warnings
+  -v, --verbose  Enable verbose output
+  -h, --help     Show this message and exit.
+
+Commands:
+  build      Build the MkDocs documentation
+  gh-deploy  Deploy your documentation to GitHub Pages
+  new        Create a new MkDocs project
+  serve      Run the builtin development server
+</code></pre>
+
+<h1 id="repository-based_1">Repository Based</h1>
+<h1 id="community-engagement_1">Community Engagement</h1>
+<p>This documentation data model provides access to the people and organizations
+impacted by this information, however, it does so through the filtering of
+a group of curators and the integration of feedback and other channels.</p>
+<h2 id="representation-over-direct-democracy">Representation over direct democracy</h2>
+<p>This model favors the publication of information by a sponsoring organization.</p>
+<p>For example, when Rebooting the Web of Trust publishes information about the
+proceedings at one of the events, that should be the prerogative of RWoT.</p>
+<p>This provides substantial utility, in that we can tie the act of a repository
+owner, updating a branch, into a set of automatic processing, including, as
+a final stage, the publication of an updated website based on the information
+in the repository.</p>
+<p>However,</p>
+<p>integrate with external data sources
+(like Forms, or chats)
+support moderated, timely publication, backed by an editorial actor</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

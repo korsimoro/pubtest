@@ -3,6 +3,7 @@
 
 export JEKYLL_BASE=$PD/jekyll
 export JEKYLL_LOG=$JEKYLL_BASE/setup-logs
+export JEKYLL_SRC=$JEKYLL_BASE/src
 
 oneline_description_of_pd_jekyll() {
   echo "Support for running Jekyll Locally"
@@ -28,7 +29,8 @@ describe_environment_pd_jekyll() {
 
   report_vars "Settings" \
       JEKYLL_BASE\
-      JEKYLL_LOG
+      JEKYLL_LOG\
+      JEKYLL_SRC
 
   report_ruby_env
 }

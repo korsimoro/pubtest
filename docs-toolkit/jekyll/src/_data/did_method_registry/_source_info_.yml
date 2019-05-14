@@ -1,0 +1,7 @@
+- base_name: did-method-registry
+  dir_name: w3c-ccg.github.io/
+  dst_table: DID_Method_Registry_html1
+  format_name: html
+  mtime: None
+  size: None
+  source_id: '1'

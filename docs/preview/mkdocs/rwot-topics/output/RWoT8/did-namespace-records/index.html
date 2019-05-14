@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>DID Namespace Records - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DID Namespace Records", url: "#_top", children: [
+              {title: "Introduction &amp; Motivation", url: "#introduction-motivation" },
+              {title: "DID Namespace Records", url: "#did-namespace-records_1" },
+              {title: "Example DID Document for a DID Namespace Record", url: "#example-did-document-for-a-did-namespace-record" },
+              {title: "Value Propositions for Linked DID Namespaces", url: "#value-propositions-for-linked-did-namespaces" },
+              {title: "Next Steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="did-namespace-records">DID Namespace Records</h1>
+<p>--<em>Drummond Reed</em>, V1 2019-01-31</p>
+<h2 id="introduction-motivation">Introduction &amp; Motivation</h2>
+<p>DIDs are a unique new class of globally unique identifiers with four primary properties:
+1. <strong>Persistent</strong>—assigned once and never change.
+1. <strong>Resolvable</strong>—associated with standard metadata describing the identified entity
+1. <strong>Cryptographically-verifiable</strong>—the DID controller can prove ownership using private keys
+1. <strong>Decentralized</strong>—no centralized registration authority needed.</p>
+<p>DIDs can be supported on any modern blockchain or distributed ledger by creating a <strong>DID method</strong> for that target system. Each DID method operates in its own <strong>DID namespace</strong>. DID method names can be nested within a namespace just like other hierarchical name systems, e.g., DNS. For example:</p>
+<pre><code>did:example:
+did:example:foo:
+did:example:bar:
+did:example:bar:baz:
+</code></pre>
+
+<p>However the DID spec (as of 2019-01-31) does not yet include a mechanism to enable DID namespaces to "point" to one another—similar to how DNS nameservers point to one another—in a manner that can be discovered and cryptographically verified.</p>
+<p>The lack of this feature is not surprising since every DID method name represents an entire decentralized network, and it was originally thought that the "flat" nature of DIDs meant nesting DID namespaces would have minimal value.</p>
+<p>But as DID usage has grown, new motivations have emerged for linking DID namespaces. Besides discoverability of different decentralized networks, DID namespace linking also enables building bridges between different governance frameworks and trust assurance models—key building blocks of a global <strong>web of trust</strong>.</p>
+<h2 id="did-namespace-records_1">DID Namespace Records</h2>
+<p>This gap can easily be filled with a simple addition to the DID specification: <strong>DID namespace records</strong>. The  vocabulary for DID namespace records could be defined either by:
+1. Adding it to the base JSON-LD context for all DID documents, or
+1. Specifying it in a separate JSON-LD context for DID namespace records.</p>
+<p>Which approach is better is a judgement that can be made by the forthcoming DID Working Group. In this proposal, we will assume the former approach, i.e., that the vocabulary for DID namespace records have been included in the base JSON-LD context for DID documents.</p>
+<p>A DID namespace record is very simple because its address is just <strong>the fully qualified name of the DID method for that namespace</strong>. In other words, to resolve a DID namespace record, a DID resolver simply makes a resolution request for the fully qualified DID method name using that DID method. For example, to request the DID namespace record for <code>did:example:foo:</code>, a resolver would resolve the DID method name <code>did:example:foo:</code> using the DID method <code>:did:example:</code>.</p>
+<p>The DID document returned MAY contain one or more DID namespace records. Each DID namespace record is a JSON object in the following form:</p>
+<pre><code>{
+    &quot;children&quot;: [&quot;did:example:foo:&quot;, &quot;did:example:bar:&quot;],
+    &quot;remote&quot;: [&quot;did:abc:&quot;, &quot;did:xyz:&quot;]
+}
+</code></pre>
+
+<ul>
+<li><strong>Children</strong> are child namespaces of the parent DID namespace.</li>
+<li><strong>Remote</strong> are pointers to other associated DID namespaces that are not children of the parent. In this specification, no semantics are defined for this pointer. Such semantics MAY be specified by a DID method specification, by the governance framework for a DID namespace, or other mechanisms.</li>
+</ul>
+<h2 id="example-did-document-for-a-did-namespace-record">Example DID Document for a DID Namespace Record</h2>
+<p>The following DID document could be maintained by the authority for the <code>did:example:</code> namespace.</p>
+<pre><code>{
+    &quot;@context&quot;: [&quot;https://w3id.org/did/v1&quot;],
+    &quot;id&quot;: &quot;did:example:&quot;,
+    &quot;publicKey&quot;: [{
+        &quot;id&quot;: &quot;did:example:123456789abcdefghi#keys-1&quot;,
+        &quot;type&quot;: &quot;RsaVerificationKey2018&quot;,
+        &quot;controller&quot;: &quot;did:example:123456789abcdefghi&quot;,
+        &quot;publicKeyPem&quot;: &quot;-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n&quot;
+    }],
+    &quot;children&quot;: [&quot;did:example:foo:&quot;, &quot;did:example:bar:&quot;],
+    &quot;remote&quot;: [&quot;did:abc:&quot;, &quot;did:xyz:&quot;]
+}
+</code></pre>
+
+<h2 id="value-propositions-for-linked-did-namespaces">Value Propositions for Linked DID Namespaces</h2>
+<p>Unlike DNS, where resolution of all domain names uses the same protocol, resolving a DID from a specific DID namespace requires a DID resolver to understand the associated DID method. If a resolver does not support that DID method, it will not be able to resolve that DID. </p>
+<p>However DIDs are a very different type of identifier than a domain name, so linking DID namespaces solve a different problems that delegating domain names. The two primary use cases as of this writing are:
+1. <strong>Discovery of child networks within a decentralized network of networks.</strong> If a group of decentralized networks wanted to explicitly (and verifiably) express an affiliation, they can do it with DID namespace records. The children of the <code>:did:example:</code> namespace shown above are an example. There are two potential motivations:
+   1. <strong>Sharing the same parent DID method</strong>—the networks could agree to all share the same DID method definition across all the namespaces while allowing each network to have its own governance.
+   1. <strong>Inheriting from the same parent governance framework</strong>—the networks could all agree to the same base trust guarantees.
+1. <strong>Discovery of affiliated remote networks.</strong> Although these remote networks do not share the same DID method, an explicit link could express some shared policies or trust guarantees—particularly if it was bilateral.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>After review and discussion at Rebooting the Web of Trust #8, the intent is to submit this proposal as a feature request for the main DID specification.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

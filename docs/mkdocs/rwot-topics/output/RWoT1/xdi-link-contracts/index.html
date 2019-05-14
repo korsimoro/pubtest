@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>XDI Link Contracts: An Overview - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "XDI Link Contracts: An Overview", url: "#_top", children: [
+              {title: "The Four Steps to an XDI Link Contract", url: "#the-four-steps-to-an-xdi-link-contract" },
+              {title: "Negotiation of XDI Link Contracts", url: "#negotiation-of-xdi-link-contracts" },
+              {title: "Conclusion", url: "#conclusion" },
+              {title: "Questions for the Web-of-Trust Group", url: "#questions-for-the-web-of-trust-group" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="xdi-link-contracts-an-overview">XDI Link Contracts: An Overview</h1>
+<p>By Drummond Reed, Co-Chair, OASIS XDI Technical Committee, drummond@respect.network</p>
+<p>One of the challenges in a distributed peer-to-peer data network, such as a web of trust, is how any two peers can quickly and easily negotiate a data sharing agreement, i.e., a human- and machine-understandable (and enforceable) description of what data the publisher is sharing with the subscriber under what permissions and conditions. Additional challenges include:</p>
+<ol>
+<li>How can the parties to the data sharing agreement identify and authenticate each other such that they can safely interact for the period of time it is effective?</li>
+<li>How can such a data sharing agreement be portable, so the parties are not dependent on any particular app or service provider to enforce it?</li>
+<li>How can such a data sharing agreement be adaptable to different security and privacy policies, so it is not obsoleted as new technologies arrive?</li>
+</ol>
+<p>This paper briefly describes the solution to these problems developed by the [OASIS XDI (Extensible Data Interchange) Technical Committee] (http://www.oasis-open.org/committees/xdi/) as part of the XDI 1.0 suite of specifications for semantic data interchange.</p>
+<h2 id="the-four-steps-to-an-xdi-link-contract">The Four Steps to an XDI Link Contract</h2>
+<h3 id="step-1-xdi-graphs-addressable-semantic-json">Step 1) XDI Graphs: Addressable Semantic JSON</h3>
+<p>The first step is to establish a semantic graph model that provides a standard way to persistently address any data asset (from a single data element to an entire database) in the context of any data authority, container, or context for that data asset. To do this, the XDI graph model uses the same subject-predicate-object triples model as RDF, but adds: a) a standard predicate for modeling context, and b) the requirement that all contextual predicates be unique in the scope of their parent node. This addressable semantic tree model is the heart of XDI.</p>
+<p>The four levels of the XDI semantic tree model are summarized by the acronym REAL (Root-Entity-Attribute-Literal). They are serialized in JSON using four levels of nested JSON objects. Each of these JSON objects has a unique global address. Any node that has a reassignable (mutable) address (called an <em>XDI name</em> or <em>i-name</em>) can be mapped to a node that has a persistent (immutable) address (called an <em>XDI number</em> or <em>i-number</em>).</p>
+<p>Following is an example XDI graph with some typical profile data for a person (Alice). Alice’s graph also includes a reference to the peer graph for another person (Bob). The i-numbers use the XDI UUID scheme, and the i-names use the “x-” prefix reserved for examples.</p>
+<pre><code>{
+    &quot;/$is$ref&quot;: [
+        &quot;(=x-alice)&quot;,
+        &quot;(=!:uuid:33ad7beb-1abc-4a26-b892-466df4379a51)&quot;
+    ],
+    &quot;&lt;$iri&gt;&quot;: {
+        &quot;&amp;&quot;: &quot;https://xdi.example.com/=!:uuid:x-bob/&quot;
+    },
+    &quot;=!:uuid:33ad7beb-1abc-4a26-b892-466df4379a51&quot;: {
+        &quot;/#friend&quot;: [
+            &quot;=!:uuid:f336a645-f5a9-41b7-ab80-ace41a8f69c2&quot;
+        ],
+        &quot;&lt;#home&gt;&lt;#email&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;alice@example.com&quot;
+        },
+        &quot;&lt;#work&gt;&lt;#email&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;alice.roth@example.net&quot;
+        },
+        &quot;&lt;#personal&gt;&lt;#email&gt;&quot;: {
+            &quot;/$ref&quot;: [
+         &quot;=!:uuid:33ad7beb-1abc-4a26-b892-466df4379a51&lt;#home&gt;&lt;#email&gt;&quot;
+            ]
+        }
+    },
+    &quot;=!:uuid:33ad7beb-1abc-4a26-b892-466df4379a51#passport&quot;: {
+        &quot;&lt;#country&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;Canada&quot;
+        },
+        &quot;&lt;#name&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;Alice Roth&quot;
+        },
+        &quot;&lt;#num&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;1234567&quot;
+        }
+    },
+    &quot;(=!:uuid:f336a645-f5a9-41b7-ab80-ace41a8f69c2)&quot;: {
+        &quot;/$is$ref&quot;: [
+            &quot;(=x-bob)&quot;
+        ]
+    }
+}
+</code></pre>
+
+<h3 id="step-2-xdi-link-contracts-standard-subgraphs-for-authorization">Step 2) XDI Link Contracts: Standard Subgraphs for Authorization</h3>
+<p>The second step is to use this addressable semantic tree model to represent data sharing agreements. Each such agreement is between the publisher of the data, called the <em>authorizing authority</em>, and a party who wants to access the data, called the <em>requesting authority</em>. Because the agreement links these parties to the data covered by the agreement—and also binds them to the terms of the agreement just like a real-world contract—the XDI Technical Committee calls this XDI subgraph a <em>link contract</em>.</p>
+<p>The root node of an XDI link contract is an XDI entity identified with the reserved class name <code>$do</code> (chosen because a link contract is a machine-readable description of what an authorizing authority permits a requesting authority to do with the described data).</p>
+<p>A <code>$do</code> node may appear anywhere inside the subgraph of an authorizing authority node. Such a link contract is owned and controlled by that authorizing authority. Like a real-world contract, the contract terms control if the terms are fixed (no changes can be made by any party), unilateral (only the authorizing authority can make changes), or bilateral (changes require the consent of all parties).</p>
+<h3 id="step-3-xdi-permissions-semantic-relations-to-data-nodes">Step 3) XDI Permissions: Semantic Relations to Data Nodes</h3>
+<p>With an addressable semantic tree model, permissions can be represented by XDI relations between the <code>$do</code> node and the XDI subgraph(s) containing the data that is the object of the permission. This can be thought of as the graph-based equivalent of an <a href="https://en.wikipedia.org/wiki/Access_control_list">ACL</a>, but with much richer and more extensible semantics. For example, the following XDI statement (using i-names for simplicity) is how a link contract from Alice could provide permission to read (<code>$get</code>) her home phone number.</p>
+<table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Predicate</th>
+<th>Object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=x-alice#friend$do</td>
+<td>$get</td>
+<td>=x-alice&lt;#home&gt;&lt;#phone&gt;</td>
+</tr>
+</tbody>
+</table>
+<p>The XDI Technical Committee defines a standard set of XDI predicates for graph operations.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$get</td>
+<td>Read statements in a subgraph</td>
+</tr>
+<tr>
+<td>$set</td>
+<td>Write statement to a subgraph</td>
+</tr>
+<tr>
+<td>$add</td>
+<td>Add statements to a subgraph</td>
+</tr>
+<tr>
+<td>$mod</td>
+<td>Update a literal value</td>
+</tr>
+<tr>
+<td>$del</td>
+<td>Delete statements from a subgraph</td>
+</tr>
+<tr>
+<td>$connect</td>
+<td>Instantiate a link contract</td>
+</tr>
+<tr>
+<td>$send</td>
+<td>Send an XDI message</td>
+</tr>
+<tr>
+<td>$push</td>
+<td>Publish an XDI message to subscribers</td>
+</tr>
+<tr>
+<td>$do</td>
+<td>Authorize other operations</td>
+</tr>
+</tbody>
+</table>
+<p>XDI developers can specialize the $do operation to extend the XDI operation vocabulary to encompass any operation for which a link contract needs to control permission.</p>
+<h3 id="step-4-xdi-policies-semantic-logic-trees-for-authorization">Step 4) XDI Policies: Semantic Logic Trees for Authorization</h3>
+<p>The final step is to express the set of policies that an requesting authority must satisfy in order to be authorized under a link contract. This is the XDI equivalent of <a href="https://en.wikipedia.org/wiki/XACML">XACML</a>, the XML-based policy expression language published by the OASIS XACML Technical Committee. In fact, XDI link contracts can reference external policies and policy engines like XACML to make policy evaluations. Alternatively, policies can be expressed and evaluated directly in XDI.</p>
+<p>XDI policies may specify any set of terms and conditions relevant to making an authorization decision, including requirements for identification, authentication, encryption, digital signatures, synchronization, and termination of the link contract. They can also govern privacy by specifying authorized uses of shared data.</p>
+<p>XDI policies may also bind the authorizing authority. For example, a link contract may require that the authorizing authority sign and encrypt XDI messages containing data updates that are pushed to a requesting authority.</p>
+<p>XDI policies are specified in the <code>$do$if</code> branch of a link contract. Policies may be combined into a boolean logic tree of arbitrary complexity using <code>$and</code>, <code>$or</code>, and <code>$not</code> statements. In the following example, Alice’s graph has added a link contract that gives Bob <code>$get</code> access to her home email address provided Bob’s XDI request satisfies two policy conditions:</p>
+<ol>
+<li>Alice’s graph asserts that Bob is a friend of Alice.</li>
+<li>Bob’s XDI message has a valid signature.</li>
+</ol>
+<p>Note that the i-number UUIDs have been shortened to x-alice and x-bob for readability.</p>
+<pre><code>{
+    &quot;/$is$ref&quot;: [
+        &quot;(=!:uuid:x-alice)&quot;
+    ],
+    &quot;&lt;$iri&gt;&quot;: {
+        &quot;&amp;&quot;: &quot;https://xdi.example.com/=!:uuid:x-bob/&quot;
+    },
+    &quot;=!:uuid:x-alice&quot;: {
+        &quot;/#friend&quot;: [
+            &quot;=!:uuid:x-bob&quot;
+        ],
+        &quot;&lt;#home&gt;&lt;#email&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;alice@example.com&quot;
+        },
+        &quot;&lt;#work&gt;&lt;#email&gt;&quot;: {
+            &quot;&amp;&quot;: &quot;alice.roth@example.net&quot;
+        },
+        &quot;&lt;#personal&gt;&lt;#email&gt;&quot;: {
+            &quot;/$ref&quot;: [
+                &quot;=!:uuid:x-alice&lt;#home&gt;&lt;#email&gt;&quot;
+            ]
+        }
+    },
+    &quot;(=!:uuid:x-alice/#friend)&quot;: {
+        &quot;=!:uuid:x-alice#friend$do&quot;: {
+            &quot;/$get&quot;: [
+                &quot;=!:uuid:x-alice&lt;#home&gt;&lt;#email&gt;&quot;
+            ]
+        }
+    },
+    &quot;(=!:uuid:x-alice/#friend)(=!:uuid:x-alice#friend$do$if$and/$true)&quot;: {
+        &quot;{$from}&quot;: {
+            &quot;/$is#friend&quot;: [
+                &quot;=!:uuid:x-alice&quot;
+            ]
+        },
+        &quot;{$msg}&quot;: {
+            &quot;&lt;$sig&gt;&lt;$valid&gt;&quot;: {
+                &quot;&amp;&quot;: true
+            }
+        }
+    }
+}
+</code></pre>
+
+<h2 id="negotiation-of-xdi-link-contracts">Negotiation of XDI Link Contracts</h2>
+<p>Although any XDI authority may write a link contract directly into its graph to grant permissions to any other XDI authority, in practice link contracts are produced via an exchange of XDI messages between the requesting and authorizing authorities. This is the machine equivalent of how most real world contracts are negotiated. This exchange of messages has enough permutations that it is being defined in a separate specification from the XDI Technical Committee called <em>XDI Connections 1.0</em>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Building on the “flat” RDF semantic graph model, XDI defines an addressable semantic tree of data. This semantic tree enables a special type of subgraph, an XDI link contract, that can standardize how any two peers can arrive at an interoperable, portable data sharing agreement. This agreement can authorize any operation that can be defined with an XDI relation and can govern any data that can be referenced with the XDI graph model, including pointers to any Web-addressable resource. A link contract can also be governed by policies written in XDI or in any Web-addressable policy engine. The XDI protocol will also specify how link contracts can be negotiated between arbitrary peers, enabling a fully decentralized web-of-trust.</p>
+<h2 id="questions-for-the-web-of-trust-group">Questions for the Web-of-Trust Group</h2>
+<ul>
+<li>
+<p>How can we best can we use link contracts and XDI graphs to facilitate your web-of-trust needs?</p>
+</li>
+<li>
+<p>Link contracts are currently express policy statements, enforced by legal agreements and law. How best can we adapt them to use more cryptography to enforce the contracts? Are there smart contract and ring and threshold signature possibilities?</p>
+</li>
+<li>
+<p>Link contracts have additional value when supplemented by proof-of-existence. How best can we anchor link contracts in blockchain to add PoE?</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Joseph Boyle, Drummond Reed, Markus Sabadello. "XDI Core 1.0 Working Draft 06" (voted to become Committee Specification Draft 01). OASIS XDI Technical Committee. October 2015. http://xdi.org/xdi-spec-docbook/xdi/xdi-core-1.0/xdi-core-1.0-wd06.xml</p>
+<p>Richard Cyganiak, David Wood, Markus Lanthaler. "RDF 1.1 Concepts and Abstract Syntax". W3C Recommendation. February 2014. http://www.w3.org/TR/rdf11-concepts</p>
+<p>Dan Brickley, R.V. Guha. "RDF 1.1 Schema". W3C Recommendation. February 2014. http://www.w3.org/TR/rdf-schema</p>
+<p>Antoine Zimmerman. "RDF 1.1: On Semantics of RDF Datasets". W3C Working Group Note. February 2014. http://www.w3.org/TR/rdf11-datasets</p>
+<p>Erik Rissanen. "eXtensible Access Control Markup Language (XACML) Version 3.0". OASIS Standard. January 2013. http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.pdf</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

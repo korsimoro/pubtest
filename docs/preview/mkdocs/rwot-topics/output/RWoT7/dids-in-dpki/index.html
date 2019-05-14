@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>DIDs In DPKI (Decentralized Public-key Infrastructure) - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DIDs In DPKI (Decentralized Public-key Infrastructure)", url: "#_top", children: [
+              {title: "Overview", url: "#overview" },
+              {title: "Timeline", url: "#timeline" },
+              {title: "DIDs In DPKI", url: "#dids-in-dpki" },
+              {title: "TLDs and Namespaces", url: "#tlds-and-namespaces" },
+              {title: "Next Steps", url: "#next-steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="dids-in-dpki-decentralized-public-key-infrastructure">DIDs In DPKI (Decentralized Public-key Infrastructure)</h1>
+<p><em>This document seeks to act as a starting point to bridge the two worlds of <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI</a> (which <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">appeared</a> in the first RWOT) with DIDs (which <a href="https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/final-documents/requirements-for-dids.pdf">appeared</a> at the second RWOT).</em></p>
+<p><strong>Author:</strong> Greg Slepak (<a href="https://twitter.com/taoeffect">twitter</a>, <a href="https://mstdn.io/@taoeffect">mastodon</a>)</p>
+<h2 id="overview">Overview</h2>
+<p>Remember <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI</a>?!</p>
+<p>A quick reminder for those who don't:</p>
+<ul>
+<li>DPKI stands for <em>Decentralized Public-key Infrastructure</em></li>
+<li>DPKI seeks to serve as an improved alternative/replacement for <a href="https://en.wikipedia.org/wiki/X.509">X.509</a> (that thing securing today's Internet)</li>
+<li>DPKI changes the web's security model from 1000s of single-points-of-failure to <em>decentralized consensus groups</em> that create namespaces (sorta like what blockchains do!)</li>
+<li>DPKI is not a blockchain — it's a protocol for securely accessing blockchains and similar decentralized consensus systems</li>
+<li>DPKI has Top-Level Domains (TLDs) representing different blockchains (e.g. <code>.eth</code>, <code>.bit</code>, <code>.id</code> etc.)</li>
+</ul>
+<p>For an overview of DIDs read the <a href="https://github.com/WebOfTrustInfo/rwot7/blob/master/topics-and-advance-readings/did-primer.md">DID Primer</a>.</p>
+<h2 id="timeline">Timeline</h2>
+<p>We're kinda making this up as we go along, so there is no fixed timeline, but so far this is how things are turning out to be:</p>
+<pre><code>DPKI Overview (RWOT1)
+|
++-&gt; Requirements for DIDs (RWOT2)
+    |
+    +-&gt; DID Data Model and Generic Syntax Draft 1 (RWOT3)
+        |
+        +-&gt; Decentralized Identifiers v1.0 (RWOT6)
+            |
+            +-&gt; ??? (RWOT7)
+</code></pre>
+
+<h2 id="dids-in-dpki">DIDs In DPKI</h2>
+<p>A DID key looks like this:</p>
+<pre><code>did:namespace:identifier
+</code></pre>
+
+<p>A specific example might look something like this (taken from <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/final-documents/btcr-resolver.pdf">BTCR DID Resolver Specification</a>):</p>
+<pre><code>did:btcr:xkyt-fzgq-qq87-xnhn
+</code></pre>
+
+<p>Obviously this is not useful (by itself) for dealing with human-readable TLDs.</p>
+<p>What are we trying to do here, ultimately?</p>
+<p>We are trying to <a href="http://www.aaronsw.com/weblog/squarezooko">Square Zooko's Triangle</a>:</p>
+<pre><code>    Decentralized
+          /\
+         /  \
+        /    \
+       /      \
+      /________\ 
+Secure          Human-readable
+</code></pre>
+
+<p><strong>So far DIDs give us <code>Secure &lt;-----&gt; Decentralized</code></strong>.</p>
+<p><strong>We are still missing <code>Human-readable</code>.</strong></p>
+<p><strong>That's where TLDs and Namespaces come in.</strong></p>
+<h2 id="tlds-and-namespaces">TLDs and Namespaces</h2>
+<p>But before we can talk about TLDs and Namespaces, we need to address a philosophical "debate" ("question"?) within the DID ethos.</p>
+<h3 id="are-dids-human-readable">Are DIDs Human-readable?</h3>
+<p>The answer to this question is not clear.</p>
+<p>Some have argued that DIDs should be "unique identifiers that last a lifetime". Meaning, no, they should not be human readable.</p>
+<p>Instead they should act like a UUID that you can point other things to.</p>
+<p>Still others say there's no reason they can't be unique and human readable.</p>
+<p>So a DID could look like this:</p>
+<pre><code>did:btcr:xkyt-fzgq-qq87-xnhn
+</code></pre>
+
+<p>Or it could look like this:</p>
+<pre><code>did:btcr:my-great-website
+</code></pre>
+
+<p>One thing is clear: if a DID isn't human-readable, <strong>you are still going to need a human-readable identifier within a secure namespace</strong> to find it.</p>
+<p>Why? Why can't you, for example, take the <a href="https://en.wikipedia.org/wiki/GNUnet">GNUnet</a> approach (e.g. <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/topics-and-advance-readings/linked-local-names.md">"linked local names"</a>) and create an inconsistent decentralized world, where everyone has their own personal address book, and they somehow discover and save a non-human-readable identifier to a local, human-readable contact card?</p>
+<p>Well, they certainly <em>can</em> do that, but that is not what <strong><em>DPKI</em></strong> is about.</p>
+<p>DPKI is about <em>global identifiers</em>, not local identifiers.</p>
+<p>DPKI has to re-create the usual experience that we're used to, where you type in an easily memorized human-readable term, like <code>apple.com</code>, and <em>no matter where you are in the world, no matter what device you're using, you will find Apple's homepage with that tiny, easily memorized identifier.</em></p>
+<p>This is important not only for visiting websites, it's also important for making other protocols, like email, secure.</p>
+<p><strong>So whether or not <em>ALL</em> DIDs are human-readable is irrelevant to DPKI — In DPKI, DIDs Are Human-readable.</strong></p>
+<p>In other words, identifiers in DPKI have these properties:</p>
+<ul>
+<li>They exist in a namespace secured through decentralized consensus, e.g. a blockchain (see also, <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/final-documents/dcs-theorem/The-DCS-Theorem.pdf">DCS Theorem</a>)</li>
+<li>They are human-readable</li>
+<li>They are updateable</li>
+<li>They can expire</li>
+<li>They are looked up through a secure lookup mechanism that does not have a SPOF (single-point-of-failure)</li>
+</ul>
+<h3 id="past-discussion-and-related-topics">Past Discussion and Related Topics</h3>
+<ul>
+<li><a href="https://github.com/WebOfTrustInfo/ID2020DesignWorkshop/blob/master/topics-and-advance-readings/SovereignIdentityNamespaces.pdf">Soverign Identity Namespaces</a> - note that none of the concepts described in this document are suitable for DPKI, because DPKI identifiers must be cryptographically secure <em>and</em> globally-unique <em>and</em> human-readable</li>
+<li><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2017/blob/master/topics-and-advance-readings/did-names.md">DID Names</a> - the <code>id:</code> scheme described here might be relevant, but it's also not clear that it's necessary. It could represent unnecessary complexity</li>
+<li><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/draft-documents/making-dids-invisible-with-petnames.md">Making DIDs invisible: Petnames and their secure user interfaces</a> - unclear whether this is relevant to DPKI, but might be worth discussing</li>
+<li><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/topics-and-advance-readings/petnames.md">Petnames for Self Sovereign and Human Readable Identifiers</a> - unclear whether this is relevant to DPKI, but might be worth discussing</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>The RWOT community needs to come up with a protocol that fulfills the DPKI goals as stated in the <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI overview document</a> (with amendments <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/issues/90">one</a> and <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/issues/89">two</a>).</p>
+<p>We need to create a protocol that takes a normal-looking domain, for example:</p>
+<pre><code>https://bitcoin.btc
+</code></pre>
+
+<p>Look up <code>bitcoin.btc</code> in a secure, decentralized manner through the Bitcoin blockchain (or Ethereum if the TLD is <code>.ens</code>), do any additional lookups, and return two things:</p>
+<ol>
+<li>An IP address to the server that's hosting that domain</li>
+<li>A list of hashes representing valid public keys for that domain</li>
+</ol>
+<p>Then it's up to the browser to connect to the IP address and retrieve the webpage.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>libp2p for DID Authentication and the exchange of Verifiable Credentials - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "libp2p for DID Authentication and the exchange of Verifiable Credentials", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Why libp2p", url: "#why-libp2p" },
+              {title: "DID authentication", url: "#did-authentication" },
+              {title: "libp2p", url: "#libp2p" },
+              {title: "Overview of circuit relay", url: "#overview-of-circuit-relay" },
+              {title: "Problems with DNS", url: "#problems-with-dns" },
+              {title: "Example flow for DID Authentication", url: "#example-flow-for-did-authentication" },
+              {title: "Benefits", url: "#benefits" },
+              {title: "Drawbacks", url: "#drawbacks" },
+              {title: "Conclusion", url: "#conclusion" },
+              {title: "Discussion and Future Work", url: "#discussion-and-future-work" },
+          ]},
+          {title: "Definitions", url: "#definitions", children: [
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="libp2p-for-did-authentication-and-the-exchange-of-verifiable-credentials">libp2p for DID Authentication and the exchange of Verifiable Credentials</h1>
+<p>*Draft: Rebooting Web of Trust VIII Topic Paper by <a href="https://github.com/jonnycrunch">jonnycrunch</a></p>
+<p><a href="https://github.com/WebOfTrustInfo/rwot8">Rebooting the Web of Trust, Spring 2019</a></p>
+<h2 id="abstract">Abstract</h2>
+<p>Peer to peer protocols in general have a distributed application architecture whereby each participant have an equal privilege to participant in the system [1].  The concept was popularized with the music file sharing application <a href="https://en.wikipedia.org/wiki/Napster">Napster</a> and more recently the <a href="https://ipfs.io">Interplanetary File System (IPFS)</a>. </p>
+<p>Since the emergence of the first draft of the <a href="https://w3c-ccg.github.io/did-spec/">DID specificaiton</a> from the <a href="https://github.com/WebOfTrustInfo/rwot3-sf">Fall 2016 Rebooting the Web of Trust</a> <a href="#ref">[2]</a>, numerous <a href="https://w3c-ccg.github.io/did-method-registry/">DID method specifications</a> have appeared. Each DID method specification defines how to resolve a cryptographically-tied DID document given a method-specific identifier. In our <a href="https://">last paper</a> we presented how IPLD could be used as a generalized framework to repesent and resolve the DID document.  In this paper, we will describe a way to perform <a href="http://did.auth">DID authenication</a> and thereby proove ownership of the private key that is presented in the DID document utilizing the libp2p protocol.   </p>
+<p>Operating within one particular DID method simply requires applying specific protocols dictated in it's DID method specification and typically under the constraints of it's distributed ledger or network. However, authentication between DID methods, where may have implemented disperse cryptographic suite of tools will proove to be more challenging.  In this paper, we would like to introduce the libp2p protocol to solve this problem. </p>
+<h2 id="why-libp2p">Why libp2p</h2>
+<p>Libp2p is a modular networking framework that enables peer-to-peer applications.  Originally part of the Interplanetary File system (IPFS), it has since broke out into it's own separate project and supports a variety of applications including <a href="https://polkadot.network/">Parity's Polkadot</a> and is being evaluated for <a href="https://github.com/ethereum/eth2.0-specs/tree/v0.1">Ethereum 2.0</a>. </p>
+<p>In traditional client/server model a stateless communication channel is iniated via an IP address and port combination. Libp2p uses the concept of a <a href="https://github.com/multiformats/multiaddr">multiaddress</a> instead.  </p>
+<p>Some examples:
+- <strong>/ip4/157.230.86.31/udp/9999</strong> indicates the node with IP version 4 address of 157.230.86.31 and listening on UDP on port 9999
+- <strong>/ip6/ffe80::21f:5bff:fe38:6d91/udp/1567/quic</strong> means that we should use the QUIC protocol on top of UDP port 1567 with an IPv6 address
+- <strong>/dns4/example.com/tcp/80/ws</strong> means that we should use the WebSocket protocol on top of TCP port 80, using DNS to resolve the hostname example.com</p>
+<h2 id="did-authentication">DID authentication</h2>
+<p>The term DID authenctication is still not currently well defined [1].  From a white paper from the Rebooting web of Trust in 2018, DID authenication is defined as a ceremony where <code>the identity owner, with help of various components such as web browsers, mobile devices and other agent proves to a relying party that they are in control of a DID.</code>   This ceremony involves leveraging a number of pre-determined data formats, protocols and flows that transcend individual DID methods, but ultimately arrives at the end that the relaying party is sufficiently satified that the proving party is in control over the private key associated with the the public key published to the DID document specified as part of the DID method specific identifier. </p>
+<p>The <a href="https://github.com/w3c-ccg/did-spec">DID specification</a> allows for attribute declaration of multiple services including for DID authentication. After DID authentication (and thereby prooving control over the private key associated with the DID method specific identifer as declaried in the DID document), a multitude of other service and workflows can be performed including Authorization, Access control lists, exchange of Verifiable Credentials and invoking an <a href="https://en.wikipedia.org/wiki/Object-capability_model">Object Capability Systems</a>.   </p>
+<p>Example 1:  DID authentication declaration inside an example DID document [3]: </p>
+<pre><code>{
+    &quot;@context&quot;: &quot;https://w3id.org/did/v1&quot;,
+    &quot;id&quot;: &quot;did:example:123456789abcdefghi&quot;,
+    &quot;service&quot;: {
+        &quot;type&quot;: &quot;DidAuthService&quot;,
+        &quot;serviceEndpoint&quot;: &quot;https://auth.example.com/did:example:123456789abcdefg&quot;
+    }
+}
+</code></pre>
+
+<p>Example 2.  DID authentication declaration using libp2p as a service endpoint</p>
+<pre><code>{
+    &quot;@context&quot;: &quot;https://w3id.org/did/v1&quot;,
+    &quot;id&quot;: &quot;did:ipid:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew&quot;,
+    &quot;service&quot;:  {
+      &quot;type&quot;: &quot;DidAuthService&quot;,
+      &quot;serviceEndpoint&quot;: &quot;/ip4/108.241.29.82/tcp/1265/ipfs/QmZTefe4V1KYwLUfhGVMMBbAkAa4E9vynzSNx5vPtrG4dv&quot;,
+    }
+}
+</code></pre>
+
+<p>This paper will review the mechanism and workflow specifically for DID authentication in the form of data formats, challenges and responses to facilitate proving ownership of a private key published to the DID docuemnt for a speficic DID method specific identifer followed by issuing a Verifiable Credential. </p>
+<p>DID authencication may involved one-way interactions or a bi-directional protocol over each respective DID authentication server endpoints.  We will explore both a unidirections DID authenications and bidirectional DID authentication over the libp2p protocol.  </p>
+<p>DID authentication, at it's simplest interpretation, could be perceived as being the verification of a credential, and in this case the claim is control over the private key associated with the DID method specific identier ( or the prive key associated with the hash of the public key ). </p>
+<h2 id="libp2p">libp2p</h2>
+<ul>
+<li>uses multiformats extensively </li>
+<li>discoverablilty and connectivity of peers </li>
+<li>process addressing ( when you connect that process you can authenicate )</li>
+<li>future proof stack </li>
+<li>open source </li>
+<li>encrypted connections by default </li>
+<li>use in high latency scenarios</li>
+<li>work offline (offline first)</li>
+<li>protocol multiplexing </li>
+<li>works in the browser </li>
+<li>roaming ( independently coordinate the mobile edge client )</li>
+<li>works in the browser ( webRTC )</li>
+<li>used in Metamask for moving blocks of ethereum blockchain into the browser</li>
+<li>used by Parity networks Pokidot </li>
+<li>used by Filecoin </li>
+</ul>
+<h2 id="overview-of-circuit-relay">Overview of circuit relay</h2>
+<p>The circuit relay is a means to establish connectivity between libp2p nodes that wouldn't otherwise be able to establish a direct connection to each other. [4]</p>
+<p>Relays are generally used in situations where nodes are behind NAT, reverse proxies, firewalls and/or simply don't support the same transports (e.g. go-ipfs vs. browser-ipfs). Even though libp2p has modules for NAT traversal (go-libp2p-nat), piercing through NATs isn't always an option. The circuit relay protocol exists to overcome those scenarios.</p>
+<p>In the context of DID authentication circuit relays could be used to prevent correlation based on IPV4 or IPV6 addresses.    </p>
+<p>The relay node short-circuits streams between the two nodes, enabling them to reach each other and prevent correlation. </p>
+<pre><code>+-----+    /ip4/.../tcp/.../ws/p2p/QmRelay    +-------+    /ip4/.../tcp/.../p2p/QmTwo       +-----+
+|QmOne| &lt;------------------------------------&gt;|QmRelay|&lt;-----------------------------------&gt;|QmTwo|
++-----+   (/libp2p/relay/circuit multistream) +-------+ (/libp2p/relay/circuit multistream) +-----+
+     ^                                         +-----+                                         ^
+     |           /p2p-circuit/QmTwo            |     |                                         |
+     +-----------------------------------------+     +-----------------------------------------+
+</code></pre>
+
+<p>In the above example, the node labeled <code>QmOne</code> is connected to node <code>QmTwo</code> via a circuit relay <code>QmRelay</code>. <code>QmRelay</code> is configured to allow for relaying of connections between nodes and <code>QmOne</code> is configured to use <code>QmRelay</code> for relaying. All communication is encrypted between QmOne and QmTwo and the identity of the remote is verified, so the proxy QmRelay cannot act as a man-in-the-middle.  DID authentication using circuit relaying is shown in Example 3.  </p>
+<p>Example 3.  DID authentication declaration using libp2p as a service endpoint with circuit relay. </p>
+<pre><code>{
+    &quot;@context&quot;: &quot;https://w3id.org/did/v1&quot;,
+    &quot;id&quot;: &quot;did:ipid:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew&quot;,
+    &quot;service&quot;:  {
+      &quot;type&quot;: &quot;DidAuthService&quot;,
+      &quot;serviceEndpoint&quot;: &quot;/p2p-circuit/QmTwo&quot;,
+    }
+}
+</code></pre>
+
+<h2 id="problems-with-dns">Problems with DNS</h2>
+<ul>
+<li>problem with location addressing </li>
+<li>problem with root of trust </li>
+</ul>
+<h2 id="example-flow-for-did-authentication">Example flow for DID Authentication</h2>
+<p>TBD</p>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li>Correlation can be prevented using circuit relays</li>
+<li>True peer-to-peer communication of </li>
+<li>Ability to connect edge devices to operate without other connectivity to the rest of the internet </li>
+</ul>
+<h2 id="drawbacks">Drawbacks</h2>
+<ul>
+<li>Unfortunately given the multiple levels of networking protocol, there are multiple layers of authenication and given the need for interoperability for other DID methods we need to add yet another on top of libp2p to allow for DID authentication. </li>
+<li>In a simple world, the DID authenications would happen at the protocol layer. </li>
+<li>QUIC implementation only supports RSA peer keys (Support for ed25519 and secp256k1 is pending )</li>
+<li>Multiaddress is not yet standardized thru IETF</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>libp2p provides a robust framework for a lightweight protocol that faciliates cryptographic DID authentication over a variety of DID methods.  </p>
+<h2 id="discussion-and-future-work">Discussion and Future Work</h2>
+<p>In this brief paper, we have introduced the application of libp2p as a general pattern for DID authentication and have highlighted its potential benefits and drawbacks and explained how it could be used across multiple DID method specifications. This technique enables a cost-effective and scalable solution for truly decentralized service endpoints to proove control over the private cryptographic key.    This framework could be used to accelerate the adoption of truly self-sovereign digital identities. </p>
+<p>In the future, we hope to formalize this approach with additional stakeholders and standard bodies. </p>
+<h1 id="definitions">Definitions</h1>
+<p><strong>Authentication</strong>: The ceremony where an <em>identity owner</em> proves to a <em>relying party</em> that the <em>identity owner</em> controls a DID, using a mechanism that is described in the DID's associated DID Document.</p>
+<p><strong>Authorization</strong>: A process of establishing the rights and privileges of an <em>identity owner</em> to perform certain actions, including operations on a DID itself, or in another context.</p>
+<p><strong>Decentralized Identifier (DID)</strong>: A globally unique identifier that does not require a centralized registration authority because it is registered with distributed ledger technology or another form of decentralized network. (see <a href="https://w3c-ccg.github.io/did-spec/#terminology">here</a>)</p>
+<p><strong>DID Document</strong>: A structured document containing metadata that describes a DID, including authentication materials such as public keys and pseudonymous biometrics, that an entity can use to authenticate, i.e. to prove control of the DID. A DID Document may also contain other attributes or claims describing the entity. (see <a href="https://w3c-ccg.github.io/did-spec/#terminology">here</a>)</p>
+<p><strong>DID Record</strong>: The combination of a DID and its associated DID Document.</p>
+<p><strong>Identity Owner</strong>: The individual, organization or thing who created the DID, is identified by the DID that is the subject of the DID Document, and who has the ultimate authority to update or revoke the DID.</p>
+<p><strong>Relying Party</strong>: The individual, organization or thing that authenticates an <em>identity owner</em> using a DID Auth protocol. Also called "Verifier" in other specifications.</p>
+<p><strong>Verifiable Credentials</strong>: A set of one or more claims that are statements made by an issuer about a subject that is tamper-resistant and whose authorship can be cryptographically verified (see <a href="https://w3c.github.io/vc-data-model/#terminology">here</a>).</p>
+<h2 id="references">References</h2>
+<p>[1] <a href="https://en.wikipedia.org/wiki/Peer-to-peer">Peer-to-peer protocols</a>. </p>
+<p>[2] <a href="https://github.com/WebOfTrustInfo/rwot3-sf/blob/master/final-documents/did-implementer-draft-10.pdf">DID (Decentralized Identifier) Data Model and Generic Syntax 1.0 Implementer's Draft 01 </a></p>
+<p>[3] <a href="https://github.com/WebOfTrustInfo/rwot6-santabarbara/blob/master/final-documents/did-auth.md">Rebooting Web of Trust Spring 2018 - Introduction to DID Auth</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

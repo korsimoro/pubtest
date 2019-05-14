@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Openbadges prototypes action items 2018 - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "About", url: "#_top", children: [
+              {title: "Open Badges Identities - and how to reboot them", url: "#open-badges-identities-and-how-to-reboot-them" },
+              {title: "Goals, use cases, and deliverables:", url: "#goals-use-cases-and-deliverables" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>Adapted from https://github.com/w3c-ccg/edu_occ_verifiable_credentials/ by @kimdhamilton and @ottonomy.</p>
+<h1 id="about">About</h1>
+<p>There is a lot of interest in interoperability of Open Badges and other delivery formats of Educational/Occupational Verifiable Credentials. Below, we outline our goals, forthcoming design drafts, and other research related to achieving interoperabilty between the relevant specifications and services operating in this space.</p>
+<p>Work on describing credentials is occurring within the IMS Global Open Badges Workgroup, W3C Verifiable Credentials Working Group, W3C Credentials Commiunity Group, Educational and Occupational Credentials in Schema.org Community Group, and Credential Engine/CTDL. Members of each of these communities are maintaining mutual awareness of activities and are pushing these specifications toward better long-term compatibility.</p>
+<h2 id="open-badges-identities-and-how-to-reboot-them">Open Badges Identities - and how to reboot them</h2>
+<p>There are millions of credentials issued as Open Badges, but almost every badge is issued to an identity defined by an email address by an identity defined by a hosted HTTP record. Open Badges services construct issuer and recipient identities asymmetrically, but the recently finalized Open Badges 2.0 Specification opens the door to resolving this issue. All entities acting in the Open Badges space should be both able to receive and to award badges, but email addresses, most commonly used to identify recipients, can't completely fullfill the needs of issuer identification, and the HTTP identifiers used by issuers are unsuited for confirmation of identity. There is no standardized method of a credential inspector verifying that the entity logged into their service via a browser corresponds with a specific Open Badges <a href="https://openbadgespec.org/#Profile">Issuer Profile</a>. Open Badges 2.0 allows recipients to be identified by a property other than email address more specifically, like "@id", allowing identification of recipients by Decentralized Identifiers (DIDs). DIDs also have the potential to be used as issuer identifiers, if issuing tools can be connected to DID-based authentication services. </p>
+<p>This effort will result in requirements, use cases, and/or draft specs to be formalized in the appropriate standards group. For now, our priorities are:
+- exploring the problem space
+- creating specification/schema drafts and prototypes
+- getting broader community feedback
+- drafting initial use cases for forthcoming rounds of standardization</p>
+<h2 id="goals-use-cases-and-deliverables">Goals, use cases, and deliverables:</h2>
+<ol>
+<li><strong>VC Envelope</strong>: Develop a proof of concept that uses Verifiable Credentials as a verification method for an Open Badges Assertion</li>
+<li>Wrap and sign an assertion with verifiable claims envelope and linked data signature<ul>
+<li>See draft: <a href="open_badge_assertions_as_verifiable_credentials.md">Open Badge Assertions as Verifiable Credentials</a></li>
+</ul>
+</li>
+<li>Update an experimental fork of the <a href="https://github.com/IMSGlobal/openbadges-validator-core">Open Badges Validator</a> to support the VC envelope JSON string as an input format, including support for verification of at least one flavor of Linked Data Signature.</li>
+<li>Accurately describe capabilities and limitations of verification functionality in terms of what signature suites are supported in prototype.</li>
+<li><strong>Blockcerts</strong>: Develop a proof of concept that uses a <a href="https://www.blockcerts.org/">Blockcerts</a> signature-and-blockchain-proof-of-existence Linked Data signature prototype using the above VC envelope. </li>
+<li>Add support to experimental fork of the Open Badges Validator that can verify the integrity of this signature and verify proof of existence on at least one blockchain.</li>
+<li><strong>DID Recipient Identification</strong>: Develop a proof of concept that uses a DID as Assertion recipient identifier</li>
+<li>This is fairly trivial. Open Badges may use "id" as a recipient type. <code>"recipient": {"type": "id", "identity": "did:example:abc123", "hashed": false}</code> See <a href="https://www.imsglobal.org/sites/default/files/Badges/OBv2p0/index.html#ProfileIdentifierProperties">Profile Identifier Properties</a>.</li>
+<li>Update the experimental fork of the Open Badges Validator to support this use case and add relevant tests. </li>
+<li><strong>DID Issuer Identification and Signing</strong>: Develop a proof of concept that uses a DID as an Issuer id.</li>
+<li>Implement support for at least one did resolver method in the experimental fork of the Open Badges Validator to discover a relevant signing key and verify Linked Data Signature (at least one suite). </li>
+<li>We will likely build or seek collaboration with a OAuth2-based authentication service that can resolve and authenticated DIDs for users signed in via a browser. Open Badges services that trust this authentication service may associate DIDs with recipients and issuer users. </li>
+<li>Show how use of Open Badges Endorsements (Verifiable Credentials data format by another name) can be used to build a web-of-trust based model to answer questions of Issuer Profile authenticity and accreditation. Write up the wins that arise from authenticating DID documents compared with those from endorsements.</li>
+</ol>
+<p>A relatively small number of Open Badges services implementing DIDs as issuer and recipeint identifiers could enable significant expansions to the use cases covered by Open Badges. We view the deliverables scoped out above as highly achievable in proof-of-concept form based on existing work from prior Rebooting Web of Trust workshops and work in the credentials standards communities listed above. In building the above prototypes, upgrades will be made to open source tools in the Open Badges ecosystems to integrate technologies such as DID resolution and verification, Linked Data Signatures, and Verifiable Credentials. Open Badges is a widely deployed vocabulary for describing educational achievements. It should work well with these other technologies and specifications in the credentials space to make sure the benefits of approaches developed in each corner of the community can spread broadly across closely related ecosystems.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

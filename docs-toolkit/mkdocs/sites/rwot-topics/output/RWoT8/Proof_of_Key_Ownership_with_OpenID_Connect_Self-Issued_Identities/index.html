@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Proof of Key Ownership with OpenID Connect Self-Issued Identities - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Proof of Key Ownership with OpenID Connect Self-Issued Identities", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="proof-of-key-ownership-with-openid-connect-self-issued-identities">Proof of Key Ownership with OpenID Connect Self-Issued Identities</h1>
+<p>Proving ownership of a DID requires proving ownership of a private key corresponding to a public key for the DID.  Of course, this could be done with a new DID-specific protocol.  However, there already exist standard protocols for proving ownership of a public/private key pair.</p>
+<p>The <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect</a> specification defines <a href="https://openid.net/specs/openid-connect-core-1_0.html#SelfIssued">Self-Issued Identities</a> in Section 7.  A self-issued identity is represented by a public/private key pair.  Logging in with the self-issued identity proves control of the private key.</p>
+<p>Microsoft is experimenting with using self-issued identities to prove ownership of DIDs.  This is straightforward.  The DID key is used as the key for the self-issued identity.  The self-issued identity is validated in the standard way.  In addition, a "did" claim containing the DID identifier is added to the self-issued ID Token.  This enables relying parties that understand that the self-issued identity is also a DID to perform DID operations after control of the key has been verified using OpenID Connect.</p>
+<p>I look forward to discussing this potential DID validation approach with the workshop participants.</p>
+<p><strong>Author:</strong> Michael B. Jones <a href="https://self-issued.info/">https://self-issued.info/</a>, <a href="https://twitter.com/selfissued">@selfissued</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

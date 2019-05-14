@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Decentralized Cooperation needs Decentralized Reputation - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Decentralized Cooperation needs Decentralized Reputation", url: "#_top", children: [
+              {title: "The Challenge of Decentralized Reputation at Scale", url: "#the-challenge-of-decentralized-reputation-at-scale" },
+              {title: "The Need for Progressive Permissionless Reputation", url: "#the-need-for-progressive-permissionless-reputation" },
+              {title: "Preserving the Spectrum of Anonymity", url: "#preserving-the-spectrum-of-anonymity" },
+              {title: "Interpreting Decentralized Reputation Data", url: "#interpreting-decentralized-reputation-data" },
+              {title: "Technical Requirements", url: "#technical-requirements" },
+              {title: "Related Questions", url: "#related-questions" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="decentralized-cooperation-needs-decentralized-reputation">Decentralized Cooperation needs Decentralized Reputation</h1>
+<p>White Paper By <a href="http://twitter.com/noahthorp">Noah Thorp</a></p>
+<p>We are in the midst of a techno-cultural trend that re-envisions ownership, protocols of trust, organizational decision making, and ecosystems of work. This zeitgeist can broadly be called decentralized collaboration.</p>
+<p>In the United States, organizations are atomizing into flexible services and autonomous, purpose-driven small businesses. <a href="http://dupress.com/articles/business-ecosystems-come-of-age-business-trends/">Deloitte reports</a> the ecosystems of value creation that are emerging create both competitive and collaborative advantage. Several forces are driving this change.</p>
+<p>Freelance work represents a significant driver. Today, freelancers and gig workers make up 34% of the US work force. In keeping with these trends, Intuit and MBO Partners optimistically predict that by 2020 freelancers will represent 43-50% of the work force. Although these numbers may be inflated, there is strong evidence that autonomous work forces are expanding.</p>
+<p>Organizational functions are unbundling to empower this atomized economy of freelancers and worker hives. Small ventures are freed to focus on core value by leveraging services like Zen Payroll, Zen99, and Zenefits for accounting; Clerky for legal support; gig work through Lyft, Uber, and Thumbtack; WeWork and Impact Hub for co-working. Crowd funding has reached mainstream participation through Kickstarter, Angel List, Mosaic Solar Financing, and Crowdfunder.</p>
+<p>Of more disruptive significance is the introduction of truly decentralized technologies. Significantly disruptive models include decentralized commerce (<a href="https://openbazaar.org/">Open Bazaar</a>, <a href="https://en.wikipedia.org/wiki/Silk_Road_(marketplace)">Silk Road</a>), file storage (<a href="https://ipfs.io/">IPFS</a>, <a href="http://maidsafe.net/">Maidsafe</a>) and asset tracking (<a href="https://www.ethereum.org/">Ethereum</a>, <a href="https://www.bitcoin.com/">Bitcoin</a>). Decentralized blockchain solutions for governance, truth, and trust are poised to create resilient, censorship resistant networks empowering a new generation of beneficiaries.</p>
+<p>Large scale decentralized cooperation depends on decentralized reputation. Cryptocurrencies enable decentralized financial transactions, but what technology decentralizes the reputation data necessary for the full spectrum of commerce and collaboration?</p>
+<p>Arriving at such a solution is an interdisciplinary endeavor. It requires investigation into the interface between private keys, reputation data structures, reputation data interpretation, and social interpretation of reputation data.</p>
+<h2 id="the-challenge-of-decentralized-reputation-at-scale">The Challenge of Decentralized Reputation at Scale</h2>
+<p>Advice from our personal networks reduces our search time for new products, services, ideas, and collaborators dramatically. This benefit is magnified as we move from our in person network to online graphs. But these graphs are currently primarily provided by centralized services such as Google, Facebook, Twitter and the like.</p>
+<p>In a centralized world, we rely heavily on familiar brands that we trust to provide reputational information for services we have no previous direct interaction with. Reputation services like Yelp store ratings and provide the context necessary for interpreting reputational information. There are several reasons to create alternative centralized reputation services.</p>
+<p>Centralized services have a biased incentive structure for interpreting reputation data and disproportionate power to modify it. For instance, movie ticket provider <a href="http://fivethirtyeight.com/features/fandango-movies-ratings/">Fandango</a> is incentivized to pump up movie ratings to sell more tickets and they can set ratings high to do so. This demonstrates how reputation data is subject to censorship, distortion, and deletion.</p>
+<p>Effectiveness of searching is diminished when data is closed to alternate interpretations for novel uses. For example 28,902 IMDB users rated cult classic movie <a href="http://www.imdb.com/title/tt0052077/">Plan 9 From Outer Space</a> an average of 4 out of 10. If you were looking for the best sci-fi B Movies of all time the rating system at IMDB is apparently useless. Averaging ratings in this case removes information needed to discover bizarre cult films.</p>
+<p>Company bankruptcy can lead to massive community data loss.</p>
+<p>The amount of redundant, non-reusable work spent by users on rating things is astounding. Large quantities of user generated data is siloed, non-reinterpritable, and impermanent. This represents a significant loss of value to the users who created this content.</p>
+<p>A new era of peer to peer collaboration can be enabled through decentralized reputation services. If executed well a scalable, decentralized, interoperable reputation network can make economic ecosystems considerably more productive.</p>
+<p>It is worth noting a few barriers to participation in growing reputation systems. Users fear durable negative reputation and this limits participation. Participants are also afraid of being categorized in unfair ways (e.g. the <a href="http://arstechnica.com/business/2015/10/yelp-for-people-app-if-it-exists-disappears-from-the-internet">Peeple app</a> phenomenon). Fear of retribution for recording negative ratings limits contribution of potentially valuable data. Other adoption factors include cost of participation, availability of relevant data (a network effect), and confidence in accuracy.</p>
+<p>To maximize usefulness, decentralized reputation system must be:</p>
+<ol>
+<li>Interoperable</li>
+<li>Interconnected</li>
+<li>Compatible with permissionless and anonymous accounts</li>
+<li>Contextual</li>
+<li>Chronological</li>
+<li>Resilient (censorship resistent, immutable, decentralized)</li>
+<li>Re-interperatable (raw data is open to user and use specific re-interpretation)</li>
+<li>Not feared</li>
+<li>Compatible with the spectrum of identity</li>
+</ol>
+<h2 id="the-need-for-progressive-permissionless-reputation">The Need for Progressive Permissionless Reputation</h2>
+<p>Permissionless access to decentralized systems serves several needs. For one, permissionless decentralized ledgers like Bitcoin grant access to electronic transactions for individuals that would not be able to acquire bank accounts due to lack of government identification, minimum bank balances, or poor credit scores. The low bar for account access enables progressive reputation accumulation. On these grounds, permissionless account access is a potential boon to those with untrustworthy banks, refugees, the homeless, and the poor.</p>
+<p>Permissionless accounts also mean an increase in network size and network contributions. Wikipedia demonstrates the strong value of permissionless contribution - 29% of constructive contributions are made with only the recording of the contributors IP address.</p>
+<h2 id="preserving-the-spectrum-of-anonymity">Preserving the Spectrum of Anonymity</h2>
+<p>Kaliya Hamlin (Identity Woman) defines the <a href="http://www.identitywoman.net/the-identity-spectrum">spectrum of identity</a> like this:</p>
+<ul>
+<li>Anonymous</li>
+<li>Pseudonymous</li>
+<li>Self-asserted</li>
+<li>Socially validated through a social graph</li>
+<li>Verified by a validated third party</li>
+<li>Mix and match</li>
+</ul>
+<p>The exposure of reputation, account, and transaction data progressively remove anonymity and create a reputation profile. For example, bitcoin accounts are subject to progressive reduction of anonymity through each transaction, buying and selling communication, and through account verification (AML/KYC compliance) with services like CoinBase.</p>
+<p>The chain of identity reputation creation looks something like this:</p>
+<ol>
+<li>A pseudonym is created when an actor is known to be unique and has recurring data associated with its actions</li>
+<li>A profile is created when discrete data is progressively associated with a pseudonym. Reputation is implicitly created through the aggregation of pseudonym and profile data.</li>
+<li>Value potential is created when a pseudonym is linked to a physical person, place, or thing.</li>
+<li>Value is created (or destroyed) when information linked to a person place or thing is interpreted and leads to a change of information or in the physical world.</li>
+</ol>
+<p>Virtual anonymity is decreased as information is progressively associated with a unique identity.</p>
+<p>Physical anonymity is decreased as information about physical identity is increased.</p>
+<p>Because of these factors it is important to investigate the interaction between reputation and the progressive loss of anonymity.</p>
+<h2 id="interpreting-decentralized-reputation-data">Interpreting Decentralized Reputation Data</h2>
+<p>Attribution: the synthesis of ideas here is heavily influenced by the insights of Harlan Wood and Matt Schutte.</p>
+<p>In order to preserve the utility of reputation information for multiple purposes, it must be available in its raw form. The availability of this raw data enables many interpretations, using diverse algorithms, fit for specific decision making purposes.</p>
+<p>The certainty of any given rating is proportional to the:</p>
+<ul>
+<li>Relevance of the data to the interpreters decision making</li>
+<li>Agreeance of progressively aggregegated information</li>
+<li>Diversity of information sources</li>
+<li>Reputation provider's reputation profile. The reputation provider profile trust graph can be recursively evaluated as it is in Google's page rank algorithm.</li>
+<li>Discounting of spurious data by trusted meta-raters</li>
+</ul>
+<p>In a decentralized network the aggregation of reputation may be queried across many data storage sources. This data will likely be assembled by crawlers that provide standard data and standard algorithms for interpretation. Confidence in decentralized reputation data may be provided by cross referencing multiple reputation aggregation providers. This interpretation may include both public and private data sources. These providers may themselves be rated using hashes for both the data they ingest and the algorithms they use to interpret the data.</p>
+<p>Reputation shifts over time. This makes the time stamping of reputation data essential. A bad rating followed by a good rating from the same pseudonym is likely to mean the opposite of a good rating followed by a bad rating from the same pseudonym.</p>
+<p>Default algorithms should be tolerant of bad ratings for many reasons. Reputation and trust are not constant values. In human terms trust evolves through interaction. For instance, broken trust can lead to greater trust through reconciliation. A system that cannot adequately model this subtlety is eliminating potential value that can be realized by a network through reputation queries.</p>
+<p>In the Trust Exchange solution I advocate, reputation is inferred by querying through friend of friend relationships to aggregate and interpret reputation. Reputation systems demonstrate their effectiveness relative to our ancestral in person reputation networks particularly in cases where reputation data comes from distant associations. The utility of a reputation system is dependent on both the aggregation of sufficient data and the minimization of reputational distortion across network hops.</p>
+<p>With this reasoning, an open interoperable data sharing, with low reputational distortion can dramatically magnify the social gains from network value creation.</p>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<p>Harlan Wood, Joel Dietz, and I are contributing to a very early stage open source protocol solution to the challenges described above. The protocol is called <a href="https://github.com/citizencode/trust-exchange/blob/master/README.md">TrustExchange</a></p>
+<p>Trust Exchange specifies simple storage of reputation information in a data format called Trust Atoms. Trust Atoms are signed by a private key to associate them with a rater and are queried through a trust network that is also described by Trust Atoms. Trust Atoms can be aggregated by a reputation aggregator across many reputation storage locations including blockchains like Ethereum and distributed file systems like IPFS. TrustAtoms are raw data interpreted by the interpreters choice of reputation algorithm.</p>
+<p>The current version of the Trust Atom JSON format flexibly accommodates tags, numerical ratings, and arbitrary content. It is suitable for rendering existing reputation data in an interoperable format.</p>
+<p>When converting reputation system data from many existing sources into Trust Atoms, a binding for contextual content gives reputation evaluation algorithms more information on how to interpret a given Trust Atom. For example star rating systems of movies vary across websites and require calibrated interpretation. Including a source specific context gives sufficient information for a rating algorithm. The context referenced should also describe how to accurately generate TrustAtom for the context.</p>
+<p>Here is a Trust Atom format extended to include a context to assist reputational evaluation algorithms.</p>
+<pre><code>{
+  source: &lt;hash of public key of the rater (person or organization)&gt;
+  target: &lt;hash of public key, or URL of the entity being rated&gt;
+  value: &lt;a numeric value in the range 0..1&gt;
+  content: &lt;description or tags relating to rating&gt;
+  context: &lt;link to a context description&gt;
+  timestamp: &lt;date/time of creation&gt;
+  +hash: &lt;cryptographic hash of canonical JSON version of this trust atom&gt;
+  +signature: &lt;cryptographic signature of hash, signed with the private key of source&gt;
+}
+</code></pre>
+
+<p>For more details see the <a href="https://github.com/citizencode/trust-exchange/blob/master/README.md">Trust Exchange Github README</a>.</p>
+<h2 id="related-questions">Related Questions</h2>
+<ul>
+<li>What is a suitable format for describing a Trust Atom context?</li>
+<li>How can entities that do not have a private key be rated? For example, how would we rate the movie "Plan 9 From Outer Space"?</li>
+<li>Who pays for the storage of Trust Atoms?</li>
+<li>How do we formally address the reduction of anonymity inherent in sharing Trust Atom information?</li>
+<li>What are the primary vectors for attacking decentralized reputation systems?</li>
+<li>What are the primary methods for gaming decentralized reputation systems?</li>
+<li>Who are the winners and losers for each point in the spectrum of anonymity?</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Deloitte Center for the Edge, <a href="http://dupress.com/articles/business-ecosystems-come-of-age-business-trends">Business Ecosystems Come of Age</a>, 2015</li>
+<li>MBO Partners, <a href="http://careeradvisoryboard.org/public/uploads/2014/06/Career-Advisory-Board-MBO-Executive-Summary_FINAL.pdf">The Succesful Independent Contractor: A Workforce Trend for The Future</a>, 2014.</li>
+<li>Intuit, <a href="http://http-download.intuit.com/http.intuit/CMO/intuit/futureofsmallbusiness/intuit_2020_report.pdf">The Intuit 2020 Report</a>, 2010</li>
+<li>Wikipedia, <a href="https://en.wikipedia.org/wiki/Wikipedia:IPs_are_human_too">IPs Are Human Too</a>, 2015</li>
+<li>Arvind Narayanan and Vitaly Shmatikov, <a href="http://arxiv.org/pdf/cs/0610105v2.pdf">Robust De-anonymization of Large Datasets (How to Break Anonymity of the Netflix Prize Dataset)</a>, 2008</li>
+<li><a href="https://github.com/citizencode/trust-exchange/blob/master/README.md">TrustExchange</a></li>
+<li>Kaliya Hamlin <a href="http://www.identitywoman.net/the-identity-spectrum">The Identity Spectrum</a>, 2010</li>
+<li>Walt Hickey, <a href="http://fivethirtyeight.com/features/fandango-movies-ratings/">Be Suspicious of Online Movie Ratings Espescially Fandango</a>, 2015</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

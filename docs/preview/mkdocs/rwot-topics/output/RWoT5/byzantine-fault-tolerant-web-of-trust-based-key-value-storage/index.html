@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Byzantine fault tolerant web of trust based key value storage - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "BFTKV", url: "#_top", children: [
+          ]},
+          {title: "Design", url: "#design", children: [
+              {title: "Background", url: "#background" },
+              {title: "Implementation", url: "#implementation" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>Implementation available at https://github.com/yahoo/bftkv</p>
+<h1 id="bftkv">BFTKV</h1>
+<p>Reliable data storage is one of the fundamental problems.
+BFTKV uses <a href="http://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/bquorum-dc.pdf">b-masking quorum</a> based <code>read</code>/<code>write</code> operations to
+ensure <a href="https://dl.acm.org/citation.cfm?id=357176">Byzantine fault-tolerance</a> and GPG's <a href="https://www.gnupg.org/gph/en/manual/x547.html">Web of Trust</a> 
+mechanism to build trust relationships between entities. Trust relationships are used to build quorums.</p>
+<p>Moreover, BFTKV provides the following guarantees:</p>
+<ul>
+<li>Value corresponding to the key is up to date and not forged</li>
+<li>Entities trying to deceive users will be revoked immediately</li>
+<li>Entities can join and leave the system dynamically</li>
+<li>Communications between entities are encrypted using public keys</li>
+</ul>
+<h1 id="design">Design</h1>
+<p>BFTKV leverages integration of three concepts to provide a Byzantine fault tolerant distributed key-value storage:</p>
+<ul>
+<li>Byzantine Quorum Systems</li>
+<li>Web of Trust</li>
+<li>Quorum Certificate</li>
+</ul>
+<p>In this document, we will first describe PGP's Web of Trust mechanism and then build the other concepts on top of it. </p>
+<h2 id="background">Background</h2>
+<h3 id="web-of-trust">Web of Trust</h3>
+<p>Web of Trust is a way of building trust between entities without a central authority, unlike Public Key Infrastructure (PKI).
+Trust is established by signing public keys (implies the signer trusts the owner of the signed public key). A Web of Trust
+is created by exchanging signed keys between entities. </p>
+<p>Trust relationships can be represented with a graph, such as this:</p>
+<p><img alt="Trust Graph" src="../byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/trustGraph.png" /></p>
+<p>The graph can be transcribed as:</p>
+<pre><code>Alice trusts Bob and Erin
+Bob trusts Erin and Dave
+Carol trusts Bob and Erin
+Erin trusts Alice, Carol and Dave
+</code></pre>
+
+<p>Web of Trust mechanism plays a huge role in BFTKV's quorum selection mechanism.</p>
+<h3 id="byzantine-quorum-systems">Byzantine Quorum Systems</h3>
+<p>In a network system, servers might be inaccessible or return wrong/not up to date data. Byzantine failure refers to
+both of these failures and the naming is based on <a href="https://dl.acm.org/citation.cfm?id=357176">The Byzantine General's Problem</a>.</p>
+<p>BFTKV uses <code>b-masking quorum</code>s to tolerate Byzantine failures where <code>b</code> is the number of failure nodes.
+<code>b-masking quorum</code>s are due to Malkhi and Reiter (<a href="http://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/bquorum-dc.pdf">Paper</a>).</p>
+<h3 id="quorum-certificate">Quorum Certificate</h3>
+<p>Castro and Liskov (<a href="http://pmg.lcs.mit.edu/papers/osdi99.pdf">Paper</a>) introduced
+a Byzantine fault tolerant replication mechanism that expects <code>f+1</code> responses
+from the servers to verify the data, where <code>f</code> is the number of faulty nodes. We use the Web of Trust mechanism to specify
+the nodes that their responses will be accepted by a quorum member.</p>
+<p><img alt="Data Acceptance Mechanism" src="../byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/quorumAccept.png" /></p>
+<p>The following parts of this document deals with how previously discussed concepts are
+used in BFTKV.</p>
+<h2 id="implementation">Implementation</h2>
+<h3 id="quorum-selection">Quorum Selection</h3>
+<p>Quorum selection is based on the trust graph built using the Web of Trust mechanism. BFTKV, usually, chooses the maximal cliques that are
+<code>L</code> hops away from the clients. For example,</p>
+<p><img alt="Example Clique Graph" src="../byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/clique.png" /></p>
+<p>Client1 has two cliques: Clique 1 and Clique 2 where <code>L=1</code>
+Client2 has two cliques: Clique 2 and Clique 3 where <code>L=1</code></p>
+<h3 id="write">Write</h3>
+<p>The <code>Write</code> procedure saves a value associated with a key in the system. A high-level pseudocode for the procedure:</p>
+<ol>
+<li>Choose a quorum.</li>
+<li>Get times for the key from quorum members.</li>
+<li>Pick a new time that is higher than the maximum time returned by the quorum members.</li>
+<li>Request and gather signatures from quorum members for new value for the key with the new timestamp.</li>
+<li>Choose another quorum that includes the first quorum.</li>
+<li>Write the key, value and signature set to the new quorum members.</li>
+</ol>
+<h3 id="read">Read</h3>
+<p>The <code>read</code> procedure reads a value associated with a key in the system. A high level pseudocode for the procedure:</p>
+<ol>
+<li>Choose a quorum.</li>
+<li>Collect values associated with the key</li>
+<li>Revoke signers who signed different values with the same timestamp.</li>
+<li>Return value having signatures more than the number of faulty nodes and has the maximum timestamp.</li>
+</ol>
+<h3 id="design-decisions-and-security-analysis">Design Decisions and Security Analysis</h3>
+<p>In this section, we will go over somewhat unclear points in the chapters we discussed <code>read</code>/<code>write</code> operations.</p>
+<h4 id="write_1">Write</h4>
+<ol>
+<li>The quorum <code>Q</code> chosen here should have the property <code>|Q| &gt;= 3b + 1</code> where <code>b</code> is the number of faulty nodes. This is required for Byzantine fault
+tolerance since <code>f</code> nodes may be inaccessible and <code>f</code> nodes may be returning a previous value for the key. The remaining honest <code>f + 1</code> nodes will keep the
+system in a safe condition. As <code>Q</code>, BFTKV uses a maximal clique that a client is connected to in the trust graph.</li>
+<li>Number of timestamps should be greater than or equal to <code>2b + 1</code> since we will tolerate <code>b</code> inaccessible nodes.</li>
+<li>-</li>
+<li>The number of signatures <code>m</code> should be greater than <code>b + (n - b) / 2</code>. Please see the security analysis for details.</li>
+<li>All nodes may be chosen which is BFTKV's current strategy.</li>
+<li>Before writing, each server verifies the signature, checks the number of valid signatures gathered from quorum members and accepts write if the number
+is greater than <code>b + (n - b) / 2</code>. Moreover, every server makes sure that they haven't signed this key with the same timestamp before. </li>
+<li><code>write</code> operation succeeds if the received acks from server is greater than <code>2f + 1</code>.</li>
+</ol>
+<h4 id="read_1">Read</h4>
+<ol>
+<li>BFTKV chooses a random quorum <code>Q</code> that has the property <code>|Q| &gt; b + (n - b) / 2</code>.</li>
+<li>Collect pairs up to <code>2f + 1</code>. The reason is the same with <code>write</code> operation second explanation.</li>
+<li>A server should not sign the same key, same timestamp and a different value. This is equivocation attack.
+It is very important that servers revoke these nodes at this phase for the system to survive.</li>
+<li>To return a value for the key, the value should have at least <code>b + 1</code> signatures, which guarantees that the value is valid, and have the maximum timestamp.</li>
+</ol>
+<h3 id="security-analysis">Security Analysis</h3>
+<p><strong>Equivocation Attack:</strong> An adversary can try to create two different views of a quorum by trying to store different values for a key in half of the quorum and
+another value in the other half (Half is the best option from an attacker's perspective if he wants to succeed). With the help of the <code>b</code> faulty nodes, the basic check for
+<code>b + 1</code> signatures will succeed. However, if the quorum size is chosen carefully, this can be prevented.</p>
+<p>Consider the node states below (<code>n</code> = the number of nodes in the quorum, <code>b</code> = faulty nodes in the quorum):</p>
+<p><img alt="Quorum Node States" src="../byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/quorumNodeStates.png" /></p>
+<p>Maximum number of signatures an attacker can get is <code>b + (n - b) / 2</code>. To make sure that the majority has the correct value <code>n - b &gt; b + (n - b) / 2</code> should hold. Therefore <code>n</code>
+should be greater than <code>3b</code>.</p>
+<h3 id="detecting-equivocation-on-read">Detecting Equivocation on Read</h3>
+<p>Let <code>Fp</code> define the failure probability of an adversary (i.e., he won't be detected); <code>H1</code> and <code>H2</code> honest node sets, <code>F</code> the set of faulty nodes and <code>N = H1 U H2 U F</code>.
+Then the nodes chosen from the quorum <code>Q</code> should be either from <code>H1 U F</code> or <code>H2 U F</code> to prevent detection. This probability is</p>
+<pre><code>Fp ~= 1 - ((|F| + |N|) / 2|N|)^|Q|
+</code></pre>
+
+<p>In a reqular quorum system after if the number of faulty nodes exceed <code>n/3</code> trust to data drops down to 0. BFTKV can keep the adversary's failure probability
+close to 1 for more than <code>f</code> failing nodes. Below two graphs represent this:</p>
+<p float="left">
+  <img src="byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/failureDetectionInQuorum.png" alt="Failure Detection in a Quorum System"/>
+  <img src="byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/failureDetectionInBFTKV.png" alt="Failure Detection in BFTKV"/> 
+</p>
+
+<h3 id="visualization-of-the-system">Visualization of the System</h3>
+<h3 id="write-in-action">Write in Action</h3>
+<p><img src="byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/write.gif" alt="Write"/></p>
+<h3 id="revoke-on-read-in-action">Revoke on Read in Action</h3>
+<p><img src="byzantine-fault-tolerant-web-of-trust-based-key-value-storage-diagrams/revokeOnRead.gif" alt="Revoke on Read"/></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

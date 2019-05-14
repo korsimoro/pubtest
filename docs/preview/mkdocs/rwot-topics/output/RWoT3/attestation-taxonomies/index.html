@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Blockchain Attestation Taxonomies - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Blockchain Attestation Taxonomies", url: "#_top", children: [
+              {title: "Introduction", url: "#introduction" },
+              {title: "Pure Offchain (manual sharing/issuing, Verifiable Claims)", url: "#pure-offchain-manual-sharingissuing-verifiable-claims" },
+              {title: "Offchain with hash on-chain (persistent access)", url: "#offchain-with-hash-on-chain-persistent-access" },
+              {title: "On-chain (smart contract based) attestations", url: "#on-chain-smart-contract-based-attestations" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="blockchain-attestation-taxonomies">Blockchain Attestation Taxonomies</h1>
+<p>By Christian Lundkvist, ConsenSys</p>
+<h2 id="introduction">Introduction</h2>
+<p>An <em>attestation</em> represents a cryptographic proof of a claim made by
+an identity, usually about another identity. Attestations provide a
+way for an identity to make a claim that can then be verified at a
+later point in time. We will attempt to categorize attestations in
+terms of their relationship to blockchain systems and give some use
+cases for the different categories of attestations.</p>
+<p>We assume that there is a system of decentralized identifiers and a
+reliable mapping from an identifier to its corresponding signing
+key. This mapping would most likely be done using a blockchain, but
+one could potentially use a Certificate Authority for the mapping.</p>
+<h2 id="pure-offchain-manual-sharingissuing-verifiable-claims">Pure Offchain (manual sharing/issuing, Verifiable Claims)</h2>
+<p>These attestations are held by the user locally off-chain without a
+hash on chain and is shared manually with others when directly
+initiated by the user. They can consist of JSON Web Tokens and/or
+<a href="http://w3c.github.io/webpayments-ig/VCTF/">Verifiable Claims</a>,
+i.e. they consist of data (normally JSON data) with an associated
+digital signature.</p>
+<p>A user can send an attestation to a service by including it in a
+simple HTTP request.</p>
+<p>The receiver of an attestation would validate it by getting the
+identifier in the claim data, mapping it to the corresponding public
+key (using blockchain or CA) and finally verifying that this public
+key signed the attestation.</p>
+<p>The simplest way of dealing with revocation is to have the attestation
+be time-limited. If the expiry timestamp in the validation is in the
+past the attestation is considered invalid. Also revocation of keys is
+then automatic: when looking up the public signing key corresponding
+to the identifier, the attestation is only considered valid if the key
+is the current one.</p>
+<p>This is quite a strict requirement though, one could imagine accepting
+an attestation by an old key as long as the timestamp is
+consistent. However this can be hard to verify since an attacker who
+steals an old key can also modify the timestamp. It might also be a
+pain to have all the attestations made by the user be invalidated when
+they lose or update their device (and hence their key). However if
+most attestations are issued by corporations the key loss may be less
+of an issue.</p>
+<p>For examples of use cases, see</p>
+<p><a href="http://w3c.github.io/webpayments-ig/VCTF/use-cases/">http://w3c.github.io/webpayments-ig/VCTF/use-cases/</a></p>
+<h2 id="offchain-with-hash-on-chain-persistent-access">Offchain with hash on-chain (persistent access)</h2>
+<p>In this model the attestations are stored in JSON format (normally in
+a decentralized system like IPFS, but can also be a traditional
+storage service like Dropbox) and a hash of the JSON structure is
+stored on the blockchain associated to the identifier (e.g. through an
+on-chain registry). This allows persistent access to the data by
+anyone, and cryptographically ties it to the identifier of the
+identity associated with the attestation (mainly the subject of the
+attestation but could also be the issuer potentially). This kind of
+attestation is good for profile data of an identity that has been
+attested to in a web-of-trust fashion.</p>
+<p>If the data is meant to be public then this is a good way of
+distributing it, and cryptographically tie it to an identifier. If the
+data is meant to be private then it needs to be encrypted. The data
+can be encrypted in a way that only selected identities can decrypt
+it, this is sometimes referred to as "selective disclosure".</p>
+<p>We can have these attestations stored in a data structure in IPFS so
+that a single hash encompasses all attestations and their history. It
+may then be possible to go back in time to check the blockchain
+timestamp on each specific attestation, even though at any point in
+time only one hash is on chain.</p>
+<p>Examples: <a href="https://uport.me">uPort</a>, <a href="https://blockstack.org">Blockstack</a></p>
+<h2 id="on-chain-smart-contract-based-attestations">On-chain (smart contract based) attestations</h2>
+<p>This type of attestation exists in a smart contract on a
+blockchain. This could be for instance in an access-controlled
+registry which maps a key or identifier to the attestation data. The
+downside of this approach is that there is a large cost in storing
+data on a blockchain and it also requires a blockchain node to
+validate the attestation, instead of just checking a digital
+signature.</p>
+<p>The upside is that these attestations can be used by other smart
+contracts. An example of this is a smart contract issuing and selling
+shares in a company. The company may require that buyers of shares
+have performed a KYC check. A KYC provider can issue an on-chain
+attestation stating that a particular identifier has gone through this
+KYC check, without necessarily revealing any more personal information
+on the blockchain. The smart contract issuing the shares can then
+automatically verify that the users of the smart contract fulfill the
+requirements and hence are able to buy shares.</p>
+<p>Example: <a href="https://proofofphysicaladdress.com">Proof Of Physical Address</a></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

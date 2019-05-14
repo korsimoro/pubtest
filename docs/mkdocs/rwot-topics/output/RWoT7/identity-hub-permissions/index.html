@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Identity Hub Permissions/Authorization - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Identity Hub Permissions/Authorization", url: "#_top", children: [
+              {title: "Contents", url: "#contents" },
+              {title: "Definitions", url: "#definitions" },
+              {title: "A primer on authorization", url: "#a-primer-on-authorization" },
+              {title: "Scope of this document", url: "#scope-of-this-document" },
+          ]},
+          {title: "1. Authorization Model", url: "#1-authorization-model", children: [
+              {title: "1.1. Data model", url: "#11-data-model" },
+              {title: "1.2. Granting permissions", url: "#12-granting-permissions" },
+              {title: "1.3. Verifying permissions", url: "#13-verifying-permissions" },
+              {title: "1.4. Reviewing &amp; managing permissions", url: "#14-reviewing-managing-permissions" },
+          ]},
+          {title: "2. Authorization Request Protocol", url: "#2-authorization-request-protocol", children: [
+              {title: "2.1. Data Model", url: "#21-data-model" },
+              {title: "2.2. Onboarding new permissions", url: "#22-onboarding-new-permissions" },
+              {title: "2.3. Requesting permissions", url: "#23-requesting-permissions" },
+              {title: "2.4. Security considerations", url: "#24-security-considerations" },
+          ]},
+          {title: "Appendix", url: "#appendix", children: [
+              {title: "Alternative options considered", url: "#alternative-options-considered" },
+              {title: "Research on existing authorization systems", url: "#research-on-existing-authorization-systems" },
+              {title: "Use cases for future consideration", url: "#use-cases-for-future-consideration" },
+              {title: "Callbacks", url: "#callbacks" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="identity-hub-permissionsauthorization">Identity Hub Permissions/Authorization</h1>
+<p>The success of a decentralized identity platform is dependent upon the ability for users to share their data with other people, organizations, apps, and services in a way that respects and protects a user’s privacy. In our decentralized platform, all user information &amp; data resides in the user’s identity Hub. This document outlines the basic requirements of the authorization layer for identity Hubs and proposes an initial design that meets these requirements.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li>Definitions</li>
+<li>A quick primer on authorization</li>
+<li>Scope of this document</li>
+<li>In scope: use cases &amp; requirements</li>
+<li>Out of scope</li>
+<li>Design goals</li>
+<li>1 | Authorization Model</li>
+<li>1.1 | Data model</li>
+<li>1.2 | Granting permissions</li>
+<li>1.3 | Verifying permissions</li>
+<li>1.4 | Reviewing &amp; managing permissions</li>
+<li>1.4.1 | Hub permission management APIs</li>
+<li>1.4.2 | Permission management experience</li>
+<li>2 | Authorization Request Protocol</li>
+<li>2.1 | Data Model</li>
+<li>2.2 | Onboarding new permissions</li>
+<li>2.3 | Requesting permissions</li>
+<li>2.3.1 | Protocol</li>
+<li>2.3.2 | SDK</li>
+<li>2.3.3 | User agent consent experience</li>
+<li>2.4 | Security considerations</li>
+<li>Appendix</li>
+<li>Alternative options considered</li>
+<li>Research on existing authorization systems</li>
+<li>Use cases for future consideration</li>
+<li>Callbacks</li>
+</ul>
+<h2 id="definitions">Definitions</h2>
+<p><strong>Hub, User Agent:</strong> see supporting docs for an introduction to DIDs.</p>
+<p><strong>User, Identity Owner:</strong> the DID that owns and manages access to all data in a Hub. This document focuses on a human user as the identity owner, but the identity owner could also be an organization, a device, or otherwise.</p>
+<p><strong>Relying Party:</strong> the app, service, or organization that consumes a claim or data from a user’s Hub.</p>
+<p><strong>Trust Provider:</strong> the app, service, or organization that issues a claim or writes data to a user’s Hub.</p>
+<p><strong>Schema Provider:</strong> an entity, organization, or consortium that publishes a schema for data types used by various applications, e.g. schema.org.</p>
+<p><strong>Permission:</strong> describes a set of actions that one DID can take on another DID’s data.</p>
+<p><strong>Permission Grant:</strong> the record that gets created when one DID grants permission to another DID.</p>
+<p><strong>Permission Set:</strong> a logical grouping of permissions that are frequently used together. The scope of the permissions included in the set should be easily understood by a user in a short phrase.</p>
+<h2 id="a-primer-on-authorization">A primer on authorization</h2>
+<p>In the context of identity hubs, authorization is the way access to resources (user data) inside a hub is specified and enforced. It can be helpful to distinguish between how authorization is <em>modeled</em> and how authorization is <em>requested.</em> In existing systems, XACML<a href="#">[1]</a> (eXtensible access control markup language) is a good example of a model for access control, while OAuth<a href="#">[2]</a> is the defacto standard framework for requesting access. Wikipedia compares the two nicely:</p>
+<blockquote>
+<p><strong>XACML and OAuth</strong>
+OAuth 2.0 is considered to be an authorization standard. It differs from XACML (eXtensible access control markup language) though in its origin, its purpose, and its applications. OAuth is about:</p>
+<ul>
+<li>delegated access control: I, the user, delegate another user or service access to the resource I own. For instance via OAuth, I grant Twitter (the service) the ability to post on my Facebook wall (the resource).</li>
+<li>handling the password anti-pattern. Whenever you want to integrate 2 services together, in a traditional, legacy model you have to provide service B with your user credentials on service A so that service B can pretend to be you with Service A. This has many risks of course. Using OAuth eliminates the issues with these patterns and lets the user control what service B can do on behalf of the user with service A.</li>
+<li>HTTP-based services / resources</li>
+<li>managing owner (user) approval</li>
+</ul>
+<p>XACML does not handle user approval or delegated access or password management. XACML simply provides:</p>
+<ul>
+<li>A policy language with which to express a wide range of access control policies including policies that can use consents handled / defined via OAuth.</li>
+<li>An access control architecture with the notion of a Policy Decision Point (PDP) and a Policy Enforcement Point (PEP).</li>
+</ul>
+<p>XACML and OAuth can be combined together to deliver a more comprehensive approach to authorization. |</p>
+</blockquote>
+<p>We have divided this document into two sections that address each facet of hub authorization:</p>
+<ol>
+<li>A basic authorization model that allows users to grant access to their data (analogous to XACML).</li>
+<li>An authorization protocol which allows other DIDs to request access from users (analogous to OAuth).</li>
+</ol>
+<p>If you’re familiar with XACML, OAuth, or other authorization systems, the following table may help with terminology:</p>
+<table>
+<thead>
+<tr>
+<th><strong>English description</strong></th>
+<th><strong>OAuth concept</strong></th>
+<th><strong>XACML concept</strong></th>
+<th><strong>Identity Hub concept</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>who is granted access</td>
+<td>Client</td>
+<td>Subject</td>
+<td>Client, Relying Party</td>
+</tr>
+<tr>
+<td>who grants the access</td>
+<td>Resource Owner</td>
+<td></td>
+<td>User, Identity Owner</td>
+</tr>
+<tr>
+<td>who holds the resources</td>
+<td>Resource Server</td>
+<td></td>
+<td>Identity Hub</td>
+</tr>
+<tr>
+<td>who manages access to resources</td>
+<td>Authorization Server</td>
+<td></td>
+<td>User Agent</td>
+</tr>
+<tr>
+<td>a logical set of resource and actions</td>
+<td>Scope</td>
+<td>PolicySet</td>
+<td>PermissionSet</td>
+</tr>
+<tr>
+<td>the resource being accessed</td>
+<td></td>
+<td>Resource</td>
+<td>ObjectType</td>
+</tr>
+<tr>
+<td>the actions that are allowed</td>
+<td></td>
+<td>Action</td>
+<td>Verb (CRUD)</td>
+</tr>
+<tr>
+<td>the context in which access is allowed</td>
+<td></td>
+<td>Environment</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="scope-of-this-document">Scope of this document</h2>
+<h3 id="in-scope-use-cases-requirements">In scope: use cases &amp; requirements</h3>
+<p>This proposal is a first cut. The intention is to start simple, and extend the model to include more richness over time. We choose to focus on two simple use cases, described below.</p>
+<h4 id="use-case-1-registering-for-a-website">Use case 1: Registering for a website</h4>
+<blockquote>
+<p>Alice has added some useful data about her wardrobe style to her Hub: her measurements from her tailor, and a list of her favorite clothing brands. When Alice goes to try out a new online clothing retailer, the retailer’s website allows her to set up an account using her DID. After signing in her DID, the retailer’s website is able to access Alice’s style data. Alice does not have to re-enter her sizes in the site, and the site can give her recommended options based on her brand preferences.</p>
+</blockquote>
+<p><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776433_file.png" /></p>
+<p>Enabling this use case will require the following from our authorization model:</p>
+<ul>
+<li>as a user, I can add information about myself (measurements, brands) to my hub as a Collections object.</li>
+<li>as a relying party, I can request read access to a logical grouping of data (style choices).</li>
+<li>as a user, I can reliably identify who is requesting access to my info (the retailer).</li>
+<li>as a user, I can easily understand what data is being shared with the relying party.</li>
+<li>as a user, I can choose to accept/deny a request for data.</li>
+<li>as a relying party, I can query data upon user consent.</li>
+<li>as a relying party, I retain access to data so I can periodically retrieve it each time I need to use it.</li>
+</ul>
+<h4 id="use-case-2-reviewing-managing-access">Use case 2: Reviewing &amp; managing access</h4>
+<blockquote>
+<p>Alice learns that one of the websites she visited is making improper use of her personal data. She would like to immediately remove that website’s access to her Hub.</p>
+</blockquote>
+<p><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776447_file.png" /></p>
+<p>This use case introduces two new requirements:</p>
+<ul>
+<li>as a user, I can view an intuitive list of who has access to my data and what data they can access.</li>
+<li>as a user, I can revoke a third party’s access to my data.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope</h3>
+<p>To be clear, these requirements are not sufficient to consider identity Hubs ready for real world usage. It leaves out several features that have been discussed as being necessary for a minimally viable authorization layer, including<a href="#">[3]</a>:</p>
+<p><strong>Features that control <em>what</em> is being granted:</strong></p>
+<ul>
+<li>How to grant a permission to a specific object by ID, rather than all objects of a certain type.</li>
+<li>How to grant a permission to a property of some object type, rather than the entire object.</li>
+<li>How to grant permission to an object type and all of the children object types in its respective schema.</li>
+<li>How to filter a permission to only:</li>
+<li>objects created by a specific DID.</li>
+<li>objects created in a certain time period.</li>
+<li>objects larger than some byte size.</li>
+<li>How to grant a permission to a zero-knowledge proof of some object, rather than the entire object.</li>
+<li>How to grant permission to act as a delegate of a DID when interacting with other Hubs.</li>
+</ul>
+<p><strong>Features that control <em>who</em> is being granted access:</strong></p>
+<ul>
+<li>How to grant a permission to all DIDs, and therefore make some data public.</li>
+<li>How to create a permission that explicitly denies a DID access to an object.</li>
+</ul>
+<p><strong>Features that limit/expand <em>where or when</em> access is granted:</strong></p>
+<ul>
+<li>How to time-bound permissions, such that a permission expires automatically.</li>
+<li>How to grant permissions to an app on some devices, but not others.</li>
+</ul>
+<p><strong>Features that control <em>why</em> access is granted:</strong></p>
+<ul>
+<li>How an app can specify why permission is being requested.</li>
+<li>How a user can specify why permission is being denied.</li>
+<li>How relying parties and trust providers are reviewed for trustworthiness and integrity.</li>
+</ul>
+<p><strong>Features that are related to Hub authorization, but will be addressed at a later time:</strong></p>
+<ul>
+<li>How to authenticate requests to the Hub.</li>
+<li>How to request &amp; send callbacks to notify apps of changes to data and permissions in a Hub<a href="#">[4]</a>.</li>
+<li>How to authorize the execution of services, or extensions, in a Hub.</li>
+<li>What format(s) the Hub uses for requests &amp; responses.</li>
+<li>How to encrypt data in a Hub such that the Hub provider cannot access it.</li>
+</ul>
+<p>Clearly, there is a large body of functionality that can be added to Hub authorization over time. This is why this initial document intentionally strives to be as simple as possible. We’ll incorporate these things into Hub authorization over time as we receive feedback from early adopters of DIDs.</p>
+<h3 id="design-goals">Design goals</h3>
+<p>In designing Hub authorization, we strive to meet the following design constraints:</p>
+<ol>
+<li>Data in a Hub is 100% data type agnostic – the Hub can support any data type that users and participating apps choose. Data is based on standardized schemas &amp; formats, such that many parties across organizations &amp; industries can interact with the data.</li>
+<li>Any data in a Hub can be shared with third parties upon consent from the owner.</li>
+<li>Users can retain fine-grained control over access to their data.</li>
+<li>Data in a Hub can be grouped into logical permissions that users can easily understand.</li>
+<li>The set of permissions supported by Hubs should easily expand over time to include new data types, new combinations of data, and new scenarios.</li>
+<li>Client applications can request access to data from users by sending requests to users via their user agent.</li>
+<li>Client applications can minimize the access they require upon first use, and can request more access over time.</li>
+<li>When users are asked to grant access to data, they must be presented with clear, simple, and informative text that helps them understand what access is being requested, by whom, when and for how long.</li>
+<li>User agents must protect their users from malicious parties that fool users into divulging their data.</li>
+</ol>
+<h1 id="1-authorization-model">1. Authorization Model</h1>
+<h2 id="11-data-model">1.1. Data model</h2>
+<p>The following describes the format of the objects involved in the authorization model.</p>
+<pre><code>PermissionGrant
+
+{
+  &quot;owner&quot;: &quot;did:example:12345&quot;, // the identity owner (granters)’s DID
+  &quot;grantee&quot;: &quot;did:example:67890&quot;, // the grantee’s DID
+  “object_type”: “https://schemas.clothing.org/measurements”, // the data type
+  “allow”: “-R--”, // allows create, read, update, and delete
+  ... // additional richness &amp; specificity can be added in the future
+}
+</code></pre>
+
+<blockquote>
+<p>OPEN: Should a grant allow multiple object types to be included? Why or why not?</p>
+<p>OPEN: Should we revert back to using OAuth terminology?</p>
+<p>OPEN: What should we name the “grantee” property?</p>
+</blockquote>
+<h2 id="12-granting-permissions">1.2. Granting permissions</h2>
+<p>When a user grants a permission to another DID, they can do so by specifying the exact objects in the permission grant. When permissions span more than one data type, several PermissionGrant objects can be created. For each PermissionGrant, the following request should be made to the user’s Hub, typically via user agent:</p>
+<pre><code>{
+  iss: 'did:example:12345', // the user’s DID (user agent sends this request)
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Create',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionGrant'
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: 'https://schema.identity.foundation/Hub/PermissionGrant',
+        &quot;grantee&quot;: &quot;did:example:67890&quot;, // the grantee’s DID
+        &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+        &quot;allow”: &quot;-R--&quot;, // allows create, read, update, and delete
+      }
+    }
+  ]
+}
+</code></pre>
+
+<p>Note that the Hub Permissions interface only supports the single PermissionGrant object type. The Hub should reject any requests to create objects of other types in the Permissions interface, barring future updates to the PermissionGrant model.</p>
+<p>The response format, and any error conditions, should be consistent with all other requests to Hubs. Upon creation of this permission grant object in a user’s Hub, the permission will be propagated to all other Hub instances listed in the user’s DID document via the Hub’s standard sync &amp; replication protocol. This will ensure that all Hub instances are up-to-date with all new permission grants in a timely manner. For details on the Hub object replication protocol, please refer to this document<a href="#">[5]</a>.</p>
+<h2 id="13-verifying-permissions">1.3. Verifying permissions</h2>
+<p>The following describes the logic implemented by the Hub’s authorization layer when a request arrives.
+<em>Example request to Hub from client application</em></p>
+<p><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776458_file.png" /></p>
+<ol>
+<li>Receive incoming request from client</li>
+<li>Determine relevant schema, verb, and client from request</li>
+<li>Query for all PermissionGrants that whose object_type matches the schema, for the given client DID</li>
+<li>Check if any query results allow the verb in question</li>
+<li>Return success/failed authorization check</li>
+</ol>
+<p>Note that PermissionGrants do not understand or evaluate the structure of a given schema. For instance, if a user grants access to all “https://schema.org/game” objects, they do not implicitly grant access to all “https://schema.org/videogame” objects (which is a child of game in schema.org’s hierarchy).</p>
+<h2 id="14-reviewing-managing-permissions">1.4. Reviewing &amp; managing permissions</h2>
+<h3 id="141-hub-permission-management-apis">1.4.1. Hub permission management APIs</h3>
+<p>Get all permissions granted by a user:</p>
+<pre><code>// Request
+{
+  iss: 'did:example:12345', // the user’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionGrant'
+  }
+}
+
+// Response
+{
+  '@type': 'Permissions/Read',
+  payload: [
+    {
+      &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+      &quot;grantee&quot;: &quot;did:example:67890&quot;,
+      &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+      &quot;allow”: &quot;-R--&quot;
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<p>Get all permissions pertaining to a certain object type in the user’s Hub:</p>
+<pre><code>// Request
+{
+  iss: 'did:example:12345', // the user’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Read',
+  request: {
+    'https://schema.identity.foundation/Hub/PermissionGrant'
+    filters: [{
+      'object_type': 'https://schemas.clothing.org/measurements'
+    }]
+  }
+}
+
+// Response
+{
+  '@type': 'Permissions/Read',
+  payload: [
+    {
+      &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+      &quot;grantee&quot;: &quot;did:example:67890&quot;,
+      &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+      &quot;allow”: &quot;-R--&quot;
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<p>Get all permissions pertaining to a certain object in the user’s Hub:</p>
+<pre><code>// Request
+{
+  iss: 'did:example:12345', // the user’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionGrant',
+    filters: [{
+      'object_type': 'https://schemas.clothing.org/measurements',
+      'object_id': '4c3f2aa7-2543-41e1-b839-b16f7c746795'
+    }]
+  }
+}
+
+// Response
+{
+  '@type': 'Permissions/Read',
+  payload: [
+    {
+      &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+      &quot;grantee&quot;: &quot;did:example:67890&quot;,
+      &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+      &quot;allow”: &quot;-R--&quot;
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<p>Get all permissions pertaining to a client DID:</p>
+<pre><code>// Request
+{
+  iss: 'did:example:12345', // the user’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionGrant',
+    filters: [{
+      'grantee': 'did:example:67890'
+    }]
+  }
+}
+
+// Response
+{
+  '@type': 'Permissions/Read',
+  payload: [
+    {
+      &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+      &quot;grantee&quot;: &quot;did:example:67890&quot;,
+      &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+      &quot;allow”: &quot;-R--&quot;
+    },
+    ...
+  ]
+}
+</code></pre>
+
+<blockquote>
+<p>OPEN: How do you filter a permissions query down to only certain objects in Hub syntax? Is the above correct?</p>
+</blockquote>
+<h3 id="142-permission-management-experience">1.4.2. Permission management experience</h3>
+<p>Note, all mocks are for illustrative purposes only.</p>
+<table>
+<thead>
+<tr>
+<th>Manage permissions by app/DID</th>
+<th>Manage permissions by data type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776823_file.png" /></td>
+<td><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776556_file.png" /></td>
+</tr>
+</tbody>
+</table>
+<h1 id="2-authorization-request-protocol">2. Authorization Request Protocol</h1>
+<h2 id="21-data-model">2.1. Data Model</h2>
+<p>Our authorization protocol is a minor extension of the DID authentication protocols<a href="#">[6]</a> that standardizes the authorization of data access. It introduces the concept of a PermissionSet, which is analogous to a scope in OAuth. PermissionSets serve three purposes:</p>
+<ol>
+<li>They offer a way for client developers to request permission from users to access a related set of objects. We assert that a logical permission to a user will often be comprised of many types of data – not a single data type.</li>
+<li>They allow PermissionGrants to be specified by reference in authorization requests, instead of having to include the full details. This reduces the length of authorization requests significantly.</li>
+<li>They provide a place from which to serve localized user-friendly strings to be used in consent screens. This makes it easy for user agents to add support for new permissions as they arise, without needing to update their app.</li>
+<li>They give developers a re-usable set of permissions to choose from, rather than requiring every developer define their own permissions.</li>
+</ol>
+<p>A permission set is defined by the following two objects:</p>
+<pre><code>PermissionSet // defines a group of permissions that can be requested by a client
+
+{
+  // the set of PermissionGrants that this permission includes
+  “permissions”: [ 
+    {
+      “object_type”: “https://schemas.clothing.org/measurements”
+      “allow”: “-R--”,
+      ...
+    },
+    {
+      “object_type”: “https://schemas.clothing.org/brandPreferences”
+      “verbs”: “-R--”
+      ...
+    }
+  ]
+
+  // the value used in authorization reqeusts
+  “name”: “Hub://did:example:abc123/permissions/sets/style/v1.0”,
+
+  // pointer to strings and icons to be used by user agents
+  “resourceBundle”: “Hub://did:example:abc123/permissions/sets/style/v1.0”
+}
+</code></pre>
+
+<pre><code>PermissionSetResourceBundle // exposes strings for user agents to use
+
+{
+  “language”: “en-us”,
+
+  // displayable text for user agents
+  “consent_string_short”: “View your clothing preferences”,
+  “consent_string_long”: “Read your sizes...including...and your...favorite brands”
+
+  // a recommended icon to display to users
+  “icon”: “/resources/clothing.ico” 
+}
+</code></pre>
+
+<blockquote>
+<p>OPEN: Should the PermissionSet name above include a hash of the PermissionSet object? That way, should the definition of the PermissionSet change, user agents can take action. Should the hash just replace /style/v1.0 in the name?</p>
+</blockquote>
+<h2 id="22-onboarding-new-permissions">2.2. Onboarding new permissions</h2>
+<p>The process for onboarding a new PermissionSet for use by client developers proceeds as follows.</p>
+<ol>
+<li>A developer, an organization, a consortium, or other group of DID ecosystem participants agree upon a set of data format(s) to be used in their respective industry or application. They might publish their schemas, but doing so is not required.</li>
+<li>The parties agree upon reasonable permission sets that allow client developers to request access to the data types from users. Each set must contain at least one PermissionGrant, but may contain more. The parties choose a DID used to define their PermissionSets.</li>
+<li>Each PermissionSet is then exposed in that DID’s Hub, at the exact location specified by the “name” property of the PermissionSet. PermissionSets are public objects in Hubs, they do not require authentication or authorization to access.</li>
+</ol>
+<pre><code>{
+  aud: 'did:example:abc123', // the defining DID
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionSet',
+    path: '/style/v1.0'
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: &quot;https://schema.identity.foundation/Hub/PermissionGrant&quot;,
+        &quot;permissions&quot;: [...]
+        &quot;name&quot;: &quot;Hub://did:example:abc123/permissions/sets/style/v1.0&quot;,
+        &quot;resourceBundle”: &quot;...&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+
+<ol>
+<li>The parties then create recommended strings that user agents should use for the set. Each string can be optionally localized into languages relevant to the industry or application. All resources are in the Hub at a location constructed by concatenating the resource bundle from the permission set definition above and a language tag:</li>
+</ol>
+<pre><code>{
+  aud: 'did:example:abc123', // the defining DID
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionSetResourceBundle',
+    path: '/style/v1.0/en-us'
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: 'https://schema.identity.foundation/Hub/PermissionSetResourceBundle',
+        &quot;language&quot;: &quot;en-us&quot;,
+        &quot;consent_string_short&quot;: &quot;View your clothing preferences&quot;,
+        &quot;consent_string_long&quot;: &quot;Read your sizes...including...and your...favorite...&quot;,
+        “icon”: “/resources/clothing.ico” // a recommended icon to display to users
+      }
+    }
+  ]
+}
+</code></pre>
+
+<blockquote>
+<p>OPEN: Is the “path” in the above request the right way to model such a query in hub syntax?</p>
+</blockquote>
+<ol>
+<li>The definers of the PermissionSet can then publish developer documentation that describes when and how to use the permission. Developers can use this documentation to decide which PermissionSet(s) minimize the access they request from users.</li>
+<li>If a developer should want a new permission set to be created, they can define their own, or work with a trusted entity to add a new PermissionSet to their DID.</li>
+</ol>
+<h2 id="23-requesting-permissions">2.3. Requesting permissions</h2>
+<h3 id="231-protocol">2.3.1. Protocol</h3>
+<p>The following describes the process by which a client application requests permissions from a user via their user agent. This process is an addition to the proposed DID auth protocols<a href="#">[7]</a>.</p>
+<p><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536601199835_swimlanes-d081bdb05ac492aeff1e43993caa6522.png" /></p>
+<ol>
+<li>Optionally, a client developer can use a helper SDK to form their permission requests.</li>
+<li>The client forms a JWT with the following structure, indicating the desired PermissionSets:</li>
+</ol>
+<pre><code>{jwt-header}.
+{
+  “iss”: “did:example:67890”, // from DID auth spec
+  “callback”: ..., // from DID auth spec
+  “nonce”: ..., // from DID auth spec
+  ...
+  “requested”: [ // list of PermissionSets requested, by name
+    “Hub://did:example:abc123/permissions/sets/style/v1.0”
+  ] 
+}
+.{jwt-signature}
+</code></pre>
+
+<ol>
+<li>The client sends the permission request to the user agent via one of the transports described in DID authentication documents. Some examples include:</li>
+<li>The client app may present a QR code, which is then scanned by a mobile user agent.</li>
+<li>If the client app and user agent are on a single device, it can use an OS custom URI scheme.</li>
+<li>If the user’s DID is known ahead of time, the client can send a permission request to the user’s Hub:</li>
+</ol>
+<pre><code>{
+  iss: 'did:example:67890', // the client’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Action/Create',
+  request: {
+    type: “https://schema.identity.foundation/Hub/PermissionRequestAction”
+  },
+  payload: [
+    {
+      data: {
+        “@type”: “https://schema.identity.foundation/Hub/PermissionRequestAction”,
+        &quot;request&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC...&quot;, // the jwt from above
+      }
+    }
+  ]
+}
+</code></pre>
+
+<p>In this case, user agents can then retrieve incoming permission requests from the user’s Hub and present them to the user. After a request is processed, user agents should delete the PermissionRequestAction from the Hub. Note that creating an action in a user’s Hub does not require generally authorization.</p>
+<ol>
+<li>The user agent validates the incoming JWT and extracts the client’s DID.</li>
+<li>The user agent extracts the requested PermissionSet(s) from the JWT.</li>
+<li>The user agent fetches the PermissionSet definition:</li>
+</ol>
+<pre><code>{
+  aud: 'did:example:abc123', // the defining DID
+  '@type': 'Permissions/Read',
+  request: {
+  type: 'https://schema.identity.foundation/Hub/PermissionSet',
+    path: '/style/v1.0'
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: &quot;https://schema.identity.foundation/Hub/PermissionGrant&quot;,
+        &quot;permissions&quot;: [...]
+        &quot;name&quot;: &quot;Hub://did:example:abc123/permissions/sets/style/v1.0&quot;,
+        &quot;resourceBundle”: &quot;...&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+
+<ol>
+<li>If no matching permission set is found, fail the permission request with an error message (see below).</li>
+<li>The user agent loads relevant localized UI strings from its own storage, if they exist for this PermissionSet.</li>
+<li>If the user agent doesn’t have its own strings for this PermissionSet, it fetches the recommended strings:</li>
+</ol>
+<pre><code>{
+  aud: 'did:example:abc123',
+  '@type': 'Permissions/Read',
+  request: {
+    type: 'https://schema.identity.foundation/Hub/PermissionSetResourceBundle',
+    path: '/style/v1.0/en-us'
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: 'https://schema.identity.foundation/Hub/PermissionSetResourceBundle',
+        &quot;language&quot;: &quot;en-us&quot;,
+        &quot;consent_string_short&quot;: &quot;View your clothing preferences&quot;,
+        &quot;consent_string_long&quot;: &quot;Read your sizes...including...and your...favorite...&quot;,
+        “icon”: “/resources/clothing.ico” // a recommended icon to display to users
+      }
+    }
+  ]
+}
+</code></pre>
+
+<blockquote>
+<p>OPEN: Should we instead use the OAuth Dynamic Client Registration scheme for internationalization? (<a href="https://tools.ietf.org/html/rfc7591">section 2.2 of this doc</a>)? Are there fallback languages if a language is not found? Does “en” map to “en-us”? There’s a fair bit of detail in internationalization which is not covered here. Should we just call it out of scope for this doc?</p>
+</blockquote>
+<ol>
+<li>If no acceptable strings are found, fail the request with a standard error message (see below).</li>
+<li>The user agent displays a consent prompt to the user (see below).</li>
+<li>The user can review permissions and accept the request. If the user denies, fail the request with an error message.</li>
+<li>The user agent constructs the PermissionGrant(s) and writes them to the user’s Hub:</li>
+</ol>
+<pre><code>{
+  iss: 'did:example:12345', // the user’s DID
+  aud: 'did:example:12345', // the user’s DID
+  '@type': 'Permissions/Create',
+  request: {
+    type: ‘https://schema.identity.foundation/Hub/PermissionGrant’
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+        &quot;grantee&quot;: &quot;did:example:67890&quot;, // the grantee’s DID
+        &quot;object_type&quot;: &quot;https://schemas.clothing.org/measurements&quot;,
+        &quot;allow”: &quot;-R--&quot;, // allows create, read, update, and delete
+      }
+    }
+  ]
+}
+</code></pre>
+
+<pre><code>{
+  iss: 'did:example:123abc',
+  aud: 'did:example:12345',
+  '@type': 'Permissions/Create',
+  request: {
+    type: ‘https://schema.identity.foundation/Hub/PermissionGrant’
+  },
+  payload: [
+    {
+      data: {
+        &quot;@type&quot;: ‘https://schema.identity.foundation/Hub/PermissionGrant’,
+        &quot;grantee&quot;: &quot;did:example:67890&quot;,
+        &quot;object_type&quot;: &quot;https://schemas.clothing.org/brandPreferences&quot;,
+        &quot;allow”: &quot;-R--&quot;,
+      }
+    }
+  ]
+}
+</code></pre>
+
+<ol>
+<li>The user agent returns a response to the indicated callback, via one of the transports described in the DID authentication documents. Where appropriate, the user may be redirected to the callback location as well. Some examples of transports include:</li>
+<li>Sending an HTTP POST request back to the callback URL specified in the request.</li>
+<li>Opening a URL with an OS specific custom scheme specified in the request.</li>
+</ol>
+<p>The contents of the response include a JWT with the following structure:</p>
+<pre><code>{jwt-header}.
+{
+  “iss”: “did:example:12345”, // from DID auth spec
+  “aud”: “did:example:67890”, // from DID auth spec
+  “nonce”: ..., // from DID auth spec
+  ...
+  “granted”: [ // list of permission sets granted in this request
+    “Hub://did:example:abc123/permissions/sets/style/v1.0”
+  ]
+}
+.{jwt-signature}
+</code></pre>
+
+<p>In the event that an error occurs during the processing of the permission request, the response JWT may contain an error claim with one or more errors:</p>
+<pre><code>{jwt-header}.
+{
+  “iss”: “did:example:12345”, // from DID auth spec
+  “aud”: “did:example:67890”, // from DID auth spec
+  “nonce”: ..., // from DID auth spec
+  ...
+  “permission_errors”: [
+    {
+      “error”: “access_denied”,
+      “error_code”: “ua-12345”
+    }
+  ],
+}
+.{jwt-signature}
+</code></pre>
+
+<p>Permission related errors are included in their own claim so that an attempt to authenticate a user with their DID request might still succeed, even though the requested permissions have been denied.</p>
+<blockquote>
+<p>OPEN: if permissions are denied, should the entire authentication request fail? Is the ability to authenticate/sign-in/disclose a DID modeled as a permission? In other words, can a DID auth-flow complete without at least once “disclose” permission being granted to the requestor?</p>
+</blockquote>
+<p>The user agent can choose from the following set of recommended <em>error</em>s (which come from OAuth), and may introduce new errors as necessary.</p>
+<table>
+<thead>
+<tr>
+<th>access_denied</th>
+<th>The user denied the request.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invalid_request</td>
+<td>The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.</td>
+</tr>
+<tr>
+<td>invalid_permission</td>
+<td>The requested permission is invalid, unknown, or malformed.</td>
+</tr>
+</tbody>
+</table>
+<p>The <em>error code</em> field is a non-standard string provided by the user agent that allows user agents to give developers greater detail about the reasons for an error that occurs. The accepted length of the <em>error code</em> field should be long enough to allow user agents to include a short URL to documentation about specific error codes.</p>
+<h3 id="232-sdk">2.3.2. SDK</h3>
+<p>The following is an API proposal for an example Android SDK which supports the requesting of permissions from a DID via their user agent. This is an example topology in which the custom scheme URI might be used to transport the permission request.</p>
+<pre><code>// set up SDK
+String myDid = “did:example:12345”;
+DIDClient client = DIDClient(myDid);
+client.sign = new MyDidSigner(); // function to sign a request using app’s private key
+
+// request permissions
+String[] permissions = {&quot;https://schemas.clothing.org/.permissions/style&quot;};
+Intent request = client.getPermissionRequestIntent(context, permissions);
+client.getPermissionRequestResult(resultCode, request, new MyPermissionRequestHandler());
+
+// implement callback handler
+class MyPermissionRequestHandler implements DidCallback
+{
+  public void handleException(Exception exception)
+  {
+    // handle exception appropriately
+  }
+
+  public void handleResult(PermissionRequestResult result)
+  {
+    DIDDocument user = result.getDidDocument();
+    DIDPermission[] granted = result.getGrantedPermissions();
+
+    // check if necessary permissions were granted, then take action
+  }
+}
+
+// implement signing function
+class MyDidSigner implements DidSigner
+{
+  public string signRequest(string serializedPermissionRequest)
+  {
+    // sign request using app’s private key
+  }
+}
+</code></pre>
+
+<h3 id="233-user-agent-consent-experience">2.3.3. User agent consent experience</h3>
+<p>The following is an example of how the user agent’s consent experience could be rendered. Note all mocks in this document are for illustrative purposes only.</p>
+<p><img alt="" src="https://d2mxuefqeaa7sj.cloudfront.net/s_32D917020B27368952984311393C87F00CB74F64AD97A01E353E74BCB776F28C_1536598776602_file.png" /></p>
+<blockquote>
+<p>OPEN: What is the standard for specifying app logo/name? How is the identity for app verified? These are both important questions that have not been specified in this doc yet. Should they be brought into scope for this doc?</p>
+</blockquote>
+<h2 id="24-security-considerations">2.4. Security considerations</h2>
+<p>Because any DID can define a PermissionSet, user agents must take care to verify that the descriptions they display to users in consent dialogs accurately represent the access being granted. If user agents naively display the recommended strings defined in a PermissionSet, an attacker could easily define its own PermissionSet with dishonest descriptions.</p>
+<p>For this reason, user agents must employ logic to determine if a DID (and therefore the PermissionSets it defines) is trustworthy. Some user agents may choose not to display any text but their own. If user agents choose not to trust a PermissionSet definition, they should not fail the request. Instead, they should take care to warn the user of potential attack, and make their best effort to ensure the user’s data remains safe.</p>
+<h1 id="appendix">Appendix</h1>
+<h2 id="alternative-options-considered">Alternative options considered</h2>
+<p><strong>How to present user-friendly UI strings in user agent consent dialogs</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>When asking the user for permissions, client applications specify in requests the full schema of the objects they need to access. It is up to user agents to do their best to try and infer the proper UI strings from the structure of a permission request. User agents should never fail a request due to an unexpected/unknown object specified.</td>
+<td>- Very easy for new objects &amp; permissions to be introduced to Hubs. Client apps can just request access to whatever schema they require, and it should work.</td>
+<td>- User agents can hard-code friendly strings for commonly used objects, but must fall back to presenting raw schema URIs to users. Raw schema URIs are unintuitive &amp; difficult to localize. Users will not gain a good understanding of what access is being requested.<br />- Permission requests become very long &amp; verbose – we’ve had problems in the past with request length limits on certain platforms.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Each user agent independently defines a set of permissions that client developers can request and publishes its supported permissions online. User agents define the localized UI strings for these permissions. User agents might coordinate on a commonly used set of permissions, but there is no standard for what a user agent must support. Client developers can then choose which permissions to use based on which user agents they want to target. User agents fail a permissions request if an unsupported permission is requested.</td>
+<td>- All UI strings presented to users are defined by user agents. In this way, users only need to trust their UA to behave honestly. UAs who behave poorly will lose out to UAs who provide clear, honest representations of how data is accessed.</td>
+<td>- Forces developers to reason over UA support for permissions. Not all UAs may support the same set of permissions.<br />- Some UAs may disagree over the meaning of a permission. Developers might then get access to different objects depending on which UA the user users, and end up coding their app to be UA-specific.<br />- Onboarding a new permission/object type requires convincing UAs to add support for that permission. This could take significant time &amp; discussion.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>The publisher of a schema (a schema provider) also publishes a set of permissions along with their schemas. Each permission therefore belongs to an organization, and is part of that organization’s namespace. These permissions include recommended localized UI strings that user agents can use, but user agents can also override with their own strings for commonly used permissions. If a user agent does not find strings published with a permission, it fails the request.</td>
+<td>- It’s up to specific industries &amp; companies to organically arrive at the set of permissions and schemas most commonly used. Onboarding a new permission/object does not involve standards bodies or technology providers.<br />- User agents can present friendly UI strings without having to ship changes every time a new permission is added.</td>
+<td>- Consensus on commonly used permissions may be difficult to achieve. Who gets to decide the world’s “profile” permission, for instance?<br />- A permission can’t span objects in different schemas. All objects that are included in a permission must be schematized by the same organization.<br />- Users place trust in schema providers to honestly describe the scope of access being granted.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>A discrete set of permissions that are supported in the DID ecosystem are agreed upon and defined by standards bodies. Standards bodies publish recommended localized strings for these permissions, but UAs can override them as they wish. If a permission request includes a non-standard permission, the UA must fail the request.</td>
+<td>- User agents have a discrete set of permissions to support at any point in time, making it easier to build high quality consent experiences.<br />- There is a central list of permissions that developers can browse when learning to code DID supporting apps.<br />- Permissions can be given short, friendly names that save space in requests.<br />- Permissions can span objects in multiple schemas.</td>
+<td>- Onboarding a new permission/object type requires interfacing with a standards body. The standards body retains the power to define what permissions can/can’t be requested.<br />- It may be difficult for standards bodies to facilitate agreement between parties on the right permissions to adopt.<br />- Users place trust in standards bodies to honestly describe the scope of access being granted.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>When asking the user for permissions, client applications specify in requests the full schema of the objects they need to access, as well as the localized strings that should be presented in consent pages.</td>
+<td></td>
+<td>- Users place trust in client apps to honestly describe the scope of access being requested.<br />- It’s extraordinarily easy for client apps to lie about what access they are requesting.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="research-on-existing-authorization-systems">Research on existing authorization systems</h2>
+<h3 id="node-accesscontrol">Node accesscontrol</h3>
+<p>Is a pretty dead simple JSON based system that allows you to:</p>
+<ul>
+<li>define roles and resources (objects)</li>
+<li>define hierarchical roles that inherit abilities of other roles</li>
+<li>grant CRUD access to objects</li>
+<li>filter down access to property level</li>
+<li>distinguish between "all" objects and "owned" objects</li>
+<li>doesn't actually create grants, just the role definitions</li>
+<li>you keep a table of users -&gt; roles and then check if a role has an ability at runtime</li>
+<li>all definitions are kept in memory</li>
+</ul>
+<p>Example definitions of roles:</p>
+<pre><code>// grant list fetched from DB (to be converted to a valid grants object, internally) 
+let grantList = [ 
+  { role: 'admin', resource: 'video', action: 'create:any', attributes: '*, !views' }, 
+  { role: 'admin', resource: 'video', action: 'read:any', attributes: '*' }, 
+  { role: 'admin', resource: 'video', action: 'update:any', attributes: '*, !views' }, 
+  { role: 'admin', resource: 'video', action: 'delete:any', attributes: '*' }, 
+  { role: 'user', resource: 'video', action: 'create:own', attributes: '*, !rating, !views' }, 
+  { role: 'user', resource: 'video', action: 'read:any', attributes: '*' }, 
+  { role: 'user', resource: 'video', action: 'update:own', attributes: '*, !rating, !views' }, 
+  { role: 'user', resource: 'video', action: 'delete:own', attributes: '*' } 
+]; 
+const ac = new AccessControl(grantList);
+</code></pre>
+
+<p>Reasons access-control does/doesn't make sense for us to use:</p>
+<ul>
+<li>It's pretty limited in what it can do, e.g. only supports simple resource objects</li>
+<li>It doesn't really define a request protocol, only a role definition format</li>
+</ul>
+<h3 id="xacml">XACML</h3>
+<p>XACML is a policy languange based on XML for evaluating access requests. It consists of PolicySets, Policies, and Rules. Each of these refer to the following roles:</p>
+<ul>
+<li>Subject</li>
+<li>Resource</li>
+<li>Action</li>
+<li>Environment</li>
+</ul>
+<p>It then tacks on advanced authorization logic like Conditions, Obligations, and Targets.</p>
+<p>A JSON version of a XACML access request might look like:</p>
+<pre><code>{
+    &quot;Request&quot;: {
+        &quot;AccessSubject&quot;: {
+            &quot;Attribute&quot;: [
+                {
+                    &quot;AttributeId&quot;: &quot;com.acme.user.employeeId&quot;,
+                    &quot;Value&quot;: &quot;Alice&quot;
+                }
+            ]
+        },
+        &quot;Resource&quot;: {
+            &quot;Attribute&quot;: [
+                {
+                    &quot;AttributeId&quot;: &quot;com.acme.record.recordId&quot;,
+                    &quot;Value&quot;: &quot;123&quot;
+                },
+                {
+                    &quot;AttributeId&quot;: &quot;com.acme.object.objectType&quot;,
+                    &quot;Value&quot;: &quot;record&quot;
+                }
+            ]
+        },
+        &quot;Action&quot;: {
+            &quot;Attribute&quot;: [
+                {
+                    &quot;AttributeId&quot;: &quot;com.acme.action.actionId&quot;,
+                    &quot;Value&quot;: &quot;view&quot;
+                }
+            ]
+        },
+        &quot;Environment&quot;: {
+            &quot;Attribute&quot;: []
+        }
+    }
+}
+</code></pre>
+
+<p>Reasons XACML does/doesn't make sense for us to use:</p>
+<ul>
+<li>See above description on XACML vs. OAuth. Our immediate problems are much more akin to OAuth.</li>
+<li>XACML seems to be a bit more expressive/powerful than we need, though over time we may wish to incorporate some of this power.</li>
+<li>It's pretty much just a data format, not really a request/response protocol</li>
+<li>It's XML based, though there are JSON implementations out there</li>
+<li>Again, looks like more headache than it's worth at this time.</li>
+</ul>
+<h3 id="user-managed-access-uma">User Managed Access (UMA)</h3>
+<p>UMA 2.0 Grant defines a new OAuth grant type, which does two main things:</p>
+<ul>
+<li>Enables a resource owner to grant access to another human (requesting party) using an app, rather than just granting access to an app.</li>
+<li>Enables a resource owner to set up policies that allow for auto-consent grants, rather than requiring in-the-moment synchronous consent.</li>
+</ul>
+<p>UMA Federated Authorization decouples the authorization server from the resource server, so that one central authorization server can be used to secure many different types of resources, all using the same model.
+UMA-enabled systems can respect policies such as…</p>
+<ul>
+<li>When a person driving a vehicle with an unknown ID comes into contact with my Solar Freakin’ Driveway, alert me and require my access approval.</li>
+<li>Only let my tax preparer with email TP1234@gmail.com and using client app TaxThis access my bank account data if they have authenticated strongly, and not after tax season is over.</li>
+<li>Let my health aggregation app, my doctor’s office client app, and the client for my husband’s employer’s insurance plan (which covers me) get access to my wifi-enabled scale API and my fitness wearable API to read the results they generate.</li>
+</ul>
+<p>UMA implementations typically use XACML, but it's not technically required. It also integrates nicely with OpenID Connect, thought that's not enforced either.</p>
+<p>Basic steps in the UMA flow:</p>
+<ol>
+<li>Client requests access to resource w/o an access token</li>
+<li>Resource server gets a "permission ticket" from the authorization server</li>
+<li>A permission ticket is a set of permissions, a permission is a set of scopes at a particular resource</li>
+<li>Which permissions are included in the permission ticket is up to the resource server to determine</li>
+<li>Resource server returns permission ticket to client in WWW-Authenticate header</li>
+<li>Client requests a "requesting party ticket" (RPT) (access token) from authorization server</li>
+<li>Client can hit token endpoint with permission ticket and optional "claim token", and optional "persisted claim token"<ol>
+<li>A claim token is like an id_token or SAML assertion</li>
+<li>A persisted claim token is a token issued by the authorization server that represents previously validated claims</li>
+</ol>
+</li>
+<li>Authorization server returns an error to client with a "need_info" error code</li>
+<li>Client redirects requesting party to "claims interaction endpoint", which performs claims gathering processes such as:</li>
+<li>Account registration/authentication to the authorization server as an identity provider</li>
+<li>Filling out a form</li>
+<li>Redirection or queries to another system to verify data/claims about the requesting party</li>
+<li>Authorization server redirects requesting party back to client with new permission ticket</li>
+<li>Client repeats step 4, asking for an RPT using its permission ticket, claim token, and persisted claim token</li>
+<li>Authorization server evaluates the request against policies configured by the resource owner</li>
+<li>Authorization server returns an RPT to the client, along with a PCT if appropriate</li>
+<li>Client sends RPT to resource server as a bearer token</li>
+</ol>
+<p>Details on how you might implement this flow are provided in the UMA FedAuthZ spec:
+The UMA resource description is pretty much exactly what is described in this document:</p>
+<pre><code>{  
+   &quot;resource_scopes&quot;:[  
+      &quot;view&quot;,
+      &quot;http://photoz.example.com/dev/scopes/print&quot;
+   ],
+   &quot;description&quot;:&quot;Collection of digital photographs&quot;,
+   &quot;icon_uri&quot;:&quot;http://www.example.com/icons/flower.png&quot;,
+   &quot;name&quot;:&quot;Photo Album&quot;,
+   &quot;type&quot;:&quot;http://www.example.com/rsrcs/photoalbum&quot;
+}
+</code></pre>
+
+<p>But they also have a scope description which defines the resources for a scope in the above:</p>
+<pre><code>{
+  &quot;description&quot;:&quot;Print out and produce PDF files of photos&quot;,
+  &quot;icon_uri&quot;:&quot;[http://www.example.com/icons/printer](http://www.example.com/icons/printer)&quot;,
+  &quot;name&quot;:&quot;Print&quot;
+}
+</code></pre>
+
+<p>Then, when a resource provider wants to issue a permissions ticket based on a query, it requests one from the authorization server using the resource ID (from the resource description creation request) and the scopes allowed for that resource:</p>
+<pre><code>HTTP POST
+{
+  &quot;resource_id&quot;:&quot;112210f47de98100&quot;,
+  &quot;resource_scopes&quot;:[
+    &quot;view&quot;,
+    &quot;[http://photoz.example.com/dev/actions/print](http://photoz.example.com/dev/actions/print)&quot;
+  ]
+}
+</code></pre>
+
+<p>Reasons UMA does/doesn't make sense for us to use:</p>
+<ul>
+<li>Kind of assumes REST style, but could be adapted</li>
+<li>Kind of assumes authorization server is a server, not a mobile app (user agent)</li>
+<li>Really sets out to solve a different problem - the problem of granting access to people, not to apps/service</li>
+<li>We may eventually have such a problem, and want to adopt their protocol</li>
+<li>Has a nice resource/scope definition that we are very close to already, might borrow that</li>
+<li>Not any real implementations out there to use, seems like it would be more difficult than roll-your-own</li>
+</ul>
+<h3 id="azure-rbac">Azure RBAC</h3>
+<p>Core concepts:</p>
+<ul>
+<li>Security Principals (User, Group, Service Principal)</li>
+<li>Role Definition</li>
+<li>Permissions</li>
+<li>Actions- {Company}.{ProviderName}/{resourceType}/{action}, e.g Microsoft.Authorization/<em>/Delete, Microsoft.Compute/virtualMachines/</em></li>
+<li>NotActions - subtract from actions, not explicitly deny</li>
+<li>DataActions - used for separating management authZ from data authZ, e.g. Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read</li>
+<li>NotDataActions - substract from data actions</li>
+<li>Scope - ManagementGroup/Subscription/ResourceGroup/Resource</li>
+<li>Role Assignment</li>
+<li>Security Principal + Role Definition + Scope</li>
+</ul>
+<p>Q: How does onboarding a new operation work? In the non-Azure case? 
+A: There's a portal in which a company owner can come and add new operations for their providers</p>
+<p>Q: How does onboarding a new role definition work?
+A: Customers can define custom roles via the portal, powershell, CLI, etc.</p>
+<p>Q: So a grant records a scope, roledef, and princpal, right. Why not include the roledef in the grant itself?
+A: So that we can re-use roledefs over and over again without re-stating them, and change them in-place if necessary</p>
+<p>Reasons Azure RBAC does/doesn't make sense for us to use:</p>
+<ul>
+<li>It's not open source, although we might be able to open source it</li>
+<li>Kind of assumes there is a resource provider who onboards a provider and their actions, as opposed to a hub with baked in CRUDX</li>
+<li>We don't really have management scope yet, everything is just a flat file\</li>
+</ul>
+<h2 id="use-cases-for-future-consideration">Use cases for future consideration</h2>
+<p>The following use cases are not met by this proposal – they require advanced features that have not been included. Each use case, and the features required to meet it, should be considered in future additions to the Hub authorization layer.</p>
+<h3 id="use-case-3-public-search-for-dids">Use case 3: Public search for DIDs</h3>
+<blockquote>
+<p>Alice uses a new DID based social media application. To use the app, she must to send friend requests to her contacts. Within the app, she searches for her friends using names as a search term, and might further qualify her searches using education or employment history.</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a user, I can make certain data public by granting permission for all DIDs to read it.</li>
+<li>as a relying party, I can crawl DIDs to create a searchable index of DID profile data.</li>
+</ul>
+<h3 id="use-case-4-lightweight-registration-for-a-website">Use case 4: Lightweight registration for a website</h3>
+<blockquote>
+<p>Alice wants to create an account with a news site, which allows her sign up using her DID. All that is required to access the news site is an email address. Upon signing up with her DID, the website requests access to Alice’s email address, which is part of Alice’s profile. However, the site does not receive access to the rest of Alice’s profile.</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a relying party, I can request access to read a subset of data in an object, rather than the entire object.</li>
+</ul>
+<h3 id="use-case-5-sharing-a-verified-claim">Use case 5: Sharing a verified claim</h3>
+<blockquote>
+<p>To apply for a job online, Alice needs to provide proof of her graduation from university. Thankfully her university allows her to link her DID to her student account and receive a digital diploma. After authenticating Alice’s DID, the university signs a digital diploma and writes the attestation to Alice’s Hub. Alice then applies for a job online with her DID, and the employer’s website is able to access her Hub and check for a signed proof of graduation.</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a relying party, I can request data from a user that is verified by some third party</li>
+<li>as a trust provider, I retain CRUD access to any attestation that I create in the user’s Hub, but cannot read or access attestations created by any other party. This allows me to:</li>
+<li>check on the status of an attestation that I issued</li>
+<li>revoke an attestation if I deem it invalid later on</li>
+<li>re-issue/re-verify attestations over time if they expire/become invalid</li>
+</ul>
+<h3 id="use-case-6-sharing-specific-information-for-legal-compliance">Use case 6: Sharing specific information for legal compliance</h3>
+<blockquote>
+<p>Alice visits the Whole Foods website, which allows her to purchase groceries for delivery from the local store. Alice wishes to buy alcohol with her groceries, which requires age verification. The Whole Foods website allows Alice to prove her age via her DID – however, her age and delivery address must be confirmed by the state DMV to do so. Alice, wanting to minimize her data exposure, does not disclose her birthdate, but only the DMV verified fact that she is over 21. She also chooses to only allow Whole Foods access to her current shipping address, rather than all of the previous residences associated with her DID. |</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a relying party, I can request an attestation verified by a specific 3rd party</li>
+<li>as a user, I can share meta-attestations without sharing all my attestations (zero-knowledge proofs)</li>
+<li>as a user, I can disclose a specific object to a relying party, rather than all objects of a certain type</li>
+</ul>
+<h3 id="use-case-6-sharing-collections-of-data">Use case 6: Sharing collections of data</h3>
+<blockquote>
+<p>Alice is collaborating with fellow students at her university on a group project. The group uses a DID based document storage solution that is akin to Dropbox. All documents and files for their project are store in Alice’s Hub, and are organized into a specific folder she created. In order to collaborate, she grants her team access to only the files contained in this folder. She does not want her team to access all documents and files in her Hub, nor does she want to share out each file individually.</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a user, I can grant access to a specific group of objects, rather than all objects or one specific object.</li>
+</ul>
+<h3 id="use-case-7-sharing-classes-of-verified-information">Use case 7: Sharing classes of verified information</h3>
+<blockquote>
+<p>Alice wants to sign up as a dog-sitter for a task-fulfilling service. She uses a website to enlist as a willing dog-sitter, but struggles to get any clients, since she has no previous reviews on the site. Instead, she can provide other assurance to potential clients by linking her DID to the website. The website is then able to access Alice’s verified proof of employment, and her verifiend proof of completion of a dog training course from a local school.</p>
+</blockquote>
+<p>New requirements for this case include:</p>
+<ul>
+<li>as a relying party, I can request the class of attestation that fulfills my needs, rather than a specific data type. The data types in the class might be related by the structure of some schema.</li>
+<li>as a relying party, I can request data that is verified by a 3rd party with a high trust score, so that I do not fall victim to trusting fraudulent verifications</li>
+</ul>
+<h3 id="use-case-8-improving-relying-party-experiences">Use case 8: Improving relying party experiences</h3>
+<blockquote>
+<p>A developer of a site supporting DIDs wants to build a delightful experience for Alice. However, doing so is currently difficult for several reasons. Alice is scared by the many permissions the site requests and can’t easily recognize the site’s branding in her user agent. Making matters worse, integration with DIDs is so difficult that delivering DID support in the site has slipped for months.</p>
+</blockquote>
+<p>New requirements to address these shortcomings include:</p>
+<ul>
+<li>as a relying party, I can request reusable permission sets instead of long lists of permissions</li>
+<li>as a relying party, I can specify mandatory data that the user must provide before entering my site (accrual)</li>
+<li>as a relying party, I can easily support GDPR &amp; right to be forgotten</li>
+<li>as a relying party, I can provide a branded user experience for users signing up/into my app</li>
+<li>as a relying party, I can provide reasons for why I am requesting certain permissions</li>
+<li>as a relying party I can receive attestations in the token/response rather than making queries</li>
+<li>as a relying party, I can add DID support with minimal effort &amp; maximum support</li>
+</ul>
+<h3 id="use-case-9-impersonating-the-user-in-inter-hub-scenarios">Use case 9: Impersonating the user in inter-Hub scenarios</h3>
+<blockquote>
+<p>Alice signs up for a new to-do list app that stores tasks in her Hub. The app allows Alice to assign tasks to friends &amp; family and remind them when their tasks are due. The app sends automated reminders on Alice’s behalf, such that Alice’s family sees reminders are coming from Alice herself.</p>
+</blockquote>
+<p>New requirements to enable such an app are:</p>
+<ul>
+<li>as a relying party, I can request the ability to impersonate Alice in a limited capacity.</li>
+<li>as a user, I can understand when, where, and why a relying party is impersonating me to other users.</li>
+<li>as a relying party, I can send messages to other Hubs using a credential that is linked back to the user.</li>
+</ul>
+<h3 id="use-case-10-sharing-time-based-subsets-of-data">Use case 10: Sharing time-based subsets of data</h3>
+<blockquote>
+<p>Alice has become part of a legal investigation, and wants to help provide evidence to authorities. To assist with the investigation, Alice wishes to share her call and message records from April-June of this year. However, she doesn’t wish to disclose any records beyond the time period that is relevant for the investigation.</p>
+</blockquote>
+<p>New requirements to enable this case are:</p>
+<ul>
+<li>as a user, I can share a subset of data based on the time in which that data was created in my Hub.</li>
+</ul>
+<h3 id="use-case-11-granting-access-to-actions-rather-than-data">Use case 11: Granting access to actions, rather than data</h3>
+<blockquote>
+<p>Alice purchases a home security system that includes digitally controlled locks for her doors. When setting up the system, Alice was able to associate each lock with her DID, such that all operations of the system can be done via her Hub. Alice is now leaving for vacation, and wants to give a friend access to her home for the weekend. She wants her friends access to expire automatically when she returns from vacation.</p>
+</blockquote>
+<p>New requirements to enable this case are:</p>
+<ul>
+<li>as a relying party, I can expose my services through a user’s Hub, so that users can manage access to my services just like they manage access to their personal data.</li>
+<li>as a user, I can grant access to other users to operate services in my Hub.</li>
+<li>as a user, I can specify a time period for which access should remain valid.</li>
+</ul>
+<h2 id="callbacks">Callbacks</h2>
+<p>When developing against identity Hubs, developers will want their apps and services to stay aware of changes to user data over time. For instance, if a user updates their email address in their identity Hub’s profile, an application will want to update its local copy used for communication with the user.</p>
+<p>With the current proposal, doing so would require apps to query all Hubs periodically to check for changes to data they are interested in. A better model would be to allow apps and services to register a callback or webhook that can be pinged when certain data in a user’s Hub changes. This will prevent unnecessary traffic to Hubs.</p>
+<p>Our early thinking is that callbacks could be included as an extension of our authorization model. For instance, an application could register for a callback by requesting the following permission:</p>
+<pre><code>PermissionGrant
+
+{
+  &quot;owner&quot;: &quot;did:example:12345&quot;,
+  &quot;did&quot;: &quot;did:example:67890&quot;,
+  &quot;object_type&quot;: “https://schemas.clothing.org/measurements”,
+  &quot;allow&quot;: &quot;-R--&quot;,
+  &quot;callbacks&quot;: [
+    {
+      &quot;events&quot;: &quot;C-UD&quot;,
+      &quot;uri&quot;: {callback-uri},
+      &quot;headers&quot;: {desired-header-values}
+    }
+  ]
+}
+</code></pre>
+
+<p>A PermissionGrant with this callback configuration would send callback messages any time an object of type “https://schemas.clothing.org/measurements” is created, updated, or deleted.</p>
+<p>We’ve also considered modeling callbacks separately from permissions. However, there is an important connection between permissions and callbacks: the rules from the authorization model should apply to callbacks just as they apply to regular Hub queries. More concretely, a third party should not be able to register or receive a callback if they do not have at least the “read” permission for the given object type.</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/XACML">https://en.wikipedia.org/wiki/XACML</a> <a href="#">↑</a></li>
+<li><a href="https://oauth.net/2/">https://oauth.net/2/</a> <a href="#">↑</a></li>
+<li>See <a href="#">appendix</a> for recommendations on future work <a href="#">↑</a></li>
+<li>See <a href="#">appendix</a> for early thoughts on callbacks <a href="#">↑</a></li>
+<li>TODO: link <a href="#">↑</a></li>
+<li><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/final-documents/did-auth.md">DID Auth documents</a> <a href="#">↑</a></li>
+<li><a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-spring2018/blob/master/final-documents/did-auth.md">DID Auth documents</a> <a href="#">↑</a></li>
+</ol>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

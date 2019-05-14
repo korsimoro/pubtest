@@ -25,11 +25,11 @@ copy_dir() {
 
 run() {
 
-  TARGET="$PD/../docs/_data"
-  SOURCE="$PD/../docs-data"
+  TARGET="$PD/data/"
+  SOURCE="$PD/data/"
 
   report_heading "Convert TOML to YML"
-  #copy_dir $SOURCE/.submodules/infominer/ID
+  #copy_dir $SOURCE/.submodules/infominer/DIDCentralized
 
   report_ok "$TARGET populated with TOML data"
 }

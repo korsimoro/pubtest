@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Blockchain Timestamps Unnecessary In Proof-of-Work? - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Blockchain Timestamps Unnecessary In Proof-of-Work?", url: "#_top", children: [
+              {title: "Observations", url: "#observations" },
+              {title: "Risks and Mitigations", url: "#risks-and-mitigations" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="blockchain-timestamps-unnecessary-in-proof-of-work">Blockchain Timestamps Unnecessary In Proof-of-Work?</h1>
+<p><em>Author: Greg Slepak (<a href="https://mastodon.social/@taoeffect">@taoeffect@mastodon.social</a>)</em></p>
+<hr />
+<p>The Bitcoin blockchain has a 10-minute target blocktime that is achieved by a difficulty adjustment algorithm.</p>
+<p>I assert, or rather, pose the hypothesis, that the use of timestamps in Bitcoin's blockchain may be unnecessary, and that Bitcoin can operate with the same security guarantees without it (except as noted in <a href="#risks-and-mitigations">Risks and Mitigations</a>), and therefore does not need miners to maintain global clock synchronization.</p>
+<p>The alternative difficulty adjustment algorithm would work according to the following principles:</p>
+<ul>
+<li>The incentive for miners is and always has been to maximize profit.</li>
+<li>The block reward algorithm is now modified to issue coins into perpetuity (no maximum). Any given block can issue <em>up to</em> <code>X</code> number of coins per block.</li>
+<li>The number of coins issued per block is now tied directly to the difficulty of the block, and the concept of "epocs" or "block reward halving" is removed.</li>
+<li>The chain selection rule remains "chain with most proof of work"</li>
+<li>The difficulty can be modified by miners in an arbitrary direction (up or down), but is limited in magnitude by some maximum percentage (e.g. no more than 20% deviation from the previous block), we call this <code>Y%</code>.</li>
+</ul>
+<h3 id="observations">Observations</h3>
+<ul>
+<li>Miners are free to mine blocks of whatever difficulty they choose, up to a maximum deviation</li>
+<li>The blockchain may at times produce blocks very quickly, and at other times produce blocks more slowly</li>
+<li>Powerful miners are incentivized to raise the difficulty to remove competitors (as is true today)</li>
+<li>Whether miners choose to produce blocks quickly or slowly is entirely up to them. If they produce blocks quickly, each block has a lower reward, but there are more of them. If they produce blocks slowly, each block has a higher reward, but there are fewer of them. So an equilibrium will be naturally reached to produce blocks at a rate that should minimize orphans.</li>
+</ul>
+<p>A timestamp may still be included in blocks, but it no longer needs to be used for anything, or represent anything significant other than metadata about when the miner claims to have produced the block.</p>
+<h3 id="risks-and-mitigations">Risks and Mitigations</h3>
+<p>Such a system may introduce risks that require further modification of the protocol to mitigate.</p>
+<p>The most straightforward risk comes from the potential increase in total transaction throughput that such a change would introduce (these are the same concerns that exist with respect to raising the blocksize). The removal of timestamps would allow a cartel of miners to produce high-difficulty blocks at a fast rate, potentially resulting in additional centralization pressures not only on miners but also on full nodes who then would have greater difficulty keeping up with the additional bandwidth and storage demands.</p>
+<p>Two equally straightforward mitigations exist to address this if we are given the liberty of modifying the protocol as we wish:</p>
+<ol>
+<li>Introducing state checkpoints into the chain itself could make it possible for full nodes to skip verification of large sections of historical data when booting up.</li>
+<li>A sharded protocol, where each shard uses a "sufficiently different" PoW algorithm, would create an exit for users should the primary blockchain become captured by a cartel providing poor quality-of-service.</li>
+</ol>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

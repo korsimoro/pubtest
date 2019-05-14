@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Re-inventing Incentive Structures Using DID and Microtransactions - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Re-inventing Incentive Structures Using DID and Microtransactions", url: "#_top", children: [
+          ]},
+          {title: "Introduction", url: "#introduction", children: [
+          ]},
+          {title: "Earners", url: "#earners", children: [
+          ]},
+          {title: "Issuer", url: "#issuer", children: [
+          ]},
+          {title: "Credential", url: "#credential", children: [
+          ]},
+          {title: "Issuing Authority", url: "#issuing-authority", children: [
+          ]},
+          {title: "DID Semantics", url: "#did-semantics", children: [
+          ]},
+          {title: "Developing a fee market", url: "#developing-a-fee-market", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="re-inventing-incentive-structures-using-did-and-microtransactions">Re-inventing Incentive Structures Using DID and Microtransactions</h1>
+<hr />
+<p>by Yancy Ribbens</p>
+<p><em>Microtransactions and DID (Decentralized Identifiers) can enable a user to curate their online identity, request payment or mark
+data private. This article proposes allowing a fee market to develop around what information a user chooses to reveal about their identity in the context of an earned credential.</em></p>
+<h1 id="introduction">Introduction</h1>
+<p>A DID can be anchored to a public blockchain which acts as a registry.
+Interrogating a public blockchain allows a user to find, reference,
+revoke or update a DID. Only the user possessing the cryptographic material
+to a DID can make state changes and prove ownership. Services that
+implement DID infrastructure move ownership of identifiers from third parties to
+individuals, thereby allowing people ownership of their digital identifiers.</p>
+<h1 id="earners">Earners</h1>
+<p>When an individual earns a credential, they may
+choose to advertise or reveal data about the achievement. However, the individual
+may not wish details of his/her Personally Identifiable Information
+(PII) to be surfaced and associated with a credential.</p>
+<h1 id="issuer">Issuer</h1>
+<p>An issuer is an entity that issues a credential to an earner. Typically
+this issuer knows the person by their first name, last name or other
+forms of PII which the issuer uses as identifiers. By using a DID in
+lieu of other PII, the issuer could be limited to only the PII that is
+relevant to issue the credential and nothing more. For example, the
+issuer may require cryptographic proof that has been signed by a government to show
+citizenship. When the issuer issues a credential because of a passing
+exam, for example, they only need to associate the passing marks with a unique DID
+that has citizenship. Other attributes of the earner such as race, age,
+name and gender can all be hidden by the owner of the DID because they
+are irrelevant to the achievement.</p>
+<h1 id="credential">Credential</h1>
+<p>Example credentials such as Blockcerts and OBI have data attributes for both issuer and earner
+(credential recipient). By augmenting a credential to use an issuer DID
+and a recipient DID, both issuer and earner can have greater control
+over the data that is revealed and associated with the 
+credential, assuming no other PII is collected except the DID pubkey.</p>
+<h1 id="issuing-authority">Issuing Authority</h1>
+<p>The issuing authority is often a third party entity contracted out by
+the issuer and registered with by the earner. This authority may
+possess details of PII associated with the issuer as well as the
+earner enabling the issuing authority to be an intermediary for PII data.</p>
+<h1 id="did-semantics">DID Semantics</h1>
+<p>BTCR (Bitcoin Resolver), secures an individual's identifiers in the same way as
+currency. The owner of the identifier possesses a public key which can be
+known to anyone, and a private key known only by the identifier owner (or
+trusted interface). This public key can
+reference one or more outputs which point to an external resource under
+the control of an individual. Example outputs could be, a trusted website, the IP address of their own personal
+computer or an IPFS address. If the identifier owner loses control of the
+end-point their DID points to, the user's private key can be used to
+revoke the DID.  Furthermore, if the identity owner loses the private key, decentralized key
+recovery systems using Shamir secret sharing are possible.</p>
+<h1 id="developing-a-fee-market">Developing a fee market</h1>
+<p>Microtransactions, for example, the lightning network, allow
+paywalls to be constructed, which reveal information in exchange for
+small amounts of currency. Every request for data pertaining to a DID
+could be serviced only if the requester meets the payment requested
+by the individual. Instead of receiving a microtransaction, the DID owner may
+choose to make a DID available to external entities for free. Furthermore, an algorithm
+could be constructed to parse arbitrary blockchains in search of a DID with
+matching criteria. This could be done by identifying which addresses are
+associated with DIDs and either follow the public information or negotiate payment.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

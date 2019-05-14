@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Questions around key management for digital identity systems - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Questions around key management for digital identity systems", url: "#_top", children: [
+              {title: "Multiple Personas/Identities", url: "#multiple-personasidentities" },
+              {title: "Recovering lost keys", url: "#recovering-lost-keys" },
+              {title: "Signing keys vs encryption keys", url: "#signing-keys-vs-encryption-keys" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="questions-around-key-management-for-digital-identity-systems">Questions around key management for digital identity systems</h1>
+<p><strong>By Christian Lundkvist &amp; Rouven Heck</strong></p>
+<p>Here we go over some topics related to key management and related questions for future discussions.</p>
+<h2 id="multiple-personasidentities">Multiple Personas/Identities</h2>
+<p>In order to facilitate privacy it is useful to let the user be able to create multiple unlinked identities to be used for different purposes. Some questions/challenges around this:</p>
+<ol>
+<li>
+<p>How should the user practically manage the keys of multiple identities (assuming for simplicity that one key controls one identity)</p>
+</li>
+<li>
+<p>HD wallets are a good method of managing a virtually unlimited number of keys. If HD wallets are used, should the user be responsible for storing and maintaining the seed? Is this too much of a burden for the user?</p>
+</li>
+<li>
+<p>If the user loses their HD wallet seed, can there be a reset feature that restores all their identities/personas? If so, how would this recovery work?</p>
+</li>
+<li>
+<p>A Shamir Secret Sharing scheme can be used to recover the seed from a threshold of recovery members holding pieces of the seed. This protects against loss, but not against compromise. Is there a good way that the seed can be <em>replaced</em> instead of reconstructed to also protect against compromise (similar to discussion about key recovery)?</p>
+</li>
+</ol>
+<h2 id="recovering-lost-keys">Recovering lost keys</h2>
+<p>In a robust identity system we cannot have the situation where if you lose your phone you also lose your identity. Thus we need to build systems where the user can have a means of recovery of their identity even with loss of all their keys.</p>
+<p>Using a blockchain platform like Ethereum you can accomplish something like this through the following method:</p>
+<ul>
+<li>
+<p>Use the address of a smart contract as a cryptographic identifier, creating a level of indirection between the cryptographic identifier of the identity and the private keys controlling that identifier.</p>
+</li>
+<li>
+<p>A private key (user key) is used to access and control the smart contract, so the user still needs to control a private key, and this private key is the ultimate core of the identity.</p>
+</li>
+<li>
+<p>The smart contract contain a list of (say) 3 delegates (other identities). Two of the three of these delegates can send a message to the smart contract with a replacement user key. This way if the user loses their key they can still recover.</p>
+</li>
+</ul>
+<p>Some questions around this system:</p>
+<ol>
+<li>
+<p>If your delegates collude against you they can take over your identity. Is this something we want to guard against? If so, how do we guard against it while still allowing the delegates to reset your key in the case of total key loss?</p>
+</li>
+<li>
+<p>Are there good methods from existing "Account Recovery" workflows in traditional webservices that can be leveraged to provide improved workflows for key recovery in decentralized identity systems? For instance Gmail can be set up to allow access for third parties after a time of inactivity.</p>
+</li>
+<li>
+<p>It is worth exploring other ways of defining a recovery network besides having the user do it explicitly. For instance you could have a simple notion of a "friend link" or "connection" that can define the users social graph and be define throughout the users historical interactions. Could the identities in this graph provide a recovery network? What would be the threshold number to use in this setting? This is something that Christopher Allen and others are exploring.</p>
+</li>
+</ol>
+<h2 id="signing-keys-vs-encryption-keys">Signing keys vs encryption keys</h2>
+<p>An identity would use a signing keys to sign claims and attestations, and authorize themselves to protected resources or systems like blockchains that require access control. An identity could also have encryption keys that they would use to receive encrypted messages and to access encrypted resources.</p>
+<p>Recovery of encryption keys is a different process than recovery of signing keys. When recovering signing keys you technically only need to replace the key with a new one and make sure the system marks the new one as having the capabilities of the old.
+If you have encrypted something with an encryption key and you lose that key you will lose the ability to decrypt that data. Thus in this case you are required to recreate the key and not just produce a new key.</p>
+<p>Questions:</p>
+<ol>
+<li>
+<p>What are the best way of handling encryption keys for the user? Should encryption keys and signing keys be generated from the same seed/entropy?</p>
+</li>
+<li>
+<p>How to help the user if they lose their encryption key? One way is to have a Shamir Secret Sharing between the users delegates.</p>
+</li>
+<li>
+<p>Are there current key-management best practices (for instance in end-2-end encrypted messaging clients) that can be leveraged and adapted for the decentralized case?</p>
+</li>
+</ol>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

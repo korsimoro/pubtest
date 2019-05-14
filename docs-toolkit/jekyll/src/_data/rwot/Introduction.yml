@@ -1,0 +1,47 @@
+- Description: This map traces the development of the primers, and their occurance
+    at each RWOT event.  It shows how primers were developed, and who the authors
+    and editors were.
+  Label: Primers
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/primers
+  View Restriction: Introduction
+- Description: Relates the location and time of the events
+  Label: Global Distribution
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/global-distribution
+  View Restriction: Introduction
+- Description: Advance readings, topics, and authors
+  Label: Advance Readings, Tags, Authors
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/advance-readings-with-tags-and-authors
+  View Restriction: Introduction
+- Description: This will focus on the topic papers, the people, the events
+  Label: Advance Readings - Topics & Keywords, no Authors
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/advance-readings-with-topic-keyword
+  View Restriction: Introduction
+- Description: This will focus on the completed papers, the people, the events
+  Label: Completed Papers
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/completed-papers-authors
+  View Restriction: Introduction
+- Description: List of completed papers by event
+  Label: Completed Papers - by event
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/completed-paper-and-event
+  View Restriction: Introduction
+- Description: This will focus on the people and organizations, sponsors, etc.
+  Label: Sponsorship
+  Type: Map View
+  Url: https://kumu.io/korsimoro/conference-rwot#conference-rwot/event-sponsorship
+  View Restriction: Introduction
+- Description: This will be a story about the formation of RWOT, timeline format
+  Label: History
+  Type: Presentation
+  Url: ''
+  View Restriction: Introduction
+- Description: This will be related to the keywords
+  Label: Themes
+  Type: Presentation
+  Url: ''
+  View Restriction: Introduction

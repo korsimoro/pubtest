@@ -43,12 +43,12 @@ jobs:
 
   build-and-deploy:
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/ruby:latest
     working_directory: ~/repo
     steps:
       - checkout
       - run:
-          name: bring submodules down
+          name: build and deploy site from documentation branch
           command: |
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
@@ -56,7 +56,9 @@ jobs:
             cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
             cat /home/circleci/repo/docs-toolkit/mkdocs/setup-logs/*
+            pd build-data
             cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
+            pd update-all
             pd build-all
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
               git config user.email "eric@korsimoro.com"
@@ -71,10 +73,58 @@ jobs:
               git push origin master
             fi
 
+  update-data:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: update data
+          command: |
+            git submodule update --init
+            . ~/repo/docs-toolkit/kbash/activate.sh
+            pd setup docutil
+            cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
+            pd build-data
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            git add .
+            git commit -m "updating docs"
+            git push origin "${CIRCLE_BRANCH}"
+
+  preview-site:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: update data
+          command: |
+            git submodule update --init
+            . ~/repo/docs-toolkit/kbash/activate.sh
+            pd setup docutil
+            cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
+            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
+            pd build-data
+            git config user.email "eric@korsimoro.com"
+            git config user.name "CircleCI Build"
+            cd ~/repo
+            git add .
+            git commit -m "updating docs"
+            git push origin "${CIRCLE_BRANCH}"
+
 workflows:
   version: 2
   build-and-deploy:
     jobs:
+      - update-data:
+          filters:
+            branches:
+              only: /data-.*/
+              
       - build-and-deploy-preview:
           filters:
             branches:
@@ -84,4 +134,3 @@ workflows:
           filters:
             branches:
               only: documentation
-

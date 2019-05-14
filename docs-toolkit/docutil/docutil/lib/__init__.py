@@ -3,11 +3,8 @@ import os
 import tabledata
 import pytablewriter
 
-def docs_dir(basedir,scope):
-    return os.path.join(basedir,"docs",scope)
-
 def data_dir(basedir,scope):
-    return os.path.join(basedir,"docs-data",scope)
+    return os.path.join(basedir,"docs-toolkit/data",scope)
 
 def value_of(data,key):
 

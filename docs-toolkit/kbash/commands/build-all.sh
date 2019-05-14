@@ -11,6 +11,7 @@ EOF
 }
 run() {
   pd build-data
-  pd build-mkdocs
-  pd build-jekyll
+  pd build mkdocs
+  pd build jekyll
+  pd install-site
 }

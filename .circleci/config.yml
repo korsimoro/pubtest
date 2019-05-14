@@ -50,15 +50,15 @@ jobs:
       - run:
           name: build and deploy site from documentation branch
           command: |
+            uname -a
+            which python
+            which python3
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
             pd setup docutil
             cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
             cat /home/circleci/repo/docs-toolkit/mkdocs/setup-logs/*
-            pd build-data
-            cp ~/repo/README.md ~/repo/docs/mkdocs/poc/src/details.md
-            pd update-all
             pd build-all
             if [ "${CIRCLE_BRANCH}" == "documentation" ]; then
               git config user.email "eric@korsimoro.com"

@@ -1,6 +1,0 @@
-site_name: IIW
-site_dir: output
-docs_dir: src
-nav:
-  - Details: details.md
-  - Home: index.md

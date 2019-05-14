@@ -52,6 +52,7 @@ jobs:
           command: |
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
+            gem install bundler
             sudo apt-get install -y python3-venv python3-pip
             sudo pip3 install wheel
             pd setup docutil

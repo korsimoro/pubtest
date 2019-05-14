@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Peer DID Method Specification Report - RWoT Final Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Peer DID Method Specification Report", url: "#_top", children: [
+              {title: "Authors", url: "#authors" },
+              {title: "Contributors", url: "#contributors" },
+              {title: "Abstract", url: "#abstract" },
+              {title: "Objectives", url: "#objectives" },
+              {title: "Use Cases", url: "#use-cases" },
+              {title: "Spec Review Observations", url: "#spec-review-observations" },
+              {title: "Next Steps", url: "#next-steps" },
+              {title: "Conclusion", url: "#conclusion" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="peer-did-method-specification-report">Peer DID Method Specification Report</h1>
+<h3 id="authors">Authors</h3>
+<p>Brent Zundel,
+  Timo Welde,
+  Mike Varley,
+  Marton Csernai</p>
+<h3 id="contributors">Contributors</h3>
+<h2 id="abstract">Abstract</h2>
+<p>This paper consists of objectives, use cases and observations around a "peer"
+DID method, based off a draft specification submitted to RWOT8. The following
+abstract is from that draft specification,
+<a href="https://dhh1128.github.io/peer-did-method-spec/index.html">located here</a>.</p>
+<blockquote>
+<p>"This DID method spec conforms to the requirements in the DID specification
+currently published by the W3C Credentials Community Group. For more information
+about DIDs and DID method specifications, please see the DID Primer and DID
+Spec.</p>
+<p>"This document defines a 'peer' DID Method that can be used independent of any
+source of truth external to the relationship in which it is used. The method is
+cheap, fast, scalable, and secure. It is suitable for most private relationships
+between people, organizations, and IoT things. DIDs associated with this method
+are also promotable to a more public context. That is, blockchains with
+different DID methods can graft some or all peer DIDs into their namespace(s)
+with no risk of accidental collision, and no loss of meaning. Peer DID will have
+a recognizable and consistent identity in all of them."</p>
+</blockquote>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Peer DID resolution does not require a Universal Resolver: documents are
+self-contained in a message protocol.</li>
+<li>Peer DID exchange is for the purpose of establishing secure communication,
+but Trust in the peers must be established at another level (in person, out of
+band, using Verifiable Credentials, using other attestations).</li>
+<li>Peer DIDs may be created on the fly for each new session between parties. This
+enables privacy and anonymity features.</li>
+<li>Peer DIDs may be persisted for subsequent sessions between the parties. This
+enables a persistent trust relationship between parties.</li>
+<li>Peer DID communication protocol is not bound to any specific ledger-based DID
+service or design model. (Someone who wishes to use a peer DID is not bound to
+any 'anchor,' such as a ledger).</li>
+<li>Peer DIDs may be interoperable with ledger-backed (anchored) DIDs; the peers
+group do not all need to be using peer DIDs (e.g. Alice wants to use a did:sov
+DID, and Bob wants to use a did:peer DID).</li>
+<li>Create an n-wise peer DID spec, of which one use case is pairwise DID
+exchange.</li>
+</ul>
+<h2 id="use-cases">Use Cases</h2>
+<ul>
+<li>
+<p>Two or more individuals can create DIDs “without any overhead” such as infrastructure,
+registry costs, time penalty, or even network requirement.</p>
+</li>
+<li>
+<p>Two service entities wish to communicate in an "anonymous but trusted" way for a
+data exchange transaction, but do not need this relationship persisted beyond
+the transaction lifetime.</p>
+</li>
+<li>
+<p>In a doctor/hospital/patient context these three entities may wish to
+establish trusted communication channels for delegating care or sharing
+information (securely) regarding the other parties (the hospital sharing a
+record with the doctor and the patient seeing the exchange has occurred).</p>
+</li>
+</ul>
+<h2 id="spec-review-observations">Spec Review Observations</h2>
+<h3 id="groups-section">Groups Section</h3>
+<ul>
+<li>
+<p>It should be made clear that if Alice and Bob are already connected 
+(through peer DIDs), but wish to add another party, they should first create 
+new peer DIDs with one another then invite Carol to that group.</p>
+</li>
+<li>
+<p>Removing participants from a Group is basically recreating the group without
+the person who is 'removed'.</p>
+</li>
+</ul>
+<h3 id="namestring-generation-keyfmtchar">Namestring Generation: keyfmtchar</h3>
+<ul>
+<li>We understand the need for keyfmtchar, but it needs a definition, and an
+example of when to use it (i.e., when to make a "2") would be helpful.</li>
+</ul>
+<h3 id="protocol-message-format-section">Protocol: Message Format Section</h3>
+<ul>
+<li>Indy HIPE message protocol is referenced - what extensions are required
+(multiplexed encryption) and why? The observation here is that pure JWE may be
+better for adoption, so understanding the need for extensions would be helpful.</li>
+</ul>
+<h3 id="comments-on-the-spec">Comments on the Spec</h3>
+<ul>
+<li>The language of the abstract is "marketing speak". We would suggest changing it
+to state just the intent.</li>
+<li>"The method is cheap, fast, scalable, and secure" -&gt; "The method is
+  <strong>intended to be</strong> cheap, fast, scalable, and secure".</li>
+<li><a href="https://dhh1128.github.io/peer-did-method-spec/index.html#namestring">Section 2.1</a>
+links to a non-existing section "cross-registration" at the end.</li>
+<li><a href="https://dhh1128.github.io/peer-did-method-spec/index.html#namespace-specific-identifier-nsi">Section 2.3</a>
+could be better structured with subsections (e.g. for <code>keyfmtstring</code> and
+<code>idstring</code>).</li>
+<li><a href="https://dhh1128.github.io/peer-did-method-spec/index.html#cooperative-synchronization">Section 3.4</a>
+contains a lot of prose, which doesn't fit the structure of the rest of the
+document. Also it is not clear, what is meant by "The significance of the error
+situation described above, ..."</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>The next step is to form a working group and establish a regular cadence of
+meetings to continue working.</p>
+<p>The working group will work to:
+- Address the issues outlined in this document.
+- Continue to refine the objectives for peer DIDs.
+- Iteratively modify the draft Peer DID Method Spec to reflect the objectives.
+- Seek feedback on the draft Peer DID Method Spec from the community.
+- Identify further issues with the Peer DID Method Spec.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The authors established a communication channel in the DIF slack and held a
+series of meetings. The issues introduced in this report (where still valid
+after significant changes to the
+<a href="https://dhh1128.github.io/peer-did-method-spec/index.html">Peer DID Method Spec</a>)
+will be created in the
+<a href="https://github.com/dhh1128/peer-did-method-spec">github repo</a> where the method
+spec is being refined.</p>
+<p>The peer DID method has great promise. We feel that many of the interoperability
+concerns in the DID space may be addressed by wide adoption of a peer DID.
+We invite the SSI community to provide feedback on the
+<a href="https://dhh1128.github.io/peer-did-method-spec/index.html">Peer DID Method Spec</a>
+reviewed here, and to participate in interoperability testing of implementations
+of the spec as they mature.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

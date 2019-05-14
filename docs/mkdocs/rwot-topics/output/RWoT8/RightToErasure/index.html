@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>GDPR: Right to erasure - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "GDPR: Right to erasure", url: "#_top", children: [
+              {title: "Abstract", url: "#abstract" },
+              {title: "Introduction", url: "#introduction" },
+              {title: "Implementation", url: "#implementation" },
+              {title: "Smart contracts as key storage", url: "#smart-contracts-as-key-storage" },
+              {title: "Proposal", url: "#proposal" },
+              {title: "Other aspects", url: "#other-aspects" },
+              {title: "Conclusion", url: "#conclusion" },
+              {title: "Appendix A : GDPR: Right to erasure", url: "#appendix-a-gdpr-right-to-erasure" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="gdpr-right-to-erasure">GDPR: Right to erasure</h1>
+<p><em>Authors: O.Burundukov <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#108;&#101;&#103;&#119;&#98;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#111;&#108;&#101;&#103;&#119;&#98;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>, E. Moraes de Morais <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#100;&#117;&#97;&#114;&#100;&#111;&#46;&#109;&#111;&#114;&#97;&#105;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#101;&#100;&#117;&#97;&#114;&#100;&#111;&#46;&#109;&#111;&#114;&#97;&#105;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></em></p>
+<p><em>Company: ING Group, Netherlands</em></p>
+<h2 id="abstract">Abstract</h2>
+<p>In accordance to GDPR law ( see Appendix A ), once an owner of data has shared them with another party V, he/she has the right to withdraw the initial consent and to request the party V to erase the data. To execute the right the owner has to hold an evidence of the interaction with V. In the world of digital identities and anonymous credentials, the owner of data needs to obtain the digital proof of what and with whom the data have been disclosed.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This work is dedicated to the subject of sharing and withdrawing digital credentials in a self sovereign identity (<strong>SSI</strong>) system. We choose Hyperledger Indy SSI working system as the baseline, therefore the paper uses its architecture and vocabulary, e.g., three main Indy party roles in SSI process  are Issuer, Prover and Verifier.</p>
+<h3 id="facts-about-sharing-digital-data">Facts about sharing digital data</h3>
+<ul>
+<li>
+<p>Disclosing of the data presented in a digital format and shared by means of some network protocol is irreversible.</p>
+</li>
+<li>
+<p>Digital data cannot age and self-dispose ( physical media presumably can deteriorate, degenerate and decompose ).</p>
+</li>
+<li>
+<p>Once the credentials are delivered to the Verifier and are decrypted, there is no feasible method for the Prover for tracking of copies of the information enclosed in credentials, if such copies are made and/or shared by the Verifier.</p>
+</li>
+<li>
+<p>The prover has to obtain non-repudiated evidence of the finality of the process of sharing data with another party, the Verifier. Dishonest Verifier may just refuse to provide such evidence.</p>
+</li>
+<li>
+<p>Once data is being spotted by a human, it may be memorised.   </p>
+</li>
+</ul>
+<p>Having said that, it becomes obvious that pure technical measures do not facilitate the execution of the RTE. The legislation has to enforce the Verifier to put rules of GDPR into effect, and that is the legislation only, which can do that efficiently. As a consequence, the application of the law requires the circumstances of the interaction between Prover and Verifier documented in a form suitable for the legal case. In digital systems, the proof of interaction is usually a message digitally signed by all participants, where facts about the interaction are enlisted.</p>
+<h3 id="glossary">Glossary</h3>
+<p>Hereafter the following abbreviations take place:</p>
+<p><strong>P</strong> - Prover  ,  <strong>V</strong> - Verifier</p>
+<p><strong>PRQ</strong> - proof requested</p>
+<p><strong>pk</strong>, <strong>sk</strong> - public key, secret key</p>
+<p><strong>TTP</strong> - trusted third party</p>
+<p><strong>MSA</strong> - multi-signature algorithm</p>
+<h2 id="implementation">Implementation</h2>
+<p>Data sharing  in SSI system consists of the exchange of credentials between two parties. The applicability of RTE in this case necessitate the generation of bi-lateral non-repudiated evidence of transferring data.</p>
+<h3 id="naive-solutions">Naive solutions</h3>
+<ul>
+<li><strong>P</strong> sends the request to start protocol to <strong>V</strong></li>
+<li><strong>V</strong> responds with PRQ</li>
+<li><strong>P</strong> constructs the proof and sends it to <strong>V</strong></li>
+<li><strong>V</strong> signs the proof plus original <strong>PRQ</strong> and sends it back as the receipt</li>
+</ul>
+<p>One can see that dishonest <strong>V</strong> can repudiate that the <strong>P</strong> has sent the proof.</p>
+<p>Slightly better version is where <strong>P</strong> can encrypt the proof beforehand:</p>
+<ul>
+<li><strong>P</strong> sends the request to start protocol to <strong>V</strong></li>
+<li><strong>V</strong> responds with PRQ</li>
+<li><strong>P</strong> generates temporary <strong>sk</strong>. <strong>P</strong> constructs the proof, encrypts it with <strong>sk</strong> and sends it to <strong>V</strong></li>
+<li><strong>V</strong> signs the encrypted proof plus original <strong>PRQ</strong> and sends it back as the receipt</li>
+<li><strong>P</strong> saves the receipt along with <strong>sk</strong> and shares the <strong>sk</strong> with <strong>V</strong></li>
+</ul>
+<p>There are still problems here: dishonest <strong>V</strong> can repudiate that the <strong>P</strong> shared the <strong>sk</strong>. Besides that, the <strong>V</strong> has to sign encrypted proof without seeing its content.</p>
+<p>Using Trusted Third Party</p>
+<p>The protocol of non-repudiation may be built with only two parties interacting, however it has been argued that such protocol is inefficient.</p>
+<p>The history of non-repudiating protocols starts from multiple works published by J. Zhou and D. Gollmann between 1996 and 2000. These papers  were summarised and reviewed by P.Louridas in 2000.  The papers propose using TTP and they cover dispute resolution, fairness, timeliness and the cases of protocol recovery and protocol abort. Each next version of the protocol adds an improvement over the previous version by addressing one of concerns. The first work where more than two parties exchange data was published some time later in the paper by Steve Kremer and Olivier Markowitch.</p>
+<p>The non-repudiation is twofold. First, the non-repudiation of origin guards against the originator of a message falsely denying having sent the message. Second, non-repudiation of receipt defends the originator against the recipient of a message falsely denying having received the message.  In case of disclosing data in the SSI protocol , one can see that the Proof object is self-containing evidence of origin. Therefore we can safely state that bi-lateral evidence is formally uni-lateral in our case. 
+All the protocols discussed above have one common property: the shared data is encrypted first, and then the key to it has to be shared at the very last step of  the protocol.</p>
+<p>Main problem with sharing a key emerges with the requirement to maintain a public service for that.  Papers refer to such service as public FTP site  or Web server run by a party, either Prover or Notary, depending on the version of the protocol. Recall that SSI systems facilitate anonymity  of the Prover facing Verifier. There is high chance that a Prover operates the SSI application on a mobile device, where service access entries are not available for public in general way. We conclude that running key service on the side of a Prover becomes great challenge. We argue that the versions of  non-repudiation protocol where the key is generated by a Prover but shared by TTP ( Notary) remain the only realistic ones in the case of SSI.</p>
+<p>We shall see that if the Notary shares the decryption key using publicly available service, such as Web server,  the Notary must be able to prove later that the key was obtained by Verifier. It can be achieved by the recording of the identity of  a reader during each reading operation, which ,in turn, requires the reader to prove his/her identity.  Once the chosen Verifier accomplishes the reading of the key, Notary considers the protocol finished and sends the confirmation to the Prover.</p>
+<p>Note that  disclosing  keys with arbitrary users can result in revealing the weaknesses in underlying cryptographic schemas, therefore Notary has to restrict the access to the key before publishing by encrypting it with trusted public key of the Verifier.</p>
+<p>Two other important properties of non-repudiation protocol are unique labelling for each message and time limits for waiting for next message. The former is required to identify each step in the protocol, and the latter makes provision for the eventual termination.</p>
+<h2 id="smart-contracts-as-key-storage">Smart contracts as key storage</h2>
+<p>Recall that the Notary has to register the event of sharing the key with chosen Verifier, and this requires checking the identity of each client which performs read operation. This process can be cumbersome.</p>
+<p>We shall consider using a notion of smart contract on the distributed ledger for holding keys and for capturing the event. Smart contract  is able to check its caller’s identity, therefore the contract should be able to write yet another change into the ledger, namely the receipt of reading the key by designated Verifier. This evidence is very strong for the purpose of RTE, and it remains publicly available and verifiable. We should analyse whether the receipt has to hold the details of the protocol interaction too.</p>
+<p>It is technically feasible to map the entire protocol between P, V and N into the sequence of transactions in the ledger. However,  this would lead to the pollution of the ledger.</p>
+<h2 id="proposal">Proposal</h2>
+<p>The protocol description is given in the second document, RightToErasure-protocol.pdf</p>
+<h2 id="other-aspects">Other aspects</h2>
+<h3 id="policy-of-the-verifier">Policy of the Verifier</h3>
+<p>The legislation of the process may require the <strong>P</strong> to be informed of the policy of the data holder ( verifier ) with respect to GDPR and RTE. The <strong>P</strong> may decide not to continue with the process in the circumstances where the policy of the receiver disregards GDPR with respect to RTE.
+The protocol has to allow the policy to be observable for <strong>P</strong> beforehand. From this point, it makes sense to sign and to publish the policy on the ledger, and to include the reference to the record in the ledger into the protocol. The protocol continues in case presented reference is accepted by the <strong>P</strong>.</p>
+<h3 id="anonymity">Anonymity</h3>
+<p>In case of anonymous identities, when the <strong>P</strong> executes the right to erasure, he/she needs to disclose real identity to supply the legislation process. Hyperledger Indy designates special role for that,  the Inspector.</p>
+<h3 id="mitm-attacks">MITM-attacks</h3>
+<p>The <strong>P</strong> and <strong>V</strong> have to communicate safely and securely to eliminate the threat of man-in-the-middle attacks. This inevitably leads to the requirement for strong public key infrastructure. Hyperledger INDY already facilitates decentralised PKI.</p>
+<h3 id="zk-proofs">ZK proofs</h3>
+<p>Anonymous credentials involve partial disclose of data and employ zero knowledge proofs.  Sometimes the <strong>P</strong> discloses so little about him/herself so that the demand of the privacy keeping seems to be negligible. It is also hard to link ZK proofs to real identity.</p>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>
+<p>Executing the right to be forgotten is not feasible by means of crypto techniques only.</p>
+</li>
+<li>
+<p>The provisioning of the evidence of the actions performed by parties in the protocol is feasible by means of multi-signatures and trusted third party.</p>
+</li>
+<li>
+<p>While the notion of trusted third party is opposed to the nature of public permissionless ledgers, the Hyperledger Indy is merely the chain of trust, where TTP fits with the role of attested observer, similar to the role of Inspector.   </p>
+</li>
+<li>
+<p>The usage of ZK proofs together with anonymity almost solves entire problem. However, stored ZK proofs have to be qualified first by the law as objects not falling into the data categories protected by the GDPR.</p>
+</li>
+<li>
+<p>It is easy to see that ZK cannot be always used for personal credentials in real scenarios.   </p>
+</li>
+</ul>
+<h2 id="appendix-a-gdpr-right-to-erasure">Appendix A : GDPR: Right to erasure</h2>
+<h3 id="glossary_1">Glossary</h3>
+<p><em>Controller</em> means the natural or legal person, public authority, agency or other body which, alone or jointly with others, determines the purposes and means of the processing of personal data; where the purposes and means of such processing are determined by Union or Member State law, the controller or the specific criteria for its nomination may be provided for by Union or Member State law;</p>
+<h3 id="right-to-erasure-art-17-gdpr">Right to erasure, art 17, GDPR</h3>
+<ol>
+<li>
+<p>The data subject shall have the right to obtain from the <em>controller</em> the erasure of personal data concerning him or her without undue delay and the controller shall have the obligation to erase personal data without undue delay where one of the following grounds applies:</p>
+</li>
+<li>
+<p>the personal data are no longer necessary in relation to the purposes for which they were collected or otherwise processed;</p>
+</li>
+<li>the data subject withdraws consent on which the processing is based according to point (a) of Article 6(1), or point (a) of Article 9(2), and where there is no other legal ground for the processing;</li>
+<li>the data subject objects to the processing pursuant to Article 21(1) and there are no overriding legitimate grounds for the processing, or the data subject objects to the processing pursuant to Article 21(2);</li>
+<li>the personal data have been unlawfully processed;</li>
+<li>the personal data have to be erased for compliance with a legal obligation in Union or Member State law to which the controller is subject;</li>
+<li>
+<p>the personal data have been collected in relation to the offer of information society services referred to in Article 8(1).</p>
+</li>
+<li>
+<p>Where the controller has made the personal data public and is obliged pursuant to paragraph 1 to erase the personal data, the controller, taking account of available technology and the cost of implementation, shall take reasonable steps, including technical measures, to inform controllers which are processing the personal data that the data subject has requested the erasure by such controllers of any links to, or copy or replication of, those personal data.</p>
+</li>
+<li>
+<p>Paragraphs 1 and 2 shall not apply to the extent that processing is necessary:</p>
+</li>
+<li>for exercising the right of freedom of expression and information;</li>
+<li>for compliance with a legal obligation which requires processing by Union or Member State law to which the controller is subject or for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller;</li>
+<li>for reasons of public interest in the area of public health in accordance with points (h) and (i) of Article 9(2) as well as Article 9(3);</li>
+<li>for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89(1) in so far as the right referred to in paragraph 1 is likely to render impossible or seriously impair the achievement of the objectives of that processing; or</li>
+<li>for the establishment, exercise or defence of legal claims.</li>
+</ol>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>A Public Web of Trust of Public Identities - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "A Public Web of Trust of Public Identities", url: "#_top", children: [
+              {title: "definitions", url: "#definitions" },
+              {title: "DID implementation of a public web of trust", url: "#did-implementation-of-a-public-web-of-trust" },
+              {title: "further work", url: "#further-work" },
+              {title: "References", url: "#references" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="a-public-web-of-trust-of-public-identities">A Public Web of Trust of Public Identities</h1>
+<p>By Ouri Poupko (ouri.poupko@weizmann.ac.il) and Ehud Shapiro (ehud.shapiro@weizmann.ac.il)</p>
+<blockquote>
+<p>In the world of people's public actions, privacy is not the name of the game, it is instead a well-known single public identity. - Tim Berners-Lee</p>
+</blockquote>
+<p>Following Tim Berners-Lee design issue of <a href="https://www.w3.org/DesignIssues/PublicIdentity.html">a public identity</a> we are investigating ways, not only for a person to manage and maintain both his private and public credentials, but also to obtain trust over his public identity. Such trust will have many benefits, including:
+1. As Berners-Lee suggests, public figures would like to make sure that their public activity is clearly associated with them and no one else.
+2. At least minimal trusted publicity is required to help reduce fake identities (sybils) and their <a href="https://www.telegraph.co.uk/technology/2017/11/02/facebook-admits-270m-users-fake-duplicate-accounts/">impact on social networks</a>
+3. It <a href="https://cacm.acm.org/magazines/2018/8/229759-point/pdf">enables democratic processes</a>, specifically voting, in a fully decentralized and distributed way based on self sovereign identities.</p>
+<h2 id="definitions">definitions</h2>
+<p>We start by mathematically define the concepts of a <strong>public identity</strong> and a <strong>public web of trust</strong><sup><a href="#fn1">1</a></sup>. Let <img alt="H" src="http://latex.codecogs.com/svg.latex?%5Cmathcal%7BH%7D" /> be a set of people and <img alt="A" src="http://latex.codecogs.com/svg.latex?%5Cmathcal%7BA%7D" /> a set of attributes which are predicates over people. For each <img alt="h in H" src="http://latex.codecogs.com/svg.latex?h%5Cin%5Cmathcal%7BH%7D" /> and <img alt="a in A" src="http://latex.codecogs.com/svg.latex?a%5Cin%5Cmathcal%7BA%7D" />, <img alt="ah is true" src="http://latex.codecogs.com/svg.latex?a(h)%3Dtrue" /> if the predicate <img alt="a" src="http://latex.codecogs.com/svg.latex?a" /> holds for the person <img alt="h" src="http://latex.codecogs.com/svg.latex?h" />.  A profile is a finite set of attributes <img alt="A subset A" src="http://latex.codecogs.com/svg.latex?A%5Csubset%5Cmathcal%7BA%7D" />.</p>
+<p>A person <img alt="h in H" src="http://latex.codecogs.com/svg.latex?h%5Cin%5Cmathcal%7BH%7D" /> who created a key-pair <img alt="K_P K_S" src="http://latex.codecogs.com/svg.latex?%28K_P%2CK_S%29" /> is the owner of <img alt="K_P" src="http://latex.codecogs.com/svg.latex?K_P" /> and <img alt="K_S" src="http://latex.codecogs.com/svg.latex?K_S" />. A <strong>public identity</strong> <img alt="p equals K_P and A" src="http://latex.codecogs.com/svg.latex?p%3D%28K_P%2CA%29" /> consists of a public key <img alt="K_P" src="http://latex.codecogs.com/svg.latex?K_P" /> and a profile <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> signed with the corresponding private key <img alt="K_S" src="http://latex.codecogs.com/svg.latex?K_S" />.  <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> is called the profile of <img alt="p" src="http://latex.codecogs.com/svg.latex?p" />. </p>
+<p>Let <img alt="P" src="http://latex.codecogs.com/svg.latex?P" /> be a set of public identities with profile attributes in <img alt="A" src="http://latex.codecogs.com/svg.latex?%5Cmathcal%7BA%7D" />.  A trust edge over <img alt="P" src="http://latex.codecogs.com/svg.latex?P" /> is a directed edge <img alt="e from p to p'" src="http://latex.codecogs.com/svg.latex?e%3Dp%5Cxrightarrow%7BT%7Dp%27" />,  <img alt="T subset A" src="http://latex.codecogs.com/svg.latex?T%5Csubset%5Cmathcal%7BA%7D" /> and <img alt="p,p' in P" src="http://latex.codecogs.com/svg.latex?p%2Cp%27%5Cin%20P" />. The trust edge <img alt="e" src="http://latex.codecogs.com/svg.latex?e" /> is called truthful if <img alt="T" src="http://latex.codecogs.com/svg.latex?T" /> is true of <img alt="owner p'" src="http://latex.codecogs.com/svg.latex?%5Ctextrm%7Bowner%7D%28p%27%29" /> and an attack edge otherwise. A <strong>public web of trust</strong> over <img alt="P" src="http://latex.codecogs.com/svg.latex?P" />, also called a trust graph, is a graph <img alt="W is P and E" src="http://latex.codecogs.com/svg.latex?W%3D%28P%2CE%29" /> with a set of trust edges <img alt="E" src="http://latex.codecogs.com/svg.latex?E" /> over <img alt="P" src="http://latex.codecogs.com/svg.latex?P" />.</p>
+<h2 id="did-implementation-of-a-public-web-of-trust">DID implementation of a public web of trust</h2>
+<p>Next we describe an implementation of a public identity and a public web of trust, using the DID specification and the Verifiable Credentials specification. As DID supports privacy, but does not require it, most of the implementation is straight forward. A DID document can hold multiple public keys and can describe separate keys for authentication Vs. authorization. As long as all these keys are bounded together in a single public DID document, they can be regarded as synonyms for the one public key that identifies a public identity. A DID document can point to a verifiable credentials service that can expose the owner's attributes, whether cryptographycally encoded or not. Attributes can be attested by 3<sup>rd</sup> parties, or self attested by the owner on himself. A DID document with an accompanied verifiable credentials storage can therefor serve as a public identity as defined above.</p>
+<p>To create a public web of trust we use a second verifiable credentials service, with our own defined context, defining a single field for the claim called 'trustedAttributes'. The 'id' field for this claim is the DID of the trusted person and the 'issuer' of this verifiable claim is the trusting person. See the image below for an example. A digital signature of the trusted claim, signed by the issuer, can prove the validity of the trust claim. Such a verifiable claim can serve as a trust edge as defined above, revealing only ids of the trusting person, the trusted person and his trusted claim. Storing all such trusted edges for a given community in a single service point can provide a complete trust graph for that community, as defined above.</p>
+<p><img alt="Public web of trust as verifiable credentials" src="https://github.com/ouripoupko/papers/blob/master/images/DIDDataStructure.png" /></p>
+<h2 id="further-work">further work</h2>
+<p>The e-Democracy group in the computer science department of the Weizmann institute of science, led by Prof. Udi Shapiro is investigating the computational foundations for e-Democracy. Towards this goal we add the following definitions<sup><a href="#fn1">1</a></sup>:</p>
+<p>A profile <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> is true of a person <img alt="h" src="http://latex.codecogs.com/svg.latex?h" />, <img alt="Ah is true" src="http://latex.codecogs.com/svg.latex?A%28h%29%3Dtrue" />, if <img alt="ah is true" src="http://latex.codecogs.com/svg.latex?a%28h%29%3Dtrue" /> for all <img alt="a in A" src="http://latex.codecogs.com/svg.latex?a%5Cin%20A" />. Let <img alt="HA in H" src="http://latex.codecogs.com/svg.latex?H_A%5Csubset%5Cmathcal%7BH%7D" /> be the set of people of which <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> is true, <img alt="HA definition" src="http://latex.codecogs.com/svg.latex?H_A%3D%5C%7Bh%3Ah%5Cin%5Cmathcal%7BH%7D%2CA%28h%29%3Dtrue%5C%7D" />. The profile <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> is:</p>
+<ul>
+<li>fake if <img alt="HA is empty" src="http://latex.codecogs.com/svg.latex?H_A%3D%5Cemptyset" />.</li>
+<li>transparent if <img alt="HA has one item" src="http://latex.codecogs.com/svg.latex?%7CH_A%7C%3D1" />.</li>
+<li>opaque if <img alt="HA has more items" src="http://latex.codecogs.com/svg.latex?%7CH_A%7C%3E1" />.</li>
+</ul>
+<p>Let <img alt="p equals K_P and A" src="http://latex.codecogs.com/svg.latex?p%3D%28K_P%2CA%29" /> be a public identity. The owner of <img alt="p" src="http://latex.codecogs.com/svg.latex?p" /> is the person who owns its public key, <img alt="owner p is owner kp" src="http://latex.codecogs.com/svg.latex?%5Ctextrm%7Bowner%7D%28p%29%3D%5Ctextrm%7Bowner%7D%28K_P%29" />. The public identity <img alt="p" src="http://latex.codecogs.com/svg.latex?p" /> is:</p>
+<ul>
+<li>honest if its profile <img alt="A" src="http://latex.codecogs.com/svg.latex?A" /> is true of its owner, <img alt="A owner p is true" src="http://latex.codecogs.com/svg.latex?A%28%5Ctextrm%7Bowner%7D%28p%29%29%3Dtrue" />. Otherwise, <img alt="p" src="http://latex.codecogs.com/svg.latex?p" /> is sybil.</li>
+<li>unique if it is the sole public identity owned by its owner, <img alt="uniqueness" src="http://latex.codecogs.com/svg.latex?%5Ctextrm%7Bowner%7D%28p%29%3D%5Ctextrm%7Bowner%7D%28p%27%29%5CRightarrow%20p%3Dp%27" />. Otherwise, <img alt="p" src="http://latex.codecogs.com/svg.latex?p" /> is non-unique.</li>
+<li>fake, transparent, or opaque if its public profile is so, respectively.</li>
+</ul>
+<p>We expect an e-democracy to strive that its public identities be honest and transparent. To achieve this we use graph conductivity to analyze a trust graph and bound the number of sybils in a graph. A public web of trust as proposed here can serve as such a graph and hence enables the identification and eradication of sybils in a community based on self sovereign identities. Some relevant preliminary results can be found <a href="https://arxiv.org/search/?query=ehud+shapiro&amp;searchtype=author&amp;source=header">here</a>. Abstracts of ongoing research can be found <a href="https://www.dropbox.com/sh/51lt6o1ak1to6zj/AACKIfEgi81q3_K3nxkDXKX-a?dl=0">here</a>.</p>
+<h2 id="references">References</h2>
+<p><a name="fn1">1</a>: Poupko, O and Shapiro, E, <em>A Public Web of Trust of Public Identities: Supporting Sybil-Resilient e-Community Building</em>. In preparation, https://www.dropbox.com/s/lahp4shi2edstn4/public-web-trust.pdf?dl=0, 2018.</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

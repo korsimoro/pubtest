@@ -52,9 +52,8 @@ jobs:
           command: |
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
-            pd tron
-            pd setup docutil
-            pd troff
+            ls -al /home/circleci/repo/docs-toolkit/docutil
+            /usr/bin/python3 -m venv /home/circleci/repo/docs-toolkit/docutil/venv
             cat ~/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs
             cat ~/repo/docs-toolkit/mkdocs/setup-logs/*

@@ -50,12 +50,12 @@ jobs:
       - run:
           name: build and deploy site from documentation branch
           command: |
-            git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
             sudo apt-get install -y python3-venv
-            sudo pip install wheel
+            sudo pip3 install wheel
             pd setup docutil
             cat ~/repo/docs-toolkit/docutil/setup-logs/*
+            git submodule update --init
             pd setup mkdocs
             cat ~/repo/docs-toolkit/mkdocs/setup-logs/*
             pd setup jekyll

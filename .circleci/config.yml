@@ -53,6 +53,7 @@ jobs:
             git submodule update --init
             . ~/repo/docs-toolkit/kbash/activate.sh
             sudo apt-get install -y python3-venv
+            sudo pip install wheel
             pd setup docutil
             cat ~/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs

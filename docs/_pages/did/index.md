@@ -1,17 +1,7 @@
 ---
 layout: single
-title: about dids
+title: Decentralized IDentifier
 sidebar:
-  - title: "History"
-#    text: "Quick links about DIDs"
-    url: "pot-people"
-  - title: "Internet Resource"
-#    text: "People, Organizations, and Things"
-    url: "pot-organizations"
-  - title: Methods
-    nav: "did-methods"
+  - title: "About Dids"
+    nav: "did"
 ---
-
-## Methods
-
-<iframe class="airtable-embed" src="https://airtable.com/embed/shrevimEgHmANk3Jj?backgroundColor=purple&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>

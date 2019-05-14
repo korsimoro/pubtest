@@ -9,10 +9,8 @@ EOF
 export -f setup_environment_pd_jekyll_help
 
 setup_environment_pd_jekyll() {
+  # cd here to find the Gemfile
+  cd $PD/../docs
   default_ruby_setup $JEKYLL_BASE "any-version"
-  #local RUBY_GEM_PATH=$JEKYLL_BASE/.rubygems
-  #local RUBY_BIN_PATH=$JEKYLL_BASE/.rubybin
-  #cd $PD/../docs
-  #bundle install --path $RUBY_GEM_PATH --binstubs $RUBY_BIN_PATH
 }
 export -f setup_environment_pd_jekyll

@@ -1,9 +1,7 @@
-# MkDocs PoC
+# Exploratory Mkdocs
 
-mkdocs is good for particularly well structured data.  We can produce
-this data as part of our publication process.
-
+- so far we've figured out how to index set of documents
+- going to work on integrating external data at this stage next
 - See [Details](details) for information about the pubtest repository
-- See [Home](..) testing links
 
--
+

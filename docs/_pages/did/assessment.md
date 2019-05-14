@@ -1,14 +1,19 @@
 ---
 layout: single
-title: Decentralized IDentifier Rubrics
+title: Decentralized IDentifier Assessment
 sidebar:
   - title: "About Dids"
     nav: "did"
+  - title: "About Assessment"
+    nav: "did-assessment"
+  - title: "Rubrics"
+    nav: "rubrics"
+
 ---
 
 ## Rubric
 
-<Table here listing rubrics>
+Table here listing rubrics
 
 ## Assessment
 

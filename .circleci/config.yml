@@ -44,7 +44,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            . ~/repo/docs-toolkit/documentation/activate.sh
+            . ~/repo/docs-toolkit/kbash/activate.sh
             pd setup docutil
             cat /home/circleci/repo/docs-toolkit/docutil/setup-logs/*
             pd setup mkdocs

@@ -99,6 +99,7 @@ workflows:
                 - documentation
                 - testit
       - deploy:
+          docker:
           requires:
             - build
           filters:

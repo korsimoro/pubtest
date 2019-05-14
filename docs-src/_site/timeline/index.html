@@ -1,0 +1,414 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Timeline - Pubtest</title>
+<meta name="description" content="An amazing website. from docs/_config.yml">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Pubtest">
+<meta property="og:title" content="Timeline">
+<meta property="og:url" content="http://localhost:4000/pubtest/timeline/">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/pubtest/timeline/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Your Name from docs/_config.yml",
+      "url": "http://localhost:4000/pubtest",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/pubtest/feed.xml" type="application/atom+xml" rel="alternate" title="Pubtest Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pubtest/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--default">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/pubtest/">Pubtest</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/pubtest/_pages/did/" >DID</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pubtest/_pages/pot/" >POT</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pubtest/_pages/events/" >Events</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pubtest/_pages/history/" >History</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pubtest/_pages/code/" >Code</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <h5> Commit check : timeline.html - AAA</h5>
+<style>
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px;
+    width: 2px;
+    margin-left: -1.5px;
+    background-color: #f1f1f1;
+}
+
+.timeline>li {
+    position: relative;
+    margin-bottom: 50px;
+    min-height: 50px;
+}
+
+.timeline>li:before,
+.timeline>li:after {
+    content: " ";
+    display: table;
+}
+
+.timeline>li:after {
+    clear: both;
+}
+
+.timeline>li .timeline-panel {
+    float: right;
+    position: relative;
+    width: 100%;
+    padding: 0 20px 0 100px;
+    text-align: left;
+}
+
+.timeline>li .timeline-panel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0;
+}
+
+.timeline>li .timeline-panel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0;
+}
+
+.timeline>li .timeline-image {
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    margin-left: 0;
+    border: 7px solid #f1f1f1;
+    border-radius: 100%;
+    text-align: center;
+    color: #fff;
+    background-color: #f1f1f1;
+}
+
+.timeline>li .timeline-image h4 {
+    margin-top: 12px;
+    font-size: 10px;
+    line-height: 14px;
+}
+
+.timeline>li.timeline-inverted>.timeline-panel {
+    float: right;
+    padding: 0 20px 0 100px;
+    text-align: left;
+}
+
+.timeline>li.timeline-inverted>.timeline-panel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0;
+}
+
+.timeline>li.timeline-inverted>.timeline-panel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0;
+}
+
+.timeline>li:last-child {
+    margin-bottom: 0;
+}
+
+.timeline .timeline-heading h4 {
+    margin-top: 0;
+    color: inherit;
+}
+
+.timeline .timeline-heading h4.subheading {
+    text-transform: none;
+}
+
+.timeline .timeline-body>p,
+.timeline .timeline-body>ul {
+    margin-bottom: 0;
+}
+
+@media(min-width:768px) {
+    .timeline:before {
+        left: 50%;
+    }
+
+    .timeline>li {
+        margin-bottom: 100px;
+        min-height: 100px;
+    }
+
+    .timeline>li .timeline-panel {
+        float: left;
+        width: 41%;
+        padding: 0 20px 20px 30px;
+        text-align: right;
+    }
+
+    .timeline>li .timeline-image {
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+    }
+
+    .timeline>li .timeline-image h4 {
+        margin-top: 16px;
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel {
+        float: right;
+        padding: 0 30px 20px 20px;
+        text-align: left;
+    }
+}
+
+@media(min-width:992px) {
+    .timeline>li {
+        min-height: 150px;
+    }
+
+    .timeline>li .timeline-panel {
+        padding: 0 20px 20px;
+    }
+
+    .timeline>li .timeline-image {
+        width: 150px;
+        height: 150px;
+        margin-left: -75px;
+    }
+
+    .timeline>li .timeline-image h4 {
+        margin-top: 30px;
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel {
+        padding: 0 20px 20px;
+    }
+}
+
+@media(min-width:1200px) {
+    .timeline>li {
+        min-height: 170px;
+    }
+
+    .timeline>li .timeline-panel {
+        padding: 0 20px 20px 100px;
+    }
+
+    .timeline>li .timeline-image {
+        width: 170px;
+        height: 170px;
+        margin-left: -85px;
+    }
+
+    .timeline>li .timeline-image h4 {
+        margin-top: 40px;
+    }
+
+    .timeline>li.timeline-inverted>.timeline-panel {
+        padding: 0 100px 20px 20px;
+    }
+}
+</style>
+
+<section id="Timeline" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <ul class="timeline">
+          
+
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="img-circle img-responsive" src="/pubtest/" alt="" />
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+    </div>
+</section>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/pubtest/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Your Name from docs/_config.yml. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/pubtest/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

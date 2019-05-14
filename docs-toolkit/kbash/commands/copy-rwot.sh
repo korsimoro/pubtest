@@ -21,8 +21,8 @@ copy_dir() {
 }
 
 run() {
-  TOPICS="$PD/../docs/mkdocs/rwot-topics"
-  PAPERS="$PD/../docs/mkdocs/rwot-papers"
+  TOPICS="$PD/../docs-src/mkdocs/rwot-topics"
+  PAPERS="$PD/../docs-src/mkdocs/rwot-papers"
   SOURCE="$PD/../docs-data/.submodules/WebOfTrustInfo"
 
   local RWOT1="$SOURCE/rwot1-sf"

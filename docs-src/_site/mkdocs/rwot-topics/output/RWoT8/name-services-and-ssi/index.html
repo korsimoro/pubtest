@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Name services and ssi - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Can Name Services provide Persistent Human-meaningful Names Linked To A Self Sovereign Identity DID Without Compromising SSI?", url: "#_top", children: [
+              {title: "Overview", url: "#overview" },
+              {title: "Concept", url: "#concept" },
+              {title: "Reputation", url: "#reputation" },
+              {title: "Questions", url: "#questions" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="can-name-services-provide-persistent-human-meaningful-names-linked-to-a-self-sovereign-identity-did-without-compromising-ssi">Can Name Services provide Persistent Human-meaningful Names Linked To A Self Sovereign Identity DID Without Compromising SSI?</h1>
+<p>A Topic Paper submitted to Rebooting The Web of Trust 8</p>
+<p>by Toby Tremayne &amp; Ryan Gill</p>
+<p>February 26, 2019, Melbourne Australia</p>
+<h2 id="overview">Overview</h2>
+<p>The Zooko’s Triangle Trilemma  posits that only two of the desired three components of a modern digital identity system can successfully be implemented within a single system. Like “Good, cheap fast; pick two”, such a system can achieve security and decentralization, but without the third element of desirability – human meaningful names.</p>
+<p>The Topic for discussion is whether an externally managed name service can safely be used for deliberate identity persistence, allowing users to retain a name or handle and accrue reputation against it.</p>
+<h2 id="concept">Concept</h2>
+<p><img alt="Diagram of conceptual authentication process using Idents" src="/name-services-and-ssi-filies/figure1.png" />
+Figure 1: Diagram of conceptual authentication process using Idents</p>
+<h3 id="name-service">Name Service</h3>
+<p>A decentralized database or distributed ledger allows registration of “Aliases”, a human readable arbitrary string, which can be attached to a a user specified sovereign identity DID (IE a Sovrin DID), creating an “Ident”.</p>
+<p>Behavioural or network contribution reputation within a moderation network or a consensus group can be assigned against the DID. This lets the user carry around their own “handle” or persona online much like a twitter handle, while still retaining the protections of SSI.</p>
+<h3 id="zero-knowledge-proof-of-humanity-poh">Zero Knowledge Proof of Humanity (PoH)</h3>
+<p>A proposed standard for proving a human controlled, legally liable yet publicly anonymous identity online. Simply, an agreed level of service based or in-person verification that is linked to verification of a government accepted form of identification, or sufficient equivalent proof.</p>
+<p>Proof of Humanity is a credential that could be offered at the time of verification with a Steward or Verifier on an SSI blockchain, or a recognised credential for any form of id that passes the requirement. This proof is used to assert that the user is a real human, identifiable from the rest of humanity. While the Steward or Verifier would retain knowledge of Personal Identity from the original verification, that knowledge is not passed on with credentials or in any other way to service providers.</p>
+<p>A Channel or service requiring PoH can allow anonymous or pseudonymous posting and transactions, while retaining the ability to action a behaviour on the account if there are valid applicable legal reasons to do so – IE providing a warrant or subpoena to a Steward or Verifier.</p>
+<p>Using PoH is consent to be legally liable for your interactions and transactions under that account, with the knowledge that Services do not record your real identity, but law enforcement can connect you to your activity should they have grounds.</p>
+<p>Details such as SLAs, security requirements and regulation are all important requirements for a successful PoH implementation, however we believe even a tacit agreement of currently available verification standards and a well drafted consent / usage form are enough to implement a proof of concept on existing implementations like Sovrin. Over time as the protocol is refined, proof requirements for a PoH credential could become more stringent.</p>
+<p>The ultimate aim of Poh is not to solve all online abuse and bad faith acts, but to provide a baseline to develop the ability for users to interact anonymously online while still being accountable to legal and community rules.</p>
+<h2 id="reputation">Reputation</h2>
+<p>Given an arbitrary reputational system, points could be accrued against the DID. Additionally, the use of the Alias in online social settings like games or social media accrue social reputation against the name.</p>
+<h3 id="concealed-did">Concealed DID</h3>
+<p>Instead of using the original SSI ID the user registered the Alias against on the Name Service, a new DID could be provided with a custom Ident method. “did:ident:2345” might proxy a lookup to the original SSI DID, and pass the key detail accordingly, allowing for a step further obfuscation from data miners, while still being legally actionable.</p>
+<h3 id="collisions">Collisions</h3>
+<p>If a shared standard were to be developed, a game or social media site might use a list of name services, or allow you to sign up with any. Colliding names could be given automatically assigned modifiers for differentiation, based on locality and time of arrival. Subsequent users with the same alias registered on a different service might receive an appendix denoting their service and a number.</p>
+<h2 id="questions">Questions</h2>
+<h3 id="standard">Standard</h3>
+<p>How could a minimal standard for the use of names together with an SSI DID be developed to allow all such services to participate?</p>
+<p>How else might multiple name services co-exist and manage collisions for usernames for example, when everyone joins the latest VR world?</p>
+<h3 id="identity-cycling">Identity Cycling</h3>
+<p>If not using the Concealed DID method, users could simply change the SSI ID attached to an Ident, thus “rinsing” online reputation. Would the (globally speaking) limited number of Stewards, limit the feasibility of this action on a large scale?</p>
+<p>How can identity cycling be prevented without locking an Alias to a one time DID?</p>
+<p>If the user loses control of the Ident’s SSI ID, how can they regain control of their online reputation without allowing the bad actor use of identity cycling?</p>
+<h3 id="proof-of-humanity">Proof of Humanity</h3>
+<p>How could Proof of Humanity be developed as a standard among existing Stewards with current technology? How could a living standard be developed to grow and refine a list of acceptable forms of personal verification?</p>
+<p>Would PoH require legislation, IE criminalizing network accounts operating bots under false PoH?</p>
+<p>To what level would PoH need to be developed to be useful for anything from basic social media permissions to virtual environment and app authentication?</p>
+<p>Does the idea of layering names on top of SSI or providing the ability to create one portion of your Digital Identity to be your “presence” in the online world work at odds to the intent of SSI?</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

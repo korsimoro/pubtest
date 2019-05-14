@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Identity Forking and Federated Reputation - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Identity Forking and Federated Reputation", url: "#_top", children: [
+          ]},
+          {title: "Motivation", url: "#motivation", children: [
+          ]},
+          {title: "Composite keys", url: "#composite-keys", children: [
+          ]},
+          {title: "Identity forking", url: "#identity-forking", children: [
+              {title: "Attestation with identity forking", url: "#attestation-with-identity-forking" },
+              {title: "Verification", url: "#verification" },
+          ]},
+          {title: "Completeness of a reputation chain", url: "#completeness-of-a-reputation-chain", children: [
+          ]},
+          {title: "Bibliography", url: "#bibliography", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="identity-forking-and-federated-reputation">Identity Forking and Federated Reputation</h1>
+<p>By Christopher Malon, Group Ring, Inc. (https://groupring.net)</p>
+<h1 id="motivation">Motivation</h1>
+<p>Privacy requires an individual to perform transactions under many
+different identity tokens, which are not linked in any outside database.
+A principal may wish to establish his possession of a attestation,
+without revealing his complete identity. However, attestations should
+not be bearer instruments. An attestation must be issued in a way so
+that it is useless to anyone but the person to whom it was originally
+issued.</p>
+<p>This proposal provides a "forking" mechanism to issue attestations and spawn new
+identities from parent identities, in a way that attestations can be
+attributed to the spawned identity individually.</p>
+<p>The last section provides a federated mechanism for identities to
+establish their reputation data, both positive and negative, using a
+public blockchain. Forking is essential for this proposal, because this
+proposal gives a method to establish a complete history of a single
+identity’s actions, which could easily become public knowledge. A
+principal retains control only by spawning subidentities up to the
+finest level of activities that she wishes to be evaluated as a unit.</p>
+<h1 id="composite-keys">Composite keys</h1>
+<p>As implemented in Bitcoin&apos;s P2SH protocol, an M-of-N multisig address
+is implemented by a script address.  When payment using the script address
+is verified, the script is revealed, including the addresses of the
+participating public keys.</p>
+<p>However, some public key cryptosystems have a property that enables a
+composite signature scheme in which the participating keys can remain private.
+For example, in an elliptic curve digital signature algorithm (ECDSA) [1],
+a finite field F, an elliptic curve E with points taking cordinates in F,
+and a base point G on the curve E are fixed.  In Bitcoin, E, F, and G
+are defined by the standard secp256k1 [2].
+Private keys are integers x from 1 to n-1, where n is the order of the point G,
+and the corresponding public key is the scalar multiple Q = xG.
+Thus, if Q = xG and R = yG are two public keys, Q+R is a public key
+with private key x+y.</p>
+<h1 id="identity-forking">Identity forking</h1>
+<h2 id="attestation-with-identity-forking">Attestation with identity forking</h2>
+<p>For Bob to confer an attestation upon Alice that she can present separately from her other attestations,</p>
+<ol>
+<li>
+<p>Alice generates an additional keypair, called Carol.</p>
+</li>
+<li>
+<p>Alice sends her own public key and Carol&apos;s to Bob.  She signs the message twice, once with Alice&apos;s private key, and once with Carol&apos;s private key.</p>
+</li>
+<li>
+<p>Bob decides that he wants to confer the attestation upon Alice, usually based on some prior knowledge of Alice.</p>
+</li>
+<li>
+<p>Bob computes the public key Diana = Alice + Carol.</p>
+</li>
+<li>
+<p>Bob signs a message conferring the attestation upon Diana, and sends it to Alice.</p>
+</li>
+</ol>
+<p>Note that Bob cannot simply issue the attestation to one of Alice&apos;s derived keypairs, per BIP 32 [3], in lieu of this procedure, because derived keys are recognizable based on knowledge of an ancestor public key.</p>
+<p>The point of requiring Alice&apos;s private key for every use of Diana&apos;s key is to prevent Alice from giving or selling use of her attestation to some party Eve who could use it without her further participation.  If Alice did not have to sign a message once using Carol&apos;s key, Alice could give her credential to Eve without knowing Eve&apos;s private key and without Eve knowing Alice&apos;s private key, simply by defining Carol = Eve - Alice. </p>
+<h2 id="verification">Verification</h2>
+<p>To verify that Elizabeth has the attestation addressed to Diana, Frank
+may require Elizabeth to sign her messages using the composite key
+Diana + Elizabeth = (Alice + Carol) + Elizabeth.</p>
+<h1 id="completeness-of-a-reputation-chain">Completeness of a reputation chain</h1>
+<p>Reputation is a concept that mixes positive and negative attestations,
+or successes and failures. 
+An example of a positive attestation is a diploma, which certifies that someone
+graduated from a certain college with a certain degree.<br />
+Typically, people are happy to present positive attestations on demand,
+but they do not have an incentive to report all the
+times they failed.</p>
+<p>Publication to a blockchain allows an identity to establish the
+completeness of a series of actions whose ratings are being reported.</p>
+<p>Each identity in our framework is identified by a globally unique string
+and possesses a public/private keypair. An <span><em>identity</em></span>
+refers simply to this set of attributes. A principal may utilize many
+different identities, with or without links or attestations among them.
+The principals generate at least one identity for participating in each
+group of activities whose reputation they may want to reveal separately.</p>
+<p>Our system involves interactions between three kinds of roles, some of
+which may be shared by a single identity: <span><em>raters</em></span>, who
+assign ratings; <span><em>ratees</em></span>, who receive ratings; and
+<span><em>bazaars</em></span>, which operate services in which raters rate
+ratees. </p>
+<p>A <span><em>reputation claim</em></span> consists of: a <span><em>rater</em></span>; a
+<span><em>ratee</em></span>; a <span><em>bazaar</em></span>; a
+<span><em>timestamp</em></span>; (optionally) a <span><em>subject identifier</em>;
+(optionally) <span><em>comments</em> from the rater</span>; a unique <span><em>action
+identifier</em></span>; the rater’s <span><em>rating</em></span> (a real number);
+the ratee’s desired <span><em>weighting</em></span> of the action; and a
+<span><em>signature</em></span> from the bazaar. The bazaar simply asserts that
+the rater rated the ratee as indicated. Typically, the bazaar would be
+an online service mediating a transaction, but it could be the same as
+the rater.</p>
+<p>In order to receive ratings for an action X, Elizabeth:</p>
+<ol>
+<li>
+<p>Publishes an <span><em>authorization</em></span> to be rated on X to a
+    blockchain. The authorization establishes that the ratee identity
+    took the action being rated, and designates where the ratings should
+    come from. The authorization specifies: the <span><em>action
+    identifier</em></span> (X); the <span><em>ratee</em></span> (Elizabeth); the
+    <span><em>bazaar</em></span> to collect the rating from the rater(s);
+    whether only a <span><em>single</em></span> rating is expected, or many;
+    the <span><em>rating delivery frequency</em></span>, if many ratings are
+    expected; the ratee’s desired <span><em>weighting</em></span> for the
+    action; (optionally) a <span><em>subject identifier</em></span> string; and
+    a <span><em>multisig</em></span> of the above data by the ratee and the
+    bazaar.</p>
+</li>
+<li>
+<p>Receives deliveries of reputation claims from the bazaar, which it
+    also publishes on the blockchain.</p>
+</li>
+</ol>
+<p>Bitcoin’s transaction capacity would not provide enough space for every
+authorization and reputation event to be published directly to its
+blockchain. Additionally, transaction fees would be prohibitive. We
+suggest that a bazaar that deals with large volumes of reputation events
+consolidate its posts, by posting a tiny URL of the complete event list
+along with a hash of the list’s contents. Interested verification
+services may follow all these links and expand them into a database of
+identities and their authorizations and ratings.</p>
+<h1 id="bibliography">Bibliography</h1>
+<p>[1] https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm</p>
+<p>[2] http://www.secg.org/sec2-v2.pdf</p>
+<p>[3] https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki</p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

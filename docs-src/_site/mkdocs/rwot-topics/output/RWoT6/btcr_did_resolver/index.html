@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>BTCR DID Resolver Specification - RWoT Topic Papers</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "BTCR DID Resolver Specification", url: "#_top", children: [
+              {title: "Input: BTCR DID", url: "#input-btcr-did" },
+              {title: "Resolution Phase 1: Construct \"implicit\" DID document", url: "#resolution-phase-1-construct-implicit-did-document" },
+              {title: "Resolution Phase 2: Populate DID document with supplementary DID document data", url: "#resolution-phase-2-populate-did-document-with-supplementary-did-document-data" },
+              {title: "Assumptions", url: "#assumptions" },
+              {title: "Questions and Answers from January 2018 Hackathon", url: "#questions-and-answers-from-january-2018-hackathon" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="btcr-did-resolver-specification">BTCR DID Resolver Specification</h1>
+<p>By: Kim Hamilton Duffy, Christopher Allen, Ryan Grant</p>
+<p>This describes the process of resolving a BTCR DID into a DID Document. The draft reference implementation is available at https://github.com/WebOfTrustInfo/btcr-did-tools-js (see didFormatter.js). Note not all steps described in this document are implemented yet.</p>
+<p><a href="https://weboftrustinfo.github.io/btcr-tx-playground.github.io/">See the BTCR playground</a> for a live demonstration. The BTCR playground uses the draft reference implementation BTCR DID resolver.</p>
+<h2 id="input-btcr-did">Input: BTCR DID</h2>
+<p>The input to a BTCR DID resolver is a BTCR DID. </p>
+<pre><code>Format:  did:btcr:&lt;specific-idstring&gt;
+Example: did:btcr:txtest1-xkyt-fzgq-qq87-xnhn
+</code></pre>
+
+<h3 id="goal">Goal</h3>
+<p>The initial step of a BTCR DID resolver validates input by confirming <code>method</code> from the DID is <code>btcr</code>.</p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Confirm <code>method</code> from the DID is <code>btcr</code>. Fail if not</li>
+</ol>
+<h2 id="resolution-phase-1-construct-implicit-did-document">Resolution Phase 1: Construct "implicit" DID document</h2>
+<h3 id="goal_1">Goal</h3>
+<p>This phase constructs the "implicit" DID Document from Bitcoin transactioh data</p>
+<h3 id="steps_1">Steps</h3>
+<ol>
+<li>From the BTCR DID, extract the transaction reference: this is the <code>&lt;specific-idstring&gt;</code> part of <code>did:btcr:&lt;specific-idstring&gt;</code> = <code>did:btcr:&lt;TXREF(TX0)&gt;</code></li>
+<li>From the txref encoding, determine the transaction <ul>
+<li>The txref prefix determines which Bitcoin network to use<ul>
+<li>For example with <code>txtest1-xkyt-fzgq-qq87-xnhn</code>, <code>txtest1</code> is the Bitcoin testnet network, which means we consult the testnet network for the transaction</li>
+</ul>
+</li>
+<li>The remainder of the txref-encoded transaction is an encoding of the block height and position</li>
+<li>Reference implementation: https://github.com/WebOfTrustInfo/txref-conversion-js</li>
+</ul>
+</li>
+<li>Look up transaction by height and position. Is the transaction output spent?<ul>
+<li>no: this is the latest version of the DID. From this we can construct the DID Document</li>
+<li>yes: keep following transaction chain until the latest with an unspent output is found</li>
+</ul>
+</li>
+<li>Extract the hex-encoded public key that signed the transaction and update the DID document with default authentication capability<ul>
+<li>Populate the first entry of the <code>publicKey</code> array in the DID document. This uses the <a href="https://w3c-dvcg.github.io/lds-koblitz2016/">Koblitz Elliptic Curve Signature 2016</a> signature suite</li>
+<li>Populate the first entry of the <code>authentication</code> array in the DID document, referencing the key above. </li>
+<li>Note: It is a BTCR method convention that <code>#keys-1</code> corresponds to the transaction signing key. We'll see in the next spec that overriding this path in the supplementary DID document data is not allowed</li>
+</ul>
+</li>
+<li>If the transaction contains an <code>OP_RETURN</code> field, populate the <code>serviceEndpoint</code> in the DID document. This is assumed to reference supplementary DID document data<ul>
+<li>Add an entry to the <code>service</code> section of the DID document<ul>
+<li><code>type</code> is <code>BTCREndpoint</code></li>
+<li><code>serviceEndpoint</code> is the value in the OP_RETURN field, e.g. "https://github.com/myopreturnpointer"</li>
+<li><code>timestamp</code> is XXX?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add <code>SatoshiAuditTrail</code>, which contains additional metadata available from the Bitcoin transaction. Note: needs details</li>
+</ol>
+<p>If the transaction contained no OP_RETURN data (and therefore no serviceEndpoint was added), the resolution process is done. Otherwise, proceed to the next phase.</p>
+<h3 id="output-of-phase-1">Output of Phase 1</h3>
+<p>The output of this resolution phase is referred to as the "implicit" DID Document; it is derived exclusively from Bitcoin transaction data.</p>
+<p>If the transaction has no OP_RETURN data, then the <code>service</code> array would have no entries. The only default capabilities would be to authenticate with the transaction signing key.</p>
+<pre><code>
+{
+  &quot;@context&quot;: &quot;https://w3id.org/btcr/v1&quot;,
+  &quot;id&quot;: &quot;did:btcr:&lt;specific-idstring&gt;&quot;,
+  &quot;publicKey&quot;: [{
+      &quot;id&quot;: &quot;did:btcr:&lt;specific-idstring&gt;#keys-1&quot;,
+      &quot;owner&quot;: &quot;did:btcr:&lt;specific-idstring&gt;&quot;,
+      &quot;type&quot;: &quot;EdDsaSAPublicKeySecp256k1&quot;,
+      &quot;publicKeyHex&quot;: &quot;02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71&quot;
+  }],
+  &quot;authentication&quot;: [{
+      &quot;type&quot;: &quot;EdDsaSAPublicKeySecp256k1Authentication&quot;,
+      &quot;publicKey&quot;: &quot;#keys-1&quot;
+  }],
+  &quot;service&quot;: [{
+    &quot;type&quot;: &quot;BTCREndpoint&quot;,
+    &quot;serviceEndpoint&quot;: &quot;https://github.com/myopreturnpointer.jsonld&quot;     
+    &quot;timestamp&quot;: &quot;XXXX&quot;
+  ]},
+  &quot;SatoshiAuditTrail&quot;: [{
+    &quot;chain&quot;: &quot;testnet3&quot;,
+    &quot;blockhash&quot;: &quot;00000000b3487880b2814da8c0a6b545453d88945dc29a7b700f653cd7e9cdc7&quot;,
+    &quot;blockindex&quot;: 1,
+    &quot;outputindex&quot;: 1,
+    &quot;blocktime&quot;: 1499502050,
+    &quot;time&quot;: 1499501000,
+    &quot;timereceived&quot;: 1499501000,
+    &quot;burn-fee&quot;: -0.05
+  }]
+}
+</code></pre>
+
+<h2 id="resolution-phase-2-populate-did-document-with-supplementary-did-document-data">Resolution Phase 2: Populate DID document with supplementary DID document data</h2>
+<h3 id="goal_2">Goal</h3>
+<h3 id="steps_2">Steps</h3>
+<ol>
+<li>Retrieve the jsonld document from <code>serviceEndpoint.BTCREndpoint</code>, get first JSON type "DID Document". TODO<ul>
+<li>If URL doesn't exist, ERROR</li>
+</ul>
+</li>
+<li>Authenticate this JSON-LD fragment as valid<ul>
+<li>Note: The DID <code>id</code> value is <em>not</em> required to be in this JSON-LD.<ul>
+<li>If this patch data is an immutable file named by content hash (if stored in IPFS, for example) then it was committed before any blockchain confirmations occurred. </li>
+<li>The DID <code>id</code> value for an immutable DID document patch must be implicitly constructed by the method resolver presenting the valid DID document.</li>
+<li>Question: must it be present if not in an immutable store? I think yes</li>
+</ul>
+</li>
+<li>If BTCREndpoint is in immutable content hash (say ipfs), it is considered valid and no signature is required on this JSON, as in effect, it is signed by the blockchain transaction</li>
+<li>Otherwise, the JSON-LD at the BTCREndpoint must have signature matching Bitcoin transaction signing key<ul>
+<li>If not, ERROR</li>
+</ul>
+</li>
+<li>Question: does this mean BTCR resolvers must know in advance a registry of immutable stores?</li>
+</ul>
+</li>
+<li>Merges in known JSON-LD values (additional keys, authorizations, etc) as appropriate into DID document. Additive only!<ul>
+<li>Any fields that are part of the DID specification (<code>publicKey</code>, <code>authentication</code>, <code>service</code>) will be merged into the DID document by appending their entries to the arrays of the appropriate field</li>
+<li>If continuation overwrites the Bitcoin key value, ERROR</li>
+<li>Unknown JSON-LD values (in type "DID Document") are appended to the constructed DID Document</li>
+<li>Non-DID JSON-LD data types that may also be at BTCEndpoint (such as Verifiable Claims) are ignored by resolver</li>
+</ul>
+</li>
+<li>Loop for secondary (patch) DID Documents<ul>
+<li>Get secondary (patch) DID Documents and merge according to step 8</li>
+<li>Parse for secondary BTCREndpoint URL(s) TODO: what does this mean?</li>
+<li>Questions: <ul>
+<li>should we specify order? Depth first? </li>
+<li>what to do with path collisions? i.e. 2 different DID patches use the path <code>#keys-2</code>?</li>
+<li>Consider DoS limits of this loop</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Proposed: wrap the DID document in resolver envelope with additional metadata</li>
+</ol>
+<h3 id="output-of-phase-2">Output of Phase 2</h3>
+<p>Returns final constructed JSON-LD DID Document to caller, which can use the keys to authenticate data such the signature on a verifiable claim, or perform other application tasks.</p>
+<p>Let's assume the supplementary DID document (from the OP_RETURN data) is stored in an immutable store and contains the following <code>didDocument</code>. </p>
+<pre><code>{
+  ...
+  &quot;didDocument&quot;: {
+      &quot;@context&quot;: &quot;https://w3id.org/did/v1&quot;,
+      &quot;publicKey&quot;: [{
+        &quot;id&quot;: &quot;#keys-2&quot;,
+        &quot;type&quot;: &quot;RsaVerificationKey2018&quot;,
+        &quot;publicKeyPem&quot;: &quot;-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n&quot;
+      }],
+      &quot;authentication&quot;: [{
+        // this key can be used to authenticate as DID ...fghi
+        &quot;type&quot;: &quot;RsaSignatureAuthentication2018&quot;,
+        &quot;publicKey&quot;: &quot;#keys-2&quot;
+      }],
+  ...
+}
+</code></pre>
+
+<p>Note that the <code>id</code> is not known yet, because the transaction referencing this supplementary document has not occurred. </p>
+<p>Then the final DID document would be:</p>
+<pre><code>{
+    &quot;resolver-specific envelope&quot;: &quot;some-did-resolver-v1&quot;, 
+    &quot;doesn't matter to DID spec&quot;: true,
+    &quot;resultDid&quot;: {
+      &quot;@context&quot;: &quot;https://w3id.org/did/v1&quot;,
+      &quot;id&quot;: &quot;did:btcr:&lt;specific-idstring&gt;&quot;,
+      &quot;publicKey&quot;: [{
+        &quot;id&quot;: &quot;did:btcr:&lt;specific-idstring&gt;#key-1&quot;,
+        &quot;owner&quot;: &quot;did:btcr:mytxid&quot;,
+        &quot;type&quot;: &quot;EdDsaSAPublicKeySecp256k1&quot;,
+        &quot;publicKeyHex&quot;: &quot;02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71&quot;
+      }, {
+        &quot;id&quot;: &quot;did:btcr:&lt;specific-idstring&gt;#keys-2&quot;,
+        &quot;type&quot;: &quot;RsaVerificationKey2018&quot;,
+        &quot;publicKeyPem&quot;: &quot;-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n&quot;
+      }
+      ],
+      &quot;authentication&quot;: [{
+        &quot;type&quot;: &quot;EdDsaSAPublicKeySecp256k1Authentication&quot;,
+        &quot;publicKey&quot;: &quot;#keys-1&quot;
+      }, {
+        &quot;type&quot;: &quot;RsaSignatureAuthentication2018&quot;,
+        &quot;publicKey&quot;: &quot;#keys-2&quot;
+      }],
+      &quot;service&quot;: [{
+        &quot;type&quot;: &quot;BTCREndpoint&quot;,
+        &quot;serviceEndpoint&quot;: &quot;https://github.com/myopreturnpointer&quot;,  
+        &quot;timestamp&quot;: &quot;XXXX&quot;
+      }],
+      &quot;SatoshiAuditTrail&quot;: [{
+        &quot;chain&quot;: &quot;testnet3&quot;,
+        &quot;blockhash&quot;: &quot;00000000b3487880b2814da8c0a6b545453d88945dc29a7b700f653cd7e9cdc7&quot;,
+        &quot;blockindex&quot;: 1,
+        &quot;outputindex&quot;: 1,
+        &quot;blocktime&quot;: 1499502050,
+        &quot;time&quot;: 1499501000,
+        &quot;timereceived&quot;: 1499501000,
+        &quot;burn-fee&quot;: -0.05
+      }]
+
+      // fields found in BTCREndpoint marked using JSON type &quot;DID Document&quot;
+      &quot;future DID-spec term_a&quot; : {
+      },
+      &quot;future DID-spec term_b: : {
+      }
+
+      // Excluded from this diddoc are some other things allowed in
+      // the files storing patches to the diddoc, when using it like a
+      // &quot;bag of keys&quot;.  One example would be verifiable claims stored
+      // in the same github document as a BTCREndpoint.
+    }
+
+    // Here the method resolver, sometimes also called the method
+    // driver, may add a signature (which is out of scope for the DID
+    // spec), confirming that it looked these things up on the
+    // blockchain then-current, and merged all applicable patches
+    // found following the BTCREndpoint algorithm.  The resolver will
+    // have stripped any signature from a BTCREndpoint file on a
+    // mutable filesystem, since it MUST at minimum add its own
+    // SatoshiAuditTrail section.
+}
+</code></pre>
+
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li>Content at BTCREndpoint has term separating out DID document "extensions".<ul>
+<li>Under this are terms from DID specification.</li>
+<li>Known BTCR terms will be spliced into e.g. "service", "authentication", etc</li>
+<li>others will be included in DID returned by resolver</li>
+</ul>
+</li>
+<li>everything not under that node is not part of DID Document.<ul>
+<li>claims</li>
+<li>crypto-cats</li>
+</ul>
+</li>
+</ul>
+<h2 id="questions-and-answers-from-january-2018-hackathon">Questions and Answers from January 2018 Hackathon</h2>
+<ul>
+<li>How to represent updates?<ul>
+<li>Ryan claims that proofs about update are not proper for the DID document, other than to require methods to provide a way to do updates. Why should a client app need to know about updates? The DID spec should not try to provide a signed DID Document that is JSON-LD self-complete.  Instead, trust in the method resolver is needed. </li>
+<li>Should this be part of the audit trail?  (Ryan thinks yes.  Any objections?)</li>
+<li>At which layer is this happening? is it a requirement of the universal resolver? or is this simply returning info from which this can be determined? </li>
+<li>This also means we can remove the following:</li>
+</ul>
+</li>
+</ul>
+<pre><code>      &quot;update&quot;: {[
+        // update is implicit 
+        // Optional: txout index
+        &quot;type&quot;: &quot;BTCRTip&quot;,
+        &quot;serviceEndpoint&quot;: &quot;bitcoinaddress&quot;
+      ]},
+</code></pre>
+
+<ul>
+<li>How to represent timestamp?</li>
+<li>Some of the values (the DID ID itself, the bitcoin key, the BTREndpoint, and any immutable content hash items) are effectively timestamped by the Bitcoin transaction</li>
+<li>However, mutable values from the DID Document construction process may have been updated later. </li>
+<li>Should the BTCR spec demand that compliant method resolvers sign the returned DID Document (diddo), using a standard envelope?  (This, even though it's out of scope for the DID spec.)</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content"><p>All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

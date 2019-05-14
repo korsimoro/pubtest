@@ -82,7 +82,7 @@ jobs:
               git checkout master
               rm -rf ~/repo/docs
               echo "Pull built documentation forward"
-              git merge -X theirs documentation -m "Merging Documentation"
+              git merge -X theirs kbash -m "Merging Documentation"
               echo "Trigger deployment by pushing to master"
               git push origin master
               echo "Cleanup"

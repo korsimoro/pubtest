@@ -16,6 +16,18 @@
 [submodule "docs-toolkit/docutil/sqliteschema"]
 	path = docs-toolkit/docutil/sqliteschema
 	url = git@github.com:korsimoro/sqliteschema
-[submodule "docs-data/.submodules/infominer33/yest"]
-	path = docs-data/.submodules/infominer33/yest
-	url = git@github.com:infominer33/yest
+[submodule "docs-data/.submodules/WebOfTrustInfo/rwot4-paris"]
+	path = docs-data/.submodules/WebOfTrustInfo/rwot4-paris
+	url = git@github.com:WebOfTrustInfo/rwot4-paris
+[submodule "docs-data/.submodules/WebOfTrustInfo/rwot3-sf"]
+	path = docs-data/.submodules/WebOfTrustInfo/rwot3-sf
+	url = git@github.com:WebOfTrustInfo/rwot3-sf
+[submodule "docs-data/.submodules/WebOfTrustInfo/rwot1-sf"]
+	path = docs-data/.submodules/WebOfTrustInfo/rwot1-sf
+	url = git@github.com:WebOfTrustInfo/rwot1-sf
+[submodule "docs-data/.submodules/WebOfTrustInfo/rwot2-id2020"]
+	path = docs-data/.submodules/WebOfTrustInfo/rwot2-id2020
+	url = git@github.com:WebOfTrustInfo/rwot2-id2020
+[submodule "docs-data/.submodules/infominer33/DIDecentralized"]
+	path = docs-data/.submodules/infominer33/DIDecentralized
+	url = git@github.com:infominer33/DIDecentralized

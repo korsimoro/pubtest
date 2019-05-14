@@ -29,30 +29,13 @@ run() {
   rm -rf $TARGET
   mkdir -p $TARGET
 
-<<<<<<< HEAD
-=======
-  #report_progress "copying rwot data" ""
-  pd copy-yest
-
-  #report_progress "mkdocs" "Logging to $LOG"
->>>>>>> kbash
   pd docutil run db-query
   pd docutil run db-schema
   pd docutil run db-digest
   pd import-toml
   install_formatted_data
 
-  # build the mkdocs portion
-  local LOG=$MKDOCS_KBASH_LOGS/build-all.txt
-<<<<<<< HEAD
-  report_progress "step1" "Logging to $LOG"
-  pd build mkdocs >$LOG
-=======
-  #report_progress "mkdocs" "Logging to $LOG"
-  pd activate mkdocs >$LOG
-  set +x
-  pd build mkdocs >>$LOG
->>>>>>> kbash
-
+  pd build-mkdocs
+  
   report_ok "$TARGET populated"
 }

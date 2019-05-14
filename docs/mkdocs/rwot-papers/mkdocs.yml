@@ -1,0 +1,22 @@
+site_name: RWoT Final Papers
+site_dir: output
+edit_uri: 
+
+
+copyright: "All of the contents of this directory are licensed CC-BY their contributors, unless otherwise noted."
+
+theme:
+  name: windmill
+
+use_directory_urls: true
+
+plugins:
+    - awesome-pages:
+        filename: .index
+        collapse_single_pages: true
+    - search
+
+
+extra:
+  article_nav_top: false
+  article_nav_bottom: false

@@ -76,13 +76,16 @@ jobs:
               git add .
               echo "Committing"
               git commit -a -m "Publishing Update From CircleCI"
+              rm -rf ~/repo/docs-data/.submodules
               echo "Second Status"
               git status
-              echo "Go back to master"
+              echo "Go back to master and blow away repo contents"
               git checkout master
+              git rm -rf ~/repo/docs
+              git commit -a -m "clearing docs to receive easy merge"
               echo "Pull built documentation forward"
-              git merge -X theirs documentation -m "Merging Documentation"
-              echo "Trigger deployment"
+              git merge -X theirs kbash -m "Merging Documentation"
+              echo "Trigger deployment by pushing to master"
               git push origin master
               echo "Cleanup"
               git checkout kbash
